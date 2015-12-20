@@ -49,7 +49,7 @@
 				性别：
 			</td>
 			<td bgColor="#ffffff">
-				<s:radio list="#{'male':'男','female':'女'}" name="sex" value="%{model.sex}"></s:radio>
+				<s:radio list="{'男','女'}" name="sex" value="%{model.sex}"></s:radio>
 			</td>
 		</tr>
 		<TR>

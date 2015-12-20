@@ -8,18 +8,49 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>用户注册</h1>
-	<font color="red">
-		<s:actionerror/>
-	</font>
-	<form action="${pageContext.request.contextPath}/user/user_register.action" method="post">
-		用户名：<input type="text" name="name"/><br/>
-		密码：<input type="password" name="password"/><br/>
-		Email：<input type="text" name="email"/><br/>
-		性别：<input type="radio" name="sex" value="male" id="male"> <label for="male">男</label>
-			<input type="radio" name="sex" value="female" id="female"><label for="female">女</label><br/>
-		<input type="submit" value="提交">
-		<input type="reset" value="重置">
-	</form>
+	<h1 align="center">用户注册</h1>
+	<div align="center">
+		<font color="red">
+			<s:actionerror/>
+			<s:fielderror/>
+		</font>
+		<s:form action="user_register" namespace="/user" theme="simple" method="post">
+			<table>
+				<tr>
+					<td align="right">用户名：</td>
+					<td>
+						<s:textfield name="name"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">Email：</td>
+					<td>
+						<s:textfield name="email"/>
+					</td>
+				</tr><tr>
+					<td align="right">性别：</td>
+					<td>
+						<s:radio  list="{'男','女'}" name="sex"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">密码：</td>
+					<td>
+						<s:password name="password"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">重复密码：</td>
+					<td>
+						<s:password name="repassword"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="submit" value="提交"></td>
+					<td align="center"><input type="reset" value="重置"></td>
+				</tr>
+			</table>
+		</s:form>
+	</div>
 </body>
 </html>

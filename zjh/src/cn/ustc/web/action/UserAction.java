@@ -10,6 +10,7 @@ import cn.ustc.web.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private UserService userService = new UserService();
@@ -22,14 +23,15 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	/**
 	 * 登录--要判断登录用户的类型
 	 * @return
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
+	@InputConfig(resultName="loginINPUT")
 	public String login(){
 		if (user.getName() == null || "".equals(user.getName().trim())) {
-			return "login";
+			return "loginINPUT";
 		}
 		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
-			return "login";
+			return "loginINPUT";
 		}
 		
 		// TODO 判断用户类型 进行相应用户表查找
@@ -48,16 +50,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 * @return
 	 * @throws SQLException 
 	 */
+	@InputConfig(resultName="registerINPUT")
 	public String register() {
-		if (user.getName() == null || "".equals(user.getName().trim())) {
-			return "login";
-		}
-		if (user.getEmail() == null || "".equals(user.getEmail().trim())) {
-			return "login";
-		}
-		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
-			return "login";
-		}
 		boolean res = userService.insertUser(user);
 		System.out.println(res);
 		return "insertSUCCESS";

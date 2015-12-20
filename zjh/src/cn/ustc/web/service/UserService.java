@@ -28,7 +28,7 @@ public class UserService {
 		return users;
 	}
 
-	public User findUserById(Integer id) {
+	public User findUserById(String id) {
 		User user = userDao.findByUserID(id);
 		return user;
 	}
@@ -37,7 +37,7 @@ public class UserService {
 		return userDao.update(user);
 	}
 
-	public void deleteUserById(Integer id) {
+	public void deleteUserById(String id) {
 		userDao.deleteById(id);
 	}
 

@@ -1,13 +1,20 @@
 package cn.ustc.domain;
 
 public class User {
-	private Integer id;
+	private String id;
 	private String name;
 	private String password;
+	private String repassword;
 	private String email;
 	private String sex;
 	private String usertype; //用户的类型，专家，普通还是企业
 	
+	public String getRepassword() {
+		return repassword;
+	}
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
+	}
 	public String getUsertype() {
 		return usertype;
 	}
@@ -20,10 +27,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -43,5 +50,11 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password
+				+ ", repassword=" + repassword + ", email=" + email + ", sex="
+				+ sex + ", usertype=" + usertype + "]";
 	}
 }

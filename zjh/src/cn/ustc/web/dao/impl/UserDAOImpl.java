@@ -1,6 +1,7 @@
 package cn.ustc.web.dao.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -40,14 +41,14 @@ public class UserDAOImpl implements UserDAO {
 	public int insertUser(User user) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
+//		user.setId(UUID.randomUUID().toString());
+		System.out.println(user);
 
-		user.setName(user.getName());
-		user.setEmail(user.getEmail());
 		try {
 			session.save(user);
 			transaction.commit();
 		} catch (RuntimeException e) {
-			throw e;
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -55,7 +56,7 @@ public class UserDAOImpl implements UserDAO {
 		return 1;
 	}
 
-	public User findByUserID(int id) {
+	public User findByUserID(String id) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
 
@@ -112,7 +113,7 @@ public class UserDAOImpl implements UserDAO {
 		return 1;
 	}
 
-	public void deleteById(Integer id) {
+	public void deleteById(String id) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
 		User user = null;

@@ -34,7 +34,7 @@ public interface UserDAO {
 	 * @param id
 	 * @return
 	 */
-	public abstract User findByUserID(int id);
+	public abstract User findByUserID(String id);
 
 	/**
 	 * 查询所有普通用户
@@ -57,5 +57,5 @@ public interface UserDAO {
 	 * 
 	 * @param id
 	 */
-	public abstract void deleteById(Integer id);
+	public abstract void deleteById(String id);
 }

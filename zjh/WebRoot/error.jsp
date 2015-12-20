@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>error page</title>
 </head>
 <body>
-<h3>不好意思，服务器出问题了，请稍后访问！</h3>
+<h3>404你信不信</h3>
 错误信息： <s:actionerror/>
 </body>
 </html>
