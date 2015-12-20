@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="messages"></constant>
+
+
+	<package name="basicstruts2" namespace="/user" extends="struts-default">
+		
+		<global-results>
+			<result name="login">/login/login.jsp</result>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<!-- 全局异常处理结果集 -->
+		<!-- <global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings> -->
+		
+		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
+			<result name="input">/user/login.jsp</result>
+			<result name="loginSUCCESS">/user/home.jsp</result>
+			<result name="loginINPUT">/user/login.jsp</result>
+			<!-- <result name="insertSUCCESS" type="redirectAction">user_list</result> -->
+			<result name="insertSUCCESS">/user/login.jsp</result>
+			<result name="listSUCCESS">/user/userlist.jsp</result>
+			<result name="viewSUCCESS">/user/view.jsp</result>
+			<result name="editviewSUCCESS">/user/edit.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">user_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
+		</action>
+	</package>
+
+</struts>
