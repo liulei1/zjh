@@ -1,4 +1,4 @@
-package cn.ustc.web.dao;
+package cn.ustc.web.jdbcdao;
 
 import java.sql.SQLException;
 import java.util.List;

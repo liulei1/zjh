@@ -31,6 +31,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
 			return "login";
 		}
+		
 		// TODO 判断用户类型 进行相应用户表查找
 		
 		User loginUser = userService.login(user);
@@ -38,7 +39,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			ServletActionContext.getServletContext().setAttribute("user", loginUser);
 			return "loginSUCCESS";
 		}else {
-			return "login";
+			return "loginINPUT";
 		}
 	}
 	

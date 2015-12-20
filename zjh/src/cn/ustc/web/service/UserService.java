@@ -3,10 +3,11 @@ package cn.ustc.web.service;
 import java.util.List;
 
 import cn.ustc.domain.User;
-import cn.ustc.web.dao.UserDao;
+import cn.ustc.web.dao.UserDAO;
+import cn.ustc.web.dao.impl.UserDAOImpl;
 
 public class UserService {
-	private UserDao userDao = new UserDao();
+	private UserDAO userDao = new UserDAOImpl();
 
 	public boolean insertUser(User user){
 		int res = 0;
@@ -39,29 +40,5 @@ public class UserService {
 	public void deleteUserById(Integer id) {
 		userDao.deleteById(id);
 	}
-
-//	public boolean delByUserID(int userID){
-//		User user = new User();
-//		user.setUserID(userID);
-//		int res = 0;
-//		res = userDao.delUserByCondition(user);
-//
-//		if (res > 0) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-
-//	public User findUserByUserID(int userID){
-//		User user = null;
-//		user = userDao.findByUserID(userID);
-//		return user;
-//	}
-//
-//	public String updateUser(User user, boolean isEditUpload) {
-//		userDao.update(user, isEditUpload);
-//		return null;
-//	}
 
 }
