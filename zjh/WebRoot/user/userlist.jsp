@@ -20,45 +20,48 @@
 </script>
 </head>
 <body>
-	<table frame="border" rules="all">
-		<tr>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">用户名</td>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">Email</td>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">性别</td>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">修改</td>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
-			<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">删除</td>
-		</tr>
-		<s:iterator value="users" var="user">
+<h1 align="center"><strong>普通用户列表</strong></h1>
+	<div align="center">
+		<table frame="border" rules="all">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
-					${name}
-				</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
-					${email}
-				</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">
-					${sex}
-				</td>
-				<td align="center" style="HEIGHT: 22px"><s:a
-						action="user_editview" namespace="/user">
-						<s:param name="id" value="id" />
-						<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
-					</s:a>
-				</td>
-				<td align="center" style="HEIGHT: 22px"><s:a action="user_view" namespace="/user">
-						<s:param name="id" value="id" />
-						<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
-					</s:a>
-				</td>
-				<td align="center" style="HEIGHT: 22px"><s:a action="user_delete" namespace="/user" cssClass="delLink">
-						<s:param name="id" value="id" />
-						<img src="${pageContext.request.contextPath}/images/i_del.gif"
-							width="16" height="16" border="0" style="CURSOR: hand">
-					</s:a>
-				</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">用户名</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">Email</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">性别</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">修改</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">删除</td>
 			</tr>
-		</s:iterator>
-	</table>
+			<s:iterator value="users" var="user">
+				<tr>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
+						${name}
+					</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
+						${email}
+					</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">
+						${sex}
+					</td>
+					<td align="center" style="HEIGHT: 22px"><s:a
+							action="user_editview" namespace="/user">
+							<s:param name="id" value="id" />
+							<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
+						</s:a>
+					</td>
+					<td align="center" style="HEIGHT: 22px"><s:a action="user_view" namespace="/user">
+							<s:param name="id" value="id" />
+							<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
+						</s:a>
+					</td>
+					<td align="center" style="HEIGHT: 22px"><s:a action="user_delete" namespace="/user" cssClass="delLink">
+							<s:param name="id" value="id" />
+							<img src="${pageContext.request.contextPath}/images/i_del.gif"
+								width="16" height="16" border="0" style="CURSOR: hand">
+						</s:a>
+					</td>
+				</tr>
+			</s:iterator>
+		</table>
+	</div>
 </body>
 </html>
