@@ -8,7 +8,14 @@ public class User {
 	private String email;
 	private String sex;
 	private String usertype; //用户的类型，专家，普通还是企业
+	private boolean nameExsit; //用于注册ajax验证是否用户名存在
 	
+	public boolean isNameExsit() {
+		return nameExsit;
+	}
+	public void setNameExsit(boolean nameExsit) {
+		this.nameExsit = nameExsit;
+	}
 	public String getRepassword() {
 		return repassword;
 	}

@@ -11,7 +11,7 @@
 			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
-				<interceptor-ref name="loginInterceptor"/>
+				<!-- <interceptor-ref name="loginInterceptor"/> -->
 			</interceptor-stack>
 		</interceptors>
 		
@@ -27,10 +27,10 @@
 		</global-exception-mappings>
 		
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
-			<interceptor-ref name="myStack">
-				<!-- 向拦截器 传递参数 ，多个参数 用, 分隔-->
+			<!-- <interceptor-ref name="myStack">
+				向拦截器 传递参数 ，多个参数 用, 分隔
 				<param name="loginInterceptor.exclude">user_login</param>			
-			</interceptor-ref>
+			</interceptor-ref> -->
 			
 			<result name="input">/user/login.jsp</result>
 			<result name="loginSUCCESS">/user/home.jsp</result>
@@ -45,6 +45,15 @@
 			<result name="editviewSUCCESS">/user/edit.jsp</result>
 			<result name="editSUCCESS" type="redirectAction">user_list</result>
 			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
+		</action>
+		
+	</package>
+	
+	<package name="myjson" extends="json-default">
+		<action name="checkUserName" class="cn.ustc.web.action.UserAction" method="checkUserName">
+			<!-- 要点二 ：结果集类型 必须指定为 json -->
+			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
+			<result type="json"></result>
 		</action>
 	</package>
 

@@ -84,16 +84,13 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			userList = (List<User>) session.createQuery("FROM User").list();
 			session.getTransaction().commit();
-
 		} catch (RuntimeException e) {
 			tx.rollback();
 			throw e;
 		} finally {
 			session.close();
 		}
-
 		return userList;
-
 	}
 
 	public int update(User user) {
@@ -128,5 +125,18 @@ public class UserDAOImpl implements UserDAO {
 		} finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<User> findUserByName(String name) {
+		Session session = HibernateUtils.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		String hql = "from User where name=?";
+		List<User> userList = session.createQuery(hql).setParameter(0, name).list();
+
+		tx.commit();
+		session.close();
+		return userList;
 	}
 }

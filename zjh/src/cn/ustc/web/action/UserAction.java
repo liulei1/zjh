@@ -106,4 +106,21 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		userService.deleteUserById(user.getId());
 		return "deleteSUCCESS";
 	}
+	
+	/**
+	 * 离焦判断用户名是否存在
+	 * @return
+	 */
+	public String checkUserName(){
+		if(!"".equals(user.getName())){
+			List<User> list = userService.findUserByName(user.getName());
+			if(list.size() > 0){
+				user.setNameExsit(true);
+			}else{
+				user.setNameExsit(false);
+			}
+		}
+		return SUCCESS;
+	}
+	
 }

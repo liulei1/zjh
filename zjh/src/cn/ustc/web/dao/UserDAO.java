@@ -58,4 +58,11 @@ public interface UserDAO {
 	 * @param id
 	 */
 	public abstract void deleteById(String id);
+
+	/**
+	 * 根据用户名查找用户
+	 * @param name
+	 * @return
+	 */
+	public abstract List<User> findUserByName(String name);
 }
