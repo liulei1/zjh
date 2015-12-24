@@ -17,6 +17,21 @@
 
 hibernate 查询优化 --抓取策略 .fetch、lazy的属性设置
 
+防止表单重复提交：
+	1. 页面 增加标签  <s:token></s:token>
+	2. struts.xml 增加拦截器 
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"/>
+				<!-- 防止表单重复提交的拦截器 -->
+				<interceptor-ref name="token"/>
+				<!-- <interceptor-ref name="loginInterceptor"/> -->
+			</interceptor-stack>
+		</interceptors>
+	3. 配置结果集  
+	<result name="invalid.token">/token_error.jsp</result>
+
 git
 add to index
 
