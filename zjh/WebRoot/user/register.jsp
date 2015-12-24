@@ -32,6 +32,7 @@
 		</font>
 		<s:form action="user_register" namespace="/user" theme="simple" method="post">
 			<table>
+				<s:token></s:token>
 				<tr>
 					<td align="right">用户名：</td>
 					<td>

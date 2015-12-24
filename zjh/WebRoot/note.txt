@@ -17,3 +17,6 @@
 
 hibernate 查询优化 --抓取策略 .fetch、lazy的属性设置
 
+git
+add to index
+

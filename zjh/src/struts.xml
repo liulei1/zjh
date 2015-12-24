@@ -11,6 +11,7 @@
 			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="token"/>
 				<!-- <interceptor-ref name="loginInterceptor"/> -->
 			</interceptor-stack>
 		</interceptors>
@@ -31,6 +32,7 @@
 				向拦截器 传递参数 ，多个参数 用, 分隔
 				<param name="loginInterceptor.exclude">user_login</param>			
 			</interceptor-ref> -->
+			<result name="invalid.token">/token_error.jsp</result>
 			
 			<result name="input">/user/login.jsp</result>
 			<result name="loginSUCCESS">/user/home.jsp</result>
