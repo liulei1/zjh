@@ -1,0 +1,19 @@
+<token>防止表单重复提交待完成
+
+离焦发送ajax请求js代码
+	$(function(){
+			$("#add_username").blur(function(){
+				$.post("${pageContext.request.contextPath}/user/checkUserName.action",{"name":$(this).val()},function(data){
+					if(data.nameExsit){
+						// 用户名已经存在
+						$("#result").html("<font color='red'>用户名已经存在</font>");
+					}else{
+						// 用户名不存在
+						$("#result").html("<font color='green'>用户名不存在，可以使用</font>");
+					}
+				}); 
+			}); 
+		});
+
+hibernate 查询优化 --抓取策略 .fetch、lazy的属性设置
+
