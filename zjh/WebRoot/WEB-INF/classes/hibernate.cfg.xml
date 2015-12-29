@@ -34,5 +34,6 @@
 		<mapping resource="cn/ustc/domain/User.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Consult.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Vocation.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/ConsultCheck.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

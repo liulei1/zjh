@@ -34,6 +34,14 @@ public class Consult {
 	private String filePath;	// 文档的路径
 	private String remark;		// 备注
 	
+	private String rejectReason;// 接受审核的拒绝信息
+	public String getRejectReason() {
+		return rejectReason;
+	}
+	public void setRejectReason(String rejectReason) {
+		this.rejectReason = rejectReason;
+	}
+	
 	public Consult() {
 		super();
 	}
@@ -140,6 +148,8 @@ public class Consult {
 				+ ", details=" + details + ", budget=" + budget
 				+ ", release_date=" + release_date + ", deadline=" + deadline
 				+ ", checked_id=" + checked_id + ", category=" + category
-				+ ", filePath=" + filePath + ", remark=" + remark + "]";
+				+ ", fileName=" + fileName + ", filePath=" + filePath
+				+ ", remark=" + remark + "]";
 	}
+
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 
 import cn.ustc.domain.Consult;
+import cn.ustc.domain.ConsultCheck;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
 
@@ -104,7 +105,12 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	
 	public String allow(){
-		boolean res = service.consultAllow(model.getId());
+		ConsultCheck consultCheck = new ConsultCheck();
+		consultCheck.setAdmin_id(9527);
+		consultCheck.setCheck_datetime(new Date());
+		consultCheck.setCons_id(model.getId());
+		
+		boolean res = service.consultAllow(model.getId(),consultCheck);
 		if(res){
 			return "checkSUCCESS";
 		}else {
@@ -113,7 +119,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 	public String reject(){
-		boolean res = service.consultReject(model.getId());
+		ConsultCheck consultCheck = new ConsultCheck();
+		consultCheck.setAdmin_id(9527);
+		consultCheck.setCheck_datetime(new Date());
+		consultCheck.setCons_id(model.getId());
+		// TODO 审批拒绝原因 
+		
+		boolean res = service.consultReject(model.getId(),consultCheck);
 		if(res){
 			return "checkSUCCESS";
 		}else {
