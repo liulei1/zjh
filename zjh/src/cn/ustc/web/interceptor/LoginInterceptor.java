@@ -28,6 +28,11 @@ public class LoginInterceptor extends AbstractInterceptor{
 			// not login
 			if(exclude != null){
 				String[] methods = exclude.split(",");
+				
+				if("none".equals(methods[0])){
+					return action.invoke();
+				}
+				
 				// 判断methods（放行数组） 是否包含当前 访问
 				String currentMethod = ActionContext.getContext().getName(); // user_login
 				for (String method : methods) {

@@ -54,7 +54,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String register() {
 		boolean res = userService.insertUser(user);
 		System.out.println(res);
-		return "insertSUCCESS";
+		return "registerSUCCESS";
 	}
 	
 	// 放入struts 值栈，用于所有普通用户显示

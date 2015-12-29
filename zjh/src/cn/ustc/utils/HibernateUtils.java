@@ -28,4 +28,12 @@ public class HibernateUtils {
 		return session;
 
 	}
+	
+	/**
+	 * 获取当前session
+	 * @return
+	 */
+	public static Session getCurrentSession() {
+		return sessionFactory.getCurrentSession();
+	}
 }

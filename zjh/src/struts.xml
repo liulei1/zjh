@@ -5,41 +5,32 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="messages"/>
-
-	<package name="basicstruts2" namespace="/user" extends="struts-default">
+	
+ 	<package name="basicstruts" namespace="/user" extends="struts-default">
 		<interceptors>
 			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
-				<interceptor-ref name="token"/>
-				<!-- <interceptor-ref name="loginInterceptor"/> -->
+				<interceptor-ref name="loginInterceptor"/>
 			</interceptor-stack>
 		</interceptors>
-		
-		<default-interceptor-ref name="myStack"/>
 		
 		<global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 		</global-results>
-		<!-- 全局异常处理结果集 -->
 		<global-exception-mappings>
 			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
 		</global-exception-mappings>
 		
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
-			<!-- <interceptor-ref name="myStack">
-				向拦截器 传递参数 ，多个参数 用, 分隔
-				<param name="loginInterceptor.exclude">user_login</param>			
-			</interceptor-ref> -->
-			<result name="invalid.token">/token_error.jsp</result>
+			<interceptor-ref name="myStack">
+				<param name="loginInterceptor.exclude">none</param>			
+			</interceptor-ref>
 			
 			<result name="input">/user/login.jsp</result>
 			<result name="loginSUCCESS">/user/home.jsp</result>
 			<result name="loginINPUT">/user/login.jsp</result>
-			<!-- <result name="insertSUCCESS" type="redirectAction">user_list</result> -->
-			<result name="insertSUCCESS">/user/login.jsp</result>
-			<result name="registerINPUT">/user/register.jsp</result>
 			
 			<result name="listSUCCESS">/user/userlist.jsp</result>
 			<result name="viewSUCCESS">/user/view.jsp</result>
@@ -48,15 +39,7 @@
 			<result name="editSUCCESS" type="redirectAction">user_list</result>
 			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
 		</action>
-		
 	</package>
 	
-	<package name="myjson" extends="json-default">
-		<action name="checkUserName" class="cn.ustc.web.action.UserAction" method="checkUserName">
-			<!-- 要点二 ：结果集类型 必须指定为 json -->
-			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
-			<result type="json"></result>
-		</action>
-	</package>
-
+	<include file="liulei.xml"></include>
 </struts>

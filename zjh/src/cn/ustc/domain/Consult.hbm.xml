@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ustc.domain.Consult" table="consult" catalog="zjh">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="state" type="string"/>
+		<property name="title" type="string"/>
+		<property name="details" type="string"/>
+		<property name="budget"/>
+		<property name="release_date" column="release_date"/>
+		<property name="deadline" />
+		<property name="checked_id" column="checked_id" type="string"/>
+		<property name="category"/>
+		<property name="filePath" type="string"/>
+		<property name="remark" type="string"/>
+	</class>
+</hibernate-mapping>

@@ -30,7 +30,7 @@
 			<s:actionerror/>
 			<s:fielderror/>
 		</font>
-		<s:form action="user_register" namespace="/user" theme="simple" method="post">
+		<s:form action="user_register" namespace="/token" theme="simple" method="post">
 			<table>
 				<s:token></s:token>
 				<tr>
