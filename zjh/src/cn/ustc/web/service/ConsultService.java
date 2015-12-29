@@ -3,6 +3,7 @@ package cn.ustc.web.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 
@@ -27,17 +28,18 @@ public class ConsultService {
 	/**
 	 * 存储上传文件
 	 * @param file
-	 * @param filePath
+	 * @param fileRootPath
 	 * @return
 	 */
-	public boolean restoreFile(File file, String filePath){
+	public String restoreFile(File file, String fileRootPath){
+		String filePath = fileRootPath + "/" + UUID.randomUUID().toString();
 		File destFile = new File(filePath);
 		try {
 			FileUtils.copyFile(file, destFile);
-			return true;
+			return filePath;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 

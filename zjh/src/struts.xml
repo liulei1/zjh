@@ -40,6 +40,5 @@
 			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
 		</action>
 	</package>
-	
-	<include file="liulei.xml"></include>
+	<include file="liulei.xml"/>
 </struts>

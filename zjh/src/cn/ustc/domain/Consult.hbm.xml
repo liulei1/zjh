@@ -16,6 +16,7 @@
 		<property name="deadline" />
 		<property name="checked_id" column="checked_id" type="string"/>
 		<property name="category"/>
+		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>
 		<property name="remark" type="string"/>
 	</class>

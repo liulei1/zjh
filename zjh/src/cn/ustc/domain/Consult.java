@@ -25,17 +25,25 @@ public class Consult {
 	private String state; 		// 状态，初始为0，审核通过后为1，失败为2
 	private String title; 		// 标题
 	private String details; 	// 咨询描述
-//	private double budget; 		// 酬金
-	private BigDecimal budget;
+	private BigDecimal budget;	// 酬金
 	private Date release_date; 	// 发布日期
 	private Date deadline;		// 咨询失效日期
 	private String checked_id; 	// 关联审核表
 	private Integer category; 	// 领域,分类
+	private String fileName;	// 文档名
 	private String filePath;	// 文档的路径
 	private String remark;		// 备注
 	
 	public Consult() {
 		super();
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public Integer getId() {
