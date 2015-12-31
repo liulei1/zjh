@@ -8,6 +8,7 @@ public class Professor extends User{
 	private String authority;
 	private String website;
 	private String remark;
+	
 	public String getReal_name() {
 		return real_name;
 	}

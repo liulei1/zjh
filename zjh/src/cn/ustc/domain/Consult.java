@@ -29,7 +29,7 @@ public class Consult {
 	private Date release_date; 	// 发布日期
 	private Date deadline;		// 咨询失效日期
 	private String checked_id; 	// 关联审核表
-	private Integer category; 	// 领域,分类
+	private String category; 	// 领域,分类
 	private String fileName;	// 文档名
 	private String filePath;	// 文档的路径
 	private String remark;		// 备注
@@ -118,14 +118,14 @@ public class Consult {
 		this.checked_id = checked_id;
 	}
 
-	public Integer getCategory() {
+	public String getCategory() {
 		return category;
 	}
-
-	public void setCategory(Integer category) {
+	
+	public void setCategory(String category) {
 		this.category = category;
 	}
-
+	
 	public String getFilePath() {
 		return filePath;
 	}

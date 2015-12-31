@@ -14,4 +14,8 @@ public interface ConsultDAO {
 
 	public int check(Integer id, String state);
 
+	public List<Consult> findUncheckConsult();
+	
+	public List<Consult> findAllowConsult();
+
 }

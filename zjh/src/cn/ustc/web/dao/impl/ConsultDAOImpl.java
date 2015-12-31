@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import cn.ustc.domain.Consult;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.ConsultDAO;
+import cn.ustc.web.service.ConsultService;
 
 public class ConsultDAOImpl implements ConsultDAO {
 
@@ -40,6 +41,35 @@ public class ConsultDAOImpl implements ConsultDAO {
 	}
 
 	@Override
+	public List<Consult> findUncheckConsult() {
+		Session session = HibernateUtils.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<Consult> list = session.createCriteria(Consult.class).add(Restrictions.eq("state", ConsultService.UNCHECK)).list();
+		
+		transaction.commit();
+		session.close();
+		
+		return list;
+	}
+	
+	@Override
+	public List<Consult> findAllowConsult() {
+		Session session = HibernateUtils.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		String hql = "from Consult where state = ?";
+		@SuppressWarnings("unchecked")
+		List<Consult> list = session.createQuery(hql).setParameter(0, ConsultService.ALLOW).list();
+		
+		transaction.commit();
+		session.close();
+		
+		return list;
+	}
+	
+	@Override
 	public Consult findById(Integer id) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -66,4 +96,6 @@ public class ConsultDAOImpl implements ConsultDAO {
 		
 		return res;
 	}
+
+
 }

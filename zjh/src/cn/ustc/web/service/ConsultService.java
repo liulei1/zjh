@@ -16,12 +16,18 @@ import cn.ustc.web.dao.impl.ConsultCheckDAOImpl;
 import cn.ustc.web.dao.impl.ConsultDAOImpl;
 
 public class ConsultService {
-	private static final String ALLOW = "1"; //允许
-	private static final String REJECT = "2";	//拒绝
+	public static final String UNCHECK = "0";	//拒绝
+	public static final String ALLOW = "1"; 	//允许
+	public static final String REJECT = "2";	//拒绝
 	
 	ConsultDAO consultDAO = new ConsultDAOImpl();
 	ConsultCheckDAO consultCheckDAO = new ConsultCheckDAOImpl();
 	
+	/**
+	 * 发布咨询，添加
+	 * @param consult
+	 * @return
+	 */
 	public boolean Publish(Consult consult){
 		int res = consultDAO.insert(consult);
 		if(res > 0){
@@ -48,11 +54,38 @@ public class ConsultService {
 		}
 	}
 
-	public List<Consult> conlistList() {
+	/**
+	 * 查询全部咨询
+	 * @return List
+	 */
+	public List<Consult> consultList() {
 		List<Consult> list =  consultDAO.findAll();
 		return list;
 	}
 
+	/**
+	 * 查询所有未审核
+	 * @return List
+	 */
+	public List<Consult> unCheckConsultList() {
+		List<Consult> list =  consultDAO.findUncheckConsult();
+		return list;
+	}
+	
+	/**
+	 * 查询所有 审核通过
+	 * @return
+	 */
+	public List<Consult> allowConsultList() {
+		List<Consult> list =  consultDAO.findAllowConsult();
+		return list;
+	}
+	
+	/**
+	 * 根据 id 查找
+	 * @param id
+	 * @return
+	 */
 	public Consult findById(Integer id) {
 		return consultDAO.findById(id);
 	}
@@ -92,4 +125,5 @@ public class ConsultService {
 			return false;
 		}
 	}
+
 }
