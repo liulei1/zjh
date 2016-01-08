@@ -1,5 +1,6 @@
 package cn.ustc.android.action;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -18,7 +19,6 @@ public class UserLogin extends ActionSupport implements ModelDriven<User>,
 	private UserService userService = new UserService();
 	private HttpServletResponse response;
 	private User user = new User();
-
 	@Override
 	public User getModel() {
 		return user;
@@ -35,20 +35,19 @@ public class UserLogin extends ActionSupport implements ModelDriven<User>,
 	 * @throws SQLException
 	 */
 	public String login() {
-//		if (user.getName() == null || "".equals(user.getName().trim())) {
-//			return "loginINPUT";
-//		}
-//		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
-//			return "loginINPUT";
-//		}
-		System.out.println("name="+ user.getName() + " password=" + user.getPassword());
 		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
+		System.out.println("name="+ user.getName() + " password=" + user.getPassword());
+		User loginer = userService.login(user);
 		try {
 			pw = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		if(loginer == null){
+			pw.write("用户名密码错误！");
+		}else {
 			pw.write("visit success!!!");
-		} catch (Exception e) {
-			// log.error(e.getMessage(),e.fillInStackTrace());
 		}
 		pw.flush();
 		pw.close();
