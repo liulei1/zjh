@@ -22,13 +22,16 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ConsultAction extends ActionSupport implements ModelDriven<Consult> {
 	private Consult model = new Consult();
-	private File file;
-	private String fileFileName;
-	private String fileContentType;
 	@Override
 	public Consult getModel() {
 		return model;
 	}
+	
+	/****************************文件上传****************************/
+	private File file;
+	private String fileFileName;
+	@SuppressWarnings("unused")
+	private String fileContentType;
 	public void setFile(File file) {
 		this.file = file;
 	}
@@ -38,19 +41,22 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
 	}
-	ConsultService service = new ConsultService();
-	
+	/****************************************************************/
+	private ConsultService consultService;
+	public void setConsultService(ConsultService consultService) {
+		this.consultService = consultService;
+	}
 	/*************************************发布上传下载****************************************/
 	// 咨询发布
 	@InputConfig(resultName="input")
 	public String publish(){
 		String fileRootPath = ServletActionContext.getServletContext().getRealPath("/document");
-		String filePath = service.restoreFile(file, fileRootPath);
+		String filePath = consultService.restoreFile(file, fileRootPath);
 		model.setFilePath(filePath);
 		model.setState("0");
 		model.setRelease_date(new Date());
 		model.setFileName(fileFileName);
-		boolean res = service.Publish(model);
+		boolean res = consultService.Publish(model);
 		if(res){
 			return "publishSUCCESS";
 		}
@@ -97,7 +103,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		
 		// 下载文档
 		public String download(){
-			model = service.findById(model.getId());
+			model = consultService.findById(model.getId());
 			return "downSUCCESS";
 		}
 	
@@ -110,7 +116,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 显示全部
 	public String list(){
-		List<Consult> list = service.consultList();
+		List<Consult> list = consultService.consultList();
 		consults = list;
 		System.out.println(consults);
 		return "listSUCCESS";
@@ -118,7 +124,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 显示未审核
 	public String unCheckList(){
-		List<Consult> list = service.unCheckConsultList();
+		List<Consult> list = consultService.unCheckConsultList();
 		consults = list;
 		System.out.println(consults);
 		return "listSUCCESS";
@@ -126,7 +132,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 显示通过
 	public String allowList(){
-		List<Consult> list = service.allowConsultList();
+		List<Consult> list = consultService.allowConsultList();
 		consults = list;
 		System.out.println(consults);
 		return "allowListSUCCESS";
@@ -134,7 +140,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 根据查看咨询内容
 	public String view(){
-		Consult consult = service.findById(model.getId());
+		Consult consult = consultService.findById(model.getId());
 		model = consult;
 		return "viewSUCCESS";
 	}
@@ -147,7 +153,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());
 		
-		boolean res = service.consultAllow(model.getId(),consultCheck);
+		boolean res = consultService.consultAllow(model.getId(),consultCheck);
 		if(res){
 			return "checkSUCCESS";
 		}else {
@@ -164,7 +170,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		consultCheck.setCons_id(model.getId());
 		// TODO 审批拒绝原因 
 		
-		boolean res = service.consultReject(model.getId(),consultCheck);
+		boolean res = consultService.consultReject(model.getId(),consultCheck);
 		if(res){
 			return "checkSUCCESS";
 		}else {
@@ -176,7 +182,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	// 咨询接受
 	public String recieve(){
 		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
-		
+		// TODO
 		return NONE;
 	}
 	

@@ -17,7 +17,7 @@
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">标题</td>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">酬金</td>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">类别</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td>
+				<!-- <td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td> -->
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">接受</td>
 			</tr>
@@ -32,9 +32,9 @@
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
 						${category}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" id="state">
+					<%-- <td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
 						${state}
-					</td>
+					</td> --%>
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id"/>

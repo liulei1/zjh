@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Vocation;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.VocationDAO;
 
-public class VocationDAOImpl implements VocationDAO {
+public class VocationDAOImpl extends HibernateDaoSupport implements VocationDAO {
 
 	@Override
 	public List<Vocation> listVocation() {

@@ -7,11 +7,14 @@ import cn.ustc.web.dao.UserDAO;
 import cn.ustc.web.dao.impl.UserDAOImpl;
 
 public class UserService {
-	private UserDAO userDao = new UserDAOImpl();
+	private UserDAOImpl userDAO;
+	public void setUserDAO(UserDAOImpl userDAO) {
+		this.userDAO = userDAO;
+	}
 
 	public boolean insertUser(User user){
 		int res = 0;
-		res = userDao.insertUser(user);
+		res = userDAO.insertUser(user);
 		if (res > 0) {
 			return true;
 		}
@@ -19,30 +22,30 @@ public class UserService {
 	}
 
 	public User login(User user) {
-		User loginUser = userDao.findUserByuserNameAndPwd(user.getName(), user.getPassword());
+		User loginUser = userDAO.findUserByuserNameAndPwd(user.getName(), user.getPassword());
 		return loginUser;
 	}
 
 	public List<User> findAllUser() {
-		List<User> users = userDao.findAll();
+		List<User> users = userDAO.findAll();
 		return users;
 	}
 
 	public User findUserById(String id) {
-		User user = userDao.findByUserID(id);
+		User user = userDAO.findByUserID(id);
 		return user;
 	}
 
 	public int update(User user) {
-		return userDao.update(user);
+		return userDAO.update(user);
 	}
 
 	public void deleteUserById(String id) {
-		userDao.deleteById(id);
+		userDAO.deleteById(id);
 	}
 
 	public List<User> findUserByName(String name) {
-		return userDao.findUserByName(name);
+		return userDAO.findUserByName(name);
 	}
 
 }

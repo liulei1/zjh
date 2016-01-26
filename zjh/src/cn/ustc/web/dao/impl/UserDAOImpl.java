@@ -6,13 +6,14 @@ import java.util.UUID;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.UserDAO;
 
 @SuppressWarnings("all")
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 	
 	public User findUserByuserNameAndPwd(String username, String password) {
 		Session session = HibernateUtils.openSession();

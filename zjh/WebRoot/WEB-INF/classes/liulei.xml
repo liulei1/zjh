@@ -51,7 +51,7 @@
 			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
 			<result type="json"></result>
 		</action>
-		<action name="listVocation" class="cn.ustc.web.action.ListVocation" method="ListVocation">
+		<action name="listVocation" class="cn.ustc.web.action.ListVocation" method="list">
 			<result type="json"></result>
 		</action>
 	</package>

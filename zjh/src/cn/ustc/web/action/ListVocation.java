@@ -4,20 +4,26 @@ import java.util.List;
 
 import cn.ustc.domain.Vocation;
 import cn.ustc.web.dao.VocationDAO;
-import cn.ustc.web.dao.impl.VocationDAOImpl;
-import cn.ustc.web.service.VocationService;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 
+/**
+ * 发布需求显示 可选所在领域的列表 --ajax
+ * @author liu
+ *
+ */
 public class ListVocation extends ActionSupport{
 	private List<Vocation> vocationList;
 	public List<Vocation> getVocationList() {
 		return vocationList;
 	}
 	
-	public String ListVocation(){
-		VocationDAO vocationDAO = new VocationDAOImpl();
+	private VocationDAO vocationDAO;
+	public void setVocationDAO(VocationDAO vocationDAO) {
+		this.vocationDAO = vocationDAO;
+	}
+
+	public String list(){
 		vocationList = vocationDAO.listVocation();
 		System.out.println(vocationList);
 		return SUCCESS;

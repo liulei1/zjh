@@ -9,21 +9,23 @@
 <title>发布审核</title>
 <script type="text/javascript">
 	$(function(){
-		var category = $("#state").html();
-		var state;
-		if(category == 0){
-			state = "待审核";
-		}else if(category == 1){
-			state = "通过";
-		}else if(category == 2){
-			state = "拒绝";
-		}
-		$("#state").html(state);
+		$(".state").each(function(i){
+			var tag = $(".state")[i].innerHTML;
+			var state;
+			if(tag == 0){
+				state = "待审核";
+			}else if(tag == 1){
+				state = "通过";
+			}else if(tag == 2){
+				state = "拒绝";
+			}
+			$(".state")[i].innerHTML = state;
+		});
 	});
 </script>
 </head>
 <body>
-<h1 align="center"><strong>发布信息列表</strong></h1>
+<h1 align="center"><strong>全部需求列表</strong></h1>
 	<div align="center">
 		<s:actionerror/>
 		<table frame="border" rules="all">
@@ -47,7 +49,7 @@
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
 						${category}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" id="state">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
 						${state}
 					</td>
 					<td align="center" style="HEIGHT: 22px">

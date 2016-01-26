@@ -20,9 +20,17 @@ public class ConsultService {
 	public static final String ALLOW = "1"; 	//允许
 	public static final String REJECT = "2";	//拒绝
 	
-	ConsultDAO consultDAO = new ConsultDAOImpl();
-	ConsultCheckDAO consultCheckDAO = new ConsultCheckDAOImpl();
-	
+//	ConsultDAO consultDAO = new ConsultDAOImpl();
+//	ConsultCheckDAO consultCheckDAO = new ConsultCheckDAOImpl();
+	private ConsultDAOImpl consultDAO;
+	private ConsultCheckDAOImpl consultCheckDAO;
+	public void setConsultDAO(ConsultDAOImpl consultDAO) {
+		this.consultDAO = consultDAO;
+	}
+	public void setConsultCheckDAO(ConsultCheckDAOImpl consultCheckDAO) {
+		this.consultCheckDAO = consultCheckDAO;
+	}
+
 	/**
 	 * 发布咨询，添加
 	 * @param consult

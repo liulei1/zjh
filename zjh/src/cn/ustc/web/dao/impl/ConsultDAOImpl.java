@@ -6,13 +6,14 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Consult;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.ConsultDAO;
 import cn.ustc.web.service.ConsultService;
 
-public class ConsultDAOImpl implements ConsultDAO {
+public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 
 	@Override
 	public int insert(Consult consult) {

@@ -2,12 +2,13 @@ package cn.ustc.web.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.ConsultCheckDAO;
 
-public class ConsultCheckDAOImpl implements ConsultCheckDAO {
+public class ConsultCheckDAOImpl extends HibernateDaoSupport implements ConsultCheckDAO {
 
 	@Override
 	public void insert(ConsultCheck consultCheck) {
