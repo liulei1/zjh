@@ -5,3 +5,5 @@
 <a href="${pageContext.request.contextPath}/consult/consult_list.action">需求列表</a><br>
 <a href="${pageContext.request.contextPath}/consult/consult_unCheckList.action">未审核的需求</a><br>
 <a href="${pageContext.request.contextPath}/consult/consult_allowList.action">审核通过的需求</a><br>
+<a href="${pageContext.request.contextPath}/scheme/scheme_publish.jsp">提交方案</a><br>
+<a href="${pageContext.request.contextPath}/scheme/scheme_list">所有方案</a><br>

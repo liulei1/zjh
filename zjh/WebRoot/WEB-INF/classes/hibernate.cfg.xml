@@ -17,6 +17,7 @@
 		<!-- 在控制台打印sql语句 -->
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
+		<property name="connection.autocommit">true</property>
 		<!-- 其他配置 -->
 		<!-- 
 			true,先删除再建立表
@@ -35,5 +36,8 @@
 		<mapping resource="cn/ustc/domain/Consult.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Vocation.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/ConsultCheck.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Project.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Scheme.hbm.xml"/>
+		
 	</session-factory>
 </hibernate-configuration>

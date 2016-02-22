@@ -13,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Professor;
+import cn.ustc.domain.Project;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
 
@@ -50,13 +51,16 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	// 咨询发布
 	@InputConfig(resultName="input")
 	public String publish(){
-		String fileRootPath = ServletActionContext.getServletContext().getRealPath("/document");
-		String filePath = consultService.restoreFile(file, fileRootPath);
-		model.setFilePath(filePath);
+		if(file != null){
+			String fileRootPath = ServletActionContext.getServletContext().getRealPath("/document");
+			String filePath = consultService.restoreFile(file, fileRootPath);
+			model.setFileName(fileFileName);
+			model.setFilePath(filePath);
+		}
 		model.setState("0");
 		model.setRelease_date(new Date());
-		model.setFileName(fileFileName);
-		boolean res = consultService.Publish(model);
+		
+		boolean res = consultService.publish(model);
 		if(res){
 			return "publishSUCCESS";
 		}
@@ -127,7 +131,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		List<Consult> list = consultService.unCheckConsultList();
 		consults = list;
 		System.out.println(consults);
-		return "listSUCCESS";
+		return "unCheckListSUCCESS";
 	}
 	
 	// 显示通过
@@ -183,6 +187,18 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public String recieve(){
 		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		// TODO
+		Consult consult = consultService.findById(model.getId());
+		Project project = new Project();
+		
+		project.setCons_id(consult.getId());
+		project.setCost(consult.getBudget());
+		project.setCurrent_state("1");
+		project.setStart_date(new Date());
+		project.setEnd_date(project.getStart_date());
+		project.setTitle(consult.getTitle());
+		
+		consultService.consultRecieve(project);
+		System.out.println(professor + "接受项目。。。");
 		return NONE;
 	}
 	

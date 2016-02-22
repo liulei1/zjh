@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50018
 File Encoding         : 65001
 
-Date: 2016-01-26 21:53:10
+Date: 2016-02-22 16:19:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -129,26 +129,28 @@ CREATE TABLE `project` (
   `id` int(10) NOT NULL,
   `cons_id` int(10) NOT NULL,
   `scm_id` int(10) NOT NULL,
-  `name` varchar(50) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `current_state` varchar(20) NOT NULL,
   `document` varchar(50) default NULL,
   `cost` double NOT NULL,
+  `title` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for scheme
+-- Table structure for project_scheme
 -- ----------------------------
-DROP TABLE IF EXISTS `scheme`;
-CREATE TABLE `scheme` (
-  `id` int(10) NOT NULL,
-  `cons_id` int(10) NOT NULL,
-  `prof_id` int(10) NOT NULL,
-  `details` varchar(255) NOT NULL,
-  `upload_date` datetime NOT NULL,
-  `proj_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `project_scheme`;
+CREATE TABLE `project_scheme` (
+  `id` varchar(255) NOT NULL,
+  `cons_id` int(11) default NULL,
+  `prof_id` int(11) default NULL,
+  `proj_id` int(11) default NULL,
+  `details` varchar(255) default NULL,
+  `upload_date` datetime default NULL,
+  `fileName` varchar(255) default NULL,
+  `filePath` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ustc.domain.Scheme" table="project_scheme" catalog="zjh">
+		<id name="id">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="cons_id" type="int"/>
+		<property name="prof_id" type="int"/>
+		<property name="proj_id" type="int"/>
+		<property name="details" type="string"/>
+		<property name="fileName" type="string"/>
+		<property name="filePath" type="string"/>
+		<property name="upload_date"/>
+	</class>
+</hibernate-mapping>

@@ -9,34 +9,35 @@ import org.apache.commons.io.FileUtils;
 
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
-import cn.ustc.utils.TypeChangeUtils;
-import cn.ustc.web.dao.ConsultCheckDAO;
-import cn.ustc.web.dao.ConsultDAO;
+import cn.ustc.domain.Project;
+import cn.ustc.domain.Scheme;
 import cn.ustc.web.dao.impl.ConsultCheckDAOImpl;
 import cn.ustc.web.dao.impl.ConsultDAOImpl;
+import cn.ustc.web.dao.impl.ProjectDAOImpl;
 
 public class ConsultService {
 	public static final String UNCHECK = "0";	//拒绝
 	public static final String ALLOW = "1"; 	//允许
 	public static final String REJECT = "2";	//拒绝
 	
-//	ConsultDAO consultDAO = new ConsultDAOImpl();
-//	ConsultCheckDAO consultCheckDAO = new ConsultCheckDAOImpl();
 	private ConsultDAOImpl consultDAO;
 	private ConsultCheckDAOImpl consultCheckDAO;
+	private ProjectDAOImpl projectDAO;
 	public void setConsultDAO(ConsultDAOImpl consultDAO) {
 		this.consultDAO = consultDAO;
 	}
 	public void setConsultCheckDAO(ConsultCheckDAOImpl consultCheckDAO) {
 		this.consultCheckDAO = consultCheckDAO;
 	}
-
+	public void setProjectDAO(ProjectDAOImpl projectDAO) {
+		this.projectDAO = projectDAO;
+	}
 	/**
 	 * 发布咨询，添加
 	 * @param consult
 	 * @return
 	 */
-	public boolean Publish(Consult consult){
+	public boolean publish(Consult consult){
 		int res = consultDAO.insert(consult);
 		if(res > 0){
 			return true;
@@ -134,4 +135,19 @@ public class ConsultService {
 		}
 	}
 
+	public boolean consultRecieve(Project project){
+		projectDAO.insert(project);
+		return true;
+		
+	}
+	
+	/**
+	 * 提交需求解决方案
+	 * @param model 方案bean
+	 * @return
+	 */
+	public boolean schemePublish(Scheme model) {
+		
+		return false;
+	}
 }
