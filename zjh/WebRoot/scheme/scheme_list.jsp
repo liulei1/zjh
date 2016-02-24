@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
-<title>发布审核</title>
+<title>方案列表</title>
 <script type="text/javascript">
 	$(function(){
 		$(".state").each(function(i){
@@ -25,46 +25,45 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>全部方案列表</strong></h1>
+<h1 align="center"><strong>所有方案列表</strong></h1>
 	<div align="center">
 		<s:actionerror/>
 		<table frame="border" rules="all">
-			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">标题</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">酬金</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">类别</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">拒绝</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">批准</td>
-			</tr>
+			<s:if test="schemes != null">
+				<tr>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">专家编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">项目编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">详细</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">发布时间</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">文档名称</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">文档地址</td>
+				</tr>
+			</s:if>
 			<s:iterator value="schemes" var="schemes">
 				<tr>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
-						${title}
+						${id}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
-						${budget}
+						${professor.id}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
-						${category}
+						${proj_id}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
-						${state}
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+						${details}
 					</td>
-					<td align="center" style="HEIGHT: 22px">
-						<s:a action="scheme_view" namespace="/scheme">
-							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
-						</s:a>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+						${upload_date}
 					</td>
-					<td align="center" style="HEIGHT: 22px">
-						<s:a action="scheme_delete" namespace="/scheme">
-							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/i_del.gif"
-								width="16" height="16" border="0" style="CURSOR: hand">
-						</s:a>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+						${fileName}
 					</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+						${filePath}
+					</td>
+					
 				</tr>
 			</s:iterator>
 		</table>

@@ -68,7 +68,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 			model.setFileName(fileFileName);
 		}
 		model.setUpload_date(new Date());
-		model.setProf_id(9527);
+//		model.setProf_id(9527);
 		
 		schemeDAO.publish(model);
 		return NONE;
@@ -131,6 +131,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	// 显示全部
 	public String list(){
 		// TODO
+		schemes = schemeDAO.findAll();
 		return "listSUCCESS";
 	}
 	

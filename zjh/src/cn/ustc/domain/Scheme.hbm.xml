@@ -8,12 +8,13 @@
 			<generator class="uuid"/>
 		</id>
 		
-		<property name="cons_id" type="int"/>
-		<property name="prof_id" type="int"/>
 		<property name="proj_id" type="int"/>
 		<property name="details" type="string"/>
 		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>
 		<property name="upload_date"/>
+		
+		<!-- 多个方案关联一个专家 -->
+		<many-to-one name="professor" class="cn.ustc.domain.Professor" column="prof_id" cascade="save-update" ></many-to-one>
 	</class>
 </hibernate-mapping>

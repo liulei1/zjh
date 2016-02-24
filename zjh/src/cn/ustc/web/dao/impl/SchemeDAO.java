@@ -20,6 +20,7 @@ public class SchemeDAO extends HibernateDaoSupport {
 		this.getHibernateTemplate().save(scheme);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Scheme> findAll(){
 		return this.getHibernateTemplate().find("from Scheme");
 	}

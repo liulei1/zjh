@@ -37,6 +37,7 @@
 		<mapping resource="cn/ustc/domain/Vocation.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/ConsultCheck.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Project.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Professor.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Scheme.hbm.xml"/>
 		
 	</session-factory>

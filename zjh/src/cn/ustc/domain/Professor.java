@@ -1,5 +1,8 @@
 package cn.ustc.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Professor extends User{
 	private String real_name;
 	private String image;
@@ -8,6 +11,7 @@ public class Professor extends User{
 	private String authority;
 	private String website;
 	private String remark;
+	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
 	public String getReal_name() {
 		return real_name;
@@ -51,11 +55,10 @@ public class Professor extends User{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	@Override
-	public String toString() {
-		return "Professor [real_name=" + real_name + ", image=" + image
-				+ ", telephone=" + telephone + ", address=" + address
-				+ ", authority=" + authority + ", website=" + website
-				+ ", remark=" + remark + "]";
+	public Set<Scheme> getSchemes() {
+		return schemes;
+	}
+	public void setSchemes(Set<Scheme> schemes) {
+		this.schemes = schemes;
 	}
 }

@@ -1,15 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
-<title>发布审核</title>
-<script type="text/javascript">
-	$(function(){
-		$(".state").each(function(i){
+   <head>
+     <title>需求信息</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- 引入 Bootstrap -->
+	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+	 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
+	 <script type="text/javascript">
+		$(function(){
+			$(".state").each(function(i){
 			var tag = $(".state")[i].innerHTML;
 			var state;
 			if(tag == 0){
@@ -21,59 +24,93 @@
 			}
 			$(".state")[i].innerHTML = state;
 		});
-	});
-</script>
-</head>
-<body>
-<h1 align="center"><strong>全部需求列表</strong></h1>
-	<div align="center">
-		<s:actionerror/>
-		<table frame="border" rules="all">
-			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">标题</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">酬金</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">类别</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">拒绝</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">批准</td>
-			</tr>
-			<s:iterator value="consults" var="consult">
-				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
-						${title}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
-						${budget}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
-						${category}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
-						${state}
-					</td>
-					<td align="center" style="HEIGHT: 22px">
-						<s:a action="consult_view" namespace="/consult">
-							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
-						</s:a>
-					</td>
-					<td align="center" style="HEIGHT: 22px">
-						<s:a action="consult_reject" namespace="/consult">
-							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/i_del.gif"
-								width="16" height="16" border="0" style="CURSOR: hand">
-						</s:a>
-					</td>
-					<td align="center" style="HEIGHT: 22px">
-						<s:a action="consult_allow" namespace="/consult">
-							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
-						</s:a>
-					</td>
-				</tr>
-			</s:iterator>
-		</table>
+		});
+	</script>
+   </head>
+   <body>
+    <div id="LG" class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h3 class="text-center">
+					需求列表
+				</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr class="warning">
+							<th style="text-align:center;">
+								标题
+							</th>
+							<th style="text-align:center;">
+								酬金
+							</th>
+							<th style="text-align:center;">
+								类别
+							</th>
+							<th style="text-align:center;">
+								状态
+							</th>
+							<th style="text-align:center;">
+								查看
+							</th>
+							<th style="text-align:center;">
+								拒绝
+							</th>
+							<th style="text-align:center;">
+								批准
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<s:iterator value="consults" var="consult">
+							<tr class="info">
+							<td align="center">
+								${title}
+							</td>
+							<td align="center">
+								${budget}
+							</td>
+							<td align="center">
+								${category}
+							</td>
+							<td align="center" class="state">
+								${state}
+							</td>
+							<td align="center">
+								<s:a action="consult_view" namespace="/consult">
+									<s:param name="id" value="id" />
+									<button type="button" class="btn btn-info btn-xs">查看</button>
+								</s:a>
+								
+							</td>
+							<td align="center">
+								<s:a action="consult_reject" namespace="/consult">
+									<s:param name="id" value="id" />
+									<button type="button" class="btn btn-danger btn-xs">拒绝</button>
+								</s:a>
+							</td>
+							<td align="center">
+								<s:a action="consult_allow" namespace="/consult">
+									<s:param name="id" value="id" />
+									<button type="button" class="btn btn-success btn-xs">批准</button>
+								</s:a>
+							</td>
+						</tr>
+						</s:iterator>
+					</tbody>
+				</table>
+				<div align="center">
+					<ul class="pagination pagination-sm pagination-centered">
+					  <li><a href="#">&laquo;</a></li>
+					  <li><a href="#">1</a></li>
+					  <li><a href="#">2</a></li>
+					  <li><a href="#">3</a></li>
+					  <li><a href="#">4</a></li>
+					  <li><a href="#">5</a></li>
+					  <li><a href="#">&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
-</body>
+   </body>
 </html>
