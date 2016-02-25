@@ -90,7 +90,7 @@
 							</td>
 							<td align="center">
 								<s:a action="consult_allow" namespace="/consult">
-									<s:param name="id" value="id" />
+									<s:param name="proj_id" value="id" />
 									<button type="button" class="btn btn-success btn-xs">批准</button>
 								</s:a>
 							</td>

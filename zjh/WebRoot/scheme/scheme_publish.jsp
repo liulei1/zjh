@@ -27,7 +27,8 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" value="提交" onclick="alert('操作成功！');window.close();">
+						<!-- <input type="submit" value="提交" onclick="alert('操作成功！');window.close();"> -->
+						<input type="submit" value="提交">
 					</td>
 					<td>
 						<input type="reset" value="取消">

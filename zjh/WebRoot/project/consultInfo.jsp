@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 引入 Bootstrap -->
+<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <title>需求信息</title>
 </head>
 <body>
@@ -58,20 +62,20 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-center">
 					<s:a action="consult_allow" namespace="/consult">
 						<s:param name="id" value="id"/>
-						批准
+						<button type="button" class="btn btn-success">批准</button>
 					</s:a>
 				</td>
-				<td>
+				<td colspan="2" class="text-center">
 					<s:a action="consult_reject" namespace="/consult">
 						<s:param name="id" value="id"/>
-						拒绝
+						<button type="button" class="btn btn-warning">拒绝</button>
 					</s:a>
 				</td>
 				<td>
-					<a href="" onclick="javascript:history.go(-1);" ><label>返回</label></a>
+					<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
 				</td>
 			</tr>
 		</table>

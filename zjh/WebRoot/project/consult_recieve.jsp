@@ -1,13 +1,18 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <title>咨询接受</title>
+<!-- 引入 Bootstrap -->
+<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+	// 点击弹出窗口
 	function add_dialog() {
 	var str = window.showModalDialog("${pageContext.request.contextPath}/scheme/scheme_publish.jsp","schemeWindow","center:yes;dialogWidth:400px;dialogHeight:400px;resizable:no");
 	}
@@ -43,14 +48,13 @@
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id"/>
-							<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
+							<button type="button" class="btn btn-info btn-xs">查看</button>
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px">
-						<%-- <s:a action="scheme_submit" namespace="/scheme" cssClass="submitLink"> --%>
-						<s:a cssClass="submitLink" onclick="add_dialog();">
+						<s:a action="scheme_submitView" namespace="/scheme">
 							<s:param name="proj_id" value="id"/>
-							<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
+							<button type="button" class="btn btn-success btn-xs">接受</button>
 						</s:a>
 					</td>
 				</tr>

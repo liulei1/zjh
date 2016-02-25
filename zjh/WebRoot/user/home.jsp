@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户中心</title>
+<!-- 引入 Bootstrap -->
+<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>欢迎登陆</h1>
-	你好，${user.name}<br/>
-	<a href="${pageContext.request.contextPath}/user/user_list">用户列表</a>
+	<div align="center">
+		<h1>专家用户中心</h1>
+	</div>
+	<p class="text-right">
+	    <a href="#">
+          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
+        </a>
+    </p>
+	<div class="btn-group">
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">用户列表</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
+      <button class="btn btn-primary">查看方案</button>
+    </div>
 </body>
 </html>

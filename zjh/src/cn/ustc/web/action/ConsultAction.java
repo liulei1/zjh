@@ -53,7 +53,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public String publish(){
 		if(file != null){
 			String fileRootPath = ServletActionContext.getServletContext().getRealPath("/document");
-			String filePath = consultService.restoreFile(file, fileRootPath);
+			String filePath = UploadAndDownloadUtils.restoreFile(file, fileRootPath);
 			model.setFileName(fileFileName);
 			model.setFilePath(filePath);
 		}

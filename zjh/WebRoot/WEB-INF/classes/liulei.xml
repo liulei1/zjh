@@ -85,8 +85,8 @@
 			<!-- <interceptor-ref name="myStack">
 				<param name="loginInterceptor.exclude">none</param>			
 			</interceptor-ref> -->
-			<result name="submitView">/scheme/scheme_publish.jsp</result>
-			<result name="publishSUCCESS">/success.jsp</result>
+			<result name="submitViewSUCCESS">/scheme/scheme_publish.jsp</result>
+			<result name="publishSUCCESS" type="redirect">/consult/consult_allowList</result>
 			<result name="listSUCCESS">/scheme/scheme_list.jsp</result>
 			<result name="viewSUCCESS">/scheme/schemeInfo.jsp</result>
 			<result name="downSUCCESS" type="stream">

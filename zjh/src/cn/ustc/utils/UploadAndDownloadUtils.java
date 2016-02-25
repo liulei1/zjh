@@ -1,7 +1,11 @@
 package cn.ustc.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
 
 import sun.misc.BASE64Encoder;
 
@@ -35,5 +39,23 @@ public class UploadAndDownloadUtils {
 //		int end = filePath.lastIndexOf(".");
 //		return filePath.substring(begin, end);
 		return filePath.substring(begin+1);
+	}
+	
+	/**
+	 * 存储上传文件,文件用UUID命名
+	 * @param file 要存储的文件
+	 * @param fileRootPath 要存储的路径
+	 * @return
+	 */
+	public static String restoreFile(File file, String fileRootPath){
+		String filePath = fileRootPath + "/" + UUID.randomUUID().toString();
+		File destFile = new File(filePath);
+		try {
+			FileUtils.copyFile(file, destFile);
+			return filePath;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

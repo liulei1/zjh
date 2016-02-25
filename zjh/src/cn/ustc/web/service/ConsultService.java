@@ -46,24 +46,6 @@ public class ConsultService {
 	}
 
 	/**
-	 * 存储上传文件
-	 * @param file
-	 * @param fileRootPath
-	 * @return
-	 */
-	public String restoreFile(File file, String fileRootPath){
-		String filePath = fileRootPath + "/" + UUID.randomUUID().toString();
-		File destFile = new File(filePath);
-		try {
-			FileUtils.copyFile(file, destFile);
-			return filePath;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	/**
 	 * 查询全部咨询
 	 * @return List
 	 */
