@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>普通用户列表</title>
-<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+<!-- 引入 Bootstrap -->
+<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(".delLink").click(function(event) {
@@ -45,23 +48,24 @@
 					<td align="center" style="HEIGHT: 22px"><s:a
 							action="user_editview" namespace="/user">
 							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
+							<button type="button" class="btn btn-success btn-xs">修改</button>
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px"><s:a action="user_view" namespace="/user">
 							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/button_view.gif" border="0" style="CURSOR: hand">
+							<button type="button" class="btn btn-info btn-xs">查看</button>
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px"><s:a action="user_delete" namespace="/user" cssClass="delLink">
 							<s:param name="id" value="id" />
-							<img src="${pageContext.request.contextPath}/images/i_del.gif"
-								width="16" height="16" border="0" style="CURSOR: hand">
+							<button type="button" class="btn btn-danger btn-xs">拒绝</button>
 						</s:a>
 					</td>
 				</tr>
 			</s:iterator>
 		</table>
+		<br>
+		<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
 	</div>
 </body>
 </html>
