@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.User;
+import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,6 +16,17 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
+	private String usertype=null;//登录者类型
+	
+	public String getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
+	
+
 	@Override
 	public User getModel() {
 		return user;
@@ -24,6 +37,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		this.userService = userService;
 	}
 
+	//写get方法用于注入方式获取对象
+	private ProfessorService professorService;
+	public void setProfessorService(ProfessorService professorService) {
+		this.professorService = professorService;
+	}
+	
 	/**
 	 * 登录--要判断登录用户的类型
 	 * @return
@@ -31,11 +50,33 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	@InputConfig(resultName="loginINPUT")
 	public String login(){
+		
 		if (user.getName() == null || "".equals(user.getName().trim())) {
 			return "loginINPUT";
 		}
 		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
 			return "loginINPUT";
+		}
+		
+		
+		
+		if(user.getUsertype().equals("professor")){
+			System.out.println("获取到专家标签！");
+			
+			Professor professor=new Professor();
+			professor.setName(user.getName());
+			professor.setPassword(user.getPassword());
+			professor=professorService.login(professor);
+		
+			System.out.println("获取到专家标签！");
+			
+			if(professor!=null){
+				ServletActionContext.getServletContext().setAttribute("professor", professor);
+				return "professorloginSUCCESS";
+			}else{
+				return "loginINPUT";
+			}
+			
 		}
 		
 		// TODO 判断用户类型 进行相应用户表查找

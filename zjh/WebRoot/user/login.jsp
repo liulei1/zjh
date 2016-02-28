@@ -25,7 +25,7 @@
 				<tr>
 					<td align="right">用户类型：</td>
 					<td>
-						<select name="usertype" autofocus="autofocus">
+						<select name="usertype" >
 							<option selected="selected">--请选择用户类型--</option>
 	  						<option value="company">企业用户</option>
 	  						<option value="professor">专家用户</option>

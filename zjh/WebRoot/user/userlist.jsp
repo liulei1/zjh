@@ -45,20 +45,25 @@
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">
 						${sex}
 					</td>
-					<td align="center" style="HEIGHT: 22px"><s:a
-							action="user_editview" namespace="/user">
+					
+					
+					<td align="center" style="HEIGHT: 22px">
+						<s:a action="user_editview" namespace="/user" cssClass="delLink">
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-success btn-xs">修改</button>
+							修改
 						</s:a>
 					</td>
-					<td align="center" style="HEIGHT: 22px"><s:a action="user_view" namespace="/user">
+					
+					
+					<td align="center" style="HEIGHT: 22px">
+						<s:a action="user_view" namespace="/user" cssClass="delLink">
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-info btn-xs">查看</button>
+							查看
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px"><s:a action="user_delete" namespace="/user" cssClass="delLink">
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-danger btn-xs">拒绝</button>
+							拒绝
 						</s:a>
 					</td>
 				</tr>

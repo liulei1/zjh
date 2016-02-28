@@ -17,7 +17,7 @@
 	</div>
 	<p class="text-right">
 	    <a href="#">
-          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
+          <span class="glyphicon glyphicon-user">&nbsp;${professor.name}&nbsp;</span>
         </a>
     </p>
 	<div class="btn-group">

@@ -12,6 +12,7 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
 	<!-- 配置Action -->
 	<bean id="consultAction" class="cn.ustc.web.action.ConsultAction">
 		<property name="consultService" ref="consultService"></property>
@@ -21,6 +22,7 @@
 	</bean>
 	<bean id="userAction" class="cn.ustc.web.action.UserAction">
 		<property name="userService" ref="userService"></property>
+		<property name="professorService" ref="professorService"></property>
 	</bean>
 	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
 		<property name="schemeDAO" ref="schemeDAO"/>
@@ -34,6 +36,9 @@
 	</bean>
 	<bean id="userService" class="cn.ustc.web.service.UserService">
 		<property name="userDAO" ref="userDAO"/>
+	</bean>
+	<bean id="professorService" class="cn.ustc.web.service.ProfessorService">
+		<property name="professorDAO" ref="professorDAO"/>
 	</bean>
 	
 	<!-- 配置DAO -->
@@ -54,6 +59,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="schemeDAO" class="cn.ustc.web.dao.impl.SchemeDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="professorDAO" class="cn.ustc.web.dao.impl.ProfessorDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
