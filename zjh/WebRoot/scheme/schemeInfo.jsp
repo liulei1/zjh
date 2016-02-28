@@ -71,7 +71,7 @@
 					</s:a>
 				</td>
 				<td>
-					<a href="" onclick="javascript:history.go(-1);" ><label>返回</label></a>
+					<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
 				</td>
 			</tr>
 		</table>

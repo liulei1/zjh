@@ -25,7 +25,7 @@
 		
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
 			<interceptor-ref name="myStack">
-				<param name="loginInterceptor.exclude">none</param>			
+				<param name="loginInterceptor.exclude">user_login</param>			
 			</interceptor-ref>
 			
 			<result name="input">/user/login.jsp</result>

@@ -1,11 +1,8 @@
 package cn.ustc.web.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.commons.io.FileUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
@@ -15,6 +12,7 @@ import cn.ustc.web.dao.impl.ConsultCheckDAOImpl;
 import cn.ustc.web.dao.impl.ConsultDAOImpl;
 import cn.ustc.web.dao.impl.ProjectDAOImpl;
 
+@Transactional
 public class ConsultService {
 	public static final String UNCHECK = "0";	//拒绝
 	public static final String ALLOW = "1"; 	//允许
@@ -23,6 +21,7 @@ public class ConsultService {
 	private ConsultDAOImpl consultDAO;
 	private ConsultCheckDAOImpl consultCheckDAO;
 	private ProjectDAOImpl projectDAO;
+	
 	public void setConsultDAO(ConsultDAOImpl consultDAO) {
 		this.consultDAO = consultDAO;
 	}
@@ -33,7 +32,7 @@ public class ConsultService {
 		this.projectDAO = projectDAO;
 	}
 	/**
-	 * 发布咨询，添加
+	 * 发布咨询
 	 * @param consult
 	 * @return
 	 */
@@ -55,7 +54,7 @@ public class ConsultService {
 	}
 
 	/**
-	 * 查询所有未审核
+	 * 查询所有未审核的咨询
 	 * @return List
 	 */
 	public List<Consult> unCheckConsultList() {
@@ -123,13 +122,4 @@ public class ConsultService {
 		
 	}
 	
-	/**
-	 * 提交需求解决方案
-	 * @param model 方案bean
-	 * @return
-	 */
-	public boolean schemePublish(Scheme model) {
-		
-		return false;
-	}
 }
