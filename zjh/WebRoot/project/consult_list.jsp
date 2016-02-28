@@ -13,17 +13,17 @@
 	 <script type="text/javascript">
 		$(function(){
 			$(".state").each(function(i){
-			var tag = $(".state")[i].innerHTML;
-			var state;
-			if(tag == 0){
-				state = "待审核";
-			}else if(tag == 1){
-				state = "通过";
-			}else if(tag == 2){
-				state = "拒绝";
-			}
-			$(".state")[i].innerHTML = state;
-		});
+				var tag = $(".state")[i].innerHTML;
+				var state;
+				if(tag == 0){
+					state = "待审核";
+				}else if(tag == 1){
+					state = "通过";
+				}else if(tag == 2){
+					state = "拒绝";
+				}
+				$(".state")[i].innerHTML = state;
+			});
 		});
 	</script>
    </head>

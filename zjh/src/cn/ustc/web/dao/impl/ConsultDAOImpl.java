@@ -13,9 +13,13 @@ import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.dao.ConsultDAO;
 import cn.ustc.web.service.ConsultService;
 
-public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
+public class ConsultDAOImpl extends HibernateDaoSupport{
 
-	@Override
+	/**
+	 * 增加咨询
+	 * @param consult
+	 * @return
+	 */
 	public int insert(Consult consult) {
 //		Session session = HibernateUtils.getCurrentSession();
 		Session session = HibernateUtils.openSession();
@@ -25,8 +29,11 @@ public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 		session.close();
 		return 1;
 	}
-
-	@Override
+	
+	/**
+	 * 查找全部咨询
+	 * @return
+	 */
 	public List<Consult> findAll() {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -41,7 +48,10 @@ public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 		return list;
 	}
 
-	@Override
+	/**
+	 * 查找未审核的咨询
+	 * @return
+	 */
 	public List<Consult> findUncheckConsult() {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -55,7 +65,10 @@ public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 		return list;
 	}
 	
-	@Override
+	/**
+	 * 查找审核通过的咨询
+	 * @return
+	 */
 	public List<Consult> findAllowConsult() {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -70,7 +83,11 @@ public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 		return list;
 	}
 	
-	@Override
+	/**
+	 * 根据id查找
+	 * @param id
+	 * @return
+	 */
 	public Consult findById(Integer id) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -83,7 +100,6 @@ public class ConsultDAOImpl extends HibernateDaoSupport implements ConsultDAO {
 		return uniqueResult;
 	}
 
-	@Override
 	public int check(Integer id, String state) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
