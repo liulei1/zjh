@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="messages"/>
+	
+ 	<package name="basicstruts" namespace="/user" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
+			<interceptor-ref name="myStack">
+				<param name="loginInterceptor.exclude">none</param>			
+			</interceptor-ref>
+			
+			<result name="input">/user/login.jsp</result>
+			<result name="loginSUCCESS">/user/home.jsp</result>
+			<result name="loginINPUT">/user/login.jsp</result>
+			
+			<result name="listSUCCESS">/user/userlist.jsp</result>
+			<result name="viewSUCCESS">/user/view.jsp</result>
+			
+			<result name="editviewSUCCESS">/user/edit.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">user_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
+		</action>
+	</package>
+	<include file="liulei.xml"/>
+</struts>
