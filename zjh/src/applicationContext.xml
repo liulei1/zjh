@@ -25,7 +25,7 @@
 		<property name="professorService" ref="professorService"></property>
 	</bean>
 	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
-		<property name="schemeDAO" ref="schemeDAO"/>
+		<property name="schemeService" ref="schemeService"/>
 	</bean>
 	
 	<!-- 配置Service  -->
@@ -39,6 +39,9 @@
 	</bean>
 	<bean id="professorService" class="cn.ustc.web.service.ProfessorService">
 		<property name="professorDAO" ref="professorDAO"/>
+	</bean>
+	<bean id="schemeService" class="cn.ustc.web.service.SchemeService">
+		<property name="schemeDAO" ref="schemeDAO"/>
 	</bean>
 	
 	<!-- 配置DAO -->

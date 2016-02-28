@@ -18,7 +18,7 @@ public class SchemeDAO extends HibernateDaoSupport {
 	 * 发布解决方案
 	 * @param scheme
 	 */
-	public void publish(Scheme scheme){
+	public void add(Scheme scheme){
 		this.getHibernateTemplate().save(scheme);
 	}
 	

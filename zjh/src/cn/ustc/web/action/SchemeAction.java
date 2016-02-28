@@ -17,6 +17,7 @@ import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.dao.impl.SchemeDAO;
+import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -25,7 +26,6 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	private static final long serialVersionUID = 1L;
 	private Scheme model = new Scheme();
-
 	@Override
 	public Scheme getModel() {
 		return model;
@@ -50,10 +50,9 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	}
 
 	/****************************************************************/
-	private SchemeDAO schemeDAO;
-
-	public void setSchemeDAO(SchemeDAO schemeDAO) {
-		this.schemeDAO = schemeDAO;
+	private SchemeService schemeService;
+	public void setSchemeService(SchemeService schemeService) {
+		this.schemeService = schemeService;
 	}
 
 	/************************************* 发布上传下载 ****************************************/
@@ -86,15 +85,26 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		}
 	}
 
+	// 获取下载文件 类型
+	// <param name="contentType">${contentType}</param>
+	public String getContentType() {
+		if (model == null || model.getFilePath() == null) {
+			return null;
+		} else {
+			String fileName = model.getFileName();
+			return ServletActionContext.getServletContext().getMimeType(
+					fileName);
+		}
+	}
+	
 	// 下载文档
 	public String download() {
-		model = schemeDAO.findById(model.getId());
+		model = schemeService.findById(model.getId());
 		return "downSUCCESS";
 	}
 
 	/************************************* 操作  *****************************************/
 	private List<Scheme> schemes;
-
 	public List<Scheme> getSchemes() {
 		return schemes;
 	}
@@ -116,8 +126,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		
 		model.setUpload_date(new Date());
 		// TODO 在servlet域中获取专家信息并放入model中
-		// Professor professor = (Professor)
-		// ServletActionContext.getServletContext().getAttribute("user");
+		// Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
 
 		Professor professor = new Professor();
 		professor.setId("9527");
@@ -135,7 +144,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		criteria.add(Restrictions.eq("professor", model.getProfessor()));
 		
 		// 不允许对一个项目发布多个方案，只保存最新的方案
-		List<Scheme> list = schemeDAO.findByDetachedCriteria(criteria);
+		List<Scheme> list = schemeService.findByDetachedCriteria(criteria);
 		if(list != null){
 			for(int i=0; i<list.size(); i++){
 				Scheme scheme = list.get(i);
@@ -146,30 +155,25 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 						f.delete();
 					}
 				}
-				schemeDAO.delete(scheme);
+				schemeService.delete(scheme);
 			}
 		}
 		
-		schemeDAO.publish(model);
+		schemeService.publish(model);
 		return "publishSUCCESS";
 	}
 
-	// 获取下载文件 类型
-	// <param name="contentType">${contentType}</param>
-	public String getContentType() {
-		if (model == null || model.getFilePath() == null) {
-			return null;
-		} else {
-			String fileName = model.getFileName();
-			return ServletActionContext.getServletContext().getMimeType(
-					fileName);
-		}
+	// 查找登录专家发布的所有方案
+	public String queryMyScheme(){
+		// TODO 待测试
+//		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
+//		schemes = schemeService.findMyScheme(professor);
+		return "queryMySchemeSUCCESS";
 	}
-
+	
 	// 显示全部
 	public String list() {
-		// TODO
-		schemes = schemeDAO.findAll();
+		schemes = schemeService.findAll();
 		return "listSUCCESS";
 	}
 }

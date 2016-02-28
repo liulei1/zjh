@@ -2,10 +2,12 @@ package cn.ustc.web.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import cn.ustc.domain.User;
-import cn.ustc.web.dao.UserDAO;
 import cn.ustc.web.dao.impl.UserDAOImpl;
 
+@Transactional
 public class UserService {
 	private UserDAOImpl userDAO;
 	public void setUserDAO(UserDAOImpl userDAO) {
