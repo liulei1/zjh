@@ -58,18 +58,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			return "loginINPUT";
 		}
 		
-		
-		
+		// TODO 判断用户类型 进行相应用户表查找
 		if(user.getUsertype().equals("professor")){
-			System.out.println("获取到专家标签！");
-			
 			Professor professor=new Professor();
 			professor.setName(user.getName());
 			professor.setPassword(user.getPassword());
 			professor=professorService.login(professor);
 		
-			System.out.println("获取到专家标签！");
-			
 			if(professor!=null){
 				ServletActionContext.getServletContext().setAttribute("professor", professor);
 				return "professorloginSUCCESS";
@@ -78,8 +73,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			}
 			
 		}
-		
-		// TODO 判断用户类型 进行相应用户表查找
 		
 		User loginUser = userService.login(user);
 		if(loginUser != null){

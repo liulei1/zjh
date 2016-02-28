@@ -6,39 +6,20 @@ import java.util.UUID;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
-import cn.ustc.web.dao.UserDAO;
 
 @SuppressWarnings("all")
-public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
+public class UserDAOImpl  extends HibernateDaoSupport {
 	
-	public User findUserByuserNameAndPwd(String username, String password) {
-		Session session = HibernateUtils.openSession();
-		Transaction transaction = session.beginTransaction();
-
-		try {
-			String hql = "from User as user where user.name=? and user.password=?";
-			Query qr = session.createQuery(hql);
-			qr.setString(0, username);
-			qr.setString(1, password);
-
-			User user = (User) qr.uniqueResult();
-			transaction.commit();
-			return user;
-
-		} catch (RuntimeException e) {
-//			transaction.rollback();
-			throw e;
-		} finally {
-
-			session.close();
-		}
-
-	}
-
+	/**
+	 * 插入普通用户
+	 * @param user
+	 * @return
+	 */
 	public int insertUser(User user) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -57,6 +38,11 @@ public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 		return 1;
 	}
 
+	/**
+	 * 根据id查询普通用户
+	 * @param id
+	 * @return
+	 */
 	public User findByUserID(String id) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
@@ -94,6 +80,11 @@ public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 		return userList;
 	}
 
+	/**
+	 * 根据id 更新普通用户信息
+	 * @param user
+	 * @return 1(要么抛异常，要么返回1)
+	 */
 	public int update(User user) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
@@ -111,6 +102,10 @@ public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 		return 1;
 	}
 
+	/**
+	 * 根据id 删除普通用户
+	 * @param id
+	 */
 	public void deleteById(String id) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
@@ -128,7 +123,11 @@ public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 		}
 	}
 
-	@Override
+	/**
+	 * 根据用户名查找用户
+	 * @param name
+	 * @return
+	 */
 	public List<User> findUserByName(String name) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();
@@ -139,5 +138,10 @@ public class UserDAOImpl  extends HibernateDaoSupport implements UserDAO {
 		tx.commit();
 		session.close();
 		return userList;
+	}
+
+	public User findByCriteria(DetachedCriteria criteria) {
+		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
