@@ -2,6 +2,7 @@ package cn.ustc.web.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Consult;
@@ -91,16 +92,6 @@ public class ConsultService {
 		consultCheckDAO.insert(consultCheck);
 		int res = consultDAO.check(id,ALLOW); // 更新需求信息的状态
 		
-		// 创建项目记录
-		Consult consult = consultDAO.findById(id);
-		Project project = new Project();
-		project.setCons_id(consult.getId());
-		project.setCost(consult.getBudget());
-		project.setCurrent_state("3");
-		project.setStart_date(consult.getRelease_date());
-		project.setTitle(consult.getTitle());
-		// 插入项目记录
-		projectDAO.insert(project);
 		if(res > 0){
 			return true;
 		}else{
@@ -126,9 +117,17 @@ public class ConsultService {
 		}
 	}
 
+	/**
+	 * 咨询选取方案
+	 * @param project
+	 * @return
+	 */
 	public boolean consultRecieve(Project project){
 		projectDAO.insert(project);
 		return true;
 	}
 	
+	public List<Consult> findConsultsByDetachedCriteria(DetachedCriteria criteria){
+		return consultDAO.findByDetachedCriteria(criteria);
+	}
 }

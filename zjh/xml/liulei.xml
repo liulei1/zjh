@@ -65,6 +65,8 @@
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
 			<result name="allowListSUCCESS">/project/consult_recieve.jsp</result>
 			<result name="viewSUCCESS">/project/consultInfo.jsp</result>
+			<result name="queryMyConsultSUCCESS">/project/consult_list.jsp</result>
+			
 			<result name="checkSUCCESS" type="redirectAction">consult_unCheckList</result>
 			<result name="checkFAIL" type="redirectAction">consult_unCheckList</result>
 			<result name="unCheckListSUCCESS">/project/consult_unCheckList.jsp</result>

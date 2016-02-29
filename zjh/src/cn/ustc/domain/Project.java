@@ -18,7 +18,7 @@ import java.util.Date;
  */
 public class Project {
 	private int id;
-	private int cons_id; // 咨询表id
+	private int com_id; // 咨询表id
 	private int scm_id;	 // 方案id
 	private String title;
 	private Date start_date;
@@ -31,11 +31,11 @@ public class Project {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCons_id() {
-		return cons_id;
+	public int getCom_id() {
+		return com_id;
 	}
-	public void setCons_id(int cons_id) {
-		this.cons_id = cons_id;
+	public void setCom_id(int com_id) {
+		this.com_id = com_id;
 	}
 	public int getScm_id() {
 		return scm_id;
@@ -76,7 +76,7 @@ public class Project {
 	}
 	@Override
 	public String toString() {
-		return "Project [id=" + id + ", cons_id=" + cons_id + ", scm_id="
+		return "Project [id=" + id + ", com_id=" + com_id + ", scm_id="
 				+ scm_id + ", title=" + title + ", start_date=" + start_date
 				+ ", end_date=" + end_date + ", current_state=" + current_state
 				+ ", cost=" + cost + "]";

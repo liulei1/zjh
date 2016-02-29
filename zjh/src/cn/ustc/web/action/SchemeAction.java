@@ -166,8 +166,8 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	// 查找登录专家发布的所有方案
 	public String queryMyScheme(){
 		// TODO 待测试
-//		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
-//		schemes = schemeService.findMyScheme(professor);
+		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
+		schemes = schemeService.findMyScheme(professor);
 		return "queryMySchemeSUCCESS";
 	}
 	

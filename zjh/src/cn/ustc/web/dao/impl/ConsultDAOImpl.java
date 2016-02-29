@@ -5,12 +5,12 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Consult;
 import cn.ustc.utils.HibernateUtils;
-import cn.ustc.web.dao.ConsultDAO;
 import cn.ustc.web.service.ConsultService;
 
 public class ConsultDAOImpl extends HibernateDaoSupport{
@@ -100,6 +100,12 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 		return uniqueResult;
 	}
 
+	/**
+	 * 更新状态
+	 * @param id
+	 * @param state
+	 * @return
+	 */
 	public int check(Integer id, String state) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
@@ -114,5 +120,12 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 		return res;
 	}
 
-
+	/**
+	 * 条件查询
+	 * @param criteria
+	 * @return
+	 */
+	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria){
+		return this.getHibernateTemplate().findByCriteria(criteria);
+	}
 }
