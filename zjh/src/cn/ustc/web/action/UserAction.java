@@ -73,7 +73,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			professor=professorService.login(professor);
 		
 			if(professor!=null){
-				ServletActionContext.getServletContext().setAttribute("professor", professor);
+				ServletActionContext.getServletContext().setAttribute("user", professor);
 				return "professorloginSUCCESS";
 			}else{
 				return "loginINPUT";
@@ -85,7 +85,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			company.setPassword(user.getPassword());
 			company=companyService.login(company);
 			if(company!=null){
-				ServletActionContext.getServletContext().setAttribute("company", company);
+				ServletActionContext.getServletContext().setAttribute("user", company);
 				return "companyloginSUCCESS";
 			}else{
 				return "loginINPUT";

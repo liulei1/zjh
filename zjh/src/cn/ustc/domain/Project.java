@@ -23,7 +23,7 @@ public class Project {
 	private String title;
 	private Date start_date;
 	private Date end_date;
-	private String current_state;
+	private String current_state; // 项目的状态，3是进行中，4是企业评价，5是专家评价
 	private BigDecimal cost;
 	public int getId() {
 		return id;

@@ -89,8 +89,18 @@ public class ConsultService {
 	public boolean consultAllow(Integer id, ConsultCheck consultCheck) {
 		consultCheck.setState(ALLOW);	// 插入审核表中
 		consultCheckDAO.insert(consultCheck);
+		int res = consultDAO.check(id,ALLOW); // 更新需求信息的状态
 		
-		int res = consultDAO.check(id,ALLOW);
+		// 创建项目记录
+		Consult consult = consultDAO.findById(id);
+		Project project = new Project();
+		project.setCons_id(consult.getId());
+		project.setCost(consult.getBudget());
+		project.setCurrent_state("3");
+		project.setStart_date(consult.getRelease_date());
+		project.setTitle(consult.getTitle());
+		// 插入项目记录
+		projectDAO.insert(project);
 		if(res > 0){
 			return true;
 		}else{
@@ -107,8 +117,8 @@ public class ConsultService {
 	public boolean consultReject(Integer id, ConsultCheck consultCheck) {
 		consultCheck.setState(ALLOW);	// 插入审核表中
 		consultCheckDAO.insert(consultCheck);
+		int res = consultDAO.check(id,REJECT); // 更新需求信息状态
 		
-		int res = consultDAO.check(id,REJECT);
 		if(res > 0){
 			return true;
 		}else{
@@ -119,7 +129,6 @@ public class ConsultService {
 	public boolean consultRecieve(Project project){
 		projectDAO.insert(project);
 		return true;
-		
 	}
 	
 }

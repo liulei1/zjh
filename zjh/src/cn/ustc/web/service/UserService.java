@@ -28,7 +28,7 @@ public class UserService {
 	public User login(User user) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
 		criteria.add(Restrictions.eq("name", user.getName()));
-		criteria.add(Restrictions.eq("password", user));
+		criteria.add(Restrictions.eq("password", user.getPassword()));
 		User loginUser = userDAO.findByCriteria(criteria);
 		return loginUser;
 	}

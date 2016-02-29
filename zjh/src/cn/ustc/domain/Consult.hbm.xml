@@ -13,11 +13,12 @@
 		<property name="details" type="string"/>
 		<property name="budget"/>
 		<property name="release_date" column="release_date"/>
-		<property name="deadline" />
+		<property name="deadline"/>
 		<property name="checked_id" column="checked_id" type="string"/>
-		<property name="category"/>
+		<property name="category" type="string"/>
 		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>
 		<property name="remark" type="string"/>
+		<property name="com_id" type="string"/>
 	</class>
 </hibernate-mapping>

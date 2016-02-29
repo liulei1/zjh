@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Professor;
@@ -59,7 +60,8 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 		model.setState("0");
 		model.setRelease_date(new Date());
-		
+		Company company = (Company) ServletActionContext.getServletContext().getAttribute("company");
+		model.setCom_id(company.getId()); // 获取企业的id
 		boolean res = consultService.publish(model);
 		if(res){
 			return "publishSUCCESS";
@@ -153,6 +155,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	// 允许
 	public String allow(){
 		ConsultCheck consultCheck = new ConsultCheck();
+		// TODO 获取管理员信息
 		consultCheck.setAdmin_id(9527);
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());

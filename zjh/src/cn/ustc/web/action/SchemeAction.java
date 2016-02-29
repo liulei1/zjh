@@ -126,16 +126,16 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		
 		model.setUpload_date(new Date());
 		// TODO 在servlet域中获取专家信息并放入model中
-		// Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
+		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
 
-		Professor professor = new Professor();
-		professor.setId("9527");
-		professor.setAddress("安徽合肥");
-		professor.setEmail("123@qq.com");
-		professor.setName("阿萨德");
-		professor.setReal_name("刘磊");
-		professor.setSex("男");
-		professor.setWebsite("www.baidu.com");
+//		Professor professor = new Professor();
+//		professor.setId("9527");
+//		professor.setAddress("安徽合肥");
+//		professor.setEmail("123@qq.com");
+//		professor.setName("阿萨德");
+//		professor.setReal_name("刘磊");
+//		professor.setSex("男");
+//		professor.setWebsite("www.baidu.com");
 
 		model.setProfessor(professor);
 		
