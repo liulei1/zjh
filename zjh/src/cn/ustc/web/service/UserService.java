@@ -3,6 +3,7 @@ package cn.ustc.web.service;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.User;
@@ -26,6 +27,8 @@ public class UserService {
 
 	public User login(User user) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+		criteria.add(Restrictions.eq("name", user.getName()));
+		criteria.add(Restrictions.eq("password", user));
 		User loginUser = userDAO.findByCriteria(criteria);
 		return loginUser;
 	}

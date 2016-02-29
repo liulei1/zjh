@@ -23,6 +23,7 @@
 	<bean id="userAction" class="cn.ustc.web.action.UserAction">
 		<property name="userService" ref="userService"></property>
 		<property name="professorService" ref="professorService"></property>
+		<property name="companyService" ref="companyService"></property>
 	</bean>
 	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
 		<property name="schemeService" ref="schemeService"/>
@@ -39,6 +40,9 @@
 	</bean>
 	<bean id="professorService" class="cn.ustc.web.service.ProfessorService">
 		<property name="professorDAO" ref="professorDAO"/>
+	</bean>
+	<bean id="companyService" class="cn.ustc.web.service.CompanyService">
+		<property name="companyDAO" ref="companyDAO"/>
 	</bean>
 	<bean id="schemeService" class="cn.ustc.web.service.SchemeService">
 		<property name="schemeDAO" ref="schemeDAO"/>
@@ -65,6 +69,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="professorDAO" class="cn.ustc.web.dao.impl.ProfessorDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="companyDAO" class="cn.ustc.web.dao.impl.CompanyDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

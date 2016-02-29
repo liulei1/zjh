@@ -21,8 +21,9 @@
 		<property name="address"/>
 		<property name="field"/>
 		<property name="authority"/>
-		<property name="ip"/>
+		<property name="website"/>
 		<property name="annotation"/>
+		<property name="state"/>
 		
 		<!-- 一个企业关联多个咨询 -->
 	

@@ -10,12 +10,26 @@ public class Company extends User{
 	private String address;
 	private String field;//领域
 	private String authority;//权限
-	private String ip;//网址
-	private String annotation;//注解
+	private String website;//网址
+	private String annotation;//备注
+	private String state;
+	
 	
 	private Set<Consult> consults = new HashSet<Consult>();//
 	
 
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public Set<Consult> getConsults() {
 		return consults;
 	}
@@ -59,12 +73,7 @@ public class Company extends User{
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public String getIp() {
-		return ip;
-	}
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
+
 	public String getAnnotation() {
 		return annotation;
 	}

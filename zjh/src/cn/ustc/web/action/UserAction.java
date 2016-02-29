@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.User;
+import cn.ustc.web.service.CompanyService;
 import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.UserService;
 
@@ -17,6 +19,9 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
 	private String usertype=null;//登录者类型
+	
+	
+	
 	
 	public String getUsertype() {
 		return usertype;
@@ -43,6 +48,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		this.professorService = professorService;
 	}
 	
+	private CompanyService companyService;
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
+	}
+
 	/**
 	 * 登录--要判断登录用户的类型
 	 * @return
@@ -71,6 +81,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			}else{
 				return "loginINPUT";
 			}
+			
+		}else if(user.getUsertype().equals("company")){
+			Company company=new Company();
+			company.setName(user.getName());
+			company.setPassword(user.getPassword());
+			company=companyService.login(company);
+			if(company!=null){
+				ServletActionContext.getServletContext().setAttribute("company", company);
+				return "companyloginSUCCESS";
+			}else{
+				return "loginINPUT";
+			}
+			
 			
 		}
 		

@@ -33,7 +33,15 @@ public class Consult {
 	private String fileName;	// 文档名
 	private String filePath;	// 文档的路径
 	private String remark;		// 备注
+	private String cons_id;		//公司ID
 	
+	public String getCons_id() {
+		return cons_id;
+	}
+	public void setCons_id(String cons_id) {
+		this.cons_id = cons_id;
+	}
+
 	private String rejectReason;// 接受审核的拒绝信息
 	public String getRejectReason() {
 		return rejectReason;
