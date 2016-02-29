@@ -9,11 +9,9 @@
 			<generator class="uuid"/>
 		</id>
 		
-		
 		<property name="name"/>
 		<property name="password" type="string"></property>
 		<property name="email" type="string"></property>
-		<property name="sex" type="string"></property>
 		<property name="usertype" type="string"></property>
 		<property name="real_name"/>
 		<property name="image"/>

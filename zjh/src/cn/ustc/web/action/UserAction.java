@@ -20,9 +20,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
 	private String usertype=null;//登录者类型
 	
-	
-	
-	
 	public String getUsertype() {
 		return usertype;
 	}

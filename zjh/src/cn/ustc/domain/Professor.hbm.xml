@@ -8,7 +8,6 @@
 			<generator class="uuid"/>
 		</id>
 		
-		
 		<property name="name"/>
 		<property name="password" type="string"></property>
 		<property name="email" type="string"></property>

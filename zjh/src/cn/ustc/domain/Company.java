@@ -14,10 +14,8 @@ public class Company extends User{
 	private String annotation;//备注
 	private String state;
 	
-	
 	private Set<Consult> consults = new HashSet<Consult>();//
 	
-
 	public String getWebsite() {
 		return website;
 	}
