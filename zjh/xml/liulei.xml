@@ -9,7 +9,7 @@
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="loginInterceptor">
-					<param name="exclude">user_login</param>	
+					<param name="exclude">user_login,user_register</param>	
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
