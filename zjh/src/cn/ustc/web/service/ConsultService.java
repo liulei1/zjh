@@ -15,10 +15,6 @@ import cn.ustc.web.dao.impl.ProjectDAOImpl;
 
 @Transactional
 public class ConsultService {
-	public static final String UNCHECK = "0";	//拒绝
-	public static final String ALLOW = "1"; 	//允许
-	public static final String REJECT = "2";	//拒绝
-	
 	private ConsultDAOImpl consultDAO;
 	private ConsultCheckDAOImpl consultCheckDAO;
 	private ProjectDAOImpl projectDAO;
@@ -77,7 +73,7 @@ public class ConsultService {
 	 * @param id
 	 * @return
 	 */
-	public Consult findById(Integer id) {
+	public Consult findById(String id) {
 		return consultDAO.findById(id);
 	}
 
@@ -87,10 +83,10 @@ public class ConsultService {
 	 * @param consultCheck
 	 * @return
 	 */
-	public boolean consultAllow(Integer id, ConsultCheck consultCheck) {
-		consultCheck.setState(ALLOW);	// 插入审核表中
+	public boolean consultAllow(String id, ConsultCheck consultCheck) {
+		consultCheck.setState(Consult.ALLOW);	// 插入审核表中
 		consultCheckDAO.insert(consultCheck);
-		int res = consultDAO.check(id,ALLOW); // 更新需求信息的状态
+		int res = consultDAO.check(id,Consult.ALLOW); // 更新需求信息的状态
 		
 		if(res > 0){
 			return true;
@@ -105,10 +101,10 @@ public class ConsultService {
 	 * @param consultCheck
 	 * @return
 	 */
-	public boolean consultReject(Integer id, ConsultCheck consultCheck) {
-		consultCheck.setState(ALLOW);	// 插入审核表中
+	public boolean consultReject(String id, ConsultCheck consultCheck) {
+		consultCheck.setState(Consult.ALLOW);	// 插入审核表中
 		consultCheckDAO.insert(consultCheck);
-		int res = consultDAO.check(id,REJECT); // 更新需求信息状态
+		int res = consultDAO.check(id,Consult.REJECT); // 更新需求信息状态
 		
 		if(res > 0){
 			return true;
@@ -122,8 +118,10 @@ public class ConsultService {
 	 * @param project
 	 * @return
 	 */
-	public boolean consultRecieve(Project project){
+	public boolean consultRecieve(Project project, Consult consult){
 		projectDAO.insert(project);
+		consult.setState(Consult.COMPLETED);
+		consultDAO.update(consult);
 		return true;
 	}
 	

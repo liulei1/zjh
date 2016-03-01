@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="cn.ustc.domain.Consult" table="consult" catalog="zjh">
 		<id name="id">
-			<generator class="native"/>
+			<generator class="uuid"/>
 		</id>
 		
 		<property name="state" type="string"/>

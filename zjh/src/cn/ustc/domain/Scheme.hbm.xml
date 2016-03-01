@@ -8,7 +8,7 @@
 			<generator class="uuid"/>
 		</id>
 		
-		<property name="proj_id" type="int"/>
+		<property name="cons_id" type="string"/>
 		<property name="details" type="string"/>
 		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>

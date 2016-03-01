@@ -40,11 +40,9 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	public void setFile(File file) {
 		this.file = file;
 	}
-
 	public void setFileFileName(String fileFileName) {
 		this.fileFileName = fileFileName;
 	}
-
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
 	}
@@ -99,6 +97,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	
 	// 下载文档
 	public String download() {
+		// model 需要最获取 下载输出流时使用
 		model = schemeService.findById(model.getId());
 		return "downSUCCESS";
 	}
@@ -108,7 +107,6 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	public List<Scheme> getSchemes() {
 		return schemes;
 	}
-
 	public String submitView() {
 		return "submitViewSUCCESS";
 	}
@@ -125,22 +123,12 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		}
 		
 		model.setUpload_date(new Date());
-		// TODO 在servlet域中获取专家信息并放入model中
+		// 在servlet域中获取专家信息并放入model中
 		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
-
-//		Professor professor = new Professor();
-//		professor.setId("9527");
-//		professor.setAddress("安徽合肥");
-//		professor.setEmail("123@qq.com");
-//		professor.setName("阿萨德");
-//		professor.setReal_name("刘磊");
-//		professor.setSex("男");
-//		professor.setWebsite("www.baidu.com");
-
 		model.setProfessor(professor);
 		
 		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
-		criteria.add(Restrictions.eq("proj_id", model.getProj_id()));
+		criteria.add(Restrictions.eq("cons_id", model.getCons_id()));
 		criteria.add(Restrictions.eq("professor", model.getProfessor()));
 		
 		// 不允许对一个项目发布多个方案，只保存最新的方案
@@ -165,10 +153,16 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 
 	// 查找登录专家发布的所有方案
 	public String queryMyScheme(){
-		// TODO 待测试
 		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
 		schemes = schemeService.findMyScheme(professor);
 		return "queryMySchemeSUCCESS";
+	} 
+	
+	public String findConsultSchemes(){
+		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
+		criteria.add(Restrictions.eq("cons_id", model.getCons_id()));
+		schemes = schemeService.findByDetachedCriteria(criteria);
+		return "findConsultSchemesSUCCESS";
 	}
 	
 	// 显示全部

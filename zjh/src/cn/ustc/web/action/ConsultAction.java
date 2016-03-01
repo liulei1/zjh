@@ -15,7 +15,6 @@ import org.hibernate.criterion.Restrictions;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
-import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
@@ -36,44 +35,49 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	private String fileFileName;
 	@SuppressWarnings("unused")
 	private String fileContentType;
+
 	public void setFile(File file) {
 		this.file = file;
 	}
+
 	public void setFileFileName(String fileFileName) {
 		this.fileFileName = fileFileName;
 	}
+
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
 	}
+
 	/****************************************************************/
 	private ConsultService consultService;
+
 	public void setConsultService(ConsultService consultService) {
 		this.consultService = consultService;
 	}
-	/*************************************发布上传下载****************************************/
-	
-		
-		// 获取下载输出流
-		public InputStream getInputStream() throws FileNotFoundException{
-			if(model == null || model.getFilePath() == null) {
-				return null;
-			}
-			File file = new File(model.getFilePath());
-//			FileInputStream fis = new FileInputStream(file);
-			try {
-				FileInputStream fis = new FileInputStream(file);
-				return fis;
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				return null;
-			}
+
+	/************************************* 发布上传下载 ****************************************/
+
+	// 获取下载输出流
+	public InputStream getInputStream() throws FileNotFoundException {
+		if (model == null || model.getFilePath() == null) {
+			return null;
 		}
-		
-		// 下载文档
-		public String download(){
-			model = consultService.findById(model.getId());
-			return "downSUCCESS";
+		File file = new File(model.getFilePath());
+		// FileInputStream fis = new FileInputStream(file);
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			return fis;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
+
+	// 下载文档
+	public String download() {
+		model = consultService.findById(model.getId());
+		return "downSUCCESS";
+	}
 	
 	/************************************* 需求操作 *****************************************/
 		
@@ -87,13 +91,12 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public String publish() {
 		if (file != null) {
 			String fileRootPath = ServletActionContext.getServletContext()
-					.getRealPath("/document");
-			String filePath = UploadAndDownloadUtils.restoreFile(file,
-					fileRootPath);
+					.getRealPath("/consultDoc");
+			String filePath = UploadAndDownloadUtils.restoreFile(file,fileRootPath);
 			model.setFileName(fileFileName);
 			model.setFilePath(filePath);
 		}
-		model.setState("0");
+		model.setState(Consult.UNCHECKED);
 		model.setRelease_date(new Date());
 		Company company = (Company) ServletActionContext.getServletContext()
 				.getAttribute("user");
@@ -138,11 +141,12 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return "listSUCCESS";
 	}
 	
-	// 查询登录企业所发布的所有需求
+	// 查询登录企业所发布所有未完成的需求
 	public String queryMyConsult(){
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
 		criteria.add(Restrictions.eq("com_id", company.getId()));
+		criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
 		consults = consultService.findConsultsByDetachedCriteria(criteria);
 		return "queryMyConsultSUCCESS";
 	}
@@ -207,20 +211,23 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 咨询接受
 	public String recieve(){
-		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
+		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		// TODO
 		Consult consult = consultService.findById(model.getId());
 		Project project = new Project();
 		
-		project.setCom_id(consult.getId());
-		project.setScm_id(consult.getId());
+		project.setCom_id(company.getId());
+		project.setCons_id(model.getId());
+		project.setScm_id(model.getScm_id());
 		project.setTitle(consult.getTitle());
 		project.setStart_date(new Date());
-		project.setCurrent_state("3");
+		project.setCurrent_state(Project.ONGOING);
 		project.setCost(consult.getBudget());
-		// 决定方案后会插入一条 project 记录
-		consultService.consultRecieve(project);
-		System.out.println(professor + "接受项目。。。");
+		project.setFilePath(consult.getFilePath());
+		project.setFileName(consult.getFileName());
+		
+		// 决定方案后,会插入一条 project记录并修改consult的状态
+		consultService.consultRecieve(project,consult);
 		return NONE;
 	}
 }

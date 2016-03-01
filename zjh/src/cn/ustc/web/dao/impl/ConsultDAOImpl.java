@@ -21,7 +21,6 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 	 * @return
 	 */
 	public int insert(Consult consult) {
-//		Session session = HibernateUtils.getCurrentSession();
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(consult);
@@ -56,8 +55,7 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
 		
-		@SuppressWarnings("unchecked")
-		List<Consult> list = session.createCriteria(Consult.class).add(Restrictions.eq("state", ConsultService.UNCHECK)).list();
+		List<Consult> list = session.createCriteria(Consult.class).add(Restrictions.eq("state", Consult.UNCHECKED)).list();
 		
 		transaction.commit();
 		session.close();
@@ -75,7 +73,7 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 		
 		String hql = "from Consult where state = ?";
 		@SuppressWarnings("unchecked")
-		List<Consult> list = session.createQuery(hql).setParameter(0, ConsultService.ALLOW).list();
+		List<Consult> list = session.createQuery(hql).setParameter(0, Consult.ALLOW).list();
 		
 		transaction.commit();
 		session.close();
@@ -88,7 +86,7 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 	 * @param id
 	 * @return
 	 */
-	public Consult findById(Integer id) {
+	public Consult findById(String id) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
 		
@@ -102,11 +100,11 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 
 	/**
 	 * 更新状态
-	 * @param id
-	 * @param state
+	 * @param id consult的id
+	 * @param state 改为此状态
 	 * @return
 	 */
-	public int check(Integer id, String state) {
+	public int check(String id, String state) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
 		
@@ -118,6 +116,14 @@ public class ConsultDAOImpl extends HibernateDaoSupport{
 		session.close();
 		
 		return res;
+	}
+	
+	/**
+	 * 更新操作
+	 * @param consult 持久化对象，更新的结果
+	 */
+	public void update(Consult consult){
+		this.getHibernateTemplate().update(consult);
 	}
 
 	/**

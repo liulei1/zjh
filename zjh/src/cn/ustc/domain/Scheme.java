@@ -11,7 +11,7 @@ public class Scheme {
 	private String id;
 	private Professor professor;
 //	private Project project;
-	private int proj_id;
+	private String cons_id;	// 方案对应的需求id
 	private String details;
 	private Date upload_date;
 	private String fileName;	// 文档名
@@ -53,11 +53,17 @@ public class Scheme {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	public int getProj_id() {
-		return proj_id;
+	public String getCons_id() {
+		return cons_id;
 	}
-	public void setProj_id(int proj_id) {
-		this.proj_id = proj_id;
+	public void setCons_id(String cons_id) {
+		this.cons_id = cons_id;
 	}
-	
+	@Override
+	public String toString() {
+		return "Scheme [id=" + id + ", professor=" + professor + ", cons_id="
+				+ cons_id + ", details=" + details + ", upload_date="
+				+ upload_date + ", fileName=" + fileName + ", filePath="
+				+ filePath + "]";
+	}
 }

@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class ConsultCheck {
 	private Integer id;
-	private Integer cons_id; 		// 咨询id
+	private String cons_id; 		// 咨询id
 	private Integer admin_id; 		// 审核人id
 	private Date check_datetime; 	// 审核日期
 	private String state;			// 审核结果 0：未通过，1：通过
@@ -20,10 +20,10 @@ public class ConsultCheck {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getCons_id() {
+	public String getCons_id() {
 		return cons_id;
 	}
-	public void setCons_id(Integer cons_id) {
+	public void setCons_id(String cons_id) {
 		this.cons_id = cons_id;
 	}
 	public Integer getAdmin_id() {

@@ -21,7 +21,13 @@ import java.util.Date;
  *
  */
 public class Consult {
-	private Integer id;
+	// 定义状态常量
+	public static String UNCHECKED = "0";
+	public static String ALLOW = "1";
+	public static String REJECT = "2";
+	public static String COMPLETED = "3";
+	
+	private String id;
 	private String state; 		// 状态，初始为0，审核通过后为1，失败为2
 	private String title; 		// 标题
 	private String details; 	// 咨询描述
@@ -35,6 +41,14 @@ public class Consult {
 	private String remark;		// 备注
 	private String com_id;		//公司ID
 	
+	private String scm_id; // 作为model 在项目成立时接受页面传来的 方案 id
+	
+	public String getScm_id() {
+		return scm_id;
+	}
+	public void setScm_id(String scm_id) {
+		this.scm_id = scm_id;
+	}
 	public String getCom_id() {
 		return com_id;
 	}
@@ -50,11 +64,11 @@ public class Consult {
 		this.fileName = fileName;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

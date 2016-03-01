@@ -8,13 +8,16 @@
 			<generator class="increment"/>
 		</id>
 		
-		<property name="com_id" type="int"/>
-		<property name="scm_id" type="int"/>
+		<property name="com_id" type="string"/>
+		<property name="cons_id" type="string"/>
+		<property name="scm_id" type="string"/>
 		<property name="title" type="string"/>
+		<property name="fileName" type="string"/>
+		<property name="filePath" type="string"/>
 		<property name="start_date"/>
 		<property name="end_date"/>
 		<property name="current_state" type="string"/>
-		<property name="cost"></property>
+		<property name="cost"/>
 		
 	</class>
 </hibernate-mapping>

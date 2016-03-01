@@ -17,12 +17,20 @@ import java.util.Date;
  *
  */
 public class Project {
+	// 定义状态常量
+	public static String ONGOING = "4";
+	public static String COMPANYEVALUATE = "5";
+	public static String PROFESSOREVALUATE = "6";
+	
 	private int id;
-	private int com_id; // 咨询表id
-	private int scm_id;	 // 方案id
+	private String com_id;	// 企业id
+	private String cons_id;	// 咨询表id
+	private String scm_id;	 // 方案id
 	private String title;
-	private Date start_date;
-	private Date end_date;
+	private String fileName;	// 需求文档名
+	private String filePath;	// 需求的文档
+	private Date start_date;	// 项目的开始时间。选择好方案开始
+	private Date end_date;		// 企业评价后结束
 	private String current_state; // 项目的状态，3是进行中，4是企业评价，5是专家评价
 	private BigDecimal cost;
 	public int getId() {
@@ -31,16 +39,22 @@ public class Project {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCom_id() {
+	public String getCom_id() {
 		return com_id;
 	}
-	public void setCom_id(int com_id) {
+	public void setCom_id(String com_id) {
 		this.com_id = com_id;
 	}
-	public int getScm_id() {
+	public String getCons_id() {
+		return cons_id;
+	}
+	public void setCons_id(String cons_id) {
+		this.cons_id = cons_id;
+	}
+	public String getScm_id() {
 		return scm_id;
 	}
-	public void setScm_id(int scm_id) {
+	public void setScm_id(String scm_id) {
 		this.scm_id = scm_id;
 	}
 	public String getTitle() {
@@ -74,11 +88,24 @@ public class Project {
 	public void setCost(BigDecimal cost) {
 		this.cost = cost;
 	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	@Override
 	public String toString() {
-		return "Project [id=" + id + ", com_id=" + com_id + ", scm_id="
-				+ scm_id + ", title=" + title + ", start_date=" + start_date
-				+ ", end_date=" + end_date + ", current_state=" + current_state
-				+ ", cost=" + cost + "]";
+		return "Project [id=" + id + ", com_id=" + com_id + ", cons_id="
+				+ cons_id + ", scm_id=" + scm_id + ", title=" + title
+				+ ", fileName=" + fileName + ", filePath=" + filePath
+				+ ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", current_state=" + current_state + ", cost=" + cost + "]";
 	}
 }

@@ -65,7 +65,7 @@
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
 			<result name="allowListSUCCESS">/project/consult_recieve.jsp</result>
 			<result name="viewSUCCESS">/project/consultInfo.jsp</result>
-			<result name="queryMyConsultSUCCESS">/project/consult_list.jsp</result>
+			<result name="queryMyConsultSUCCESS">/company/company_consults.jsp</result>
 			
 			<result name="checkSUCCESS" type="redirectAction">consult_unCheckList</result>
 			<result name="checkFAIL" type="redirectAction">consult_unCheckList</result>
@@ -83,10 +83,14 @@
 		
 		<action name="scheme_*" method="{1}" class="cn.ustc.web.action.SchemeAction">
 			<result name="submitViewSUCCESS">/scheme/scheme_publish.jsp</result>
-			<result name="publishSUCCESS" type="redirect">/consult/consult_allowList</result>
+			<result name="publishSUCCESS" type="redirectAction">
+				<param name="namespace">/consult</param>
+				<param name="actionName">consult_allowList</param>
+			</result>
 			<result name="listSUCCESS">/scheme/scheme_list.jsp</result>
 			<result name="viewSUCCESS">/scheme/schemeInfo.jsp</result>
 			<result name="queryMySchemeSUCCESS">/scheme/scheme_list.jsp</result>
+			<result name="findConsultSchemesSUCCESS">/company/consult_schemes.jsp</result>
 			
 			<result name="downSUCCESS" type="stream">
 				<!-- 下载流 getInputStream -->
