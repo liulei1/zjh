@@ -1,0 +1,45 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory name="foo">
+		<!-- 配置数据库信息 -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/zjh</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">111</property>
+		
+		<!-- <property name="javax.persistence.validation.mode">none</property> -->
+		<!-- 配置hibernate 使用 数据库方言 -->
+		<!-- 方言解决 不同数据库 之间区别 -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 在控制台打印sql语句 -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="connection.autocommit">true</property>
+		<!-- 其他配置 -->
+		<!-- 
+			true,先删除再建立表
+			update,追加,一般用于新建，不用来更改
+			validate不一样会抛异常
+			create-drop先加再删除，测试用 
+		-->
+		<property name="hbm2ddl.auto">update</property>
+		<!-- 配置c3p0 -->
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<!-- 事务默认操作 -->
+		<!-- <property name="hibernate.connection.autocommit">true</property> -->
+		
+		<!-- 加载hbm映射 -->
+		<mapping resource="cn/ustc/domain/User.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Consult.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Vocation.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/ConsultCheck.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Project.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Professor.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Scheme.hbm.xml"/>
+		<mapping resource="cn/ustc/domain/Company.hbm.xml"/>
+		
+	</session-factory>
+</hibernate-configuration>
