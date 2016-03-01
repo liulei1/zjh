@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="messages"/>
+	
+ 	<package name="basicstruts" namespace="/user" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="loginInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
+			<interceptor-ref name="myStack">
+				<param name="loginInterceptor.exclude">user_login</param>			
+			</interceptor-ref>
+			
+			<result name="professor_login" type= "chain">user_manage_professoruser_login</result>
+			<result name="professorloginSUCCESS">/professor/home.jsp</result>
+			<result name="companyloginSUCCESS">/company/home.jsp</result>
+			
+					
+			<result name="input">/user/login.jsp</result>
+			<result name="loginSUCCESS">/user/home.jsp</result>
+			<result name="loginINPUT">/user/login.jsp</result>
+			
+			<result name="listSUCCESS">/user/userlist.jsp</result>
+			<result name="viewSUCCESS">/user/view.jsp</result>
+			
+			<result name="editviewSUCCESS">/user/edit.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">user_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
+		</action>
+		
+		
+		
+		<action name="user_manage_qiyeuser_*" method="{1}" class="cn.ustc.web.user_management.qiyeUserManagementAction">
+			<result name="qiyeuser_SUCCESS">/project/qiyeUser.jsp</result>
+			<result name="editviewSUCCESS">/project/qiyeUserEdit.jsp</result>
+			<result name="viewSUCCESS">/project/qiyeUserView.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">user_manage_qiyeuser_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">user_manage_qiyeuser_list</result>
+		</action>
+		
+		<action name="user_manage_professoruser_*" method="{1}" class="cn.ustc.web.user_management.professorUserManagementAction">
+			<result name="professoruser_SUCCESS">/project/professorUser.jsp</result>
+			<result name="editviewSUCCESS">/project/professorUserEdit.jsp</result>
+			<result name="viewSUCCESS">/project/professorUserView.jsp</result>
+			<result name="editSUCCESS" type="redirectAction">user_manage_professoruser_list</result>
+			<result name="deleteSUCCESS" type="redirectAction">user_manage_professoruser_list</result>
+		</action>
+	</package>
+	<include file="liulei.xml"/>
+</struts>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ustc.domain.Project" table="project" catalog="zjh">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		
+		<property name="com_id" type="string"/>
+		<property name="cons_id" type="string"/>
+		<property name="scm_id" type="string"/>
+		<property name="title" type="string"/>
+		<property name="fileName" type="string"/>
+		<property name="filePath" type="string"/>
+		<property name="start_date"/>
+		<property name="end_date"/>
+		<property name="current_state" type="string"/>
+		<property name="cost"/>
+		
+	</class>
+</hibernate-mapping>

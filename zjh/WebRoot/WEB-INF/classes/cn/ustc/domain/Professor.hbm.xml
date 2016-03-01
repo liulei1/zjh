@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ustc.domain.Professor" table="professor" catalog="zjh">
+		<id name="id">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="name"/>
+		<property name="password" type="string"></property>
+		<property name="email" type="string"></property>
+		<property name="sex" type="string"></property>
+		<property name="usertype" type="string"></property>
+		<property name="address" type="string"></property>
+		<property name="website" type="string"></property>
+		<property name="real_name"/>
+		<property name="image"/>
+		<property name="telephone"/>
+		<property name="identity"/>
+		<property name="id_image"/>
+		<property name="introduction"/>
+		<property name="field"/>
+		<property name="authority"/>
+		<property name="achieve"/>
+		<property name="annotation"/>
+		
+		<!-- 一个客户关联多个订单 -->
+		<!-- name 关联订单集合属性名 -->
+		<set name="schemes" cascade="save-update,delete,delete-orphan" inverse="true">  <!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->
+			<!-- 客户关联订单后，在对方表 添加 外键列 -->
+			<!-- column 对方表 外键列 列名 -->
+			<key column="prof_id"></key>
+			<!-- 一对多 -->
+			<!-- class 是 orders 集合元素类型 -->
+			<one-to-many class="cn.ustc.domain.Scheme"/>
+		</set>
+	</class>
+</hibernate-mapping>
