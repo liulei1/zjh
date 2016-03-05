@@ -1,6 +1,11 @@
 package cn.ustc.domain;
 
 public class User {
+	private static final String ADMIN = "0";
+	private static final String COMPANY = "1";
+	private static final String PROFESSOR = "2";
+	private static final String USER = "3";
+	
 	private String id;
 	private String name;
 	private String password;
@@ -58,10 +63,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", password=" + password
-				+ ", repassword=" + repassword + ", email=" + email + ", sex="
-				+ sex + ", usertype=" + usertype + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", name=" + name + ", password=" + password
+//				+ ", repassword=" + repassword + ", email=" + email + ", sex="
+//				+ sex + ", usertype=" + usertype + "]";
+//	}
 }

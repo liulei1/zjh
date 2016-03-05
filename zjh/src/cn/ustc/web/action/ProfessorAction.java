@@ -26,6 +26,7 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
+		System.out.println(professor);
 		ProfessorService.insertProfessor(professor);
 		return "professorRegisterSuccess";
 	}

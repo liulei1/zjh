@@ -13,9 +13,10 @@ public class ProfessorService {
 		this.professorDAO = professorDAO;
 	}
 
-	public boolean insertProfessor(Professor Professor){
+	public boolean insertProfessor(Professor professor){
 		int res = 0;
-		res = professorDAO.insertProfessor(Professor);
+		System.out.println("service"+professor);
+		res = professorDAO.insertProfessor(professor);
 		if (res > 0) {
 			return true;
 		}

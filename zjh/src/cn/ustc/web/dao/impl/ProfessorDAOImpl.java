@@ -39,14 +39,14 @@ public class ProfessorDAOImpl  extends HibernateDaoSupport implements ProfessorD
 
 	}
 
-	public int insertProfessor(Professor Professor) {
+	public int insertProfessor(Professor professor) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
 //		Professor.setId(UUID.randomUUID().toString());
-		System.out.println(Professor);
+		System.out.println(professor);
 
 		try {
-			session.save(Professor);
+			session.save(professor);
 			transaction.commit();
 		} catch (RuntimeException e) {
 			e.printStackTrace();

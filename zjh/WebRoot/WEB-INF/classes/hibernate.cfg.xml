@@ -41,6 +41,6 @@
 		<mapping resource="cn/ustc/domain/Scheme.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Company.hbm.xml"/>
 		<mapping resource="cn/ustc/domain/Administer.hbm.xml"/>
-		
+		<mapping resource="cn/ustc/domain/Evaluate.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

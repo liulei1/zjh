@@ -19,6 +19,7 @@ public class Professor extends User{
 
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
+	
 	public String getAddress() {
 		return address;
 	}
@@ -96,5 +97,15 @@ public class Professor extends User{
 	}
 	public void setSchemes(Set<Scheme> schemes) {
 		this.schemes = schemes;
+	}
+	@Override
+	public String toString() {
+		return "Professor [real_name=" + real_name + ", image=" + image
+				+ ", telephone=" + telephone + ", identity=" + identity
+				+ ", id_image=" + id_image + ", introduction=" + introduction
+				+ ", field=" + field + ", authority=" + authority
+				+ ", achieve=" + achieve + ", annotation=" + annotation
+				+ ", address=" + address + ", website=" + website
+				+ ", schemes=" + schemes + "]";
 	}
 }

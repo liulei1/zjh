@@ -3,14 +3,6 @@ package cn.ustc.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-//	    	 id id		integer(10)	是	否	否
-// 	    cons_id	咨询表id	integer(10)	否	是	否
-//		 scm_id	方案Id	integer(10)	否	是	否
-//   	  title	合约名称	varchar(50)	否	否	否
-//	 start_date	成立日期	datetime	否	否	否
-//	   end_date	结束日期	datetime	否	否	否
-//current_state	进度		varchar(20)	否	否	否
-//		   cost	应付金额	double	否	否	否
 /**
  * 需求被专家接受的项目
  * @author liu
@@ -21,9 +13,11 @@ public class Project {
 	public static String ONGOING = "4";
 	public static String COMPANYEVALUATE = "5";
 	public static String PROFESSOREVALUATE = "6";
+	public static String COMPELETED = "7";
 	
 	private int id;
 	private String com_id;	// 企业id
+	private String prof_id;	// 专家id
 	private String cons_id;	// 咨询表id
 	private String scm_id;	 // 方案id
 	private String title;
@@ -31,7 +25,7 @@ public class Project {
 	private String filePath;	// 需求的文档
 	private Date start_date;	// 项目的开始时间。选择好方案开始
 	private Date end_date;		// 企业评价后结束
-	private String current_state; // 项目的状态，3是进行中，4是企业评价，5是专家评价
+	private String current_state; // 项目进度，4是进行中，5是企业评价，6是专家评价
 	private BigDecimal cost;
 	public int getId() {
 		return id;
@@ -44,6 +38,12 @@ public class Project {
 	}
 	public void setCom_id(String com_id) {
 		this.com_id = com_id;
+	}
+	public String getProf_id() {
+		return prof_id;
+	}
+	public void setProf_id(String prof_id) {
+		this.prof_id = prof_id;
 	}
 	public String getCons_id() {
 		return cons_id;
@@ -102,10 +102,11 @@ public class Project {
 	}
 	@Override
 	public String toString() {
-		return "Project [id=" + id + ", com_id=" + com_id + ", cons_id="
-				+ cons_id + ", scm_id=" + scm_id + ", title=" + title
-				+ ", fileName=" + fileName + ", filePath=" + filePath
-				+ ", start_date=" + start_date + ", end_date=" + end_date
-				+ ", current_state=" + current_state + ", cost=" + cost + "]";
+		return "Project [id=" + id + ", com_id=" + com_id + ", prof_id="
+				+ prof_id + ", cons_id=" + cons_id + ", scm_id=" + scm_id
+				+ ", title=" + title + ", fileName=" + fileName + ", filePath="
+				+ filePath + ", start_date=" + start_date + ", end_date="
+				+ end_date + ", current_state=" + current_state + ", cost="
+				+ cost + "]";
 	}
 }

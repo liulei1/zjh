@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.ustc.domain.Evaluate" table="evaluate" catalog="zjh">
+		<id name="id">
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="proj_id" type="int"/>
+		<property name="prof_id" type="string"/>
+		<property name="begin_date" type="string"/>
+		<property name="prof_grade" type="int"/>
+		<property name="prof_text" type="string"/>
+		<property name="com_grade" type="int"/>
+		<property name="com_text" type="string"/>
+		<property name="state" type="string"/>
+	</class>
+</hibernate-mapping>

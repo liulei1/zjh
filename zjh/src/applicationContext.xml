@@ -13,9 +13,13 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
+	<!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->     
+  	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	
 	<!-- 配置Action -->
 	<bean id="consultAction" class="cn.ustc.web.action.ConsultAction">
 		<property name="consultService" ref="consultService"></property>
+		<property name="schemeService" ref="schemeService"/>
 	</bean>
 	<bean id="listVocation" class="cn.ustc.web.action.ListVocation">
 		<property name="vocationDAO" ref="vocationDAO"></property>
@@ -29,6 +33,13 @@
 	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
 		<property name="schemeService" ref="schemeService"/>
 	</bean>
+	<bean id="projectAction" class="cn.ustc.web.action.ProjectAction">
+		<property name="projectService" ref="projectService"/>
+	</bean>
+	<bean id="evaluateAction" class="cn.ustc.web.action.EvaluateAction">
+		<property name="evaluateService" ref="evaluateService"/>
+		<property name="projectService" ref="projectService"/>
+	</bean>
 	
 	<!-- 配置Service  -->
 	<bean id="consultService" class="cn.ustc.web.service.ConsultService">
@@ -39,9 +50,7 @@
 	<bean id="userService" class="cn.ustc.web.service.UserService">
 		<property name="userDAO" ref="userDAO"/>
 	</bean>
-	<bean id="professorService" class="cn.ustc.web.service.ProfessorService">
-		<property name="professorDAO" ref="professorDAO"/>
-	</bean>
+	<bean id="professorService" class="cn.ustc.web.service.ProfessorService"/>
 	<bean id="companyService" class="cn.ustc.web.service.CompanyService">
 		<property name="companyDAO" ref="companyDAO"/>
 	</bean>
@@ -50,6 +59,12 @@
 	</bean>
 	<bean id="administerService" class="cn.ustc.web.service.AdministerService">
 		<property name="administerDAO" ref="administerDAO"/>
+	</bean>
+	<bean id="projectService" class="cn.ustc.web.service.ProjectService">
+		<property name="projectDAO" ref="projectDAO"/>
+	</bean>
+	<bean id="evaluateService" class="cn.ustc.web.service.EvaluateService">
+		<property name="evaluateDAO" ref="evaluateDAO"/>
 	</bean>
 	
 	<!-- 配置DAO -->
@@ -79,6 +94,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="administerDAO" class="cn.ustc.web.dao.impl.AdministerDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="evaluateDAO" class="cn.ustc.web.dao.impl.EvaluateDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

@@ -16,8 +16,11 @@ import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Project;
+import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
+import cn.ustc.web.service.ProjectService;
+import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -39,20 +42,21 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public void setFile(File file) {
 		this.file = file;
 	}
-
 	public void setFileFileName(String fileFileName) {
 		this.fileFileName = fileFileName;
 	}
-
 	public void setFileContentType(String fileContentType) {
 		this.fileContentType = fileContentType;
 	}
 
-	/****************************************************************/
+	/****************************** 注入 **********************************/
 	private ConsultService consultService;
-
 	public void setConsultService(ConsultService consultService) {
 		this.consultService = consultService;
+	}
+	private SchemeService schemeService;
+	public void setSchemeService(SchemeService schemeService) {
+		this.schemeService = schemeService;
 	}
 
 	/************************************* 发布上传下载 ****************************************/
@@ -226,8 +230,12 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		project.setFilePath(consult.getFilePath());
 		project.setFileName(consult.getFileName());
 		
+		Scheme scheme = schemeService.findById(consult.getScm_id());
+		project.setProf_id(scheme.getProfessor().getId());
+		
 		// 决定方案后,会插入一条 project记录并修改consult的状态
 		consultService.consultRecieve(project,consult);
 		return NONE;
 	}
+	
 }

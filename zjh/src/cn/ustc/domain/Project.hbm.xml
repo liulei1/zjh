@@ -9,6 +9,7 @@
 		</id>
 		
 		<property name="com_id" type="string"/>
+		<property name="prof_id" type="string"/>
 		<property name="cons_id" type="string"/>
 		<property name="scm_id" type="string"/>
 		<property name="title" type="string"/>

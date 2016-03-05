@@ -75,10 +75,9 @@
 		</action>
 	</package>
 	
-	<package name="project" namespace="/consult" extends="myDefault">
+	<package name="consult" namespace="/consult" extends="myDefault">
 		
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
-			
 			<result name="publishSUCCESS">/success.jsp</result>
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
 			<result name="allowListSUCCESS">/project/consult_recieve.jsp</result>
@@ -98,7 +97,6 @@
 	</package>
 	
 	<package name="scheme" namespace="/scheme" extends="myDefault">
-		
 		<action name="scheme_*" method="{1}" class="cn.ustc.web.action.SchemeAction">
 			<result name="submitViewSUCCESS">/scheme/scheme_publish.jsp</result>
 			<result name="publishSUCCESS" type="redirectAction">
@@ -118,8 +116,32 @@
 		</action>
 	</package>
 	
+	<package name="project" namespace="/project" extends="myDefault">
+		<action name="project_*" method="{1}" class="cn.ustc.web.action.ProjectAction">
+			<result name="queryMyProjectSUCCESS">/project/project_list.jsp</result>
+			<result name="completeSUCCESS" type="redirectAction">project_queryMyProject</result>
+						
+			<result name="downSUCCESS" type="stream">
+				<!-- 下载流 getInputStream -->
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="evaluate" namespace="/evaluate" extends="myDefault">
+		<action name="evaluate_*" method="{1}" class="cn.ustc.web.action.EvaluateAction">
+			<result name="publishView">/project/evaluate_publish.jsp</result>
+						
+			<result name="downSUCCESS" type="stream">
+				<!-- 下载流 getInputStream -->
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+			</result>
+		</action>
+	</package>
+	
 	<package name="android" namespace="/android" extends="struts-default">
-		
 		<action name="user_*" method="{1}" class="cn.ustc.android.action.UserLogin"></action>
 	</package>
 </struts>

@@ -24,8 +24,8 @@
     </p>
 	<div class="btn-group" >
       <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/consult_publish.jsp'">发布需求</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
-      <button class="btn btn-primary">查看方案</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_queryMyConsult'">我的需求</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/project_queryMyProject'">我的项目</button>
     </div>
     <s:debug></s:debug>
 </body>
