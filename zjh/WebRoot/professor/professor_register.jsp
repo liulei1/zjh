@@ -44,13 +44,11 @@
 	}
 </script>
 
-
 <body>
 	<h1 align="center">专家用户注册</h1>
 	<div align="center">
 	<font color="red">
-	<s:actionerror/>
-	
+		<s:actionerror/>
 	</font>
 	
 	<s:form action="professor_register" namespace="/token" theme="simple" method="post" onsubmit="return check()" >
@@ -64,7 +62,7 @@
 		</tr>
 		<tr>
 			<td>邮箱</td>
-			<td><s:textfield name="email" ></s:textfield> </td>
+			<td><s:textfield name="email" ></s:textfield></td>
 			
 		</tr>
 		<tr>
@@ -79,32 +77,27 @@
 		</tr>
 		<tr>
 			<td>真实姓名</td>
-			<td><s:textfield name="real_name" ></s:textfield> </td>
+			<td><s:textfield name="real_name"></s:textfield> </td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>联系方式</td>
-			<td><s:textfield name="telephone" ></s:textfield> </td>
+			<td><s:textfield name="telephone"></s:textfield> </td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>地址</td>
-			<td><s:textfield name="address" ></s:textfield> </td>
+			<td><s:textfield name="address"></s:textfield> </td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>所属领域</td>
-			<td><div id="field"></div> </td>
+			<td><div id="field"></div></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td>网址</td>
 			<td><s:textfield name="website" ></s:textfield> </td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>地址</td>
-			<td><s:textfield name="address" ></s:textfield> </td>
 			<td></td>
 		</tr>
 		<tr>
@@ -115,11 +108,6 @@
 		<tr>
 			<td>个人简介</td>
 			<td><s:textfield name="introduction" ></s:textfield> </td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>成就</td>
-			<td><s:textfield name="identity" ></s:textfield> </td>
 			<td></td>
 		</tr>
 		<tr>

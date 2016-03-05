@@ -19,7 +19,6 @@ public class Professor extends User{
 
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
-	
 	public String getAddress() {
 		return address;
 	}

@@ -10,22 +10,22 @@ Target Server Type    : MYSQL
 Target Server Version : 50018
 File Encoding         : 65001
 
-Date: 2016-03-01 16:49:18
+Date: 2016-03-05 19:25:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for admin
+-- Table structure for administer
 -- ----------------------------
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
-  `id` varchar(10) NOT NULL,
-  `user_name` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `authority` varchar(10) NOT NULL,
-  `telephone` varchar(20) NOT NULL,
-  `image` varchar(50) default NULL,
+DROP TABLE IF EXISTS `administer`;
+CREATE TABLE `administer` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `sex` varchar(255) default NULL,
+  `usertype` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -94,16 +94,15 @@ CREATE TABLE `consult_check` (
 -- ----------------------------
 DROP TABLE IF EXISTS `evaluate`;
 CREATE TABLE `evaluate` (
-  `id` int(10) NOT NULL,
-  `proj_id` int(10) NOT NULL,
-  `comp_id` int(10) NOT NULL,
-  `evaluate_date` datetime NOT NULL,
-  `content` varchar(100) default NULL,
-  `prof_grade` int(10) NOT NULL,
-  `prof_text` varchar(50) NOT NULL,
-  `comp_grade` int(10) NOT NULL,
-  `comp_text` varchar(50) NOT NULL,
-  `state` varchar(8) default NULL,
+  `id` varchar(255) NOT NULL,
+  `proj_id` int(11) default NULL,
+  `prof_id` varchar(255) default NULL,
+  `begin_date` varchar(255) default NULL,
+  `prof_grade` int(11) default NULL,
+  `prof_text` varchar(255) default NULL,
+  `com_grade` int(11) default NULL,
+  `com_text` varchar(255) default NULL,
+  `state` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -118,17 +117,16 @@ CREATE TABLE `professor` (
   `email` varchar(255) default NULL,
   `sex` varchar(255) default NULL,
   `usertype` varchar(255) default NULL,
+  `address` varchar(255) default NULL,
+  `website` varchar(255) default NULL,
   `real_name` varchar(255) default NULL,
   `image` varchar(255) default NULL,
   `telephone` varchar(255) default NULL,
-  `address` varchar(255) default NULL,
-  `authority` varchar(255) default NULL,
-  `website` varchar(255) default NULL,
-  `remark` varchar(255) default NULL,
   `identity` varchar(255) default NULL,
   `id_image` varchar(255) default NULL,
   `introduction` varchar(255) default NULL,
   `field` varchar(255) default NULL,
+  `authority` varchar(255) default NULL,
   `achieve` varchar(255) default NULL,
   `annotation` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
@@ -150,6 +148,7 @@ CREATE TABLE `project` (
   `end_date` datetime default NULL,
   `current_state` varchar(255) default NULL,
   `cost` decimal(19,2) default NULL,
+  `prof_id` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

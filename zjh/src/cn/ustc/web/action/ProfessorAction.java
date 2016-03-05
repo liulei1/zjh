@@ -11,22 +11,19 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ProfessorAction extends ActionSupport implements ModelDriven<Professor>{
-	private ProfessorService ProfessorService;
-
-	public void setProfessorService(ProfessorService ProfessorService) {
-		this.ProfessorService = ProfessorService;
-	}
-
 	private Professor professor=new Professor();
-
 	@Override
 	public Professor getModel() {
 		return professor;
 	}
 	
+	private ProfessorService ProfessorService;
+	public void setProfessorService(ProfessorService ProfessorService) {
+		this.ProfessorService = ProfessorService;
+	}
+
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
-		System.out.println(professor);
 		ProfessorService.insertProfessor(professor);
 		return "professorRegisterSuccess";
 	}
@@ -44,5 +41,4 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return SUCCESS;
 	}
 
-	
 }

@@ -17,6 +17,7 @@ import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.dao.impl.SchemeDAO;
+import cn.ustc.web.service.ConsultService;
 import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -133,7 +134,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		
 		// 不允许对一个项目发布多个方案，只保存最新的方案
 		List<Scheme> list = schemeService.findByDetachedCriteria(criteria);
-		if(list != null){
+		if(list.size() > 0){
 			for(int i=0; i<list.size(); i++){
 				Scheme scheme = list.get(i);
 				// 删除之前上传的文件

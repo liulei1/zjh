@@ -11,17 +11,15 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class CompanyAction extends ActionSupport implements ModelDriven<Company>{
-	private CompanyService companyService;
-
-	public void setCompanyService(CompanyService companyService) {
-		this.companyService = companyService;
-	}
-
 	private Company company=new Company();
-
 	@Override
 	public Company getModel() {
 		return company;
+	}
+	
+	private CompanyService companyService;
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
 	}
 	
 	@InputConfig(resultName = "companyRegister")

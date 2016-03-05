@@ -1,7 +1,6 @@
 package cn.ustc.web.dao.impl;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -10,10 +9,8 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.utils.HibernateUtils;
-import cn.ustc.web.dao.ProfessorDAO;
 
-@SuppressWarnings("all")
-public class ProfessorDAOImpl  extends HibernateDaoSupport implements ProfessorDAO {
+public class ProfessorDAOImpl extends HibernateDaoSupport{
 	
 	public Professor findProfessorByProfessorNameAndPwd(String Professorname, String password) {
 		Session session = HibernateUtils.openSession();
@@ -30,30 +27,15 @@ public class ProfessorDAOImpl  extends HibernateDaoSupport implements ProfessorD
 			return professor;
 
 		} catch (RuntimeException e) {
-//			transaction.rollback();
 			throw e;
 		} finally {
 
 			session.close();
 		}
-
 	}
 
 	public int insertProfessor(Professor professor) {
-		Session session = HibernateUtils.openSession();
-		Transaction transaction = session.beginTransaction();
-//		Professor.setId(UUID.randomUUID().toString());
-		System.out.println(professor);
-
-		try {
-			session.save(professor);
-			transaction.commit();
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		// 为了和QueryRunner的插入条数返回值匹配
+		this.getHibernateTemplate().save(professor);
 		return 1;
 	}
 
@@ -128,7 +110,6 @@ public class ProfessorDAOImpl  extends HibernateDaoSupport implements ProfessorD
 		}
 	}
 
-	@Override
 	public List<Professor> findProfessorByName(String name) {
 		Session session = HibernateUtils.openSession();
 		Transaction tx = session.beginTransaction();

@@ -19,13 +19,13 @@
 	</div>
 	<p class="text-right">
 	    <a href="#">
-          <span class="glyphicon glyphicon-user">&nbsp;${administer.name}&nbsp;</span>
+          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
         </a>
     </p>
 	<div class="btn-group" >
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/consult_publish.jsp'">发布需求</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
-      <button class="btn btn-primary">查看方案</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_unCheckList.action'">审核需求</button>
+      <button class="btn btn-primary" onclick="window.location.href=''">审核用户</button>
+      <button class="btn btn-primary">查看用户</button>
     </div>
     <s:debug></s:debug>
 </body>

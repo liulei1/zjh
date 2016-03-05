@@ -11,7 +11,6 @@
 	<div align="center">
 		<h1>方案详情</h1>
 		<s:form action="scheme_publish" namespace="/scheme" method="post" enctype="multipart/form-data" theme="simple">
-<<<<<<< HEAD
 			<s:hidden name="cons_id" value="%{cons_id}"></s:hidden>
 			<table>
 				<tr>
@@ -28,25 +27,6 @@
 				</tr>
 				<tr>
 					<td>
-=======
-			<s:hidden name="proj_id" value="%{proj_id}"></s:hidden>
-			<table>
-				<tr>
-					<td>描述：</td>
-					<td>
-						<s:textarea name="details"/>
-					</td>
-				</tr>
-				<tr>
-					<td>文档：</td>
-					<td>
-						<s:file name="file"></s:file>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!-- <input type="submit" value="提交" onclick="alert('操作成功！');window.close();"> -->
->>>>>>> refs/heads/dev
 						<input type="submit" value="提交">
 					</td>
 					<td>

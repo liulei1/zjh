@@ -230,7 +230,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		project.setFilePath(consult.getFilePath());
 		project.setFileName(consult.getFileName());
 		
-		Scheme scheme = schemeService.findById(consult.getScm_id());
+		Scheme scheme = schemeService.findById(model.getScm_id());
 		project.setProf_id(scheme.getProfessor().getId());
 		
 		// 决定方案后,会插入一条 project记录并修改consult的状态

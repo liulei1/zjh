@@ -9,22 +9,6 @@
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <title>方案列表</title>
-<script type="text/javascript">
-	$(function(){
-		$(".state").each(function(i){
-			var tag = $(".state")[i].innerHTML;
-			var state;
-			if(tag == 0){
-				state = "待审核";
-			}else if(tag == 1){
-				state = "通过";
-			}else if(tag == 2){
-				state = "拒绝";
-			}
-			$(".state")[i].innerHTML = state;
-		});
-	});
-</script>
 </head>
 <body>
 <h1 align="center"><strong>所有方案列表</strong></h1>
@@ -51,11 +35,7 @@
 						${professor.id}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
-<<<<<<< HEAD
 						${cons_id}
-=======
-						${proj_id}
->>>>>>> refs/heads/dev
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
 						${details}
@@ -69,7 +49,6 @@
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
 						${filePath}
 					</td>
-					
 				</tr>
 			</s:iterator>
 		</table>

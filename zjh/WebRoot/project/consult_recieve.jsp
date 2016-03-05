@@ -53,11 +53,7 @@
 					</td>
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="scheme_submitView" namespace="/scheme">
-<<<<<<< HEAD
 							<s:param name="cons_id" value="id"/>
-=======
-							<s:param name="proj_id" value="id"/>
->>>>>>> refs/heads/dev
 							<button type="button" class="btn btn-success btn-xs">接受</button>
 						</s:a>
 					</td>

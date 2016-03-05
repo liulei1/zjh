@@ -26,10 +26,9 @@
 			var html = '<select name="category"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList, function(index, context){
   				html += '<option value="' + context.name +'">' + context.name +'</option>';
-  				html += '<option value="' + context.id +'">' + context.name +'</option>';
              });
              html += '</select>';
-              $('#field').html(html);
+             $('#field').html(html);
 		});
 	});
 </script>
@@ -64,8 +63,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">领域</label>
-				<div class="col-sm-1" id="field">
-				</div>
+				<div class="col-sm-1" id="field"></div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">备注</label>

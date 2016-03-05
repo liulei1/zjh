@@ -25,12 +25,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public String getUsertype() {
 		return usertype;
 	}
-
 	public void setUsertype(String usertype) {
 		this.usertype = usertype;
 	}
 	
-
 	@Override
 	public User getModel() {
 		return user;
@@ -63,50 +61,50 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 * @throws SQLException
 	 */
 	@InputConfig(resultName="loginINPUT")
-	public String login(){
-	
-		
+	public String login() {
 		if (user.getName() == null || "".equals(user.getName().trim())) {
 			return "loginINPUT";
 		}
 		if (user.getPassword() == null || "".equals(user.getPassword().trim())) {
 			return "loginINPUT";
 		}
-		
+
 		// TODO 判断用户类型 进行相应用户表查找
-		if(user.getUsertype().equals("professor")){
-			Professor professor=new Professor();
+		if (user.getUsertype().equals("professor")) {
+			Professor professor = new Professor();
 			professor.setName(user.getName());
 			professor.setPassword(user.getPassword());
-			professor=professorService.login(professor);
-		
-			if(professor!=null){
-				ServletActionContext.getServletContext().setAttribute("user", professor);
+			professor = professorService.login(professor);
+
+			if (professor != null) {
+				ServletActionContext.getServletContext().setAttribute("user",
+						professor);
 				return "professorloginSUCCESS";
 			}
-			
-		}else if(user.getUsertype().equals("company")){
-			Company company=new Company();
+
+		} else if (user.getUsertype().equals("company")) {
+			Company company = new Company();
 			company.setName(user.getName());
 			company.setPassword(user.getPassword());
-			company=companyService.login(company);
-			if(company!=null){
-				ServletActionContext.getServletContext().setAttribute("user", company);
+			company = companyService.login(company);
+			if (company != null) {
+				ServletActionContext.getServletContext().setAttribute("user",
+						company);
 				return "companyloginSUCCESS";
 			}
-				
-		
-	}else if(user.getUsertype().equals("administer")){
-		Administer administer=new Administer();
-		administer.setName(user.getName());
-		administer.setPassword(user.getPassword());
-		administer=administerService.login(administer);
-		if(administer!=null){
-			ServletActionContext.getServletContext().setAttribute("administer", administer);
-			return "administerloginSUCCESS";
+
+		} else if (user.getUsertype().equals("administer")) {
+			Administer administer = new Administer();
+			administer.setName(user.getName());
+			administer.setPassword(user.getPassword());
+			administer = administerService.login(administer);
+			if (administer != null) {
+				ServletActionContext.getServletContext().setAttribute("user",
+						administer);
+				return "administerloginSUCCESS";
+			}
+
 		}
-		
-	}
 		if(user.getUsertype().equals("normal")){
 			User loginUser = userService.login(user);
 			if(loginUser != null){

@@ -2,20 +2,23 @@ package cn.ustc.web.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 import cn.ustc.domain.Professor;
 import cn.ustc.web.dao.ProfessorDAO;
 import cn.ustc.web.dao.impl.ProfessorDAOImpl;
 
+@Transactional
 public class ProfessorService {
-	
-	private ProfessorDAO professorDAO;
-	public void setProfessorDAO(ProfessorDAO professorDAO) {
+	@Autowired
+	private ProfessorDAOImpl professorDAO;
+	public void setProfessorDAO(ProfessorDAOImpl professorDAO) {
 		this.professorDAO = professorDAO;
 	}
 
 	public boolean insertProfessor(Professor professor){
 		int res = 0;
-		System.out.println("service"+professor);
 		res = professorDAO.insertProfessor(professor);
 		if (res > 0) {
 			return true;
