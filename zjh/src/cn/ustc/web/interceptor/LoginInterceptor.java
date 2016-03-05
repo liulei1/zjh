@@ -22,11 +22,17 @@ public class LoginInterceptor extends AbstractInterceptor{
 	@Override
 	public String intercept(ActionInvocation action) throws Exception {
 		//如果user对象不为空，拦截器放行
-		if(ServletActionContext.getServletContext().getAttribute("user") != null){
+		if (ServletActionContext.getServletContext().getAttribute("user") != null) {
 			// have login
 			return action.invoke();
-		}else {
-			
+		} else if (ServletActionContext.getServletContext().getAttribute(
+				"company") != null) {
+			return action.invoke();
+		} else if (ServletActionContext.getServletContext().getAttribute(
+				"professor") != null) {
+			return action.invoke();
+		}
+		else{
 			if(exclude != null){
 				String[] methods = exclude.split(",");
 				//谁也不拦截，放行

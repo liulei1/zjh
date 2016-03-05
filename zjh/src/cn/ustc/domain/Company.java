@@ -78,5 +78,5 @@ public class Company extends User{
 	public void setAnnotation(String annotation) {
 		this.annotation = annotation;
 	}
-
+	
 }

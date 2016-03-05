@@ -50,7 +50,7 @@ public class CompanyService {
 		CompanyDAO.deleteByCompanyID(id);
 	}
 
-	public Company findCompanyByName(String name) {
+	public List<Company> findCompanyByName(String name) {
 		return CompanyDAO.findByCompanyName(name);
 	}
 

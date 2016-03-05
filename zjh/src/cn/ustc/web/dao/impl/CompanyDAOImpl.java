@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
 @SuppressWarnings("all")
@@ -58,15 +59,16 @@ public class CompanyDAOImpl extends HibernateDaoSupport{
 		}
 		return comp;
 	}
-	public Company findByCompanyName(String name){
+	public List<Company> findByCompanyName(String name){
 		
 		Session session=HibernateUtils.openSession();
 	
 		
 		Transaction tx=session.beginTransaction();
-		Company comp=null;
+		List<Company> companys;
 		try{
-			comp=(Company) session.get(Company.class, name);
+			String hql="from Company where name=? ";
+			companys=session.createQuery(hql).setParameter(0, name).list();
 			tx.commit();
 		}catch(RuntimeException e){
 			e.printStackTrace();
@@ -74,7 +76,7 @@ public class CompanyDAOImpl extends HibernateDaoSupport{
 		}finally{
 			session.close();
 		}
-		return comp;
+		return companys;
 	}
 	
 	public List<Company> findAll(){

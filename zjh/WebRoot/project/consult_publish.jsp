@@ -26,6 +26,7 @@
 			var html = '<select name="category"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList, function(index, context){
   				html += '<option value="' + context.name +'">' + context.name +'</option>';
+  				html += '<option value="' + context.id +'">' + context.name +'</option>';
              });
              html += '</select>';
               $('#field').html(html);

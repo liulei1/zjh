@@ -32,6 +32,14 @@
 			<result name="registerSUCCESS">/user/login.jsp</result>
 			<result name="registerINPUT">/user/register.jsp</result>
 		</action>
+		<action name="company_register" method="register" class="cn.ustc.web.action.CompanyAction">
+			<result name="companyRegisterSuccess">/user/login.jsp</result>
+			<result name="companyRegister">/company/register.jsp</result>
+		</action>
+		<action name="professor_register" method="register" class="cn.ustc.web.action.ProfessorAction">
+			<result name="professorRegisterSuccess">/user/login.jsp</result>
+			<result name="professorRegister">/company/register.jsp</result>
+		</action>
 	</package>
 	
 	<!-- ajax 请求，返回json数据 -->
@@ -51,6 +59,16 @@
 			<!-- 要点二 ：结果集类型 必须指定为 json -->
 			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
 			<result type="json"></result>
+		</action>
+		<action name="checkCompanyName" class="cn.ustc.web.action.CompanyAction" method="checkCompanyName">
+			<result type="json">
+				<param name="ignoreHierarchy" >false</param>  
+			</result>
+		</action>
+		<action name="checkProfessorName" class="cn.ustc.web.action.ProfessorAction" method="checkProfessorName">
+			<result type="json">
+				<param name="ignoreHierarchy" >false</param>  
+			</result>
 		</action>
 		<action name="listVocation" class="cn.ustc.web.action.ListVocation" method="list">
 			<result type="json"></result>

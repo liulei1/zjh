@@ -40,21 +40,26 @@
 						<select name="usertype" id="usertype">
 							<option selected="selected">--请选择用户类型--</option>
 	  						<option value="company">企业用户</option>
-	  						<option value="professor">专家用户</option>
-	  						<option value ="normal">普通用户</option>
+							<option value="professor">专家用户</option>
+							<option value="normal">普通用户</option>
+							<option value="administer">管理员</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="提交"></td>
-					<td align="center">
-						<input type="reset" value="重置">
-						<a href="${pageContext.request.contextPath}/user/register.jsp">注册</a>
-					</td>
-					<td>
-						
-					</td>
+					<td align="center"><input type="reset" value="重置"></td>
+					<td></td>
 				</tr>
+				<tr>
+					<td colspan="3">
+						<a href="${pageContext.request.contextPath}/user/register.jsp">普通用户注册</a>
+						<a href="${pageContext.request.contextPath}/company/company_register.jsp">企业注册</a>
+						<a href="${pageContext.request.contextPath}/professor/professor_register.jsp">专家注册</a>
+					</td>
+					<td></td>
+				</tr>
+				
 			</table>
 		</form>
 	</div>

@@ -24,6 +24,7 @@
 		<property name="userService" ref="userService"></property>
 		<property name="professorService" ref="professorService"></property>
 		<property name="companyService" ref="companyService"></property>
+		<property name="administerService" ref="administerService"></property>
 	</bean>
 	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
 		<property name="schemeService" ref="schemeService"/>
@@ -46,6 +47,9 @@
 	</bean>
 	<bean id="schemeService" class="cn.ustc.web.service.SchemeService">
 		<property name="schemeDAO" ref="schemeDAO"/>
+	</bean>
+	<bean id="administerService" class="cn.ustc.web.service.AdministerService">
+		<property name="administerDAO" ref="administerDAO"/>
 	</bean>
 	
 	<!-- 配置DAO -->
@@ -72,6 +76,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="companyDAO" class="cn.ustc.web.dao.impl.CompanyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="administerDAO" class="cn.ustc.web.dao.impl.AdministerDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

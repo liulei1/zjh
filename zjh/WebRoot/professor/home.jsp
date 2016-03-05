@@ -12,7 +12,6 @@
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	
 	<div align="center">
 		<h1>专家用户中心</h1>
 	</div>
@@ -25,7 +24,7 @@
       <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">用户列表</button>
       <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
       <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">查看方案</button>
-    </div>
+	</div>
     <s:debug></s:debug>
 </body>
 </html>

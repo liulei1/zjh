@@ -51,7 +51,11 @@
 						${professor.id}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+<<<<<<< HEAD
 						${cons_id}
+=======
+						${proj_id}
+>>>>>>> refs/heads/dev
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
 						${details}

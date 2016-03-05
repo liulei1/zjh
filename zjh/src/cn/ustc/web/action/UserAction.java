@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.ustc.domain.Administer;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.User;
+import cn.ustc.web.service.AdministerService;
 import cn.ustc.web.service.CompanyService;
 import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.UserService;
@@ -49,6 +51,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public void setCompanyService(CompanyService companyService) {
 		this.companyService = companyService;
 	}
+	
+	private AdministerService administerService;
+	public void setAdministerService(AdministerService administerService) {
+		this.administerService = administerService;
+	}
 
 	/**
 	 * 登录--要判断登录用户的类型
@@ -57,6 +64,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	@InputConfig(resultName="loginINPUT")
 	public String login(){
+	
 		
 		if (user.getName() == null || "".equals(user.getName().trim())) {
 			return "loginINPUT";
@@ -89,18 +97,32 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 				return "companyloginSUCCESS";
 			}else{
 				return "loginINPUT";
-			}
-			
-			
 		}
+				
 		
-		User loginUser = userService.login(user);
-		if(loginUser != null){
-			ServletActionContext.getServletContext().setAttribute("user", loginUser);
-			return "loginSUCCESS";
-		}else {
+	}else if(user.getUsertype().equals("administer")){
+		Administer administer=new Administer();
+		administer.setName(user.getName());
+		administer.setPassword(user.getPassword());
+		administer=administerService.login(administer);
+		if(administer!=null){
+			ServletActionContext.getServletContext().setAttribute("administer", administer);
+			return "administerloginSUCCESS";
+		}else{
 			return "loginINPUT";
 		}
+		
+	}
+		if(user.getUsertype().equals("normal")){
+			User loginUser = userService.login(user);
+			if(loginUser != null){
+				ServletActionContext.getServletContext().setAttribute("user", loginUser);
+				return "loginSUCCESS";
+			}else {
+				return "loginINPUT";
+			}
+		}
+		return "loginINPUT";
 	}
 	
 	/**
@@ -179,6 +201,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			}
 		}
 		return SUCCESS;
+	}
+	
+	public String companyRegister(){
+		return "compRegister";
+	}
+	public String professorRegister(){
+		return "professorRegister";
 	}
 	
 }

@@ -13,14 +13,27 @@
 			$.post("${pageContext.request.contextPath}/user/checkUserName.action",{"name":$(this).val()},function(data){
 				if(data.nameExsit){
 					// 用户名已经存在
-					$("#result").html("<font color='red'>用户名已经存在</font>");
+					$("#result").html("<font color='red' class='check'>用户名已经存在</font>");
 				}else{
 					// 用户名不存在
-					$("#result").html("<font color='green'>用户名不存在，可以使用</font>");
+					$("#result").html("<font color='green' class='check'>用户名不存在，可以使用</font>");
 				}
 			}); 
 		}); 
 	});
+	
+	function check(){
+		var flag = $(".check").html();
+		if(flag == null){
+			alert("没有校验");
+			return false;
+		}
+		if (flag=="用户名已经存在"){
+			return false;
+		}else{
+			return true;
+		}
+	}
 </script>
 </head>
 <body>
@@ -30,7 +43,7 @@
 			<s:actionerror/>
 			<s:fielderror/>
 		</font>
-		<s:form action="user_register" namespace="/token" theme="simple" method="post">
+		<s:form action="user_register" namespace="/token" theme="simple" method="post" onsubmit="return check();">
 			<table>
 				<s:token></s:token>
 				<tr>
