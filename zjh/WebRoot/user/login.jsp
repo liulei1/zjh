@@ -23,7 +23,7 @@
 <body>
 	<h1 align="center">用户登录</h1>
 	<div align="center">
-	<s:actionerror/>
+	<font color='red'><s:actionerror/></font>
 		<form action="${pageContext.request.contextPath}/user/user_login" method="post" onsubmit="return loginCheck()">
 			<table>
 				<tr>

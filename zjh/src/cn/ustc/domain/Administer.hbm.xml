@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.ustc.domain">
+	<class name="Administer" table="administer" catalog="zjh">
+
+		<!-- id元素用于映射主键,子元素用于指定主键生成策略uuid -->
+		<id name="id">
+			<generator class="uuid"/>
+		</id>
+
+		<property name="name"/>
+		<property name="password" type="string"></property>
+		<property name="email" type="string"></property>
+		<property name="sex" type="string"></property>
+		<property name="usertype" type="string"></property>
+
+	</class>
+</hibernate-mapping>

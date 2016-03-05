@@ -83,8 +83,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			if(professor!=null){
 				ServletActionContext.getServletContext().setAttribute("user", professor);
 				return "professorloginSUCCESS";
-			}else{
-				return "loginINPUT";
 			}
 			
 		}else if(user.getUsertype().equals("company")){
@@ -95,9 +93,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			if(company!=null){
 				ServletActionContext.getServletContext().setAttribute("user", company);
 				return "companyloginSUCCESS";
-			}else{
-				return "loginINPUT";
-		}
+			}
 				
 		
 	}else if(user.getUsertype().equals("administer")){
@@ -108,8 +104,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if(administer!=null){
 			ServletActionContext.getServletContext().setAttribute("administer", administer);
 			return "administerloginSUCCESS";
-		}else{
-			return "loginINPUT";
 		}
 		
 	}
@@ -118,10 +112,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			if(loginUser != null){
 				ServletActionContext.getServletContext().setAttribute("user", loginUser);
 				return "loginSUCCESS";
-			}else {
-				return "loginINPUT";
 			}
 		}
+		
+		addActionError("查无此人");
 		return "loginINPUT";
 	}
 	
