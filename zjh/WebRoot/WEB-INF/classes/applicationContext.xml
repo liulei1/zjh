@@ -110,4 +110,6 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 注解事务管理 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
