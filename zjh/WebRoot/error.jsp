@@ -8,7 +8,7 @@
 <title>error page</title>
 </head>
 <body>
-<h3>404你信不信</h3>
+<h3>全局错误页面</h3>
 错误信息： <s:actionerror/>
 </body>
 </html>
