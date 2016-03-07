@@ -4,6 +4,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name></display-name>
+	<!-- OpenSessionInView 事务开启放在web层 -->
+	<filter>
+		<filter-name>OpenSessionInView</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInView</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- Struts2 核心 过滤器 -->
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -24,16 +34,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	
-	<!-- OpenSessionInView 事务开启放在web层 -->
-	<filter>
-		<filter-name>OpenSessionInView</filter-name>
-		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>OpenSessionInView</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>user/login.jsp</welcome-file>
