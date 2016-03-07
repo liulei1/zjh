@@ -7,27 +7,24 @@
 	<constant name="struts.custom.i18n.resources" value="messages"/>
     
 	<package name="basicstruts" namespace="/user" extends="struts-default">
-		<interceptors>
+		<!-- <interceptors>
 			<interceptor name="loginInterceptor"
 				class="cn.ustc.web.interceptor.LoginInterceptor" />
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack" />
 				<interceptor-ref name="loginInterceptor" />
 			</interceptor-stack>
-		</interceptors>
+		</interceptors> -->
 
 		<global-results>
-			<result name="login">/user/login.jsp</result>
-			<result name="error">/error.jsp</result>
+			<result name="login" type="redirect">/user/login.jsp</result>
+			<result name="error" type="redirect">/error.jsp</result>
 		</global-results>
-		<global-exception-mappings>
-			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
-		</global-exception-mappings>
 
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
-			<interceptor-ref name="myStack">
+			<!-- <interceptor-ref name="myStack">
 				<param name="loginInterceptor.exclude">user_login</param>
-			</interceptor-ref>
+			</interceptor-ref> -->
 
 
 
