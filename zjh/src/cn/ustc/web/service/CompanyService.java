@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Company;
 import cn.ustc.web.dao.impl.CompanyDAOImpl;
 
+@Transactional
 public class CompanyService {
-
 	private CompanyDAOImpl CompanyDAO;
 	public void setCompanyDAO(CompanyDAOImpl CompanyDAO) {
 		this.CompanyDAO = CompanyDAO;
@@ -53,7 +54,5 @@ public class CompanyService {
 	public List<Company> findCompanyByName(String name) {
 		return CompanyDAO.findByCompanyName(name);
 	}
-
-
-
+	
 }
