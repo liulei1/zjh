@@ -48,22 +48,23 @@
 					
 					
 					<td align="center" style="HEIGHT: 22px">
-						<s:a action="user_editview" namespace="/user" cssClass="delLink">
+						<s:a action="user_editview" namespace="/user">
 							<s:param name="id" value="id" />
-							修改
+							<button type="button" class="btn btn-info btn-xs">修改</button>
 						</s:a>
 					</td>
 					
 					
 					<td align="center" style="HEIGHT: 22px">
-						<s:a action="user_view" namespace="/user" cssClass="delLink">
+						<s:a action="user_view" namespace="/user">
 							<s:param name="id" value="id" />
-							查看
+							<button type="button" class="btn btn-success btn-xs">查看</button>
 						</s:a>
 					</td>
-					<td align="center" style="HEIGHT: 22px"><s:a action="user_delete" namespace="/user" cssClass="delLink">
+					<td align="center" style="HEIGHT: 22px">
+						<s:a action="user_delete" namespace="/user" cssClass="btn btn-danger btn-xs delLink">
 							<s:param name="id" value="id" />
-							拒绝
+							删除
 						</s:a>
 					</td>
 				</tr>

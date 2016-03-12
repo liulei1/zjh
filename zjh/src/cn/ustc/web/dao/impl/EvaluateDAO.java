@@ -2,10 +2,13 @@ package cn.ustc.web.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Evaluate;
+import cn.ustc.utils.HibernateUtils;
 
 public class EvaluateDAO extends HibernateDaoSupport{
 	/**
@@ -30,7 +33,18 @@ public class EvaluateDAO extends HibernateDaoSupport{
 	}
 
 	public void update(Evaluate evaluate) {
-		this.getHibernateTemplate().update(evaluate);
+		Session session=HibernateUtils.openSession();
+		Transaction tx=session.beginTransaction();
+		try{
+			session.update(evaluate);
+		}catch(Exception e){
+			System.out.println("出错了，么么哒");
+			throw new RuntimeException();
+		}finally{
+			tx.commit();
+			session.close();
+		}
+		//this.getHibernateTemplate().update(evaluate);
 	}
 
 }

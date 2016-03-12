@@ -11,6 +11,13 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ProfessorAction extends ActionSupport implements ModelDriven<Professor>{
+	private List<Professor> professors=null;
+	
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+	
+
 	private Professor professor=new Professor();
 	@Override
 	public Professor getModel() {
@@ -27,7 +34,14 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		ProfessorService.insertProfessor(professor);
 		return "professorRegisterSuccess";
 	}
-		
+	
+	
+	public String management(){
+		professors=ProfessorService.findAllProfessor();	
+		System.out.println("哈哈吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼");
+		System.out.println(professors.size());
+		return "professorlist";
+	}
 	public String checkProfessorName(){
 		List<Professor> professors=null;
 		if(!("".equals(professor.getName()))){

@@ -59,13 +59,25 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		
 		evaluateService.update(evaluate);
 		projectService.update(project);
-		return NONE;
+		return SUCCESS;
 		// return "compEvaluateSUCCESS";
 	}
 
 	// 专家评价
 	public String profEvaluate() {
+		
 		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
-		return NONE;
+		Evaluate eva=evaluateService.findById(evaluate.getId());
+		Project project=projectService.findById(eva.getProj_id());
+		
+		eva.setProf_id(professor.getId());
+		eva.setProf_grade(evaluate.getProf_grade());
+		eva.setProf_text(evaluate.getProf_text());
+		eva.setState(Evaluate.COMPLETED);
+		project.setCurrent_state(Project.COMPELETED);
+		
+		evaluateService.update(eva);
+		projectService.update(project);
+		return SUCCESS;
 	}
 }

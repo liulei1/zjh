@@ -107,20 +107,22 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	 * @param id
 	 */
 	public void deleteById(String id) {
-		Session session = HibernateUtils.openSession();
-		Transaction tx = session.beginTransaction();
-		User user = null;
-
-		try {
-			user = findByUserID(id);
-			session.delete(user);
-			tx.commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+//		Session session = HibernateUtils.openSession();
+//		Transaction tx = session.beginTransaction();
+//		User user = null;
+//
+//		try {
+//			user = findByUserID(id);
+//			session.delete(user);
+//			tx.commit();
+//		} catch (RuntimeException e) {
+//			tx.rollback();
+//			throw e;
+//		} finally {
+//			session.close();
+//		}
+		User user = findByUserID(id);
+		this.getHibernateTemplate().delete(user);
 	}
 
 	/**

@@ -1,0 +1,85 @@
+html,body{
+    color:#505050;
+    line-height: 1.75em;
+    background:#f9f9f9;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.form-signin {
+    max-width: 600px;
+    max-height: 400px;
+    padding:20px 50px 100px;
+    margin: 0 auto 50px;
+    background-color:  #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 12px;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 6px 50px;
+}
+.usertype-style{
+    font-size: 13px;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 6px 50px;
+}
+.hr1{
+    height:1px;
+    width: 230px;
+    border-top: 1.5px solid #e67e22;
+    margin-left:0;
+}
+#line-chart {
+    height:300px;
+    width:800px;
+    margin: 0px auto;
+    margin-top: 1em;
+}
+.brand {
+    font-family: georgia, serif;
+    text-align: center;
+}
+.brand .first {
+    color: #e67e22;
+    font-weight: bold;
+    font-size: 30px;
+}
+.navbar{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 80px;
+}
+.btn1{
+    background-color: #e67e22;
+    width: 180px;
+}
+.aside{
+    margin-top: 50px;
+    float: right;
+    border-left: 1px solid #ebebeb;
+    width: 47%;
+    height: 80%;
+}
+.main {
+    height: 100%;
+    width: 53%;
+    float: left;
+}
+.content {
+    width: 500px;
+    height: 600px;
+    margin-right: auto;
+    margin-left: auto;
+}

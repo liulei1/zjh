@@ -23,9 +23,10 @@
         </a>
     </p>
 	<div class="btn-group" >
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_unCheckList.action'">审核需求</button>
-      <button class="btn btn-primary" onclick="window.location.href=''">审核用户</button>
-      <button class="btn btn-primary">查看用户</button>
+		<button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">用户列表</button>
+      	<button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_unCheckList.action'">审核需求</button>
+      	<button class="btn btn-primary" onclick="window.location.href=''">审核用户</button>
+      	<button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/manage/management.jsp'">查看用户</button>
     </div>
     <s:debug></s:debug>
 </body>

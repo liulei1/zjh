@@ -42,10 +42,6 @@
 				</td>
 			</tr>
 			<TR>
-				<td align="center" colSpan="4" class="sep1"><img
-					src="${pageContext.request.contextPath}/images/shim.gif"></td>
-			</TR>
-			<TR>
 				<td class="ta_01" style="WIDTH: 100%" align="right" bgColor="#f5fafe" colSpan="4">
 					<FONT face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT>
 					<INPUT class="button_ok" type="button" onclick="history.go(-1)" value="返回" /> 

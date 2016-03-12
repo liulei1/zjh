@@ -73,7 +73,7 @@
 			<div class="form-group">
 				<div class="col-sm-2 col-sm-offset-5">
 					<input type="submit" class="btn btn-primary" value="发布" id="submit">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
 					<input type="reset" class="btn btn-warning" value="取消">
 				</div>
 			</div>
