@@ -23,8 +23,6 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	public int insertUser(User user) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
-//		user.setId(UUID.randomUUID().toString());
-		System.out.println(user);
 
 		try {
 			session.save(user);

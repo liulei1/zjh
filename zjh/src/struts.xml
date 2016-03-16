@@ -71,5 +71,5 @@
 	</package>
 	<include file="liulei.xml" />
 	<include file="why.xml" />
-
+	<include file="android.xml" />
 </struts>

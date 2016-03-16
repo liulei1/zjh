@@ -67,6 +67,9 @@
 		<property name="evaluateDAO" ref="evaluateDAO"/>
 	</bean>
 	
+	<!-- 配置Service  -->
+	
+	
 	<!-- 配置DAO -->
 	<bean id="consultCheckDAO" class="cn.ustc.web.dao.impl.ConsultCheckDAOImpl">
 		<!-- 注入sessionFactory， 构造hibernateTemplate -->
