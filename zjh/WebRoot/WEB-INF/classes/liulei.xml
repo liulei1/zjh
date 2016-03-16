@@ -141,7 +141,4 @@
 		</action>
 	</package>
 	
-	<package name="android" namespace="/android" extends="struts-default">
-		<action name="user_*" method="{1}" class="cn.ustc.android.action.UserLogin"></action>
-	</package>
 </struts>

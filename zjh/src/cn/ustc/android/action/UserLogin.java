@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.User;
 import cn.ustc.web.service.UserService;
@@ -14,9 +15,13 @@ import cn.ustc.web.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class UserLogin extends ActionSupport implements ModelDriven<User>,
-		ServletResponseAware {
-	private UserService userService = new UserService();
+public class UserLogin extends ActionSupport implements ModelDriven<User>,ServletResponseAware {
+	@Autowired
+	private UserService userService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 	private HttpServletResponse response;
 	private User user = new User();
 	@Override
@@ -48,6 +53,23 @@ public class UserLogin extends ActionSupport implements ModelDriven<User>,
 			pw.write("用户名密码错误！");
 		}else {
 			pw.write("visit success!!!");
+		}
+		pw.flush();
+		pw.close();
+		return NONE;
+	}
+	
+	public String register() {
+		response.setCharacterEncoding("utf-8");
+		PrintWriter pw = null;
+		try {
+			pw = response.getWriter();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		boolean res = userService.insertUser(user);
+		if(res == true){
+			pw.write("regist success");
 		}
 		pw.flush();
 		pw.close();
