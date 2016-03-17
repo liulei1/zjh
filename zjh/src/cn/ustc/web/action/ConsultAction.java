@@ -215,24 +215,17 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 咨询接受
 	public String recieve(){
-		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
-		// TODO
 		Consult consult = consultService.findById(model.getId());
 		Project project = new Project();
 		
-		project.setCom_id(company.getId());
-		project.setCons_id(model.getId());
 		project.setScm_id(model.getScm_id());
-		project.setTitle(consult.getTitle());
 		project.setStart_date(new Date());
 		project.setCurrent_state(Project.ONGOING);
-		project.setCost(consult.getBudget());
-		project.setFilePath(consult.getFilePath());
-		project.setFileName(consult.getFileName());
+		project.setConsult(consult);
 		
 		Scheme scheme = schemeService.findById(model.getScm_id());
 		project.setProf_id(scheme.getProfessor().getId());
-		
+		project.setCom_id(consult.getCom_id());
 		// 决定方案后,会插入一条 project记录并修改consult的状态
 		consultService.consultRecieve(project,consult);
 		return NONE;

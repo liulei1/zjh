@@ -64,9 +64,6 @@
 								需求文档
 							</th>
 							<th style="text-align:center;">
-								方案文档
-							</th>
-							<th style="text-align:center;">
 								酬金
 							</th>
 							<th style="text-align:center;">
@@ -79,24 +76,24 @@
 								项目进度
 							</th>
 							<th style="text-align:center;">
+								查看方案
+							</th>
+							<th style="text-align:center;">
 								操作
 							</th>
 						</tr>
 					</thead>
-					<tbody>
-						<s:iterator value="projects" var="project">
-							<tr class="info">
+				<tbody>
+					<s:iterator value="projects" var="project">
+						<tr class="info">
 							<td align="center" id="1">
-								${title}
+								${consult.title}
 							</td>
 							<td align="center">
-								${fileName}
+								${consult.fileName}
 							</td>
 							<td align="center">
-								${scm_id}
-							</td>
-							<td align="center">
-								${cost}
+								${consult.budget}
 							</td>
 							<td align="center">
 								${start_date}
@@ -106,6 +103,12 @@
 							</td>
 							<td align="center" class="state">
 								${current_state}
+							</td>
+							<td align="center">
+								<s:a action="scheme_findProjectScheme" namespace="/scheme" cssClass="btn btn-primary btn-xs">
+									<s:param name="id" value="scm_id"></s:param>
+									查看
+								</s:a>
 							</td>
 							<td align="center">
 								<s:a action="project_complete" namespace="/project" cssClass="btn btn-success btn-xs hidden complete">
@@ -121,8 +124,8 @@
 								<div class="tag"></div>
 							</td>
 						</tr>
-						</s:iterator>
-					</tbody>
+					</s:iterator>
+				</tbody>
 				</table>
 				<div align="center">
 					<ul class="pagination pagination-sm pagination-centered">

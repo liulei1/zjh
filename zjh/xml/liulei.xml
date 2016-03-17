@@ -104,9 +104,10 @@
 				<param name="actionName">consult_allowList</param>
 			</result>
 			<result name="listSUCCESS">/scheme/scheme_list.jsp</result>
-			<result name="viewSUCCESS">/scheme/schemeInfo.jsp</result>
+			<!-- <result name="viewSUCCESS">/scheme/schemeInfo.jsp</result> -->
 			<result name="queryMySchemeSUCCESS">/scheme/scheme_list.jsp</result>
 			<result name="findConsultSchemesSUCCESS">/company/consult_schemes.jsp</result>
+			<result name="findProjectSchemeSUCCESS">/scheme/scheme_Info.jsp</result>
 			
 			<result name="downSUCCESS" type="stream">
 				<!-- 下载流 getInputStream -->

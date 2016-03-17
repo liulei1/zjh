@@ -46,7 +46,7 @@ public class ProjectService {
 		
 		Evaluate evaluate = new Evaluate();
 		evaluate.setBegin_date(DateUtils.dateToString(new Date()));
-		evaluate.setCom_id(p.getCom_id());
+		evaluate.setCom_id(p.getConsult().getCom_id());
 		evaluate.setProj_id(p.getId());
 		evaluate.setProf_id(p.getProf_id());
 		evaluateDAO.insert(evaluate);

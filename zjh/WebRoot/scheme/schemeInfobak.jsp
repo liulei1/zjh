@@ -57,7 +57,7 @@
 					${model.state}
 				</td>
 			</tr>
-			<tr>
+			<tr id="buttons">
 				<td>
 					<s:a action="consult_allow" namespace="/consult">
 						<s:param name="id" value="id"/>

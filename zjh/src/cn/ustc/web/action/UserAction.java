@@ -222,6 +222,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	public boolean verify(){
 		String captcha = ServletActionContext.getRequest().getParameter("captcha");
 		String sRand = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
+		if(null == sRand){
+			return false;
+		}
 		if (captcha == null || !captcha.toLowerCase().equals(sRand.toLowerCase())) {
 			return false;
 		}else{

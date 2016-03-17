@@ -9,16 +9,17 @@
 		</id>
 		
 		<property name="state" type="string"/>
-		<property name="title" type="string"/>
+		<property name="title" type="string" not-null="true"/>
 		<property name="details" type="string"/>
-		<property name="budget"/>
-		<property name="release_date" column="release_date"/>
+		<property name="budget" not-null="true"/>
+		<property name="release_date" not-null="true"/>
 		<property name="deadline"/>
-		<property name="checked_id" column="checked_id" type="string"/>
+		<property name="checked_id" type="string"/>
 		<property name="category" type="string"/>
 		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>
 		<property name="remark" type="string"/>
-		<property name="com_id" type="string"/>
+		<property name="com_id" type="string" not-null="true"/>
+		<one-to-one name="project" class="cn.ustc.domain.Project" property-ref="consult"/>
 	</class>
 </hibernate-mapping>

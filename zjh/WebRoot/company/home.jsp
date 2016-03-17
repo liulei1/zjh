@@ -8,9 +8,9 @@
     <title>企业用户</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/app.css">
-  
+	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body class="home-template">
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <!-- start logo -->
-                <a class="branding" href="http://www.ghostchina.com" title="专家汇平台">
+                <a class="branding" href="" title="专家汇平台">
                     <p>专家汇平台</p>
                 </a>
             </div>
@@ -28,9 +28,13 @@
                 <input type="text" class="input-medium search-query">
                 <button type="submit" class="btn">搜索</button>
             </div>
+            <p class="text-right">
+			    <a href="#">
+		          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
+		        </a>
+    		</p>
             <div class="col-sm-2" >
                 <div class="dropdown" id="accountmenu">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="text-decoration: none">用户名<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">用户管理</a></li>
                         <li><a href="#">修改密码</a></li>
@@ -74,11 +78,11 @@
         <div class="row">
             <main class="col-md-2 main-content">
                 <div class= "post-content">
-                    <ul class="nav-link">
+                    <ul class="nav-link nav nav-pills">
                         <li  role="presentation"><a href=" ${pageContext.request.contextPath }/project/consult_publish.jsp" target="myframe">发布需求</a></li>
                         <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_queryMyConsult" target="myframe">我的需求</a></li>
                         <li  role="presentation"><a href="${pageContext.request.contextPath}/project/project_queryMyProject" target="myframe">我的项目</a></li>
-                        
+                        <li><a href="#">消息 <span class="badge">3</span></a></li>
                     </ul>
                 </div>
             </main>
@@ -99,15 +103,15 @@
                     <div class="content recent-post">
                         <div class="recent-single-post">
                             <a href="/ghost-0-7-4-released/" class="post-title">联系方式</a>
-                            <div class="date">2015年12月29日</div>
+                            <div class="date">中国科学技术大学苏州研究院</div>
                         </div>
                         <div class="recent-single-post">
                             <a href="/ghost-0-7-0-released/" class="post-title">隐私保护</a>
-                            <div class="date">2015年9月7日</div>
+                            <div class="date">未经许可不可转载</div>
                         </div>
                         <div class="recent-single-post">
                             <a href="/no-more-jquery-in-ghost_foot-helper-of-ghost-0-7/" class="post-title">信息和资源</a>
-                            <div class="date">2015年8月29日</div>
+                            <div class="date">www.baidu.com</div>
                         </div>
                     </div>
                 </div>

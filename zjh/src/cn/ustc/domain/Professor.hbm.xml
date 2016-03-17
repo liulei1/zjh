@@ -9,13 +9,13 @@
 		</id>
 		
 		<property name="name"/>
-		<property name="password" type="string"></property>
-		<property name="email" type="string"></property>
-		<property name="sex" type="string"></property>
-		<property name="usertype" type="string"></property>
+		<property name="password" type="string" not-null="true"/>
+		<property name="email" type="string"/>
+		<property name="sex" type="string"/>
+		<property name="usertype" type="string" not-null="true"/>
 		<property name="address" type="string"></property>
 		<property name="website" type="string"></property>
-		<property name="real_name"/>
+		<property name="real_name" type="string" not-null="true"/>
 		<property name="image"/>
 		<property name="telephone"/>
 		<property name="identity"/>

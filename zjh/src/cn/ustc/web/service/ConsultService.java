@@ -8,12 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Project;
-import cn.ustc.domain.Scheme;
 import cn.ustc.web.dao.impl.ConsultCheckDAOImpl;
 import cn.ustc.web.dao.impl.ConsultDAOImpl;
 import cn.ustc.web.dao.impl.ProjectDAOImpl;
 
-@Transactional
+@Transactional(rollbackFor=Exception.class)
 public class ConsultService {
 	private ConsultDAOImpl consultDAO;
 	private ConsultCheckDAOImpl consultCheckDAO;

@@ -43,6 +43,14 @@ public class Consult {
 	
 	private String scm_id; // 作为model 在项目成立时接受页面传来的 方案 id
 	
+	private Project project;	// 与项目表一对一
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
+	
 	public String getScm_id() {
 		return scm_id;
 	}
@@ -150,16 +158,6 @@ public class Consult {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-
-	@Override
-	public String toString() {
-		return "Consult [id=" + id + ", state=" + state + ", title=" + title
-				+ ", details=" + details + ", budget=" + budget
-				+ ", release_date=" + release_date + ", deadline=" + deadline
-				+ ", checked_id=" + checked_id + ", category=" + category
-				+ ", fileName=" + fileName + ", filePath=" + filePath
-				+ ", remark=" + remark + "]";
 	}
 
 }

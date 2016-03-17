@@ -166,6 +166,11 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return "findConsultSchemesSUCCESS";
 	}
 	
+	public String findProjectScheme(){
+		model = schemeService.findById(model.getId());
+		return "findProjectSchemeSUCCESS";
+	}
+	
 	// 显示全部
 	public String list() {
 		schemes = schemeService.findAll();

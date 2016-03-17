@@ -8,17 +8,13 @@
 			<generator class="increment"/>
 		</id>
 		
-		<property name="com_id" type="string"/>
 		<property name="prof_id" type="string"/>
-		<property name="cons_id" type="string"/>
 		<property name="scm_id" type="string"/>
-		<property name="title" type="string"/>
-		<property name="fileName" type="string"/>
-		<property name="filePath" type="string"/>
 		<property name="start_date"/>
 		<property name="end_date"/>
+		<property name="com_id" not-null="true"/>
 		<property name="current_state" type="string"/>
-		<property name="cost"/>
 		
+		<many-to-one name="consult" class="cn.ustc.domain.Consult" column="consult_id" unique="true" cascade="all-delete-orphan" lazy="false"/>
 	</class>
 </hibernate-mapping>

@@ -40,7 +40,7 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 	public String publishView(){
 		Project project = projectService.findById(evaluate.getProj_id());
 		evaluate = evaluateService.findByProjId(project.getId());
-		evaluate.setTitle(project.getTitle());
+		evaluate.setTitle(project.getConsult().getTitle());
 		return "publishView";
 	}
 	
