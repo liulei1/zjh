@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#add_username").blur(function(){
-			$.post("${pageContext.request.contextPath}/user/checkUserName.action",{"name":$(this).val()},function(data){
+			$.post("${pageContext.request.contextPath}/json/checkUserName.action",{"name":$(this).val()},function(data){
 				if(data.nameExsit){
 					// 用户名已经存在
 					

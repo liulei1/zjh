@@ -43,17 +43,7 @@
 	</package>
 	
 	<!-- ajax 请求，返回json数据 -->
-	<package name="myjson" extends="json-default">
-		<!-- <interceptors>
-			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
-			<interceptor-stack name="myStack">
-				<interceptor-ref name="defaultStack"/>
-				<interceptor-ref name="loginInterceptor">
-					<param name="exclude">none</param>	
-				</interceptor-ref>
-			</interceptor-stack>
-		</interceptors>
-		<default-interceptor-ref name="myStack"/> -->
+	<package name="myjson" namespace="/json" extends="json-default">
 		
 		<action name="checkUserName" class="cn.ustc.web.action.UserAction" method="checkUserName">
 			<!-- 要点二 ：结果集类型 必须指定为 json -->
@@ -73,10 +63,12 @@
 		<action name="listVocation" class="cn.ustc.web.action.ListVocation" method="list">
 			<result type="json"></result>
 		</action>
+		<action name="getMyUnreadMessageCount" class="cn.ustc.web.action.MessageAction" method="getMyUnreadMessageCount">
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	<package name="consult" namespace="/consult" extends="myDefault">
-		
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
 			<result name="publishSUCCESS">/success.jsp</result>
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
@@ -138,6 +130,16 @@
 				<!-- 下载流 getInputStream -->
 				<param name="contentType">${contentType}</param>
 				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="message" namespace="/message" extends="myDefault">
+		<action name="message_*" method="{1}" class="cn.ustc.web.action.MessageAction">
+			<result name="queryMyUnreadSUCCESS">/message/message_list.jsp</result>
+			<result name="haveReadedSUCCESS" type="redirectAction">
+				<param name="actionName">message_queryMyUnread</param>
+				<param name="namespace">/message</param>
 			</result>
 		</action>
 	</package>

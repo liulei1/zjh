@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$.post("${pageContext.request.contextPath}/listVocation.action",function(data){
+		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
 			var html='<select name="category"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';

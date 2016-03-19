@@ -25,7 +25,6 @@ public class ListVocation extends ActionSupport{
 
 	public String list(){
 		vocationList = vocationDAO.listVocation();
-		System.out.println(vocationList);
 		return SUCCESS;
 	}
 }

@@ -40,6 +40,7 @@
 		<property name="evaluateService" ref="evaluateService"/>
 		<property name="projectService" ref="projectService"/>
 	</bean>
+	<bean id="messageAction" class="cn.ustc.web.action.MessageAction"/>
 	
 	<!-- 配置Service  -->
 	<bean id="consultService" class="cn.ustc.web.service.ConsultService">
@@ -66,8 +67,7 @@
 	<bean id="evaluateService" class="cn.ustc.web.service.EvaluateService">
 		<property name="evaluateDAO" ref="evaluateDAO"/>
 	</bean>
-	
-	<!-- 配置Service  -->
+	<bean id="messageService" class="cn.ustc.web.service.MessageService"/>
 	
 	
 	<!-- 配置DAO -->
@@ -100,6 +100,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="evaluateDAO" class="cn.ustc.web.dao.impl.EvaluateDAO">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="messageDAO" class="cn.ustc.web.dao.impl.MessageDAO">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

@@ -11,6 +11,34 @@
 	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+	    $(function(){
+	    	 getMessageCount();
+	    });
+	    function getMessageCount(){
+			var url="${pageContext.request.contextPath}/json/getMyUnreadMessageCount.action";
+			var delay=60; // 延时时间,单位秒
+			$.post(url, function (message){
+				//alert(message.count);
+				if(message.count > 0){
+					$("#messageCount").html(message.count);
+				}
+			});
+			setTimeout("getMessageCount()",delay*1000);
+		}
+	    
+	    function getMessageCountNow(){
+	    	var url="${pageContext.request.contextPath}/json/getMyUnreadMessageCount.action";
+			$.post(url, function (message){
+				//alert(message.count);
+				if(message.count > 0){
+					$("#messageCount").html(message.count);
+				}else if(message.count == 0){
+					$("#messageCount").html("");
+				}
+			});
+	    }
+    </script>
 </head>
 
 <body class="home-template">
@@ -78,18 +106,24 @@
         <div class="row">
             <main class="col-md-2 main-content">
                 <div class= "post-content">
-                    <ul class="nav-link nav nav-pills">
-                        <li  role="presentation"><a href=" ${pageContext.request.contextPath }/project/consult_publish.jsp" target="myframe">发布需求</a></li>
-                        <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_queryMyConsult" target="myframe">我的需求</a></li>
-                        <li  role="presentation"><a href="${pageContext.request.contextPath}/project/project_queryMyProject" target="myframe">我的项目</a></li>
-                        <li><a href="#">消息 <span class="badge">3</span></a></li>
-                    </ul>
+                   <ul class="nav nav-pills nav-stacked" style="max-width: 260px;">
+					   <li>
+					   		<a href="${pageContext.request.contextPath}/project/consult_publish.jsp" target="myframe">发布需求</a>
+					   </li>
+					   <li>
+					   		<a href="${pageContext.request.contextPath}/consult/consult_queryMyConsult" target="myframe">我的需求</a>	
+					   </li>
+					   <li>
+					   		<a href="${pageContext.request.contextPath}/project/project_queryMyProject" target="myframe">我的项目</a>	
+					   </li>
+					   <li>
+					      <a href="${pageContext.request.contextPath}/message/message_queryMyUnread" target="myframe">消息 <span class="badge pull-right" id="messageCount"></span></a>
+					   </li>
+					</ul>
                 </div>
             </main>
             <div class="col-md-10 sidebar">
                 <iframe name="myframe" id="iframepage" src=" ${pageContext.request.contextPath }/project/consult_publish.jsp" frameborder="0" height="485px" width="100%"></iframe>
-                <!--iframe name="myframe" id="ifamepage-2"src="consult_queryMyConsult.html" frameborder="0" height="485px" width="100%"></iframe-->
-
             </div>
         </div>
     </div>
@@ -151,8 +185,6 @@
         </div>
     </div>
 </footer>
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();

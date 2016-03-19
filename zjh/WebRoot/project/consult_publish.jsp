@@ -6,14 +6,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>发布需求</title>
-<style> 
-	body
-	{
-		/* background:url(${pageContext.request.contextPath}/images/background.jpg); */
-		background-size:100% 100%;
-		background-repeat:no-repeat;
-	}
-</style>
 </head>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +13,7 @@
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$.post("${pageContext.request.contextPath}/listVocation.action",function(data){
+		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
 			//alert(data.vocationList[0].name);
 			var html = '<select name="category"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList, function(index, context){

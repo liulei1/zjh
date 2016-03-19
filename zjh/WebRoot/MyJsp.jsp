@@ -1,30 +1,37 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html>
-   <head>
-      <title>Bootstrap 模板</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- 引入 Bootstrap -->
-	  <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-	  <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
-	  <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-   </head>
-   <body>
-    <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<form>
-				<fieldset>
-					 <legend>表单项</legend> 
-					 <label>表签名</label><input type="text" /> 
-					 <span class="help-block">这里填写帮助信息.</span> 
-					 <label class="checkbox"><input type="checkbox" /> 勾选同意</label> 
-					 <button type="submit" class="btn">提交</button>
-				</fieldset>
-			</form>
-		</div>
-	</div>
-</div>
+<html lang="zh-CN">
+<head>
+    
+    <title>企业用户</title>
+    <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/app.css">
+	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+	    	 getMessageCount();
+	    });
+	    function getMessageCount(){
+			var url="${pageContext.request.contextPath}/json/getMyUnreadMessageCount.action";
+			var delay=4; // 延时时间,单位秒
+			$.post(url, function (message){
+				alert(message.count);
+				//if(message.count > 0){
+				//	alert(message.count);
+				//	$("#messageCount").html(message.count);
+				//}
+			});
+			setTimeout("getMessageCount()",delay*1000);
+		}
+    </script>
+</head>
+
+<body>
+nihao .....
+</body>
 </html>
+

@@ -10,7 +10,6 @@ import java.util.Date;
 public class Scheme {
 	private String id;
 	private Professor professor;
-//	private Project project;
 	private String cons_id;	// 方案对应的需求id
 	private String details;
 	private Date upload_date;

@@ -7,14 +7,6 @@
 	<constant name="struts.custom.i18n.resources" value="messages"/>
     
 	<package name="basicstruts" namespace="/user" extends="struts-default">
-		<!-- <interceptors>
-			<interceptor name="loginInterceptor"
-				class="cn.ustc.web.interceptor.LoginInterceptor" />
-			<interceptor-stack name="myStack">
-				<interceptor-ref name="defaultStack" />
-				<interceptor-ref name="loginInterceptor" />
-			</interceptor-stack>
-		</interceptors> -->
 
 		<global-results>
 			<result name="login" type="redirect">/user/login.jsp</result>
@@ -22,11 +14,8 @@
 		</global-results>
 
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
-			<!-- <interceptor-ref name="myStack">
-				<param name="loginInterceptor.exclude">user_login</param>
-			</interceptor-ref> -->
+		
 			<result name="registerOK">/user/login.jsp</result>
-
 			<result name="professorregister">/professor/professor_register.jsp</result>
 			<result name="companyRegister">/company/company_register.jsp</result>
 
@@ -38,8 +27,8 @@
 
 
 			<result name="input">/user/login.jsp</result>
-			<result name="loginSUCCESS">/user/home.jsp</result>
-			<result name="loginINPUT">/user/login.jsp</result>
+			<result name="loginSUCCESS" type="redirect">/user/home.jsp</result>
+			<result name="loginINPUT" type="redirect">/user/login.jsp</result>
 
 			<result name="listSUCCESS">/user/userlist.jsp</result>
 			<result name="viewSUCCESS">/user/view.jsp</result>

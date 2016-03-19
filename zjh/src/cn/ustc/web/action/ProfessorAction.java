@@ -17,7 +17,6 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return professors;
 	}
 	
-
 	private Professor professor=new Professor();
 	@Override
 	public Professor getModel() {
@@ -38,8 +37,6 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	
 	public String management(){
 		professors=ProfessorService.findAllProfessor();	
-		System.out.println("哈哈吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼");
-		System.out.println(professors.size());
 		return "professorlist";
 	}
 	public String checkProfessorName(){

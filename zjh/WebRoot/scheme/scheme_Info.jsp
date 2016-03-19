@@ -28,6 +28,17 @@
 			</tr>
 			<tr>
 				<td>
+					作者：
+				</td>
+				<td>
+					<s:a action="" namespace="">
+						<s:param name="id" value="model.professor.id"></s:param>
+						${model.professor.name}
+					</s:a>
+				</td>
+			</tr>
+			<tr>
+				<td>
 					发布时间：
 				</td>
 				<td>
