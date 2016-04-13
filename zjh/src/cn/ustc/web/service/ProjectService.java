@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.ustc.domain.Evaluate;
 import cn.ustc.domain.Project;
 import cn.ustc.utils.DateUtils;
-import cn.ustc.web.dao.impl.EvaluateDAO;
-import cn.ustc.web.dao.impl.ProjectDAOImpl;
+import cn.ustc.web.dao.EvaluateDAO;
+import cn.ustc.web.dao.ProjectDAO;
 
 @Transactional
 public class ProjectService {
 	@Autowired
-	private ProjectDAOImpl projectDAO;
+	private ProjectDAO projectDAO;
 	@Autowired
 	private EvaluateDAO evaluateDAO;
 

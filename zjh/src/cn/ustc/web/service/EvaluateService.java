@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Evaluate;
 import cn.ustc.domain.Project;
-import cn.ustc.web.dao.impl.EvaluateDAO;
+import cn.ustc.web.dao.EvaluateDAO;
 
 @Transactional
 public class EvaluateService {

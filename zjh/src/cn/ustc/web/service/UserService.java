@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.User;
-import cn.ustc.web.dao.impl.UserDAOImpl;
+import cn.ustc.web.dao.UserDAO;
 
 @Transactional
 public class UserService {
 	@Autowired
-	private UserDAOImpl userDAO;
+	private UserDAO userDAO;
 
 	public boolean insertUser(User user){
 		int res = 0;

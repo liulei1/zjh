@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Company;
-import cn.ustc.web.dao.impl.CompanyDAOImpl;
+import cn.ustc.web.dao.CompanyDAO;
 
 @Transactional
 public class CompanyService {
 	@Autowired
-	private CompanyDAOImpl CompanyDAO;
+	private CompanyDAO CompanyDAO;
 
 	public boolean insertCompany(Company Company){
 		int res = 0;

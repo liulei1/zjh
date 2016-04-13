@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import cn.ustc.utils.HibernateUtils;
  *
  */
 @SuppressWarnings("all")
-public class CompanyDAOImpl extends HibernateDaoSupport{
+public class CompanyDAO extends HibernateDaoSupport{
 	
 	/**
 	 * 插入一个企业
@@ -31,19 +31,8 @@ public class CompanyDAOImpl extends HibernateDaoSupport{
 	}
 	
 	public int insertCompany(Company company){
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
-		try{
-			session.save(company);
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
-		
+		this.getHibernateTemplate().save(company);
 		return 1;
-		
 	}
 	/**
 	 * 查找
@@ -51,52 +40,31 @@ public class CompanyDAOImpl extends HibernateDaoSupport{
 	 * @return
 	 */
 	public Company findByCompanyID(String id){
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
-		Company comp=null;
-		try{
-			comp=(Company) session.get(Company.class, id);
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-		}finally{
-			session.close();
-		}
+		Company comp= this.getHibernateTemplate().get(Company.class, id);
 		return comp;
 	}
-	public List<Company> findByCompanyName(String name){
-		
-		Session session=HibernateUtils.openSession();
 	
-		
-		Transaction tx=session.beginTransaction();
-		List<Company> companys;
-		try{
-			String hql="from Company where name=? ";
-			companys=session.createQuery(hql).setParameter(0, name).list();
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			throw e;
-		}finally{
-			session.close();
-		}
+	public List<Company> findByCompanyName(String name){
+//		Session session=HibernateUtils.openSession();
+//		Transaction tx=session.beginTransaction();
+//		List<Company> companys;
+//		try{
+//			String hql="from Company where name=?";
+//			companys=session.createQuery(hql).setParameter(0, name).list();
+//			tx.commit();
+//		}catch(RuntimeException e){
+//			e.printStackTrace();
+//			throw e;
+//		}finally{
+//			session.close();
+//		}
+		String hql="from Company where name=:name";
+		List<Company> companys = this.getHibernateTemplate().findByNamedParam(hql, "name", name);
 		return companys;
 	}
 	
 	public List<Company> findAll(){
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
-		List<Company> comps=null;
-		try{
-			comps=session.createQuery("FROM company").list();
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			throw e;
-		}finally{
-			session.close();
-		}
+		List<Company> comps= this.getHibernateTemplate().find("FROM Company");
 		return comps;
 	
 	

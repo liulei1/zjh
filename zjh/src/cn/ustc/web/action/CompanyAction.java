@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
-import cn.ustc.web.dao.impl.CompanyDAOImpl;
 import cn.ustc.web.service.CompanyService;
 
 import com.opensymphony.xwork2.ActionSupport;

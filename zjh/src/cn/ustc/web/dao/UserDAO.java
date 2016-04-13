@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,7 +13,7 @@ import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
 @SuppressWarnings("all")
-public class UserDAOImpl  extends HibernateDaoSupport {
+public class UserDAO extends HibernateDaoSupport {
 	
 	/**
 	 * 插入普通用户
@@ -21,18 +21,7 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	 * @return
 	 */
 	public int insertUser(User user) {
-		Session session = HibernateUtils.openSession();
-		Transaction transaction = session.beginTransaction();
-
-		try {
-			session.save(user);
-			transaction.commit();
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		// 为了和QueryRunner的插入条数返回值匹配
+		this.getHibernateTemplate().save(user);
 		return 1;
 	}
 
@@ -42,39 +31,12 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	 * @return
 	 */
 	public User findByUserID(String id) {
-		Session session = HibernateUtils.openSession();
-		Transaction tx = session.beginTransaction();
-
-		User user = null;
-		try {
-			user = (User) session.get(User.class, id);
-			session.getTransaction().commit();
-
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		User user = this.getHibernateTemplate().get(User.class, id);
 		return user;
 	}
 
 	public List<User> findAll() {
-
-		Session session = HibernateUtils.openSession();
-		Transaction tx = session.beginTransaction();
-
-		List<User> userList = null;
-
-		try {
-			userList = (List<User>) session.createQuery("FROM User").list();
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		List<User> userList = this.getHibernateTemplate().find("FROM User");
 		return userList;
 	}
 
@@ -84,19 +46,8 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	 * @return 1(要么抛异常，要么返回1)
 	 */
 	public int update(User user) {
-		Session session = HibernateUtils.openSession();
-		Transaction tx = session.beginTransaction();
-
-		try {
-			session.update(user);
-			session.getTransaction().commit();
-
-		} catch (RuntimeException e) {
-			tx.rollback();
-			throw e;
-		} finally {
-			session.close();
-		}
+		Session session = this.getSession();
+		session.update(user);
 		return 1;
 	}
 
@@ -129,14 +80,8 @@ public class UserDAOImpl  extends HibernateDaoSupport {
 	 * @return
 	 */
 	public List<User> findUserByName(String name) {
-		Session session = HibernateUtils.openSession();
-		Transaction tx = session.beginTransaction();
-		
-		String hql = "from User where name=?";
-		List<User> userList = session.createQuery(hql).setParameter(0, name).list();
-
-		tx.commit();
-		session.close();
+		String hql = "from User where name=:name";
+		List<User> userList = this.getHibernateTemplate().findByNamedParam(hql, "name", name);
 		return userList;
 	}
 

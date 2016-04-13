@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
-import cn.ustc.web.dao.impl.SchemeDAO;
+import cn.ustc.web.dao.SchemeDAO;
 
 /**
  * 方案

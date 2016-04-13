@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import cn.ustc.utils.HibernateUtils;
  * @author liu
  *
  */
+@SuppressWarnings("unchecked")
 public class EvaluateDAO extends HibernateDaoSupport{
 	/**
 	 * 插入
@@ -38,18 +39,15 @@ public class EvaluateDAO extends HibernateDaoSupport{
 	}
 
 	public void update(Evaluate evaluate) {
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
+		Session session = this.getSession();
 		try{
 			session.update(evaluate);
 		}catch(Exception e){
 			System.out.println("出错了，么么哒");
 			throw new RuntimeException();
 		}finally{
-			tx.commit();
 			session.close();
 		}
-		//this.getHibernateTemplate().update(evaluate);
 	}
 
 }

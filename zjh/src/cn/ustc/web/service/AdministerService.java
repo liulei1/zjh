@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Administer;
-import cn.ustc.web.dao.impl.AdministerDAOImpl;
+import cn.ustc.web.dao.AdministerDAO;
 
 @Transactional
 public class AdministerService {
 	@Autowired
-	private AdministerDAOImpl administerDAO;
+	private AdministerDAO administerDAO;
 
 	public boolean insertAdminister(Administer Administer){
 		int res = 0;

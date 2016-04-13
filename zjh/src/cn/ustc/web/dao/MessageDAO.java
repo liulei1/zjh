@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import cn.ustc.domain.Message;
  * @author liu
  *
  */
+@SuppressWarnings("unchecked")
 public class MessageDAO extends HibernateDaoSupport {
 	/**
 	 * 条件查询

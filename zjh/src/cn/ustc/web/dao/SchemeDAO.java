@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import cn.ustc.domain.Scheme;
  * @author liu
  *
  */
+@SuppressWarnings("unchecked")
 public class SchemeDAO extends HibernateDaoSupport {
 	/**
 	 * 发布解决方案

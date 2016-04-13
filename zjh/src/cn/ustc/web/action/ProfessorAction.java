@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Professor;
-import cn.ustc.web.dao.impl.ProfessorDAOImpl;
 import cn.ustc.web.service.ProfessorService;
 
 import com.opensymphony.xwork2.ActionSupport;

@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	<display-name></display-name>
-	
+
 	<!-- OpenSessionInView 事务开启放在web层 -->
 	<filter>
 		<filter-name>OpenSessionInView</filter-name>
@@ -14,17 +14,7 @@
 		<filter-name>OpenSessionInView</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<filter>
-		<filter-name>XssSqlFilter</filter-name>
-		<filter-class>cn.ustc.web.interceptor.XssFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>XssSqlFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-	</filter-mapping>
-  
+
 	<!-- Struts2 核心 过滤器 -->
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -40,23 +30,33 @@
 		<!-- 默认加载WEB-INF/applicationContext.xml -->
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>x</servlet-name>
-    <servlet-class>cn.ustc.web.interceptor.x</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>x</servlet-name>
-    <url-pattern>/servlet/x</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>x</servlet-name>
+		<servlet-class>cn.ustc.web.interceptor.x</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>x</servlet-name>
+		<url-pattern>/servlet/x</url-pattern>
+	</servlet-mapping>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	
+
+	<filter>
+		<filter-name>XssSqlFilter</filter-name>
+		<filter-class>cn.ustc.web.interceptor.XssFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>XssSqlFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+
 	<welcome-file-list>
 		<welcome-file>user/login.jsp</welcome-file>
 	</welcome-file-list>

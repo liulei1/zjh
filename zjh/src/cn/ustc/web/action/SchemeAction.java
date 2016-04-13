@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
-import cn.ustc.web.dao.impl.SchemeDAO;
+import cn.ustc.web.dao.SchemeDAO;
 import cn.ustc.web.service.ConsultService;
 import cn.ustc.web.service.SchemeService;
 

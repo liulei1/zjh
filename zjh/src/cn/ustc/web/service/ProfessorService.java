@@ -7,12 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.web.dao.ProfessorDAO;
-import cn.ustc.web.dao.impl.ProfessorDAOImpl;
 
 @Transactional
 public class ProfessorService {
 	@Autowired
-	private ProfessorDAOImpl professorDAO;
+	private ProfessorDAO professorDAO;
 
 	public boolean insertProfessor(Professor professor){
 		int res = 0;

@@ -1,4 +1,4 @@
-package cn.ustc.web.dao.impl;
+package cn.ustc.web.dao;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +18,7 @@ import cn.ustc.utils.HibernateUtils;
  *
  */
 @SuppressWarnings("all")
-public class AdministerDAOImpl  extends HibernateDaoSupport {
+public class AdministerDAO  extends HibernateDaoSupport {
 	
 	/**
 	 * 插入管理员

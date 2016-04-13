@@ -38,44 +38,48 @@
 	<bean id="messageService" class="cn.ustc.web.service.MessageService"/>
 	
 	<!-- 配置DAO -->
-	<bean id="consultCheckDAO" class="cn.ustc.web.dao.impl.ConsultCheckDAOImpl">
-		<!-- 注入sessionFactory， 构造hibernateTemplate -->
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="consultCheckDAO" class="cn.ustc.web.dao.ConsultCheckDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="consultDAO" class="cn.ustc.web.dao.impl.ConsultDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="consultDAO" class="cn.ustc.web.dao.ConsultDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="userDAO" class="cn.ustc.web.dao.impl.UserDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="userDAO" class="cn.ustc.web.dao.UserDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="vocationDAO" class="cn.ustc.web.dao.impl.VocationDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="vocationDAO" class="cn.ustc.web.dao.VocationDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="projectDAO" class="cn.ustc.web.dao.impl.ProjectDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="projectDAO" class="cn.ustc.web.dao.ProjectDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="schemeDAO" class="cn.ustc.web.dao.impl.SchemeDAO">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="schemeDAO" class="cn.ustc.web.dao.SchemeDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="professorDAO" class="cn.ustc.web.dao.impl.ProfessorDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="professorDAO" class="cn.ustc.web.dao.ProfessorDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="companyDAO" class="cn.ustc.web.dao.impl.CompanyDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="companyDAO" class="cn.ustc.web.dao.CompanyDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="administerDAO" class="cn.ustc.web.dao.impl.AdministerDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="administerDAO" class="cn.ustc.web.dao.AdministerDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="evaluateDAO" class="cn.ustc.web.dao.impl.EvaluateDAO">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="evaluateDAO" class="cn.ustc.web.dao.EvaluateDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
-	<bean id="messageDAO" class="cn.ustc.web.dao.impl.MessageDAO">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+	<bean id="messageDAO" class="cn.ustc.web.dao.MessageDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
 	
 	<!-- 整合hibernate 方式一 -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+	
+	<!-- hibernate 模板 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
 	<!-- 事务管理 -->

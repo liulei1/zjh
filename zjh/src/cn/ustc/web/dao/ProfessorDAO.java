@@ -2,67 +2,142 @@ package cn.ustc.web.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import cn.ustc.domain.Professor;
+import cn.ustc.utils.HibernateUtils;
 
 /**
- * 普通用户模块信息
+ * 专家操作
  * @author liu
  *
  */
-public interface ProfessorDAO {
-	/**
-	 * 根据用户名 密码 查询普通用户
-	 * 
-	 * @param Professorname
-	 * @param pwd
-	 * @return 查询到的用户
-	 */
-	public abstract Professor findProfessorByProfessorNameAndPwd(String Professorname,
-			String password);
+public class ProfessorDAO extends HibernateDaoSupport{
+	
+	@SuppressWarnings("unchecked")
+	public Professor findProfessorByProfessorNameAndPwd(String professorname, String password) {
+//		Session session = HibernateUtils.openSession();
+//		Transaction transaction = session.beginTransaction();
+//		try {
+//			String hql = "from Professor as Professor where Professor.name=? and Professor.password=?";
+//			Query qr = session.createQuery(hql);
+//			qr.setString(0, Professorname);
+//			qr.setString(1, password);
+//
+//			Professor professor = (Professor) qr.uniqueResult();
+//			transaction.commit();
+//			return professor;
+//
+//		} catch (RuntimeException e) {
+//			throw e;
+//		} finally {
+//
+//			session.close();
+//		}
+		String hql = "from Professor where name=:name and password=:password";
+		List<Professor> list = this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"}, new Object[]{professorname,password});
+		return list.get(0);
+	}
 
-	/**
-	 * 插入普通用户
-	 * 
-	 * @param Professor
-	 * @return
-	 */
-	public abstract int insertProfessor(Professor Professor);
+	public int insertProfessor(Professor professor) {
+		this.getHibernateTemplate().save(professor);
+		return 1;
+	}
 
-	/**
-	 * 根据id查询普通用户
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public abstract Professor findByProfessorID(String id);
+	public Professor findByProfessorID(String id) {
+//		Session session = HibernateUtils.openSession();
+//		Transaction tx = session.beginTransaction();
+//
+//		Professor Professor = null;
+//		try {
+//			Professor = (Professor) session.get(Professor.class, id);
+//			session.getTransaction().commit();
+//
+//		} catch (RuntimeException e) {
+//			tx.rollback();
+//			throw e;
+//		} finally {
+//			session.close();
+//		}
+//		return Professor;
+		Professor professor = this.getHibernateTemplate().get(Professor.class, id);
+		return professor;
+	}
 
-	/**
-	 * 查询所有普通用户
-	 * 
-	 * @return List<Professor>普通用户集合
-	 */
-	public abstract List<Professor> findAll();
+	@SuppressWarnings("unchecked")
+	public List<Professor> findAll() {
 
-	/**
-	 * 根据id 更新普通用户信息
-	 * 
-	 * @param Professor
-	 * @return 1(要么抛异常，要么返回1)
-	 */
+//		Session session = HibernateUtils.openSession();
+//		Transaction tx = session.beginTransaction();
+//
+//		List<Professor> ProfessorList = null;
+//
+//		try {
+//			ProfessorList = (List<Professor>) session.createQuery("FROM Professor").list();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException e) {
+//			tx.rollback();
+//			throw e;
+//		} finally {
+//			session.close();
+//		}
+//		return ProfessorList;
+		List<Professor> list = this.getHibernateTemplate().findByNamedQuery("FROM Professor");
+		return list;
+	}
 
-	public abstract int update(Professor Professor);
+	public int update(Professor professor) {
+//		Session session = HibernateUtils.openSession();
+//		Transaction tx = session.beginTransaction();
+//
+//		try {
+//			session.update(professor);
+//			session.getTransaction().commit();
+//
+//		} catch (RuntimeException e) {
+//			tx.rollback();
+//			throw e;
+//		} finally {
+//			session.close();
+//		}
+		this.getHibernateTemplate().update(professor);
+		return 1;
+	}
 
-	/**
-	 * 根据id 删除普通用户
-	 * 
-	 * @param id
-	 */
-	public abstract void deleteById(String id);
+	public void deleteById(String id) {
+//		Session session = HibernateUtils.openSession();
+//		Session session = HibernateUtils.getCurrentSession();
+//		Transaction tx = session.beginTransaction();
+//		Professor professor = null;
+//
+//		try {
+//			professor = findByProfessorID(id);
+//			session.delete(professor);
+//			tx.commit();
+//		} catch (RuntimeException e) {
+//			tx.rollback();
+//			throw e;
+//		} finally {
+//			session.close();
+//		}
+		Professor professor = this.getHibernateTemplate().get(Professor.class, id);
+		this.getHibernateTemplate().delete(professor);
+	}
 
-	/**
-	 * 根据用户名查找用户
-	 * @param name
-	 * @return
-	 */
-	public abstract List<Professor> findProfessorByName(String name);
+	@SuppressWarnings("unchecked")
+	public List<Professor> findProfessorByName(String name) {
+//		Session session = HibernateUtils.openSession();
+//		Transaction tx = session.beginTransaction();
+//		
+//		String hql = "from Professor where name=?";
+//		List<Professor> professorList = session.createQuery(hql).setParameter(0, name).list();
+//
+//		tx.commit();
+//		session.close();
+		String hql = "from Professor where name=?";
+		List<Professor> professorList = this.getHibernateTemplate().findByNamedQuery(hql, name);
+		return professorList;
+	}
 }

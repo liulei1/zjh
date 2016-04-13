@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Message;
 import cn.ustc.domain.User;
-import cn.ustc.web.dao.impl.MessageDAO;
+import cn.ustc.web.dao.MessageDAO;
 
 @Transactional
 public class MessageService {

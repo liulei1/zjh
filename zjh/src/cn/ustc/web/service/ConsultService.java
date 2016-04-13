@@ -9,25 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Project;
-import cn.ustc.web.dao.impl.ConsultCheckDAOImpl;
-import cn.ustc.web.dao.impl.ConsultDAOImpl;
-import cn.ustc.web.dao.impl.ProjectDAOImpl;
+import cn.ustc.web.dao.ConsultCheckDAO;
+import cn.ustc.web.dao.ConsultDAO;
+import cn.ustc.web.dao.ProjectDAO;
 
 @Transactional(rollbackFor=Exception.class)
 public class ConsultService {
-	private ConsultDAOImpl consultDAO;
-	private ConsultCheckDAOImpl consultCheckDAO;
-	private ProjectDAOImpl projectDAO;
+	@Autowired
+	private ConsultDAO consultDAO;
+	@Autowired
+	private ConsultCheckDAO consultCheckDAO;
+	@Autowired
+	private ProjectDAO projectDAO;
 	
-	public void setConsultDAO(ConsultDAOImpl consultDAO) {
-		this.consultDAO = consultDAO;
-	}
-	public void setConsultCheckDAO(ConsultCheckDAOImpl consultCheckDAO) {
-		this.consultCheckDAO = consultCheckDAO;
-	}
-	public void setProjectDAO(ProjectDAOImpl projectDAO) {
-		this.projectDAO = projectDAO;
-	}
 	/**
 	 * 发布咨询
 	 * @param consult
