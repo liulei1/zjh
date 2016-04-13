@@ -3,6 +3,7 @@ package cn.ustc.web.service;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Consult;

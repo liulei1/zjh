@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
@@ -48,11 +49,9 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		this.fileContentType = fileContentType;
 	}
 
-	/****************************************************************/
+	/******************************* 注入 *********************************/
+	@Autowired
 	private SchemeService schemeService;
-	public void setSchemeService(SchemeService schemeService) {
-		this.schemeService = schemeService;
-	}
 
 	/************************************* 发布上传下载 ****************************************/
 	// 获取下载文件名

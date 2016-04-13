@@ -14,61 +14,28 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->     
-  	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+  	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> -->
+	<context:annotation-config/>
 	
 	<!-- 配置Action -->
-	<bean id="consultAction" class="cn.ustc.web.action.ConsultAction">
-		<property name="consultService" ref="consultService"></property>
-		<property name="schemeService" ref="schemeService"/>
-	</bean>
-	<bean id="listVocation" class="cn.ustc.web.action.ListVocation">
-		<property name="vocationDAO" ref="vocationDAO"></property>
-	</bean>
-	<bean id="userAction" class="cn.ustc.web.action.UserAction">
-		<property name="userService" ref="userService"></property>
-		<property name="professorService" ref="professorService"></property>
-		<property name="companyService" ref="companyService"></property>
-		<property name="administerService" ref="administerService"></property>
-	</bean>
-	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction">
-		<property name="schemeService" ref="schemeService"/>
-	</bean>
-	<bean id="projectAction" class="cn.ustc.web.action.ProjectAction">
-		<property name="projectService" ref="projectService"/>
-	</bean>
-	<bean id="evaluateAction" class="cn.ustc.web.action.EvaluateAction">
-		<property name="evaluateService" ref="evaluateService"/>
-		<property name="projectService" ref="projectService"/>
-	</bean>
+	<bean id="consultAction" class="cn.ustc.web.action.ConsultAction"/>
+	<bean id="listVocation" class="cn.ustc.web.action.ListVocation"/>
+	<bean id="userAction" class="cn.ustc.web.action.UserAction"/>
+	<bean id="schemeAction" class="cn.ustc.web.action.SchemeAction"/>
+	<bean id="projectAction" class="cn.ustc.web.action.ProjectAction"/>
+	<bean id="evaluateAction" class="cn.ustc.web.action.EvaluateAction"/>
 	<bean id="messageAction" class="cn.ustc.web.action.MessageAction"/>
 	
 	<!-- 配置Service  -->
-	<bean id="consultService" class="cn.ustc.web.service.ConsultService">
-		<property name="consultCheckDAO" ref="consultCheckDAO"/>
-		<property name="consultDAO" ref="consultDAO"/>
-		<property name="projectDAO" ref="projectDAO"/>
-	</bean>
-	<bean id="userService" class="cn.ustc.web.service.UserService">
-		<property name="userDAO" ref="userDAO"/>
-	</bean>
+	<bean id="consultService" class="cn.ustc.web.service.ConsultService"/>
+	<bean id="userService" class="cn.ustc.web.service.UserService"/>
 	<bean id="professorService" class="cn.ustc.web.service.ProfessorService"/>
-	<bean id="companyService" class="cn.ustc.web.service.CompanyService">
-		<property name="companyDAO" ref="companyDAO"/>
-	</bean>
-	<bean id="schemeService" class="cn.ustc.web.service.SchemeService">
-		<property name="schemeDAO" ref="schemeDAO"/>
-	</bean>
-	<bean id="administerService" class="cn.ustc.web.service.AdministerService">
-		<property name="administerDAO" ref="administerDAO"/>
-	</bean>
-	<bean id="projectService" class="cn.ustc.web.service.ProjectService">
-		<property name="projectDAO" ref="projectDAO"/>
-	</bean>
-	<bean id="evaluateService" class="cn.ustc.web.service.EvaluateService">
-		<property name="evaluateDAO" ref="evaluateDAO"/>
-	</bean>
+	<bean id="companyService" class="cn.ustc.web.service.CompanyService"/>
+	<bean id="schemeService" class="cn.ustc.web.service.SchemeService"/>
+	<bean id="administerService" class="cn.ustc.web.service.AdministerService"/>
+	<bean id="projectService" class="cn.ustc.web.service.ProjectService"/>
+	<bean id="evaluateService" class="cn.ustc.web.service.EvaluateService"/>
 	<bean id="messageService" class="cn.ustc.web.service.MessageService"/>
-	
 	
 	<!-- 配置DAO -->
 	<bean id="consultCheckDAO" class="cn.ustc.web.dao.impl.ConsultCheckDAOImpl">

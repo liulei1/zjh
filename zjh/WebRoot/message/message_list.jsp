@@ -47,7 +47,10 @@
 				<h3 class="text-center">
 					我的消息
 				</h3>
-				<table class="table table-hover">
+				<table class="table table-bordered table-hover">
+					<s:if test="messages.size() == 0">
+						<div style="color:blue">您暂无消息</div>
+					</s:if>
 					<s:iterator value="messages" var="message">
 						<tr onclick="read(this)">
 							<s:hidden name="id" value="%{id}"></s:hidden>
@@ -60,5 +63,5 @@
 			</div>
 		</div>
 	</div>
-   </body>
+  </body>
 </html>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Administer;
@@ -11,10 +12,8 @@ import cn.ustc.web.dao.impl.AdministerDAOImpl;
 
 @Transactional
 public class AdministerService {
+	@Autowired
 	private AdministerDAOImpl administerDAO;
-	public void setAdministerDAO(AdministerDAOImpl administerDAO) {
-		this.administerDAO = administerDAO;
-	}
 
 	public boolean insertAdminister(Administer Administer){
 		int res = 0;

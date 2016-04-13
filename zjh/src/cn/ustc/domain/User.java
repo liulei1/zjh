@@ -1,10 +1,10 @@
 package cn.ustc.domain;
 
 public class User {
-	private static final String ADMIN = "0";
-	private static final String COMPANY = "1";
-	private static final String PROFESSOR = "2";
-	private static final String USER = "3";
+	public static final String ADMIN = "0";
+	public static final String COMPANY = "1";
+	public static final String PROFESSOR = "2";
+	public static final String USER = "3";
 	
 	private String id;
 	private String name;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Company;
@@ -11,10 +12,8 @@ import cn.ustc.web.dao.impl.CompanyDAOImpl;
 
 @Transactional
 public class CompanyService {
+	@Autowired
 	private CompanyDAOImpl CompanyDAO;
-	public void setCompanyDAO(CompanyDAOImpl CompanyDAO) {
-		this.CompanyDAO = CompanyDAO;
-	}
 
 	public boolean insertCompany(Company Company){
 		int res = 0;

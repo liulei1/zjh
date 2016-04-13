@@ -12,18 +12,22 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.ustc.domain.Administer;
 import cn.ustc.utils.HibernateUtils;
 
+/**
+ * 管理员用户
+ * @author liu
+ *
+ */
 @SuppressWarnings("all")
 public class AdministerDAOImpl  extends HibernateDaoSupport {
 	
 	/**
-	 * 插入普通用户
+	 * 插入管理员
 	 * @param administer
 	 * @return
 	 */
 	public int insertAdminister(Administer administer) {
 		Session session = HibernateUtils.openSession();
 		Transaction transaction = session.beginTransaction();
-//		Administer.setId(UUID.randomUUID().toString());
 		System.out.println(administer);
 
 		try {

@@ -2,6 +2,8 @@ package cn.ustc.web.action;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import cn.ustc.domain.Professor;
 import cn.ustc.web.dao.impl.ProfessorDAOImpl;
 import cn.ustc.web.service.ProfessorService;
@@ -23,26 +25,23 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return professor;
 	}
 	
-	private ProfessorService ProfessorService;
-	public void setProfessorService(ProfessorService ProfessorService) {
-		this.ProfessorService = ProfessorService;
-	}
+	@Autowired
+	private ProfessorService professorService;
 
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
-		ProfessorService.insertProfessor(professor);
+		professorService.insertProfessor(professor);
 		return "professorRegisterSuccess";
 	}
 	
-	
 	public String management(){
-		professors=ProfessorService.findAllProfessor();	
+		professors=professorService.findAllProfessor();	
 		return "professorlist";
 	}
 	public String checkProfessorName(){
 		List<Professor> professors=null;
 		if(!("".equals(professor.getName()))){
-			professors=ProfessorService.findProfessorByName(professor.getName());
+			professors=professorService.findProfessorByName(professor.getName());
 			if(professors.size()!=0){
 				professor.setNameExsit(true);
 			}else{

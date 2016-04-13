@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.User;
@@ -11,10 +12,8 @@ import cn.ustc.web.dao.impl.UserDAOImpl;
 
 @Transactional
 public class UserService {
+	@Autowired
 	private UserDAOImpl userDAO;
-	public void setUserDAO(UserDAOImpl userDAO) {
-		this.userDAO = userDAO;
-	}
 
 	public boolean insertUser(User user){
 		int res = 0;

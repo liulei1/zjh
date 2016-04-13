@@ -13,9 +13,6 @@ import cn.ustc.web.dao.impl.ProfessorDAOImpl;
 public class ProfessorService {
 	@Autowired
 	private ProfessorDAOImpl professorDAO;
-	public void setProfessorDAO(ProfessorDAOImpl professorDAO) {
-		this.professorDAO = professorDAO;
-	}
 
 	public boolean insertProfessor(Professor professor){
 		int res = 0;

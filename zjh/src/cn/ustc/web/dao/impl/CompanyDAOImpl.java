@@ -12,6 +12,11 @@ import cn.ustc.domain.Company;
 import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
+/**
+ * 企业用户
+ * @author liu
+ *
+ */
 @SuppressWarnings("all")
 public class CompanyDAOImpl extends HibernateDaoSupport{
 	

@@ -10,6 +10,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.ustc.domain.Evaluate;
 import cn.ustc.utils.HibernateUtils;
 
+/**
+ * 评价操作
+ * @author liu
+ *
+ */
 public class EvaluateDAO extends HibernateDaoSupport{
 	/**
 	 * 插入

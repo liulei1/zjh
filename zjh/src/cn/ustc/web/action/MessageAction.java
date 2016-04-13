@@ -15,9 +15,6 @@ import com.opensymphony.xwork2.ModelDriven;
 public class MessageAction extends ActionSupport implements ModelDriven<Message>{
 	@Autowired
 	private MessageService messageService;
-	public void setMessageService(MessageService messageService) {
-		this.messageService = messageService;
-	}
 	
 	private List<Message> messages;
 	public List<Message> getMessages() {

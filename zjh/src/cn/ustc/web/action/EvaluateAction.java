@@ -5,6 +5,7 @@ import java.util.Date;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Evaluate;
@@ -25,15 +26,10 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 	}
 	
 	/******************************* 注入 ********************************/
+	@Autowired
 	private EvaluateService evaluateService;
-	public void setEvaluateService(EvaluateService evaluateService) {
-		this.evaluateService = evaluateService;
-	}
-
+	@Autowired
 	private ProjectService projectService;
-	public void setProjectService(ProjectService projectService) {
-		this.projectService = projectService;
-	}
 
 	/********************************* 项目操作 ************************************/
 	

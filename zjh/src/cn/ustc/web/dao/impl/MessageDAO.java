@@ -7,6 +7,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Message;
 
+/**
+ * 消息操作
+ * @author liu
+ *
+ */
 public class MessageDAO extends HibernateDaoSupport {
 	/**
 	 * 条件查询

@@ -13,6 +13,11 @@ import cn.ustc.domain.Consult;
 import cn.ustc.utils.HibernateUtils;
 import cn.ustc.web.service.ConsultService;
 
+/**
+ * 咨询 操作
+ * @author liu
+ *
+ */
 public class ConsultDAOImpl extends HibernateDaoSupport{
 
 	/**

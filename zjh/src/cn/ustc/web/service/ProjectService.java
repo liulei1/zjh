@@ -17,14 +17,8 @@ import cn.ustc.web.dao.impl.ProjectDAOImpl;
 public class ProjectService {
 	@Autowired
 	private ProjectDAOImpl projectDAO;
-	public void setProjectDAO(ProjectDAOImpl projectDAO) {
-		this.projectDAO = projectDAO;
-	}
 	@Autowired
 	private EvaluateDAO evaluateDAO;
-	public void setEvaluateDAO(EvaluateDAO evaluateDAO) {
-		this.evaluateDAO = evaluateDAO;
-	}
 
 	public List<Project> findByDetachedCriteria(DetachedCriteria criteria){
 		return this.projectDAO.findByDetachedCriteria(criteria);

@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
@@ -50,14 +51,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 
 	/****************************** 注入 **********************************/
+	@Autowired
 	private ConsultService consultService;
-	public void setConsultService(ConsultService consultService) {
-		this.consultService = consultService;
-	}
+	@Autowired
 	private SchemeService schemeService;
-	public void setSchemeService(SchemeService schemeService) {
-		this.schemeService = schemeService;
-	}
 
 	/************************************* 发布上传下载 ****************************************/
 

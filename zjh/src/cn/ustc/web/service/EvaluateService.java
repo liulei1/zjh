@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Evaluate;
@@ -12,10 +13,8 @@ import cn.ustc.web.dao.impl.EvaluateDAO;
 
 @Transactional
 public class EvaluateService {
+	@Autowired
 	private EvaluateDAO evaluateDAO;
-	public void setEvaluateDAO(EvaluateDAO evaluateDAO) {
-		this.evaluateDAO = evaluateDAO;
-	}
 	
 	public Evaluate findById(String id){
 		return evaluateDAO.findById(id);

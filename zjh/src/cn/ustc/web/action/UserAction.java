@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Administer;
 import cn.ustc.domain.Company;
@@ -53,27 +54,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return user;
 	}
 
+	/******************************* 注入 ********************************/
+	@Autowired
 	private UserService userService;
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-	//写get方法用于注入方式获取对象
+	@Autowired
 	private ProfessorService professorService;
-	public void setProfessorService(ProfessorService professorService) {
-		this.professorService = professorService;
-	}
-	
+	@Autowired
 	private CompanyService companyService;
-	public void setCompanyService(CompanyService companyService) {
-		this.companyService = companyService;
-	}
-	
+	@Autowired
 	private AdministerService administerService;
-	public void setAdministerService(AdministerService administerService) {
-		this.administerService = administerService;
-	}
 
+	/***********************************************************************/
+	
 	/**
 	 * 登录--要判断登录用户的类型
 	 * @return
