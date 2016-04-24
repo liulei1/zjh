@@ -97,7 +97,7 @@
 			</result>
 			<result name="listSUCCESS">/scheme/scheme_list.jsp</result>
 			<!-- <result name="viewSUCCESS">/scheme/schemeInfo.jsp</result> -->
-			<result name="queryMySchemeSUCCESS">/scheme/scheme_list.jsp</result>
+			<result name="queryMySchemeSUCCESS">/scheme/professorscheme_list.jsp</result>
 			<result name="findConsultSchemesSUCCESS">/company/consult_schemes.jsp</result>
 			<result name="findProjectSchemeSUCCESS">/scheme/scheme_Info.jsp</result>
 			

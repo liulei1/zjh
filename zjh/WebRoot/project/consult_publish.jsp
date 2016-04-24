@@ -15,7 +15,7 @@
 	$(function(){
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
 			//alert(data.vocationList[0].name);
-			var html = '<select name="category"><option selected="selected">--请选择领域--</option>';
+			var html = '<select name="category"><option selected="selected" value="">--请选择领域--</option>';
 			$.each(data.vocationList, function(index, context){
   				html += '<option value="' + context.name +'">' + context.name +'</option>';
              });
@@ -23,12 +23,22 @@
              $('#field').html(html);
 		});
 	});
+	
+	function publishCheck(){
+            var category = $("select[name='category']").val();
+            if("" == category){
+                alert("请选择需求所属领域");
+                return false;
+            }else {
+                return true;
+            }
+        }
 </script>
 <body>
 	<div align="center">
 		<h1>需求发布</h1>
 		<br>
-		<s:form cssClass="form-horizontal" role="form" action="consult_publish" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple">
+		<s:form cssClass="form-horizontal" role="form" action="consult_publish" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple" onsubmit="return publishCheck()">
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">标题</label>
 				<div class="col-sm-2">

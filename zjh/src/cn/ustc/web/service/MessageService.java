@@ -1,5 +1,6 @@
 package cn.ustc.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -26,9 +27,14 @@ public class MessageService {
 	
 	public List<Message> getUserUnreadMessages(User user){
 		DetachedCriteria criteria = DetachedCriteria.forClass(Message.class);
-		criteria.add(Restrictions.eq("recipientId", user.getId()));
-		criteria.add(Restrictions.eq("state", Message.UNREAD));
-		return messageDAO.findMessageByCriteria(criteria);
+		if(user.getId().equals("")){
+			//如果 user的id为空（用户注销）则直接返回一个空List
+			return new ArrayList<Message>();
+		}else{
+			criteria.add(Restrictions.eq("recipientId", user.getId()));
+			criteria.add(Restrictions.eq("state", Message.UNREAD));
+			return messageDAO.findMessageByCriteria(criteria);
+		}
 	}
 	
 	public void readMessageById(String id) {

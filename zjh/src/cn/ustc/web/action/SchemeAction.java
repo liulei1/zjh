@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
+import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.dao.SchemeDAO;
 import cn.ustc.web.service.ConsultService;
@@ -115,8 +117,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	@InputConfig(resultName = "input")
 	public String publish() {
 		if (file != null) {
-			String fileRootPath = ServletActionContext.getServletContext()
-					.getRealPath("/schemeFile");
+//			String fileRootPath = ServletActionContext.getServletContext()
+//					.getRealPath("/schemeFile");
+			Properties properties = GetPropertiesUtil.getProperties();
+			String fileRootPath = properties.getProperty("schemeFileRootPath");
 			String filePath = UploadAndDownloadUtils.restoreFile(file, fileRootPath);
 			model.setFilePath(filePath);
 			model.setFileName(fileFileName);

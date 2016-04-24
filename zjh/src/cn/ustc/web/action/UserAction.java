@@ -133,6 +133,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	}
 	
 	/**
+	 * 用户注销
+	 */
+	public void logout(){
+		ServletActionContext.getServletContext().removeAttribute("user");
+	}
+	
+	/**
 	 * 增加普通用户
 	 * @return
 	 * @throws SQLException 

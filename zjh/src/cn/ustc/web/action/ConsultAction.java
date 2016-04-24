@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -18,9 +20,9 @@ import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
+import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
-import cn.ustc.web.service.ProjectService;
 import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -91,8 +93,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	@InputConfig(resultName = "input")
 	public String publish() {
 		if (file != null) {
-			String fileRootPath = ServletActionContext.getServletContext()
-					.getRealPath("/consultDoc");
+//			String fileRootPath = ServletActionContext.getServletContext()
+//					.getRealPath("/consultDoc");
+			Properties properties = GetPropertiesUtil.getProperties();
+			String fileRootPath = properties.getProperty("consultFileRootPath");
 			String filePath = UploadAndDownloadUtils.restoreFile(file,fileRootPath);
 			model.setFileName(fileFileName);
 			model.setFilePath(filePath);

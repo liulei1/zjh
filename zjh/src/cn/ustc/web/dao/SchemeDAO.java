@@ -35,7 +35,6 @@ public class SchemeDAO extends HibernateDaoSupport {
 	 * 所有解决方案
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Scheme> findAll(){
 		return this.getHibernateTemplate().find("from Scheme");
 	}

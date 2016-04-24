@@ -3,21 +3,24 @@ package cn.ustc.test;
 import java.util.Iterator;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.web.dao.ProfessorDAO;
 
-@RunWith(SpringJUnit4ClassRunner.class)  
-@ContextConfiguration({"classpath:applicationContext.xml"})
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class ProfessorServiceTest {
 	@Autowired
-	private ProfessorDAO professorDAO;
-	
+	private static ProfessorDAO professorDAO;
+
 	@Test
 	public void testFindAllProfessor() {
 		List<Professor> professors = professorDAO.findAll();
@@ -30,5 +33,4 @@ public class ProfessorServiceTest {
 			System.out.println(iterator.next());
 		}
 	}
-
 }

@@ -61,13 +61,22 @@
 						<s:iterator value="consults" var="consult">
 							<tr class="info">
 							<td align="center">
-								${title}
+								<s:a action="consult_view" namespace="/consult">
+									<s:param name="id" value="id" />
+									${title}
+								</s:a>
 							</td>
 							<td align="center">
 								${budget}
 							</td>
 							<td align="center">
 								${category}
+								<%-- <s:if test="category.equals('')">
+									---
+								</s:if>
+								<s:else>
+									${category}
+								</s:else> --%>
 							</td>
 							<td align="center" class="state">
 								${state}

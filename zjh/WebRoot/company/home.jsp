@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    
     <title>企业用户</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/app.css">
@@ -38,6 +41,16 @@
 				}
 			});
 	    }
+	    
+	    function logout(){
+	    	var r=confirm("您确定退出吗？");
+	    	if(r){
+	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
+	    		//$.post(url,{id:"${user.name}"});
+	    		$.post(url);
+	    		location.href = "${pageContext.request.contextPath}";
+	    	}
+	    }
     </script>
 </head>
 
@@ -56,7 +69,7 @@
                 <input type="text" class="input-medium search-query">
                 <button type="submit" class="btn">搜索</button>
             </div>
-            <p class="text-right">
+            <p class="text-right" onclick="logout()">
 			    <a href="#">
 		          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
 		        </a>
