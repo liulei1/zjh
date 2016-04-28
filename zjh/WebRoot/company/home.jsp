@@ -48,7 +48,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
 	    		//$.post(url,{id:"${user.name}"});
 	    		$.post(url);
-	    		location.href = "${pageContext.request.contextPath}";
+	    		//location.href = "${pageContext.request.contextPath}";
+	    		location.href = '<%=path%>';
 	    	}
 	    }
     </script>

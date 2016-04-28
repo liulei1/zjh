@@ -1,5 +1,6 @@
 package cn.ustc.web.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -7,8 +8,13 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.ustc.domain.Consult;
+import cn.ustc.domain.Message;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
+import cn.ustc.utils.DateUtils;
+import cn.ustc.web.dao.ConsultDAO;
+import cn.ustc.web.dao.MessageDAO;
 import cn.ustc.web.dao.SchemeDAO;
 
 /**
@@ -20,12 +26,22 @@ import cn.ustc.web.dao.SchemeDAO;
 public class SchemeService {
 	@Autowired
 	private SchemeDAO schemeDAO;
+	@Autowired
+	private MessageDAO messageDAO;
+	@Autowired
+	private ConsultDAO consultDAO;
 	
 	/**
 	 * 发布解决方案
 	 * @param scheme
 	 */
 	public void publish(Scheme scheme){
+		// TODO 服务器增加消息提醒对应的企业
+		String cons_id = scheme.getCons_id();
+		Consult consult = consultDAO.findById(cons_id);
+		Message message = new Message();
+		message.setRecipientId(consult.getCom_id());
+		message.setSendTime(DateUtils.dateToString(new Date()));
 		schemeDAO.add(scheme);
 	}
 	

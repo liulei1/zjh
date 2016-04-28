@@ -16,7 +16,7 @@ public class Message {
 	private int state;	// 状态，是否已读
 	private String title;
 	private String content;
-	private int count;
+	private int count;	// 扩展的属性，用于显示未读条数
 	
 	public String getId() {
 		return id;

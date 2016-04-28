@@ -56,15 +56,6 @@ public class ConsultDAO extends HibernateDaoSupport{
 	 * @return
 	 */
 	public List<Consult> findAllowConsult() {
-//		Session session = HibernateUtils.openSession();
-//		Transaction transaction = session.beginTransaction();
-//		
-//		String hql = "from Consult where state =: state";
-//		@SuppressWarnings("unchecked")
-//		List<Consult> list = session.createQuery(hql).setParameter(0, Consult.ALLOW).list();
-//		
-//		transaction.commit();
-//		session.close();
 		String hql = "from Consult where state =:state";
 		List<Consult> list = this.getHibernateTemplate().findByNamedParam(hql, "state", Consult.ALLOW);
 		return list;
@@ -76,14 +67,6 @@ public class ConsultDAO extends HibernateDaoSupport{
 	 * @return
 	 */
 	public Consult findById(String id) {
-//		Session session = HibernateUtils.openSession();
-//		Transaction transaction = session.beginTransaction();
-//		
-//		Consult uniqueResult = (Consult) session.createCriteria(Consult.class).add(Restrictions.idEq(id)).uniqueResult();
-//		
-//		transaction.commit();
-//		session.close();
-		
 		Consult uniqueResult = this.getHibernateTemplate().get(Consult.class, id);
 		return uniqueResult;
 	}
@@ -121,4 +104,5 @@ public class ConsultDAO extends HibernateDaoSupport{
 		List<Consult> list = this.getHibernateTemplate().findByCriteria(criteria);
 		return list;
 	}
+	
 }

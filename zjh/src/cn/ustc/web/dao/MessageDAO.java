@@ -39,4 +39,12 @@ public class MessageDAO extends HibernateDaoSupport {
 	public Message findById(String id){
 		return this.getHibernateTemplate().get(Message.class, id);
 	}
+	
+	/**
+	 * 添加消息
+	 * @param message
+	 */
+	public void addMessage(Message message){
+		this.getHibernateTemplate().save(message);
+	}
 }
