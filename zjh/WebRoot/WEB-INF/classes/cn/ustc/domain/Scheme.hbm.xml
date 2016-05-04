@@ -9,10 +9,11 @@
 		</id>
 		
 		<property name="cons_id" type="string"/>
+		<property name="title" type="string"/>
 		<property name="details" type="string"/>
 		<property name="fileName" type="string"/>
 		<property name="filePath" type="string"/>
-		<property name="upload_date"/>
+		<property name="upload_date" type="string"/>
 		
 		<!-- 多个方案关联一个专家 -->
 		<many-to-one name="professor" class="cn.ustc.domain.Professor" column="prof_id" cascade="save-update" lazy="false"></many-to-one>

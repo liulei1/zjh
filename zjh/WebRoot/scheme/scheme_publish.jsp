@@ -14,6 +14,12 @@
 			<s:hidden name="cons_id" value="%{cons_id}"></s:hidden>
 			<table>
 				<tr>
+					<td>标题：</td>
+					<td>
+						<s:textarea name="title"/>
+					</td>
+				</tr>
+				<tr>
 					<td>描述：</td>
 					<td>
 						<s:textarea name="details"/>

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
+import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.dao.SchemeDAO;
@@ -109,6 +110,8 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	public List<Scheme> getSchemes() {
 		return schemes;
 	}
+	
+	// 跳转到方案发布页面
 	public String submitView() {
 		return "submitViewSUCCESS";
 	}
@@ -117,8 +120,6 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	@InputConfig(resultName = "input")
 	public String publish() {
 		if (file != null) {
-//			String fileRootPath = ServletActionContext.getServletContext()
-//					.getRealPath("/schemeFile");
 			Properties properties = GetPropertiesUtil.getProperties();
 			String fileRootPath = properties.getProperty("schemeFileRootPath");
 			String filePath = UploadAndDownloadUtils.restoreFile(file, fileRootPath);
@@ -126,7 +127,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 			model.setFileName(fileFileName);
 		}
 		
-		model.setUpload_date(new Date());
+		model.setUpload_date(DateUtils.dateToString(new Date()));
 		// 在servlet域中获取专家信息并放入model中
 		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
 		model.setProfessor(professor);

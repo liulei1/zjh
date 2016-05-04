@@ -12,6 +12,12 @@
 		<h1>方案详情</h1>
 		<table>
 			<tr>
+				<td>标题：</td>
+				<td>
+					${model.title}
+				</td>
+			</tr>
+			<tr>
 				<td>描述：</td>
 				<td>
 					${model.details}

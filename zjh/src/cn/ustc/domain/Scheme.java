@@ -10,9 +10,10 @@ import java.util.Date;
 public class Scheme {
 	private String id;
 	private Professor professor;
+	private String title; // 方案标题
 	private String cons_id;	// 方案对应的需求id
 	private String details;
-	private Date upload_date;
+	private String upload_date;
 	private String fileName;	// 文档名
 	private String filePath;	// 文档的路径
 	
@@ -25,13 +26,19 @@ public class Scheme {
 	public String getDetails() {
 		return details;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public Date getUpload_date() {
+	public String getUpload_date() {
 		return upload_date;
 	}
-	public void setUpload_date(Date upload_date) {
+	public void setUpload_date(String upload_date) {
 		this.upload_date = upload_date;
 	}
 	public String getFileName() {

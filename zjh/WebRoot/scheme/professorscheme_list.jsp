@@ -17,24 +17,28 @@
 		<table frame="border" rules="all">
 			<s:if test="schemes != null">
 				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">项目编号</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">查看详细</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">发布时间</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">方案文档</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">方案标题</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">项目编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">查看详细</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">发布时间</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">方案文档</td>
 				</tr>
 			</s:if>
-			<s:iterator value="schemes" var="schemes">
+			<s:iterator value="schemes" var="scheme">
 				<tr>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
+						${title}
+					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
 						${cons_id}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="30%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
 						${details}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
 						${upload_date}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="30%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
 						<s:a action="scheme_download" namespace="/scheme">
 						<s:param name="id" value="id"></s:param>
 						<s:property value="fileName"/>

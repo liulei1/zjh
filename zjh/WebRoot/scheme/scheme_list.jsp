@@ -17,9 +17,9 @@
 		<table frame="border" rules="all">
 			<s:if test="schemes != null">
 				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">标题</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">专家编号</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">项目编号</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="13%">项目编号</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">详细</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">发布时间</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">文档名称</td>
@@ -29,12 +29,12 @@
 			<s:iterator value="schemes" var="schemes">
 				<tr>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
-						${id}
+						${title}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
 						${professor.id}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="13%">
 						${cons_id}
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
