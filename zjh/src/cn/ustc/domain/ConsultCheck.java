@@ -10,7 +10,7 @@ import java.util.Date;
 public class ConsultCheck {
 	private Integer id;
 	private String cons_id; 		// 咨询id
-	private Integer admin_id; 		// 审核人id
+	private String admin_id; 		// 审核人id
 	private Date check_datetime; 	// 审核日期
 	private String state;			// 审核结果 0：未通过，1：通过
 	private String rejectReason;	// 审核失败原因
@@ -26,10 +26,10 @@ public class ConsultCheck {
 	public void setCons_id(String cons_id) {
 		this.cons_id = cons_id;
 	}
-	public Integer getAdmin_id() {
+	public String getAdmin_id() {
 		return admin_id;
 	}
-	public void setAdmin_id(Integer admin_id) {
+	public void setAdmin_id(String admin_id) {
 		this.admin_id = admin_id;
 	}
 	public Date getCheck_datetime() {

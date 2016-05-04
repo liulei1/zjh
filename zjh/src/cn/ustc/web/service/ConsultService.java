@@ -1,6 +1,8 @@
 package cn.ustc.web.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +10,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
+import cn.ustc.domain.Message;
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
+import cn.ustc.domain.Scheme;
+import cn.ustc.utils.DateUtils;
+import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.web.dao.ConsultCheckDAO;
 import cn.ustc.web.dao.ConsultDAO;
+import cn.ustc.web.dao.MessageDAO;
+import cn.ustc.web.dao.ProfessorDAO;
 import cn.ustc.web.dao.ProjectDAO;
+import cn.ustc.web.dao.SchemeDAO;
 
 @Transactional(rollbackFor=Exception.class)
 public class ConsultService {
@@ -21,6 +31,12 @@ public class ConsultService {
 	private ConsultCheckDAO consultCheckDAO;
 	@Autowired
 	private ProjectDAO projectDAO;
+	@Autowired
+	private MessageDAO messageDAO;
+	@Autowired
+	private SchemeDAO schemeDAO;
+	@Autowired
+	private ProfessorDAO professorDAO;
 	
 	/**
 	 * 发布咨询
@@ -82,6 +98,29 @@ public class ConsultService {
 		consultCheckDAO.insert(consultCheck);
 		int res = consultDAO.check(id,Consult.ALLOW); // 更新需求信息的状态
 		
+		// TODO 使用算法来确定推送的人
+		List<Professor> professors = professorDAO.findAll();
+		int num = Integer.parseInt(GetPropertiesUtil.getProperties().getProperty("MessageSendNumber"));
+		if(num>professors.size()){
+			num = professors.size();
+		}
+		for (int i = 0; i < num; i++) {
+			Random random = new Random();
+			int index = random.nextInt(professors.size());
+			Message message = new Message();
+			// 发送给专家
+			message.setType(Message.TOPROFESSOR);
+			message.setSendTime(DateUtils.dateToString(new Date()));
+			message.setState(Message.UNREAD);
+			message.setTitle("有新的需求需要您来完成");
+			// TODO 添加推送消息的内容
+			message.setContent("咨询期待您来解决");
+			message.setRecipientId(professors.get(index).getId());
+			// 发送消息
+			messageDAO.addMessage(message);
+			professors.remove(index);
+		}
+		
 		if(res > 0){
 			return true;
 		}else{
@@ -116,6 +155,19 @@ public class ConsultService {
 		projectDAO.insert(project);
 		consult.setState(Consult.COMPLETED);
 		consultDAO.update(consult);
+		
+		Scheme scheme = schemeDAO.findById(consult.getScm_id());
+		// 发送消息给专家
+		Message message = new Message();
+		// 发送给专家
+		message.setRecipientId(scheme.getProfessor().getId());
+		message.setType(Message.TOPROFESSOR);
+		message.setSendTime(DateUtils.dateToString(new Date()));
+		message.setState(Message.UNREAD);
+		message.setTitle("您的方案被接受");
+		// TODO 发布需求后发送的消息内容写什么
+		message.setContent("恭喜，您对需求-"+consult.getTitle()+" 提供的方案得到了对方的接受！");
+		messageDAO.addMessage(message);
 		return true;
 	}
 	

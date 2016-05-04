@@ -85,7 +85,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			return "loginINPUT";
 		}
 
-		// TODO 判断用户类型 进行相应用户表查找
 		if (user.getUsertype().equals("professor")) {
 			Professor professor = new Professor();
 			professor.setName(user.getName());

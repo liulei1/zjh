@@ -15,6 +15,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.ustc.domain.Administer;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
@@ -93,8 +94,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	@InputConfig(resultName = "input")
 	public String publish() {
 		if (file != null) {
-//			String fileRootPath = ServletActionContext.getServletContext()
-//					.getRealPath("/consultDoc");
 			Properties properties = GetPropertiesUtil.getProperties();
 			String fileRootPath = properties.getProperty("consultFileRootPath");
 			String filePath = UploadAndDownloadUtils.restoreFile(file,fileRootPath);
@@ -184,11 +183,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public String allow(){
 		ConsultCheck consultCheck = new ConsultCheck();
 		// TODO 获取管理员信息
-		consultCheck.setAdmin_id(9527);
+		Administer admin = (Administer) ServletActionContext.getServletContext().getAttribute("user");
+		consultCheck.setAdmin_id(admin.getId());
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());
 		
 		boolean res = consultService.consultAllow(model.getId(),consultCheck);
+		
 		if(res){
 			return "checkSUCCESS";
 		}else {
@@ -199,8 +200,9 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 拒绝
 	public String reject(){
+		Administer admin = (Administer) ServletActionContext.getServletContext().getAttribute("user");
 		ConsultCheck consultCheck = new ConsultCheck();
-		consultCheck.setAdmin_id(9527);
+		consultCheck.setAdmin_id(admin.getId());
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());
 		// TODO 审批拒绝原因 

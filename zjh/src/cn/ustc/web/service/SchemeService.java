@@ -36,13 +36,19 @@ public class SchemeService {
 	 * @param scheme
 	 */
 	public void publish(Scheme scheme){
-		// TODO 服务器增加消息提醒对应的企业
 		String cons_id = scheme.getCons_id();
 		Consult consult = consultDAO.findById(cons_id);
+		
 		Message message = new Message();
 		message.setRecipientId(consult.getCom_id());
+		message.setType(Message.TOCOMPANY);
 		message.setSendTime(DateUtils.dateToString(new Date()));
+		message.setState(Message.UNREAD);
+		message.setTitle("您的咨询 "+consult.getTitle()+" 有了回复");
+		// TODO 发布方案后发送的消息内容写什么
+		message.setContent(scheme.getProfessor().getName() + "对您的咨询-"+ consult.getTitle() + "提供了解决方案");
 		schemeDAO.add(scheme);
+		messageDAO.addMessage(message);
 	}
 	
 	/**

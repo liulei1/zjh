@@ -20,6 +20,13 @@ public class SchemeDAO extends HibernateDaoSupport {
 	 * @param scheme
 	 */
 	public void add(Scheme scheme){
+		/*
+		 * nested exception is org.hibernate.NonUniqueObjectException: 
+		 * a different object with the same identifier value 
+		 * was already associated with the session
+		 */
+		scheme = (Scheme) this.getSession().merge(scheme);
+		
 		this.getHibernateTemplate().save(scheme);
 	}
 	
