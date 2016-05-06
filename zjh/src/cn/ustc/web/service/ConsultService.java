@@ -174,4 +174,16 @@ public class ConsultService {
 	public List<Consult> findConsultsByDetachedCriteria(DetachedCriteria criteria){
 		return consultDAO.findByDetachedCriteria(criteria);
 	}
+	
+	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		return consultDAO.findByDetachedCriteria(criteria, firstResult, maxResults);
+	}
+	
+	/**
+	 * 获取记录的总条数
+	 * @return
+	 */
+	public int getCount(){
+		return consultDAO.getCount();
+	}
 }

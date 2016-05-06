@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50018
 File Encoding         : 65001
 
-Date: 2016-03-05 19:25:30
+Date: 2016-05-04 22:12:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -35,11 +35,11 @@ CREATE TABLE `administer` (
 DROP TABLE IF EXISTS `company`;
 CREATE TABLE `company` (
   `id` varchar(255) NOT NULL,
-  `name` varchar(255) default NULL,
-  `password` varchar(255) default NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(255) default NULL,
-  `usertype` varchar(255) default NULL,
-  `real_name` varchar(255) default NULL,
+  `usertype` varchar(255) NOT NULL,
+  `real_name` varchar(255) NOT NULL,
   `image` varchar(255) default NULL,
   `telephone` varchar(255) default NULL,
   `address` varchar(255) default NULL,
@@ -57,14 +57,14 @@ CREATE TABLE `company` (
 DROP TABLE IF EXISTS `consult`;
 CREATE TABLE `consult` (
   `id` varchar(255) NOT NULL,
-  `state` varchar(255) default NULL,
+  `state` varchar(255) NOT NULL,
   `title` varchar(255) default NULL,
   `details` varchar(255) default NULL,
   `budget` decimal(19,2) default NULL,
   `release_date` datetime default NULL,
   `deadline` datetime default NULL,
   `checked_id` varchar(255) default NULL,
-  `category` varchar(255) default NULL,
+  `category` varchar(255) NOT NULL,
   `fileName` varchar(255) default NULL,
   `filePath` varchar(255) default NULL,
   `remark` varchar(255) default NULL,
@@ -138,18 +138,17 @@ CREATE TABLE `professor` (
 DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `id` int(11) NOT NULL,
-  `com_id` varchar(255) default NULL,
-  `cons_id` varchar(255) default NULL,
+  `prof_id` varchar(255) default NULL,
   `scm_id` varchar(255) default NULL,
-  `title` varchar(255) default NULL,
-  `fileName` varchar(255) default NULL,
-  `filePath` varchar(255) default NULL,
   `start_date` datetime default NULL,
   `end_date` datetime default NULL,
   `current_state` varchar(255) default NULL,
-  `cost` decimal(19,2) default NULL,
-  `prof_id` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
+  `com_id` varchar(255) default NULL,
+  `consult_id` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `consult_id` (`consult_id`),
+  KEY `FKED904B19C3753F6E` (`consult_id`),
+  CONSTRAINT `FKED904B19C3753F6E` FOREIGN KEY (`consult_id`) REFERENCES `consult` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -162,8 +161,9 @@ CREATE TABLE `project_scheme` (
   `details` varchar(255) default NULL,
   `fileName` varchar(255) default NULL,
   `filePath` varchar(255) default NULL,
-  `upload_date` datetime default NULL,
+  `upload_date` varchar(255) default NULL,
   `prof_id` varchar(255) default NULL,
+  `title` varchar(255) default NULL,
   PRIMARY KEY  (`id`),
   KEY `FK38E3E98BD4162264` (`prof_id`),
   CONSTRAINT `FK38E3E98BD4162264` FOREIGN KEY (`prof_id`) REFERENCES `professor` (`id`)
@@ -177,7 +177,7 @@ CREATE TABLE `user` (
   `id` varchar(255) NOT NULL,
   `name` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `email` varchar(50) default NULL,
   `sex` varchar(10) NOT NULL,
   `usertype` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
@@ -204,5 +204,20 @@ DROP TABLE IF EXISTS `vocation`;
 CREATE TABLE `vocation` (
   `id` int(11) NOT NULL auto_increment,
   `name` varchar(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for webmessage
+-- ----------------------------
+DROP TABLE IF EXISTS `webmessage`;
+CREATE TABLE `webmessage` (
+  `id` varchar(255) NOT NULL,
+  `recipientId` varchar(255) NOT NULL,
+  `sendTime` varchar(255) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `type` int(11) NOT NULL,
+  `state` int(11) NOT NULL,
+  `title` varchar(255) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

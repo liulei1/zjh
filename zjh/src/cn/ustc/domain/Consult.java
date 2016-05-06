@@ -43,7 +43,38 @@ public class Consult {
 	
 	private String scm_id; // 作为model 在项目成立时接受页面传来的 方案 id
 	
+	// 分页
+	private int pageSize; // 每页的数据条数
+	private int total; // 数据总条数
+	private int pageIndex; // 当前页面号
+	private int pageCount; // 页面总数
+	
 	private Project project;	// 与项目表一对一
+	
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getPageIndex() {
+		return pageIndex;
+	}
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
 	public Project getProject() {
 		return project;
 	}

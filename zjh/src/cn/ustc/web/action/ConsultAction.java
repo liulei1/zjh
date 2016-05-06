@@ -31,6 +31,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ConsultAction extends ActionSupport implements ModelDriven<Consult> {
+	private static final int PAGESIZE = 2;
 	private Consult model = new Consult();
 	@Override
 	public Consult getModel() {
@@ -89,7 +90,9 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	public List<Consult> getConsults() {
 		return consults;
 	}
-
+	public void setConsults(List<Consult> consults) {
+		this.consults = consults;
+	}
 	// 咨询发布
 	@InputConfig(resultName = "input")
 	public String publish() {
@@ -148,11 +151,45 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	// 查询登录企业所发布所有未完成的需求
 	public String queryMyConsult(){
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		
+		// 记录的总条数
+		int count = consultService.getCount();
+		model.setTotal(count);
+		model.setPageCount((count-1)/PAGESIZE+1);
+		
 		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
 		criteria.add(Restrictions.eq("com_id", company.getId()));
 		criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
-		consults = consultService.findConsultsByDetachedCriteria(criteria);
+		int pageIndex = model.getPageIndex();
+		if(pageIndex == 0){
+			model.setPageIndex(1);
+			consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		}else{
+			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+		}
 		return "queryMyConsultSUCCESS";
+	}
+	
+	// 查询登录企业所发布所有未完成的需求
+	public String queryMyConsultReturnJson(){
+		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		
+		// 记录的总条数
+		int count = consultService.getCount();
+		int pageSize = 2;
+		model.setTotal(count);
+		model.setPageSize(pageSize);
+		
+		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+		criteria.add(Restrictions.eq("com_id", company.getId()));
+		criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+		int pageIndex = model.getPageIndex();
+		if(pageIndex == 0){
+			consults = consultService.findByDetachedCriteria(criteria, 0, pageSize);
+		}else{
+			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*pageSize, pageSize);
+		}
+		return SUCCESS;
 	}
 	
 	// 显示未审核

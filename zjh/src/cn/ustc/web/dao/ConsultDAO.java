@@ -4,14 +4,11 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Consult;
-import cn.ustc.utils.HibernateUtils;
 
 /**
  * 咨询 操作
@@ -103,6 +100,21 @@ public class ConsultDAO extends HibernateDaoSupport{
 	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria){
 		List<Consult> list = this.getHibernateTemplate().findByCriteria(criteria);
 		return list;
+	}
+	
+	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		List<Consult> list = this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
+		return list;
+	}
+	
+	/**
+	 * 获取记录的总条数
+	 * @return
+	 */
+	public int getCount(){
+		String hql = "select count(*) from Consult as consult";
+		Long count = (Long) this.getHibernateTemplate().find(hql).listIterator().next();
+		return count.intValue();
 	}
 	
 }
