@@ -133,6 +133,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					   <li>
 					      <a href="${pageContext.request.contextPath}/message/message_queryMyUnread" target="myframe">消息 <span class="badge pull-right" id="messageCount"></span></a>
 					   </li>
+					   <li>
+					      <a href="${pageContext.request.contextPath}/company/company_skipBalancePage" target="myframe">Recharge</a>
+					   </li>
 					</ul>
                 </div>
             </main>

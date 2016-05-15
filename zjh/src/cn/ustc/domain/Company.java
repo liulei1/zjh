@@ -13,9 +13,16 @@ public class Company extends User{
 	private String website;//网址
 	private String annotation;//备注
 	private String state;
+	private String balance; //账户余额
 	
 	private Set<Consult> consults = new HashSet<Consult>();//
 	
+	public String getBalance() {
+		return balance;
+	}
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
 	public String getWebsite() {
 		return website;
 	}

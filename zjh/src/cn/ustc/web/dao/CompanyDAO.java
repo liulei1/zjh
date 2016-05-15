@@ -75,28 +75,15 @@ public class CompanyDAO extends HibernateDaoSupport{
 	}
 	/**
 	 * 修改
-	 * @param criteria
+	 * @param company
 	 * @return
 	 */
-	public int update(Company company){
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
-		Company comp=null;
-		try{
-			session.update(company);
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			throw e;
-		}finally{
-			session.close();
-		}
-		return 1;
-	
+	public void update(Company company){
+		this.getHibernateTemplate().update(company);
 	}
 	/**
 	 * 删除
-	 * @param criteria
+	 * @param id
 	 * @return
 	 */
 	public void deleteByCompanyID(String id){
@@ -114,9 +101,6 @@ public class CompanyDAO extends HibernateDaoSupport{
 			session.close();
 		}
 	
-	
 	}
-	
-		
 	
 }

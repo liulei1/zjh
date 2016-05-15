@@ -1,23 +1,23 @@
 package cn.ustc.web.exception;
 
-public class MySQLException extends RuntimeException {
+public class NoUserException extends RuntimeException {
 
-	public MySQLException() {
+	public NoUserException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MySQLException(String message, Throwable cause) {
+	public NoUserException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public MySQLException(String message) {
+	public NoUserException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public MySQLException(Throwable cause) {
+	public NoUserException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}

@@ -16,9 +16,30 @@ public class Professor extends User{
 	private String annotation;//注解
 	private String address;
 	private String website;
+	private String balance; // 余额
+	private String education; // 学历
+	private String honour;	// 荣誉
 
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
+	public String getBalance() {
+		return balance;
+	}
+	public void setBalance(String balance) {
+		this.balance = balance;
+	}
+	public String getEducation() {
+		return education;
+	}
+	public void setEducation(String education) {
+		this.education = education;
+	}
+	public String getHonour() {
+		return honour;
+	}
+	public void setHonour(String honour) {
+		this.honour = honour;
+	}
 	public String getAddress() {
 		return address;
 	}

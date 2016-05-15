@@ -2,9 +2,11 @@ package cn.ustc.web.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.User;
 import cn.ustc.web.service.CompanyService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -40,5 +42,21 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return SUCCESS;
 	}
 
+	// 跳转到充值界面
+	public String skipBalancePage(){
+		User user = (User)ServletActionContext.getServletContext().getAttribute("user");
+		String id = user.getId();
+		company = companyService.findCompanyById(id);
+		return "skipBalancePageSUCCESS";
+	}
 	
+	public String addBalance(){
+		String id = company.getId();
+		double balance = Double.parseDouble(company.getBalance());
+		if(balance < 0){
+			balance = 0;
+		}
+		companyService.addBalance(id, balance);
+		return "addBalanceSUCCESS";
+	}
 }

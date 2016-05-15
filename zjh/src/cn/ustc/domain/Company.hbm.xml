@@ -22,9 +22,9 @@
 		<property name="website"/>
 		<property name="annotation"/>
 		<property name="state"/>
+		<property name="balance"/>
 		
 		<!-- 一个企业关联多个咨询 -->
-	
 		<set name="consults" cascade="save-update,delete,delete-orphan" inverse="true">  <!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->
 			<!-- 客户关联订单后，在对方表 添加 外键列 -->
 			<!-- column 对方表 外键列 列名 -->

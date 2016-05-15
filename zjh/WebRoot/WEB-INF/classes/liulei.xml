@@ -140,6 +140,16 @@
 		</action>
 	</package>
 	
+	<package name="company" namespace="/company" extends="myDefault">
+		<action name="company_*" method="{1}" class="cn.ustc.web.action.CompanyAction">
+			<result name="skipBalancePageSUCCESS">/company/company_balance.jsp</result>
+			<result name="addBalanceSUCCESS" type="redirectAction">
+				<param name="actionName">company_skipBalancePage</param>
+				<param name="namespace">/company</param>
+			</result>
+		</action>
+	</package>
+	
 	<package name="message" namespace="/message" extends="myDefault">
 		<action name="message_*" method="{1}" class="cn.ustc.web.action.MessageAction">
 			<result name="queryMyUnreadSUCCESS">/message/message_list.jsp</result>

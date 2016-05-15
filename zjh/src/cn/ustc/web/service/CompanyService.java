@@ -9,15 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Company;
 import cn.ustc.web.dao.CompanyDAO;
+import cn.ustc.web.exception.NoUserException;
 
 @Transactional
 public class CompanyService {
 	@Autowired
-	private CompanyDAO CompanyDAO;
+	private CompanyDAO companyDAO;
 
 	public boolean insertCompany(Company Company){
 		int res = 0;
-		res = CompanyDAO.insertCompany(Company);
+		res = companyDAO.insertCompany(Company);
 		if (res > 0) {
 			return true;
 		}
@@ -28,30 +29,43 @@ public class CompanyService {
 		DetachedCriteria criteria = DetachedCriteria.forClass(Company.class);
 		criteria.add(Restrictions.eq("name", company.getName()));
 		criteria.add(Restrictions.eq("password", company.getPassword()));
-		Company loginCompany = CompanyDAO.findByCriteria(criteria);
+		Company loginCompany = companyDAO.findByCriteria(criteria);
 		return loginCompany;
 	}
 
 	public List<Company> findAllCompany() {
-		List<Company> Companys = CompanyDAO.findAll();
+		List<Company> Companys = companyDAO.findAll();
 		return Companys;
 	}
 
 	public Company findCompanyById(String id) {
-		Company Company = CompanyDAO.findByCompanyID(id);
+		Company Company = companyDAO.findByCompanyID(id);
 		return Company;
 	}
 
-	public int update(Company Company) {
-		return CompanyDAO.update(Company);
+	public void update(Company Company) {
+		companyDAO.update(Company);
 	}
 
 	public void deleteCompanyById(String id) {
-		CompanyDAO.deleteByCompanyID(id);
+		companyDAO.deleteByCompanyID(id);
 	}
 
 	public List<Company> findCompanyByName(String name) {
-		return CompanyDAO.findByCompanyName(name);
+		return companyDAO.findByCompanyName(name);
+	}
+
+	public void addBalance(String id, double balance) {
+		Company company = companyDAO.findByCompanyID(id);
+		if(company == null){
+			throw new NoUserException();
+		}else {
+			if(company.getBalance() != null && !"".equals(company.getBalance())){
+				balance = Double.parseDouble(company.getBalance()) + balance;
+			}
+			company.setBalance(balance+"");
+			companyDAO.update(company);
+		}
 	}
 	
 }
