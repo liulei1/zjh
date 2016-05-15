@@ -111,9 +111,9 @@ public class ConsultDAO extends HibernateDaoSupport{
 	 * 获取记录的总条数
 	 * @return
 	 */
-	public int getCount(){
-		String hql = "select count(*) from Consult as consult";
-		Long count = (Long) this.getHibernateTemplate().find(hql).listIterator().next();
+	public int getCount(String id){
+		String hql = "select count(*) from Consult as consult where consult.id =:id";
+		Long count = (Long) this.getHibernateTemplate().findByNamedParam(hql, "id", id).listIterator().next();
 		return count.intValue();
 	}
 	

@@ -48,5 +48,9 @@ public class ProfessorService {
 	public List<Professor> findProfessorByName(String name) {
 		return professorDAO.findProfessorByName(name);
 	}
+	
+	public List<Professor> findProfessorByVocation(String cat) {
+		return professorDAO.findProfessorVocation(cat);
+	}
 
 }

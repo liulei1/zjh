@@ -45,19 +45,7 @@ public class CompanyDAO extends HibernateDaoSupport{
 	}
 	
 	public List<Company> findByCompanyName(String name){
-//		Session session=HibernateUtils.openSession();
-//		Transaction tx=session.beginTransaction();
-//		List<Company> companys;
-//		try{
-//			String hql="from Company where name=?";
-//			companys=session.createQuery(hql).setParameter(0, name).list();
-//			tx.commit();
-//		}catch(RuntimeException e){
-//			e.printStackTrace();
-//			throw e;
-//		}finally{
-//			session.close();
-//		}
+
 		String hql="from Company where name=:name";
 		List<Company> companys = this.getHibernateTemplate().findByNamedParam(hql, "name", name);
 		return companys;
@@ -101,6 +89,12 @@ public class CompanyDAO extends HibernateDaoSupport{
 			session.close();
 		}
 	
+	}
+
+	public List<Company> findCompanyByVocation(String cat) {
+		String hql = "from Company where field=?";
+		List<Company> companyList = this.getHibernateTemplate().find(hql, cat);
+		return companyList;
 	}
 	
 }

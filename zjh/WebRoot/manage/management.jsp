@@ -20,7 +20,7 @@
   </head>
   
   <body>
-  <a href="${pageContext.request.contextPath}/user_management/professorManage_management ">查看专家</a>
-  <a href="${pageContext.request.contextPath}/user_management/companyManage_management ">查看企业</a>
+  <a href="${pageContext.request.contextPath}/user_management/professorManage_management ">professors view</a>
+  <a href="${pageContext.request.contextPath}/user_management/companyManage_management ">companys view</a>
   </body>
 </html>

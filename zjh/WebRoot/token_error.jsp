@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>异常页面</title>
+<title>token-error page</title>
 </head>
 <body>
-	<h1>请求已经提交，请勿重复提交</h1>
+	<h1>Request has been submitted, please do not repeat</h1>
 </body>
 </html>

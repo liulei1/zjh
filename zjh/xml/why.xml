@@ -8,5 +8,21 @@
 			<result name="professorlist" >/professor/professor_list.jsp</result>
 		</action>
 	</package>
+	<package name="search" namespace="/personSearch" extends="struts-default">
+		<action name="professorSearch" method="professorSearch" class="cn.ustc.web.action.ProfessorAction">
+			<result name="findSuccess" >/company/professor_search.jsp</result>
+		</action>
+		<action name="professorSearchByName" method="professorSearchByName" class="cn.ustc.web.action.ProfessorAction">
+			<result name="findSuccess" >/company/professor_search.jsp</result>
+		</action>
+		
+		<!-- 查找企业的配置 -->
+		<action name="companySearch" method="companySearch" class="cn.ustc.web.action.CompanyAction">
+			<result name="findSuccess" >/professor/company_search.jsp</result>
+		</action>
+		<action name="companySearchByName" method="companySearchByName" class="cn.ustc.web.action.CompanyAction">
+			<result name="findSuccess" >/professor/company_search.jsp</result>
+		</action>
+	</package>
 	
 </struts>

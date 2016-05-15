@@ -19,6 +19,7 @@ import cn.ustc.domain.Administer;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.GetPropertiesUtil;
@@ -150,10 +151,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 查询登录企业所发布所有未完成的需求
 	public String queryMyConsult(){
-		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		//Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		Object obj=ServletActionContext.getServletContext().getAttribute("user");
+		if(obj instanceof Company){
+		Company company=(Company)obj;
 		
 		// 记录的总条数
-		int count = consultService.getCount();
+		int count = consultService.getCount(company.getId());
 		model.setTotal(count);
 		model.setPageCount((count-1)/PAGESIZE+1);
 		
@@ -167,6 +171,14 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}else{
 			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
 		}
+		}else if(obj instanceof Professor){
+			String id=ServletActionContext.getRequest().getParameter("company_id");
+			DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+			criteria.add(Restrictions.eq("com_id",id));
+			criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+			consults = consultService.findConsultsByDetachedCriteria(criteria);
+			System.out.println("123");
+		}
 		return "queryMyConsultSUCCESS";
 	}
 	
@@ -175,7 +187,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		
 		// 记录的总条数
-		int count = consultService.getCount();
+		int count = consultService.getCount(company.getId());
 		int pageSize = 2;
 		model.setTotal(count);
 		model.setPageSize(pageSize);

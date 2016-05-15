@@ -12,14 +12,14 @@
 			<tr>
 				<td colSpan="8" height="26" align="center">
 					<strong> 
-						<STRONG>查看用户</STRONG>
+						<STRONG>user view</STRONG>
 					</strong>
 				</td>
 			</tr>
 	
 			<tr>
 				<td align="center" bgColor="#f5fafe">
-					登录名：
+					name for login:
 				</td>
 				<td  bgColor="#ffffff">
 					<s:property value="model.name" />
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td align="center" bgColor="#f5fafe">
-					性别：
+					sex：
 				</td>
 				<td bgColor="#ffffff">
 					<s:property value="model.sex"/>
@@ -44,7 +44,7 @@
 			<TR>
 				<td class="ta_01" style="WIDTH: 100%" align="right" bgColor="#f5fafe" colSpan="4">
 					<FONT face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT>
-					<INPUT class="button_ok" type="button" onclick="history.go(-1)" value="返回" /> 
+					<INPUT class="button_ok" type="button" onclick="history.go(-1)" value="return" /> 
 					<span id="Label1"></span>
 				</td>
 			</TR>

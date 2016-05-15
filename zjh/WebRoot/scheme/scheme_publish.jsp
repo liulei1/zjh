@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>提交方案</title>
+<title>scheme submit</title>
 </head>
 <body>
 	<div align="center">
-		<h1>方案详情</h1>
+		<h1>detail of scheme</h1>
 		<s:form action="scheme_publish" namespace="/scheme" method="post" enctype="multipart/form-data" theme="simple">
 			<s:hidden name="cons_id" value="%{cons_id}"></s:hidden>
 			<table>
@@ -20,28 +20,27 @@
 					</td>
 				</tr>
 				<tr>
-					<td>描述：</td>
+					<td>description</td>
 					<td>
 						<s:textarea name="details"/>
 					</td>
 				</tr>
 				<tr>
-					<td>文档：</td>
+					<td>document</td>
 					<td>
 						<s:file name="file"></s:file>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" value="提交">
+						<input type="submit" value="submit">
 					</td>
 					<td>
-						<input type="reset" value="取消">
+						<input type="reset" value="cancle">
 					</td>
 				</tr>
 			</table>
 		</s:form>
 	</div>
-	<s:debug></s:debug>
 </body>
 </html>

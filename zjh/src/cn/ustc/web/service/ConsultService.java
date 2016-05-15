@@ -183,7 +183,7 @@ public class ConsultService {
 	 * 获取记录的总条数
 	 * @return
 	 */
-	public int getCount(){
-		return consultDAO.getCount();
+	public int getCount(String companyId){
+		return consultDAO.getCount(companyId);
 	}
 }

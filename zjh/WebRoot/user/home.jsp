@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心</title>
+<title>user center</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>专家用户中心</h1>
+		<h1>professor user center</h1>
 	</div>
 	<p class="text-right">
 	    <a href="#">
@@ -21,9 +21,9 @@
         </a>
     </p>
 	<div class="btn-group">
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">用户列表</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">我的方案</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">user list</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">consult search</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">my project</button>
     </div>
     <s:debug></s:debug>
 </body>

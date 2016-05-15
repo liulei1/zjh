@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>个人消息</title>
+     <title>personal message</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 			
 		});
 		function read(target){
-				var r = confirm("是将这条消息设为已读吗？");
+				var r = confirm("set this message readed?");
 				if(r){
 					var td = $(target).children("td");
 					var id = $(td).prev("input[name='id']").val();
@@ -45,11 +45,11 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					我的消息
+					my message
 				</h3>
 				<table class="table table-bordered table-hover">
 					<s:if test="messages.size() == 0">
-						<div style="color:blue">您暂无消息</div>
+						<div style="color:blue">no message now</div>
 					</s:if>
 					<s:iterator value="messages" var="message">
 						<tr onclick="read(this)">

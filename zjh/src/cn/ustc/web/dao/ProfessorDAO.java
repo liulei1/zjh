@@ -55,5 +55,12 @@ public class ProfessorDAO extends HibernateDaoSupport{
 		List<Professor> professorList = this.getHibernateTemplate().find(hql, name);
 		return professorList;
 	}
+
+	public List<Professor> findProfessorVocation(String cat) {
+		String hql = "from Professor where field=?";
+//		List<Professor> professorList = this.getHibernateTemplate().findByNamedQuery(hql, cat);
+		List<Professor> professorList = this.getHibernateTemplate().find(hql, cat);
+		return professorList;
+	}
 	
 }

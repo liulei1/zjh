@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户注册</title>
+<title>user register</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -24,7 +24,7 @@
 </script>
 </head>
 <body>
-	<h1 align="center">用户注册</h1>
+	<h1 align="center">user register</h1>
 	<div align="center">
 		<font color="red">
 			<s:actionerror/>
@@ -34,7 +34,7 @@
 			<table>
 				<s:token></s:token>
 				<tr>
-					<td align="right">用户名：</td>
+					<td align="right">username</td>
 					<td>
 						<s:textfield name="name" id="add_username"/>
 					</td>
@@ -47,29 +47,29 @@
 					</td>
 					<td></td>
 				</tr><tr>
-					<td align="right">性别：</td>
+					<td align="right">sex：</td>
 					<td>
 						<s:radio  list="{'男','女'}" name="sex"/>
 					</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td align="right">密码：</td>
+					<td align="right">password：</td>
 					<td>
 						<s:password name="password"/>
 					</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td align="right">重复密码：</td>
+					<td align="right">repassword：</td>
 					<td>
 						<s:password name="repassword"/>
 					</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="submit" value="提交"></td>
-					<td align="center"><input type="reset" value="重置"></td>
+					<td align="center"><input type="submit" value="submit"></td>
+					<td align="center"><input type="reset" value="reset"></td>
 				</tr>
 			</table>
 		</s:form>

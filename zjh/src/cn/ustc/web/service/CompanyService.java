@@ -67,5 +67,9 @@ public class CompanyService {
 			companyDAO.update(company);
 		}
 	}
+
+	public List<Company> findCompanyByVocation(String cat) {
+		return companyDAO.findCompanyByVocation(cat);
+	}
 	
 }

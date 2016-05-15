@@ -45,7 +45,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>注册-专家汇</title>
+<title>regist</title>
 <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
 rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
@@ -57,7 +57,7 @@ rel="stylesheet">
 
 <body class="">
 	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">专家汇平台</span>
+		<a class="brand" href="index.html"><span class="first">Collection of professors platform</span>
 		</a>
 	</div>
 	<div class="container" style="margin-top:10px">
@@ -73,7 +73,7 @@ rel="stylesheet">
 			<div class="content">
 				<div class="main">
 					<div class="">
-				<p align="center">注册</p>
+				<p align="center">regist</p>
 						<hr class="hr1" />
 					</div>
 					<s:textfield name="name" id="add_username"
@@ -97,12 +97,12 @@ rel="stylesheet">
 					性别:<s:radio list="{'男','女'}" name="sex" id="female" align="right"/>
 					<br>
 					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">注册</button>
-					<button class="btn" type="reset">重置</button>
+					<button class="btn btn-warning btn1" type="submit">regist</button>
+					<button class="btn" type="reset">reset</button>
 				</div>
 				<div class="aside">
 					<div class="passport-goto" style="text-align: center">
-						已有账号? <a href="${pageContext.request.contextPath }/user/login.jsp ">立即登录</a>
+						haven a account? <a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
 					</div>
 				</div>
 			</div>

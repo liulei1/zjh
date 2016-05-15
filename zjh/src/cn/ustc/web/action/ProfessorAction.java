@@ -2,6 +2,9 @@ package cn.ustc.web.action;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Professor;
@@ -12,8 +15,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ProfessorAction extends ActionSupport implements ModelDriven<Professor>{
-	private List<Professor> professors=null;
-	
+	private List<Professor> professors;
 	public List<Professor> getProfessors() {
 		return professors;
 	}
@@ -48,6 +50,20 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 			}
 		}
 		return SUCCESS;
+	}
+	
+	//查找专家
+	public String professorSearch(){
+		String cat=(String) ServletActionContext.getRequest().getParameter("category");
+		professors=professorService.findProfessorByVocation(cat);
+		return "findSuccess";
+	}
+	
+	//通过名字查找专家
+	public String professorSearchByName(){
+		String name=(String) ServletActionContext.getRequest().getParameter("findByName");
+		professors=professorService.findProfessorByName(name);
+		return "findSuccess";
 	}
 
 }

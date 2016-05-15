@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
-<title>咨询接受</title>
+<title>consult receive</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -19,17 +19,17 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>待接受咨询</strong></h1>
+<h1 align="center"><strong>consult have not been received</strong></h1>
 	<div align="center">
 		<s:actionerror/>
 		<table frame="border" rules="all">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">标题</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">酬金</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">类别</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">title</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">money</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">category</td>
 				<!-- <td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td> -->
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">接受</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">review</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">receive</td>
 			</tr>
 			<s:iterator value="consults" var="consult">
 				<tr>
@@ -48,13 +48,13 @@
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id"/>
-							<button type="button" class="btn btn-info btn-xs">查看</button>
+							<button type="button" class="btn btn-info btn-xs">review</button>
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="scheme_submitView" namespace="/scheme">
 							<s:param name="cons_id" value="id"/>
-							<button type="button" class="btn btn-success btn-xs">接受</button>
+							<button type="button" class="btn btn-success btn-xs">receive</button>
 						</s:a>
 					</td>
 				</tr>

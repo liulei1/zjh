@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>方案信息</title>
+<title>scheme information</title>
 </head>
 <body>
 <div align="center">
-		<h1>方案详情</h1>
+		<h1>details of scheme</h1>
 		<table>
 			<tr>
 				<td>标题：</td>
@@ -18,13 +18,13 @@
 				</td>
 			</tr>
 			<tr>
-				<td>描述：</td>
+				<td>description</td>
 				<td>
 					${model.details}
 				</td>
 			</tr>
 			<tr>
-				<td>文档：</td>
+				<td>document</td>
 				<td>
 					<s:a action="scheme_download" namespace="/scheme">
 						<s:param name="id" value="model.id"></s:param>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>
-					作者：
+					author
 				</td>
 				<td>
 					<s:a action="" namespace="">
@@ -45,14 +45,14 @@
 			</tr>
 			<tr>
 				<td>
-					发布时间：
+					release time
 				</td>
 				<td>
 					${model.upload_date}
 				</td>
 			</tr>
 		</table>
-		<a href="#" onclick="history.go(-1)">返回</a>
+		<a href="#" onclick="history.go(-1)">return</a>
 	</div>
 </body>
 </html>

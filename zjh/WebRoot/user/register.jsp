@@ -40,7 +40,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>注册-专家汇</title>
+<title>regist-collection of professors platform</title>
 <link
 	href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
 	rel="stylesheet">
@@ -54,7 +54,7 @@
 
 <body class="">
 	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">专家汇平台</span>
+		<a class="brand" href="index.html"><span class="first">platform for collection of professors</span>
 		</a>
 	</div>
 	<div class="container" style="margin-top:10px">
@@ -75,7 +75,7 @@
 			<div class="content">
 				<div class="main">
 					<div class="">
-						<p>注册</p>
+						<p>regist</p>
 						<hr class="hr1" />
 					</div>
 					<s:textfield name="name" id="add_username"
@@ -95,8 +95,8 @@
 				</div>
 				<div class="aside">
 					<div class="passport-goto" style="text-align: center">
-						已有账号? <a
-							href="${pageContext.request.contextPath }/user/login.jsp ">立即登录</a>
+						haven have a account <a
+							href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
 					</div>
 				</div>
 			</div>
