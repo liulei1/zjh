@@ -20,7 +20,7 @@ public class ProfessorDAO extends HibernateDaoSupport{
 	public Professor findProfessorByProfessorNameAndPwd(String professorname, String password) {
 		String hql = "from Professor where name=:name and password=:password";
 		List<Professor> list = this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"}, new Object[]{professorname,password});
-		return list.get(0);
+		return list.size()==0?null:list.get(0);
 	}
 
 	public int insertProfessor(Professor professor) {
