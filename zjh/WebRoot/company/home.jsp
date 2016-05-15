@@ -5,7 +5,7 @@
 <html lang="zh-CN">
 <head>
     
-    <title>企业用户</title>
+    <title>company user</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/app.css">
 	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -49,12 +49,12 @@
             <div class="col-sm-6">
                 <!-- start logo -->
                 <a class="branding" href="" title="专家汇平台">
-                    <p>专家汇平台</p>
+                    <p>collection of professors platform</p>
                 </a>
             </div>
             <div class="col-sm-4">
                 <input type="text" class="input-medium search-query">
-                <button type="submit" class="btn">搜索</button>
+                <button type="submit" class="btn">search</button>
             </div>
             <p class="text-right">
 			    <a href="#">
@@ -64,10 +64,10 @@
             <div class="col-sm-2" >
                 <div class="dropdown" id="accountmenu">
                     <ul class="dropdown-menu">
-                        <li><a href="#">用户管理</a></li>
-                        <li><a href="#">修改密码</a></li>
+                        <li><a href="#">user management</a></li>
+                        <li><a href="#">change password</a></li>
                         <!--li class="divider"></li-->
-                        <li><a href="#">退出</a></li>
+                        <li><a href="#">sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -118,6 +118,9 @@
 					   </li>
 					   <li>
 					      <a href="${pageContext.request.contextPath}/message/message_queryMyUnread" target="myframe">消息 <span class="badge pull-right" id="messageCount"></span></a>
+					   </li>
+					   <li>
+					      <a href="${pageContext.request.contextPath}/company/professor_search.jsp" target="myframe">查找专家<span class="badge pull-right" id="messageCount"></span></a>
 					   </li>
 					</ul>
                 </div>

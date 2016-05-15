@@ -6,7 +6,7 @@
 <head>
 
 
-    <title>登陆-专家汇</title>
+    <title>login collection of professors</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
     
@@ -33,45 +33,45 @@
 
 <body class="">
 <div class="navbar">
-    <a class="brand" href="index.html"><span class="first">专家汇平台</span></a>
+    <a class="brand" href="index.html"><span class="first">Collection Of Professors Platform</span></a>
 </div>
 <div class="container"style="margin-top:10px">
     <form class="form-signin" action="${pageContext.request.contextPath}/user/user_login" method="post" onsubmit="return loginCheck()">
         <div class="content" style="height: 350px;">
         <div class="main">
         <div class="" >
-            <p align="center">用户登录</p>
+            <p align="center">user login</p>
             <hr class="hr1"/>
         </div>
-        <input type="text" class="input-block-level" placeholder="用户名"  name="name"><br/>
-        <input type="password" class="input-block-level" placeholder="密码"  name="password"><br/>
+        <input type="text" class="input-block-level" placeholder="user name"  name="name"><br/>
+        <input type="password" class="input-block-level" placeholder="password"  name="password"><br/>
         
         <div class="select-style">
         <select name="usertype" id="usertype" class="usertype-style" >
-            <option selected="selected">--请选择用户类型--</option>
-            <option value="company">企业用户</option>
-            <option value="professor">专家用户</option>
-            <option value ="normal">普通用户</option>
-            <option value ="administer">管理员用户</option>
+            <option selected="selected"> category of user</option>
+            <option value="company">company</option>
+            <option value="professor">professor</option>
+            <option value ="normal">common user</option>
+            <option value ="administer">administer</option>
         </select>
-		<input name="captcha" type="text" class="loginuser" placeholder="验证码" /><br>
+		<input name="captcha" type="text" class="loginuser" placeholder="vertification code" /><br>
     	<center>
     		<img id="captchaImg" src="${pageContext.request.contextPath}/user/user_getCode" onclick="refreshCode()"/>
 		</center>
         </div>
         <br/>
-        <button class="btn btn-warning btn1" type="submit">登陆</button>
-        <button class="btn" type="reset">重置</button>
+        <button class="btn btn-warning btn1" type="submit">login</button>
+        <button class="btn" type="reset">reset</button>
         </div>
         <div class="aside">
-            <div class="passport-goto"style="text-align: center">没有账号? 免费注册
+            <div class="passport-goto"style="text-align: center">have no account?regist with free 
             <br>
             <br>
-            <a href="${pageContext.request.contextPath }/professor/professor_register.jsp">专家注册</a><br>
+            <a href="${pageContext.request.contextPath }/professor/professor_register.jsp">regist of professor</a><br>
             <br>
-            <a href="${pageContext.request.contextPath }/company/company_register.jsp">企业注册</a><br>
+            <a href="${pageContext.request.contextPath }/company/company_register.jsp">regist of company</a><br>
             <br>
-            <a href="${pageContext.request.contextPath }/user/register.jsp">普通用户注册</a>
+            <a href="${pageContext.request.contextPath }/user/register.jsp">regist of common user</a>
             </div>
         </div>
         </div>

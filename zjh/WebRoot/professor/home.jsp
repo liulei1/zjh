@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>专家用户中心</h1>
+		<h1>professor user center</h1>
 	</div>
 	<p class="text-right">
 	    <a href="#">
@@ -21,9 +21,10 @@
         </a>
     </p>
 	<div class="btn-group">
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">查找需求</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">查看方案</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/project_queryMyProject'">我的项目</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">consult search</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">scheme view</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/project_queryMyProject'">my project</button>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/professor/company_search.jsp'">company user search</button>
 	</div>
     <s:debug></s:debug>
 </body>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>我的需求</title>
+     <title>My consult</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -32,28 +32,28 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					需求列表
+					consult list
 				</h3>
 				<table class="table table-bordered">
 					<thead>
 						<tr class="warning">
 							<th style="text-align:center;">
-								标题
+								title
 							</th>
 							<th style="text-align:center;">
-								酬金
+								money
 							</th>
 							<th style="text-align:center;">
-								类别
+								vocation
 							</th>
 							<th style="text-align:center;">
-								状态
+								state
 							</th>
 							<th style="text-align:center;">
-								查看
+								view
 							</th>
 							<th style="text-align:center;">
-								查看方案
+								project view
 							</th>
 						</tr>
 					</thead>
@@ -75,14 +75,14 @@
 							<td align="center">
 								<s:a action="consult_view" namespace="/consult">
 									<s:param name="id" value="id" />
-									<button type="button" class="btn btn-info btn-xs">查看</button>
+									<button type="button" class="btn btn-info btn-xs">have a look</button>
 								</s:a>
 								
 							</td>
 							<td align="center">
 								<s:a action="scheme_findConsultSchemes" namespace="/scheme">
 									<s:param name="cons_id" value="id" />
-									<button type="button" class="btn btn-success btn-xs">方案</button>
+									<button type="button" class="btn btn-success btn-xs">projects</button>
 								</s:a>
 							</td>
 						</tr>

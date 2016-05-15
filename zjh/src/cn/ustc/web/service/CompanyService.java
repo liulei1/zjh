@@ -53,5 +53,10 @@ public class CompanyService {
 	public List<Company> findCompanyByName(String name) {
 		return CompanyDAO.findByCompanyName(name);
 	}
+
+	public List<Company> findCompanyByVocation(String cat) {
+		// TODO Auto-generated method stub
+		return CompanyDAO.findCompanyByVocation(cat);
+	}
 	
 }

@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
-import cn.ustc.web.service.ProjectService;
 import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -144,11 +144,22 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	// 查询登录企业所发布所有未完成的需求
 	public String queryMyConsult(){
-		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		//Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		Object obj=ServletActionContext.getServletContext().getAttribute("user");
+		if(obj instanceof Company){
+		Company company=(Company)obj;
 		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
 		criteria.add(Restrictions.eq("com_id", company.getId()));
 		criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
 		consults = consultService.findConsultsByDetachedCriteria(criteria);
+		}else if(obj instanceof Professor){
+			String id=ServletActionContext.getRequest().getParameter("company_id");
+			DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+			criteria.add(Restrictions.eq("com_id",id));
+			criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+			consults = consultService.findConsultsByDetachedCriteria(criteria);
+			System.out.println("123");
+		}
 		return "queryMyConsultSUCCESS";
 	}
 	

@@ -65,7 +65,7 @@ public class ConsultDAO extends HibernateDaoSupport{
 //		
 //		transaction.commit();
 //		session.close();
-		String hql = "from Consult where state =: state";
+		String hql = "from Consult where state =:state";
 		List<Consult> list = this.getHibernateTemplate().findByNamedParam(hql, "state", Consult.ALLOW);
 		return list;
 	}

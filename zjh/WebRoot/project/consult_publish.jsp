@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>发布需求</title>
+<title>consult release</title>
 </head>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -26,47 +26,47 @@
 </script>
 <body>
 	<div align="center">
-		<h1>需求发布</h1>
+		<h1>consult release</h1>
 		<br>
 		<s:form cssClass="form-horizontal" role="form" action="consult_publish" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple">
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">标题</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">title</label>
 				<div class="col-sm-2">
 				<s:textfield cssClass="form-control" id="title" name="title"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet"> 酬金(元)</label>
+				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet">money</label>
 				<div class="col-sm-2">
 					<s:textfield cssClass="form-control" id="budget" name="budget"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">描述</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">describe</label>
 				<div class="col-sm-2">
 					<s:textarea id="details" name="details" rows="3" cssClass="form-control"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">文档</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">document</label>
 				<div class="col-sm-2">
 					<s:file name="file"></s:file>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">领域</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">vocation</label>
 				<div class="col-sm-1" id="field"></div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">备注</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">remarks</label>
 				<div class="col-sm-2">
 					<s:textarea name="remark" rows="2" cssClass="form-control"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-2 col-sm-offset-5">
-					<input type="submit" class="btn btn-primary" value="发布">
-					<input type="reset" class="btn btn-warning" value="取消">
+					<input type="submit" class="btn btn-primary" value="release">
+					<input type="reset" class="btn btn-warning" value="cancle">
 				</div>
 			</div>
 		</s:form>

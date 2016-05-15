@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
@@ -116,7 +117,12 @@ public class CompanyDAO extends HibernateDaoSupport{
 	
 	
 	}
-	
+
+	public List<Company> findCompanyByVocation(String cat) {
+		String hql = "from Company where field=?";
+		List<Company> companyList = this.getHibernateTemplate().find(hql, cat);
+		return companyList;
+	}
 		
 	
 }

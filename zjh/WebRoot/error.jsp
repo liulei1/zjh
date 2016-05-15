@@ -8,7 +8,7 @@
 <title>error page</title>
 </head>
 <body>
-<h3>全局错误页面</h3>
-错误信息： <s:actionerror/>
+<h3>global errors page</h3>
+information of errors： <s:actionerror/>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html lang="zh-CN">
 <head>
     
-    <title>企业用户</title>
+    <title>company user</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/app.css">
 	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>

@@ -14,11 +14,14 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.UploadAndDownloadUtils;
+import cn.ustc.web.dao.ProfessorDAO;
 import cn.ustc.web.dao.SchemeDAO;
 import cn.ustc.web.service.ConsultService;
+import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.SchemeService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,6 +29,10 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
+	
+	@Autowired
+	private ProfessorService professorService;
+	
 	private static final long serialVersionUID = 1L;
 	private Scheme model = new Scheme();
 	@Override
@@ -150,11 +157,24 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		schemeService.publish(model);
 		return "publishSUCCESS";
 	}
-
+	
 	// 查找登录专家发布的所有方案
 	public String queryMyScheme(){
-		Professor professor = (Professor)ServletActionContext.getServletContext().getAttribute("user");
-		schemes = schemeService.findMyScheme(professor);
+		Object obj=ServletActionContext.getServletContext().getAttribute("user");
+		if(obj instanceof Professor){
+			Professor professor = (Professor)obj;
+			schemes = schemeService.findMyScheme(professor);
+		}
+		if(obj instanceof Company){
+			String id = model.getProfessor().getId();
+			System.out.println("-------------------------"+id);
+			if(professorService==null){
+				System.out.println("++++++++++"+"空");
+			}
+			Professor professor=professorService.findProfessorById(id);
+			System.out.println(professor);
+			schemes = schemeService.findMyScheme(professor);
+		}
 		return "queryMySchemeSUCCESS";
 	} 
 	

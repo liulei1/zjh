@@ -5,21 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>需求信息</title>
+<title>scheme information</title>
 </head>
 <body>
 <div align="center">
-		<s:debug></s:debug>
-		<h1>需求信息</h1>
+		<h1>scheme information</h1>
 		<table>
 			<tr>
-				<td>标题：</td>
+				<td>title</td>
 				<td>
 					${model.title}
 				</td>
 			</tr>
 			<tr>
-				<td>酬金</td>
+				<td>money</td>
 				<td>
 					${model.budget}&nbsp;元
 				</td>
@@ -31,7 +30,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>文档：</td>
+				<td>document</td>
 				<td>
 					<s:a action="consult_download" namespace="/consult">
 						<s:param name="id" value="model.id"></s:param>
@@ -40,19 +39,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td>领域：</td>
+				<td>vocation</td>
 				<td id="field">
 					${model.category}
 				</td>
 			</tr>
 			<tr>
-				<td>备注：</td>
+				<td>remarks</td>
 				<td>
 					${model.remark}
 				</td>
 			</tr>
 			<tr>
-				<td>状态：</td>
+				<td>state</td>
 				<td>
 					${model.state}
 				</td>
@@ -61,13 +60,13 @@
 				<td>
 					<s:a action="consult_allow" namespace="/consult">
 						<s:param name="id" value="id"/>
-						批准
+						approve
 					</s:a>
 				</td>
 				<td>
 					<s:a action="consult_reject" namespace="/consult">
 						<s:param name="id" value="id"/>
-						拒绝
+						reject
 					</s:a>
 				</td>
 				<td>

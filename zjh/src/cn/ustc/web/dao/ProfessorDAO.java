@@ -38,7 +38,7 @@ public class ProfessorDAO extends HibernateDaoSupport{
 //		}
 		String hql = "from Professor where name=:name and password=:password";
 		List<Professor> list = this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"}, new Object[]{professorname,password});
-		return list.get(0);
+		return list.size()==0?null:list.get(0);
 	}
 
 	public int insertProfessor(Professor professor) {
@@ -137,7 +137,14 @@ public class ProfessorDAO extends HibernateDaoSupport{
 //		tx.commit();
 //		session.close();
 		String hql = "from Professor where name=?";
-		List<Professor> professorList = this.getHibernateTemplate().findByNamedQuery(hql, name);
+		List<Professor> professorList = this.getHibernateTemplate().find(hql, name);
+		return professorList;
+	}
+
+	public List<Professor> findProfessorVocation(String cat) {
+		String hql = "from Professor where field=?";
+//		List<Professor> professorList = this.getHibernateTemplate().findByNamedQuery(hql, cat);
+		List<Professor> professorList = this.getHibernateTemplate().find(hql, cat);
 		return professorList;
 	}
 }

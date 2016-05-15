@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-<title>需求信息</title>
+<title>consult information</title>
 <script type="text/javascript">
 	$(function(){
 		var type = ${user.usertype};
@@ -22,28 +22,28 @@
 <body>
 <div align="center">
 		<s:debug></s:debug>
-		<h1>需求信息</h1>
+		<h1>consult information</h1>
 		<table>
 			<tr>
-				<td>标题：</td>
+				<td>title</td>
 				<td>
 					${model.title}
 				</td>
 			</tr>
 			<tr>
-				<td>酬金</td>
+				<td>money</td>
 				<td>
 					${model.budget}&nbsp;元
 				</td>
 			</tr>
 			<tr>
-				<td>描述：</td>
+				<td>describation</td>
 				<td>
 					${model.details}
 				</td>
 			</tr>
 			<tr>
-				<td>文档：</td>
+				<td>document</td>
 				<td>
 					<s:a action="consult_download" namespace="/consult">
 						<s:param name="id" value="model.id"></s:param>
@@ -52,19 +52,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td>领域：</td>
+				<td>vocation</td>
 				<td id="field">
 					${model.category}
 				</td>
 			</tr>
 			<tr>
-				<td>备注：</td>
+				<td>remarks</td>
 				<td>
 					${model.remark}
 				</td>
 			</tr>
 			<tr>
-				<td>状态：</td>
+				<td>state</td>
 				<td>
 					${model.state}
 				</td>
@@ -73,17 +73,17 @@
 				<td class="btnview text-center">
 					<s:a action="consult_allow" namespace="/consult">
 						<s:param name="id" value="id"/>
-						<button type="button" class="btn btn-success">批准</button>
+						<button type="button" class="btn btn-success">approve</button>
 					</s:a>
 				</td>
 				<td colspan="2" class="btnview text-center">
 					<s:a action="consult_reject" namespace="/consult">
 						<s:param name="id" value="id"/>
-						<button type="button" class="btn btn-warning">拒绝</button>
+						<button type="button" class="btn btn-warning">reject</button>
 					</s:a>
 				</td>
 				<td>
-					<a href="#" onclick="javascript:history.go(-1)" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
+					<a href="#" onclick="javascript:history.go(-1)" ><span class="glyphicon glyphicon-circle-arrow-left">return</span></a>
 				</td>
 			</tr>
 		</table>

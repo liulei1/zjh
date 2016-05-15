@@ -15,14 +15,14 @@
 			<tr>
 				<td height="26" align="center">
 					<strong> 
-						<STRONG>修改用户</STRONG>
+						<STRONG>user modify</STRONG>
 					</strong>
 				</td>
 			</tr>
 	
 			<tr>
 				<td bgColor="#f5fafe" align="right">
-					登录名：
+					name：
 				</td>
 				<td  bgColor="#ffffff">
 					<s:hidden name="id" value="%{model.id}"/>
@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td bgColor="#f5fafe" align="right">
-					密码：
+					password：
 				</td>
 				<td  bgColor="#ffffff">
 					<s:password showPassword="true" name="password" value="%{model.password}" />
@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td bgColor="#f5fafe" align="right">
-					性别：
+					sex：
 				</td>
 				<td bgColor="#ffffff">
 					<s:radio list="{'男','女'}" name="sex" value="%{model.sex}"></s:radio>
@@ -55,10 +55,10 @@
 			</tr>
 			<TR>
 				<td align="left" bgColor="#f5fafe">
-					<INPUT type="submit" value="修改"/> 
+					<INPUT type="submit" value="modify"/> 
 				</td>
 				<td align="right" bgColor="#f5fafe">
-					<INPUT type="button" onclick="history.go(-1)" value="返回" /> 
+					<INPUT type="button" onclick="history.go(-1)" value="return" /> 
 					<span id="Label1"></span>
 				</td>
 			</TR>

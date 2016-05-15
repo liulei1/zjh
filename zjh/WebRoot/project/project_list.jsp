@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>我的项目</title>
+     <title>my project</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -52,34 +52,34 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					项目列表
+					project list
 				</h3>
 				<table class="table table-bordered">
 					<thead>
 						<tr class="warning">
 							<th style="text-align:center;">
-								标题
+								title
 							</th>
 							<th style="text-align:center;">
-								需求文档
+								consult document
 							</th>
 							<th style="text-align:center;">
-								酬金
+								money
 							</th>
 							<th style="text-align:center;">
-								开始时间
+								begain time
 							</th>
 							<th style="text-align:center;">
-								结束时间
+								end time
 							</th>
 							<th style="text-align:center;">
-								项目进度
+								speed
 							</th>
 							<th style="text-align:center;">
-								查看方案
+								view project
 							</th>
 							<th style="text-align:center;">
-								操作
+								operation
 							</th>
 						</tr>
 					</thead>
@@ -107,18 +107,18 @@
 							<td align="center">
 								<s:a action="scheme_findProjectScheme" namespace="/scheme" cssClass="btn btn-primary btn-xs">
 									<s:param name="id" value="scm_id"></s:param>
-									查看
+									view
 								</s:a>
 							</td>
 							<td align="center">
 								<s:a action="project_complete" namespace="/project" cssClass="btn btn-success btn-xs hidden complete">
 									<s:param name="id" value="id"></s:param>
 									<!-- <button type="button" class="btn btn-success btn-xs hidden complete">完成</button> -->
-									完成
+									complicated
 								</s:a>
 								<s:a action="evaluate_publishView" namespace="/evaluate" cssClass="btn btn-success btn-xs disabled  evaluate">
 									<s:param name="proj_id" value="id"></s:param>
-									评价
+									evaluate
 									<!-- <button type="button" class="btn btn-success btn-xs disabled hidden evaluate">评价</button> -->
 								</s:a>
 								<div class="tag"></div>

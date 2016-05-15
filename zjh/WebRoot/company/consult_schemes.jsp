@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-<title>方案列表</title>
+<title>project list</title>
 </head>
 <script type="text/javascript">
 	function recieve_confirm(){
@@ -20,19 +20,19 @@
 	}
 </script>
 <body>
-<h1 align="center"><strong>方案列表</strong></h1>
+<h1 align="center"><strong>project list</strong></h1>
 	<div align="center">
 		<s:actionerror/>
 		<table frame="border" rules="all">
 			<s:if test="schemes != null">
 				<tr>
-					<th style="text-align:center;" width="18%" height="25px">编号</th>
-					<th style="text-align:center;" width="15%" height="25px">专家编号</th>
-					<th style="text-align:center;" width="15%" height="25px">项目编号</th>
-					<th style="text-align:center;" width="12%" height="25px">方案说明</th>
-					<th style="text-align:center;" width="10%" height="25px">发布时间</th>
-					<th style="text-align:center;" width="10%" height="25px">文档</th>
-					<th style="text-align:center;" width="7%"  height="25px">操作</th>
+					<th style="text-align:center;" width="18%" height="25px">id</th>
+					<th style="text-align:center;" width="15%" height="25px">professor id</th>
+					<th style="text-align:center;" width="15%" height="25px">project id</th>
+					<th style="text-align:center;" width="12%" height="25px">explain of project</th>
+					<th style="text-align:center;" width="10%" height="25px">time for release</th>
+					<th style="text-align:center;" width="10%" height="25px">document</th>
+					<th style="text-align:center;" width="7%"  height="25px">operation</th>
 				</tr>
 			</s:if>
 			<s:iterator value="schemes" var="schemes">
@@ -62,13 +62,13 @@
 						<s:a onclick="return recieve_confirm()" action="consult_recieve" namespace="/consult">
 							<s:param name="scm_id" value="id"></s:param>
 							<s:param name="id" value="cons_id"></s:param>
-							<button type="button" class="btn btn-success btn-xs">接受</button>
+							<button type="button" class="btn btn-success btn-xs">receive</button>
 						</s:a>
 					</td>
 				</tr>
 			</s:iterator>
 		</table>
-	<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
+	<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">return</span></a>
 	</div>
 </body>
 </html>

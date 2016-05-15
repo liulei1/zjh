@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>需求信息</title>
+     <title>consult information</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -32,31 +32,31 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					需求列表
+					consult list
 				</h3>
 				<table class="table table-bordered">
 					<thead>
 						<tr class="warning">
 							<th style="text-align:center;">
-								标题
+								title
 							</th>
 							<th style="text-align:center;">
-								酬金
+								money
 							</th>
 							<th style="text-align:center;">
-								类别
+								category
 							</th>
 							<th style="text-align:center;">
-								状态
+								state
 							</th>
 							<th style="text-align:center;">
-								查看
+								review
 							</th>
 							<th style="text-align:center;">
-								拒绝
+								reject
 							</th>
 							<th style="text-align:center;">
-								批准
+								approve
 							</th>
 						</tr>
 					</thead>
@@ -78,20 +78,20 @@
 							<td align="center">
 								<s:a action="consult_view" namespace="/consult">
 									<s:param name="id" value="id" />
-									<button type="button" class="btn btn-info btn-xs">查看</button>
+									<button type="button" class="btn btn-info btn-xs">review</button>
 								</s:a>
 								
 							</td>
 							<td align="center">
 								<s:a action="consult_reject" namespace="/consult">
 									<s:param name="id" value="id" />
-									<button type="button" class="btn btn-danger btn-xs">拒绝</button>
+									<button type="button" class="btn btn-danger btn-xs">reject</button>
 								</s:a>
 							</td>
 							<td align="center">
 								<s:a action="consult_allow" namespace="/consult">
 									<s:param name="id" value="id" />
-									<button type="button" class="btn btn-success btn-xs">批准</button>
+									<button type="button" class="btn btn-success btn-xs">approve</button>
 								</s:a>
 							</td>
 						</tr>

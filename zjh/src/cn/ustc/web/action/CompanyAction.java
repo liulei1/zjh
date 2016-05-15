@@ -2,9 +2,11 @@ package cn.ustc.web.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.Professor;
 import cn.ustc.web.service.CompanyService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -16,6 +18,11 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	@Override
 	public Company getModel() {
 		return company;
+	}
+	
+	private List<Company> companys;
+	public List<Company> getCompanys() {
+		return companys;
 	}
 	
 	@Autowired
@@ -38,6 +45,19 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 			}
 		}
 		return SUCCESS;
+	}
+	
+	public String companySearch(){
+		String cat=ServletActionContext.getRequest().getParameter("category");
+		companys=companyService.findCompanyByVocation(cat);
+		return "findSuccess";
+	}
+	
+	public String companySearchByName(){
+		String name=ServletActionContext.getRequest().getParameter("findByName");
+		System.out.println(name);
+		companys=companyService.findCompanyByName(name);
+		return "findSuccess";
 	}
 
 	

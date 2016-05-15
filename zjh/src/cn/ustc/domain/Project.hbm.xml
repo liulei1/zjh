@@ -15,6 +15,6 @@
 		<property name="com_id" not-null="true"/>
 		<property name="current_state" type="string"/>
 		
-		<many-to-one name="consult" class="cn.ustc.domain.Consult" column="consult_id" unique="true" cascade="all-delete-orphan" lazy="false"/>
+		<many-to-one name="consult" class="cn.ustc.domain.Consult" column="cons_id" unique="true" cascade="all-delete-orphan" lazy="false"/>
 	</class>
 </hibernate-mapping>

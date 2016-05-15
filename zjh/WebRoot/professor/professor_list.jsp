@@ -9,10 +9,8 @@
 	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 	 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
     
-    <title>专家列表</title>
+    <title>professor list</title>
     
-	
-
   </head>
   	
   <body>
@@ -39,4 +37,5 @@
   			</tr>
   		</s:iterator>
   </body>
+  
 </html>

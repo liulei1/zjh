@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>普通用户列表</title>
+<title>common-user list</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -23,16 +23,16 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>普通用户列表</strong></h1>
+<h1 align="center"><strong>user list</strong></h1>
 	<div align="center">
 		<table frame="border" rules="all">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">用户名</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">user name</td>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">Email</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">性别</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">修改</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">查看</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">删除</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">sex</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">modify</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">review</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">delete</td>
 			</tr>
 			<s:iterator value="users" var="user">
 				<tr>
@@ -50,7 +50,7 @@
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="user_editview" namespace="/user">
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-info btn-xs">修改</button>
+							<button type="button" class="btn btn-info btn-xs">modification</button>
 						</s:a>
 					</td>
 					
@@ -58,20 +58,20 @@
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="user_view" namespace="/user">
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-success btn-xs">查看</button>
+							<button type="button" class="btn btn-success btn-xs">view</button>
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="user_delete" namespace="/user" cssClass="btn btn-danger btn-xs delLink">
 							<s:param name="id" value="id" />
-							删除
+							delete
 						</s:a>
 					</td>
 				</tr>
 			</s:iterator>
 		</table>
 		<br>
-		<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
+		<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">return</span></a>
 	</div>
 </body>
 </html>
