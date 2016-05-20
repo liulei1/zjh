@@ -37,8 +37,21 @@ public class ProfessorService {
 		return Professor;
 	}
 
-	public int update(Professor Professor) {
-		return professorDAO.update(Professor);
+	/**
+	 * 根据id更新传入的用户信息
+	 * @param professor
+	 */
+	public void updateInfo(Professor professor) {
+		Professor update = this.copyUpdateProfessor(professor);
+		professorDAO.update(update);
+	}
+	
+	/**
+	 * 更新传入的持久化对象
+	 * @param professor
+	 */
+	public void update(Professor professor) {
+		professorDAO.update(professor);
 	}
 
 	public void deleteProfessorById(String id) {
@@ -53,4 +66,21 @@ public class ProfessorService {
 		return professorDAO.findProfessorVocation(cat);
 	}
 
+	/**
+	 * 复制更新的内容到持久对象中
+	 * @param professor
+	 * @return
+	 */
+	private Professor copyUpdateProfessor(Professor professor){
+		Professor instance = professorDAO.findByProfessorID(professor.getId());
+		instance.setName(professor.getName());
+		instance.setEmail(professor.getEmail());
+		instance.setTelephone(professor.getTelephone());
+		instance.setAddress(professor.getAddress());
+		instance.setWebsite(professor.getWebsite());
+		instance.setSex(professor.getSex());
+		instance.setField(professor.getField());
+		instance.setIntroduction(professor.getIntroduction());
+		return instance;
+	}
 }

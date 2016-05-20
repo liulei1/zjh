@@ -15,7 +15,7 @@
 	$(function(){
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
 			//alert(data.vocationList[0].name);
-			var html = '<select name="category"><option selected="selected" value="">--请选择领域--</option>';
+			var html = '<select name="category"><option selected="selected" value="">-- select --</option>';
 			$.each(data.vocationList, function(index, context){
   				html += '<option value="' + context.name +'">' + context.name +'</option>';
              });
@@ -36,46 +36,46 @@
 </script>
 <body>
 	<div align="center">
-		<h1>consult release</h1>
+		<h1>Publish Consult</h1>
 		<br>
 		<s:form cssClass="form-horizontal" role="form" action="consult_publish" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple" onsubmit="return publishCheck()">
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">title</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Title</label>
 				<div class="col-sm-2">
 				<s:textfield cssClass="form-control" id="title" name="title"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet">money</label>
+				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet">Budget</label>
 				<div class="col-sm-2">
 					<s:textfield cssClass="form-control" id="budget" name="budget"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">describe</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Describe</label>
 				<div class="col-sm-2">
 					<s:textarea id="details" name="details" rows="3" cssClass="form-control"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">document</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Document</label>
 				<div class="col-sm-2">
 					<s:file name="file"></s:file>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">vocation</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Vocation</label>
 				<div class="col-sm-1" id="field"></div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">remarks</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Remarks</label>
 				<div class="col-sm-2">
 					<s:textarea name="remark" rows="2" cssClass="form-control"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-2 col-sm-offset-5">
-					<input type="submit" class="btn btn-primary" value="release">
+					<input type="submit" class="btn btn-primary" value="submit">
 					<input type="reset" class="btn btn-warning" value="cancle">
 				</div>
 			</div>

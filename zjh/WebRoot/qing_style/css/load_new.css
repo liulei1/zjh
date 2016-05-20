@@ -1,0 +1,108 @@
+ul{margin:0;padding:0;}
+li{list-style: none;}
+html,body{
+    color:#505050;
+    background:#f9f9f9;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
+.navBar{
+    height:55px;
+    background-color:#1369C0;
+    color:#ffffff;
+}
+.design_class {
+    width: 190px;
+    height:100%;
+    float: left;
+    text-align: center;
+}
+.design_class h3{ line-height: 17px;}
+.nav_list a{
+    color:#ffffff;
+    float: left;
+    font-size: 14px;
+    margin: 10px 20px 8px;
+    padding:5px;
+    text-decoration: none;
+}
+.nav_list a:hover{border-bottom: 2px solid #ffffff}
+
+.container{width:100%;overflow: hidden;}
+.form-signin {
+    max-width: 600px;
+    max-height:420px;
+    padding:20px 50px 100px;
+    margin: 0 auto 50px;
+    background-color:  #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+    font-size: 12px;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 6px 50px;
+}
+.usertype-style{
+    font-size: 13px;
+    height: 35px;
+    margin-bottom: 15px;
+    padding: 6px 50px;
+}
+.hr1{
+    height:1px;
+    width: 230px;
+    border-top: 1.5px solid #1369C0;;
+    margin-left:0;
+}
+#line-chart {
+    height:300px;
+    width:800px;
+    margin: 0px auto;
+    margin-top: 1em;
+}
+.first {
+    font-family: georgia, serif;
+    color: #1369C0;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.btn1{
+    background-color: #1369C0;
+    width: 180px;
+}
+.aside{
+    margin-top: 50px;
+    float: right;
+    border-left: 1px solid #ebebeb;
+    width: 47%;
+    height: 80%;
+}
+.main {
+    height: 100%;
+    width: 53%;
+    float: left;
+}
+.content {
+    width: 500px;
+    height: 400px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.footer{
+    height:30px;
+    border-top: 1px dashed #999999;
+    margin-top:70px;}
+.footer p{text-align: center}

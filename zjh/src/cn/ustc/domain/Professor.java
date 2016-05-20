@@ -22,6 +22,14 @@ public class Professor extends User{
 
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
+	private String newPassword;//新密码
+	
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 	public String getBalance() {
 		return balance;
 	}

@@ -4,9 +4,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册-专家汇</title>
+    <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../qing_style/css/load_new.css">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
 <script type="text/javascript">
 	$(function(){
 		$("#add_username").blur(function(){
@@ -36,77 +42,45 @@
 		}
 	}
 </script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>regist-collection of professors platform</title>
-<link
-	href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/qing_style/load.css">
-
-
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-</head>
-
-<body class="">
-	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">platform for collection of professors</span>
-		</a>
-	</div>
-	<div class="container" style="margin-top:10px">
-		<div align="center">
-			<span id="result"></span><font color="red"> <s:actionerror />
-				<s:fielderror /> </font>
-		</div>
-		<form class="form-signin" action="user_register" namespace="/token"
-			theme="simple" method="post" style="max-height: 400px;"
-			onsubmit="return check();">
-
-			<!--div class="page-header">
-            <ul>
-                <li class="active">登录</li>
-                <li>免注册登录</li>
-            </ul>
-        </div-->
-			<div class="content">
-				<div class="main">
-					<div class="">
-						<p>regist</p>
-						<hr class="hr1" />
-					</div>
-					<s:textfield name="name" id="add_username"
-						class="input-block-level" placeholder="用户名" />
-
-					<s:textfield name="email" class="input-block-level"
-						placeholder="邮箱" />
-					<s:textfield type="password" name="password"
-						class="input-block-level" placeholder="密码" />
-					<s:textfield type="password" name="repassword"
-						class="input-block-level" placeholder="重复密码" />
-					<br>
-					<s:radio list="{'男','女'}" name="sex" id="female" />
-					<br>
-					<button class="btn btn-warning btn1" type="submit">注册</button>
-					<button class="btn" type="reset">重置</button>
-				</div>
-				<div class="aside">
-					<div class="passport-goto" style="text-align: center">
-						haven have a account <a
-							href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
-					</div>
-				</div>
-			</div>
-		</form>
-		<!--footer class="main-footer">
-        <hr/>
-        <p class="pull-right">&copy; 2013.8 <a href="#" target="_blank"> shun_fzll</a></p>
-    </footer-->
-	</div>
-
-
+<body>
+<div class="navBar">
+    <div class="design_class">
+        <h3>ZJH</h3>
+    </div>
+    <ul class="nav_list" >
+        <li ><a href="index.html" target="_blank">首页</a></li>
+        <li ><a href="#">服务介绍</a></li>
+    </ul>
+</div>
+<br/>
+<br/>
+<div class="container">
+    <form class="form-signin" action="user_register" namespace="/token" theme="simple" method="post">
+        <div class="content">
+        <div class="main">
+        <div>
+            <h3>注册</h3>
+            <hr class="hr1"/>
+        </div>
+            <input type="text" class="input-block-level" placeholder="用户名"  name="uname"><br/>
+            <input type="text" class="input-block-level" placeholder="邮箱"  name="password"><br/>
+            <input type="password" class="input-block-level" placeholder="密码"  name="password"><br/>
+            <input type="password" class="input-block-level" placeholder="重复密码"  name="repassword"><br/>
+            <label for="male">男</label>
+            <input type="radio" name="sex" id="male" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="female">女</label>
+            <input type="radio" name="sex" id="female" />
+            <button class="btn btn-primary btn1" type="submit">注册</button>
+            <button class="btn" type="reset">重置</button>
+        </div>
+        <div class="aside">
+            <div class="passport-goto">已有账号? <a href="load.html">立即登录</a></div>
+        </div>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
+</div>
 </body>
 </html>

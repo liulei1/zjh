@@ -7,20 +7,12 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="category"><option selected="selected">--请选择领域--</option>';
-			$.each(data.vocationList,function(index,context){
-				html+='<option value="'+context.id+'">'+context.name+'</option>';
-			});
-			html+='</select>';
-			$('#field').html(html);
-		});
-
+	$(function(){
 		$("#add_username").blur(function(){
-			$.post("${pageContext.request.contextPath}/user/checkProfessorName.action",{"name":$(this).val()},function(data){
+			$.post("${pageContext.request.contextPath}/json/checkUserName.action",{"name":$(this).val()},function(data){
 				if(data.nameExsit){
 					// 用户名已经存在
+					
 					$("#result").html("<font color='red' class='check'>用户名已经存在</font>");
 				}else{
 					// 用户名不存在
@@ -29,11 +21,14 @@
 			}); 
 		}); 
 	});
+	
 	function check(){
-		var flag=$(".check").html();
-		if(flag=="用户名已经存在"){
+		var flag = $(".check").html();
+		if(flag == null){
+			alert("没有校验");
 			return false;
-		}else if(flag==null){
+		}
+		if (flag=="用户名已经存在"){
 			return false;
 		}else{
 			return true;
@@ -44,10 +39,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>regist collection of professors</title>
-<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
-rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
+<title>regist-collection of professors platform</title>
+<link
+	href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/qing_style/load.css">
 
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -56,7 +53,7 @@ rel="stylesheet">
 
 <body class="">
 	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">collection of professors platform</span>
+		<a class="brand" href="index.html"><span class="first">platform for collection of professors</span>
 		</a>
 	</div>
 	<div class="container" style="margin-top:10px">
@@ -64,15 +61,20 @@ rel="stylesheet">
 			<span id="result"></span><font color="red"> <s:actionerror />
 				<s:fielderror /> </font>
 		</div>
-		<s:form cssClass="form-signin" action="professor_register" namespace="/token" theme="simple" method="post" cssStyle="max-height: 400px;"
+		<form class="form-signin" action="user_register" namespace="/token"
+			theme="simple" method="post" style="max-height: 400px;"
 			onsubmit="return check();">
 
-
+			<!--div class="page-header">
+            <ul>
+                <li class="active">登录</li>
+                <li>免注册登录</li>
+            </ul>
         </div-->
 			<div class="content">
 				<div class="main">
 					<div class="">
-						<p align="center">Regist</p>
+						<p>regist</p>
 						<hr class="hr1" />
 					</div>
 					<s:textfield name="name" id="add_username"
@@ -85,32 +87,23 @@ rel="stylesheet">
 					<s:textfield type="password" name="repassword"
 						class="input-block-level" placeholder="重复密码" />
 					<br>
-					<s:textfield name="real_name" placeholder="真实姓名"></s:textfield>
+					<s:radio list="{'男','女'}" name="sex" id="female" />
 					<br>
-					<s:textfield name="telephone" placeholder="联系方式"></s:textfield>
-					<br>
-					<s:textfield name="address" placeholder="地址"></s:textfield>
-					<br>
-					<s:textfield name="website" placeholder="网址"></s:textfield>
-					<br>
-					<s:textfield name="identity" placeholder="身份证号"></s:textfield>
-					<br>
-					<s:textfield name="introduction" placeholder="个人简介"></s:textfield>
-					<br>
-					性别:<s:radio list="{'男','女'}" name="sex" id="female" align="right"/>
-					<br>
-					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">regist</button>
-					<button class="btn" type="reset" align="right">reset</button>
+					<button class="btn btn-warning btn1" type="submit">注册</button>
+					<button class="btn" type="reset">重置</button>
 				</div>
 				<div class="aside">
 					<div class="passport-goto" style="text-align: center">
-						haven a  account?
-					<a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
+						haven have a account <a
+							href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
 					</div>
 				</div>
 			</div>
-		</s:form>
+		</form>
+		<!--footer class="main-footer">
+        <hr/>
+        <p class="pull-right">&copy; 2013.8 <a href="#" target="_blank"> shun_fzll</a></p>
+    </footer-->
 	</div>
 
 

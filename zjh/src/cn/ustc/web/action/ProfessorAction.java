@@ -2,14 +2,14 @@ package cn.ustc.web.action;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.web.service.ProfessorService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
@@ -66,4 +66,31 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "findSuccess";
 	}
 
+	// 查看专家用户信息
+	public String viewProfessorInfo(){
+		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
+		professor = professorService.findProfessorById(user.getId());
+		return "viewProfessorInfoSUCCESS";
+	}
+	
+	public String updateProfessorInfo(){
+		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
+		professor.setId(user.getId());
+		professorService.updateInfo(professor);
+		return "updateProfessorInfoSUCCESS";
+	}
+	
+	public String changePassword(){
+		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
+		Professor p = professorService.findProfessorById(user.getId());
+		ActionContext context = ActionContext.getContext();
+		if(p.getPassword().equals(professor.getPassword())){
+			p.setPassword(professor.getNewPassword());
+			professorService.update(p);
+			context.put("result", "operate success");
+		}else{
+			context.put("result", "passwords entered did not match");
+		}
+		return "changePasswordSUCCESS";
+	}
 }

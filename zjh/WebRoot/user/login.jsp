@@ -5,7 +5,6 @@
 <html >
 <head>
 
-
     <title>login collection of professors</title>
     <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
@@ -33,54 +32,52 @@
 
 <body class="">
 <div class="navbar">
-    <a class="brand" href="index.html"><span class="first">Collection Of Professors Platform</span></a>
-</div>
+    <h1>
+    	<a class="brand" href="index.html"><span class="first">Collection Of Professors Platform</span></a></div>
+    </h1>
+
 <div class="container"style="margin-top:10px">
     <form class="form-signin" action="${pageContext.request.contextPath}/user/user_login" method="post" onsubmit="return loginCheck()">
         <div class="content" style="height: 350px;">
         <div class="main">
         <div class="" >
-            <p align="center">user login</p>
+            <h2 align="center">User Login</h2>
             <hr class="hr1"/>
-        </div>
-        <input type="text" class="input-block-level" placeholder="user name"  name="name"><br/>
-        <input type="password" class="input-block-level" placeholder="password"  name="password"><br/>
         
-        <div class="select-style">
-        <select name="usertype" id="usertype" class="usertype-style" >
-            <option selected="selected"> category of user</option>
-            <option value="company">company</option>
-            <option value="professor">professor</option>
-            <option value ="normal">common user</option>
-            <option value ="administer">administer</option>
-        </select>
-		<input name="captcha" type="text" class="loginuser" placeholder="vertification code" /><br>
-    	<center>
-    		<img id="captchaImg" src="${pageContext.request.contextPath}/user/user_getCode" onclick="refreshCode()"/>
-		</center>
+	        <input type="text" class="input-block-level" placeholder="Username"  name="name"><br/>
+	        <input type="password" class="input-block-level" placeholder="Password"  name="password"><br/>
+	        
+	        <div class="select-style">
+		        <select name="usertype" id="usertype" class="usertype-style" >
+		            <option selected="selected">-- Select Role --</option>
+		            <option value="company">Company User</option>
+		            <option value="professor">Professor User</option>
+		            <option value ="normal">Common User</option>
+		            <option value ="administer">Administer</option>
+		        </select>
+				<input name="captcha" type="text" class="loginuser" placeholder="Vertification" /><br>
+		    	<center>
+		    		<img id="captchaImg" src="${pageContext.request.contextPath}/user/user_getCode" onclick="refreshCode()"/>
+				</center>
+	        </div>
         </div>
         <br/>
-        <button class="btn btn-warning btn1" type="submit">login</button>
+        <button class="btn btn-warning" type="submit">login</button>
         <button class="btn" type="reset">reset</button>
         </div>
         <div class="aside">
-            <div class="passport-goto"style="text-align: center">have no account?regist with free 
+            <div class="passport-goto"style="text-align: center">Have no account? Regist with free 
             <br>
             <br>
-            <a href="${pageContext.request.contextPath }/professor/professor_register.jsp">regist of professor</a><br>
+            <a href="${pageContext.request.contextPath }/professor/professor_register.jsp">Regist Of Professor</a><br>
             <br>
-            <a href="${pageContext.request.contextPath }/company/company_register.jsp">regist of company</a><br>
+            <a href="${pageContext.request.contextPath }/company/company_register.jsp">Regist Of Company</a><br>
             <br>
-            <a href="${pageContext.request.contextPath }/user/register.jsp">regist of common user</a>
+            <a href="${pageContext.request.contextPath }/user/register.jsp">Regist Of Common User</a>
             </div>
         </div>
         </div>
-
     </form>
-    <!--footer class="main-footer">
-        <hr/>
-        <p class="pull-right">&copy; 2013.8 <a href="#" target="_blank"> shun_fzll</a></p>
-    </footer-->
 </div>
 
 

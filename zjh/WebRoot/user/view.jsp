@@ -19,7 +19,7 @@
 	
 			<tr>
 				<td align="center" bgColor="#f5fafe">
-					name for login:
+					UserName:
 				</td>
 				<td  bgColor="#ffffff">
 					<s:property value="model.name" />
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td align="center" bgColor="#f5fafe">
-					sex：
+					Sex：
 				</td>
 				<td bgColor="#ffffff">
 					<s:property value="model.sex"/>

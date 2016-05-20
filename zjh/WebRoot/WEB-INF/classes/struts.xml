@@ -19,12 +19,10 @@
 			<result name="professorregister">/professor/professor_register.jsp</result>
 			<result name="companyRegister">/company/company_register.jsp</result>
 
-
 			<result name="professor_login" type="chain">user_manage_professoruser_login</result>
 			<result name="professorloginSUCCESS">/professor/home.jsp</result>
 			<result name="companyloginSUCCESS">/company/home.jsp</result>
 			<result name="administerloginSUCCESS">/administer/home.jsp</result>
-
 
 			<result name="input">/user/login.jsp</result>
 			<result name="loginSUCCESS" type="redirect">/user/home.jsp</result>
@@ -51,4 +49,5 @@
 	<include file="liulei.xml" />
 	<include file="why.xml" />
 	<include file="android.xml" />
+	<include file="myJson.xml" />
 </struts>

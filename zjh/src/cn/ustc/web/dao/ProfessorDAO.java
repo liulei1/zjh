@@ -39,9 +39,8 @@ public class ProfessorDAO extends HibernateDaoSupport{
 		return list;
 	}
 
-	public int update(Professor professor) {
+	public void update(Professor professor) {
 		this.getHibernateTemplate().update(professor);
-		return 1;
 	}
 
 	public void deleteById(String id) {

@@ -1,0 +1,106 @@
+*{margin:0;padding:0;}
+input{border:none;}
+li{list-style: none;}
+a{ text-decoration: none;}
+.logoBar{
+    height:85px;
+    background-color:#1D7AD9;
+}
+.logo{
+    padding-left: 120px;padding-top: 25px;
+}
+.logoText{color:#d5d5d5;}
+.lineText{
+    width:90px;
+    margin-left: 30px;
+    font-size: 12px;
+    color:#d5d5d5;}
+.fl{float:left;}
+.fr{float:right;}
+/*.searchBox{
+    width:430px;
+    margin-left: 520px;
+    padding-top: 5px;}
+.search_query{width: 360px;height:35px;}
+.search_btn{
+    width:70px;
+    height: 35px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";"微软雅黑";
+    background-color: #FF8C00;
+}*/
+.loginText{padding-right:150px;padding-top: 10px;color:#d5d5d5;}
+.linkText{
+    margin-left: 10px;
+    color:#d5d5d5;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";"微软雅黑";}
+.loginText span{font-size: 14px;}
+.navBar{
+    height:35px;
+    background-color:#1369C0;
+    color:#ffffff;
+    font-family: "Microsoft YaHei";"微软雅黑";
+}
+.design_class {
+    width: 190px;
+    position: relative;
+    /* padding-left:10px;前后顺序不同 效果不同*/
+}
+.design_class li:hover{
+    border:2px solid #4593FD;
+    border-right: 0px;
+    background-color:#ffffff ;
+}
+.design_class li:hover a{
+    color:#000000;
+}
+.design_class li:hover .item_detail{
+    display:block;
+}
+.design_class li a:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.navBar h3{
+    text-align:center;
+    line-height:35px;}
+.nav{line-height:35px;padding-left:300px;}
+.nav li{float:left;}
+.nav a{height:35px;display:inline-block;padding:0 35px;color:#ffffff}
+.nav .active{background-color:#4593FD;}
+.item{
+    background-color:#4593FD;
+    font-size: 14px;
+    position: absolute;left:45px;top:35px;width:80%;}
+.design_class li{
+    height:35px;
+    line-height: 35px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #3487F2;
+    border-top: 1px solid #5AA1FE;
+}
+.design_class li a{color:#ffffff;}
+.item_detail{
+    display:none;
+    position: absolute;
+    width:500px;
+    left:150px;top:0px;
+    border:2px solid #DDDDDD;
+    border-left:0px;
+    background-color: #ffffff;
+    padding-left: 20px;
+}
+.second{
+    left:150px;top:55px;
+}
+.design_class dt{
+    color:#000000;
+}
+.design_class dd a{
+    color:#000000;
+}
+.design_class dd{
+    height:35px;
+    line-height: 35px;
+}

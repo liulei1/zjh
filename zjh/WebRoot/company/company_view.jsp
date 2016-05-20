@@ -4,18 +4,22 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="category"><option selected="selected">--请选择领域--</option>';
+			var html='<select name="category" onload="vocationSelect()">';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
 			html+='</select>';
 			$('#field').html(html);
 		});
+
+		function vocationSelect(){
+			var vocation = "${model.field}";
+			$("select [name='category']").val(vocation);
+		}
 
 		$("#add_username").blur(function(){
 			$.post("${pageContext.request.contextPath}/user/checkProfessorName.action",{"name":$(this).val()},function(data){
@@ -44,16 +48,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>regist collection of professors</title>
-<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
-rel="stylesheet">
+<title>专家用户个人信息</title>
+<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
-
-
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </head>
-
 <body class="">
 	<div class="navbar">
 		<a class="brand" href="index.html"><span class="first">collection of professors platform</span>
@@ -66,53 +66,64 @@ rel="stylesheet">
 		</div>
 		<s:form cssClass="form-signin" action="professor_register" namespace="/token" theme="simple" method="post" cssStyle="max-height: 400px;"
 			onsubmit="return check();">
-
-
-        </div-->
-			<div class="content">
+			
+			<div>
 				<div class="main">
 					<div class="">
-						<p align="center">Regist</p>
+						<p align="center">UserInfo</p>
 						<hr class="hr1" />
 					</div>
-					<s:textfield name="name" id="add_username"
-						class="input-block-level" placeholder="用户名" />
-
-					<s:textfield name="email" class="input-block-level"
-						placeholder="邮箱" />
-					<s:textfield type="password" name="password"
-						class="input-block-level" placeholder="密码" />
-					<s:textfield type="password" name="repassword"
-						class="input-block-level" placeholder="重复密码" />
-					<br>
-					<s:textfield name="real_name" placeholder="真实姓名"></s:textfield>
-					<br>
-					<s:textfield name="telephone" placeholder="联系方式"></s:textfield>
-					<br>
-					<s:textfield name="address" placeholder="地址"></s:textfield>
-					<br>
-					<s:textfield name="website" placeholder="网址"></s:textfield>
-					<br>
-					<s:textfield name="identity" placeholder="身份证号"></s:textfield>
-					<br>
-					<s:textfield name="introduction" placeholder="个人简介"></s:textfield>
-					<br>
-					性别:<s:radio list="{'男','女'}" name="sex" id="female" align="right"/>
+					<table>
+						<tr>
+							<td>Username</td>
+							<td>
+								<input type="text" value="${model.name}">
+							</td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td>
+								<input type="text" value="${model.email}">
+							</td>
+						</tr>
+						<tr>
+							<td>Telephone</td>
+							<td>
+								<input type="text" value="${model.telephone}">
+							</td>
+						</tr>
+						<tr>
+							<td>Address</td>
+							<td>
+								<input type="text" value="${model.address}">
+							</td>
+						</tr>
+						<tr>
+							<td>Website</td>
+							<td>
+								<input type="text" value="${model.website}">
+							</td>
+						</tr>
+						<tr>
+							<td>Sex</td>
+							<td>
+								<s:radio list="{'男','女'}" name="sex" id="female" align="right" value="%{model.sex}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>Vocation</td>
+							<td>
+								<div id="field" ></div>
+							</td>
+						</tr>
+					</table>
 					<br>
 					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">regist</button>
+					<button class="btn btn-warning btn1" type="submit">submit</button>
 					<button class="btn" type="reset" align="right">reset</button>
-				</div>
-				<div class="aside">
-					<div class="passport-goto" style="text-align: center">
-						haven a  account?
-					<a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
-					</div>
 				</div>
 			</div>
 		</s:form>
 	</div>
-
-
 </body>
 </html>

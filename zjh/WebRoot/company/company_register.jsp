@@ -73,7 +73,7 @@ rel="stylesheet">
 			<div class="content">
 				<div class="main">
 					<div class="">
-				<p align="center">regist</p>
+				<p align="center">Regist</p>
 						<hr class="hr1" />
 					</div>
 					<s:textfield name="name" id="add_username"

@@ -78,4 +78,11 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		companyService.addBalance(id, balance);
 		return "addBalanceSUCCESS";
 	}
+	
+	// 查看企业用户信息
+	public String viewCompanyInfo(){
+		String id = company.getId();
+		company = companyService.findCompanyById(id);
+		return "viewCompanyInfoSUCCESS";
+	}
 }
