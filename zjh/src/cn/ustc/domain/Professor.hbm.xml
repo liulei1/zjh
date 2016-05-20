@@ -17,11 +17,11 @@
 		<property name="website" type="string"></property>
 		<property name="real_name" type="string" not-null="true"/>
 		<property name="image"/>
-		<property name="telephone"/>
-		<property name="identity"/>
+		<property name="telephone" not-null="true"/>
+		<property name="identity" not-null="true"/>
 		<property name="id_image"/>
 		<property name="introduction"/>
-		<property name="field"/>
+		<property name="field" not-null="true"/>
 		<property name="authority"/>
 		<property name="achieve"/>
 		<property name="annotation"/>

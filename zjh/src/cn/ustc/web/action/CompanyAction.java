@@ -10,6 +10,7 @@ import cn.ustc.domain.User;
 import cn.ustc.domain.Professor;
 import cn.ustc.web.service.CompanyService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
@@ -81,8 +82,33 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	
 	// 查看企业用户信息
 	public String viewCompanyInfo(){
-		String id = company.getId();
-		company = companyService.findCompanyById(id);
+		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		company = companyService.findCompanyById(user.getId());
 		return "viewCompanyInfoSUCCESS";
+	}
+	
+	// 更新信息
+	public String updateProfessorInfo(){
+		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		company.setId(user.getId());
+		companyService.updateInfo(company);
+		ActionContext context = ActionContext.getContext();
+		context.put("result", "operate success");
+		return "updateProfessorInfoSUCCESS";
+	}
+	
+	// 更新密码
+	public String changePassword(){
+		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
+		Company c = companyService.findCompanyById(user.getId());
+		ActionContext context = ActionContext.getContext();
+		if(c.getPassword().equals(company.getPassword())){
+			c.setPassword(company.getNewPassword());
+			companyService.update(c);
+			context.put("result", "operate success");
+		}else{
+			context.put("result", "passwords entered did not match");
+		}
+		return "changePasswordSUCCESS";
 	}
 }

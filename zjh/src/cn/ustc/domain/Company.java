@@ -16,7 +16,14 @@ public class Company extends User{
 	private String balance; //账户余额
 	
 	private Set<Consult> consults = new HashSet<Consult>();//
+	private String newPassword;// 新密码
 	
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 	public String getBalance() {
 		return balance;
 	}

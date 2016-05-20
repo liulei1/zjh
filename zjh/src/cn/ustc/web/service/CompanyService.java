@@ -43,8 +43,12 @@ public class CompanyService {
 		return Company;
 	}
 
-	public void update(Company Company) {
-		companyDAO.update(Company);
+	/**
+	 * 更新持久对象
+	 * @param company 持久对象
+	 */
+	public void update(Company company) {
+		companyDAO.update(company);
 	}
 
 	public void deleteCompanyById(String id) {
@@ -71,5 +75,22 @@ public class CompanyService {
 	public List<Company> findCompanyByVocation(String cat) {
 		return companyDAO.findCompanyByVocation(cat);
 	}
+
+	public void updateInfo(Company company) {
+		Company update = this.copyUpdateCompany(company);
+		companyDAO.update(update);
+	}
 	
+	private Company copyUpdateCompany(Company company){
+		Company instance = companyDAO.findByCompanyID(company.getId());
+		instance.setName(company.getName());
+		instance.setEmail(company.getEmail());
+		instance.setTelephone(company.getTelephone());
+		instance.setAddress(company.getAddress());
+		instance.setWebsite(company.getWebsite());
+		instance.setSex(company.getSex());
+		instance.setField(company.getField());
+		instance.setAnnotation(company.getAnnotation());
+		return instance;
+	}
 }

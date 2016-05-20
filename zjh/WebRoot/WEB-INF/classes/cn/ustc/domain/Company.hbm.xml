@@ -14,10 +14,11 @@
 		<property name="email" type="string"></property>
 		<property name="usertype" type="string" not-null="true"></property>
 		<property name="real_name" not-null="true"/>
+		<property name="sex" not-null="true"/>
 		<property name="image"/>
-		<property name="telephone"/>
+		<property name="telephone" not-null="true"/>
 		<property name="address"/>
-		<property name="field"/>
+		<property name="field" not-null="true"/>
 		<property name="authority"/>
 		<property name="website"/>
 		<property name="annotation"/>

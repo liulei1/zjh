@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="category" onload="vocationSelect()">';
+			var html='<select name="field" onload="vocationSelect()">';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
@@ -22,24 +22,25 @@
 		}
 
 		$("#add_username").blur(function(){
-			$.post("${pageContext.request.contextPath}/user/checkProfessorName.action",{"name":$(this).val()},function(data){
-				if(data.nameExsit){
-					// 用户名已经存在
-					$("#result").html("<font color='red' class='check'>用户名已经存在</font>");
-				}else{
-					// 用户名不存在
-					$("#result").html("<font color='green' class='check'>用户名不存在，可以使用</font>");
-				}
-			}); 
+			var name = "${model.name}";
+			if(name != $(this).val()){
+				$.post("${pageContext.request.contextPath}/json/checkCompanyName.action",{"name":$(this).val()},function(data){
+					if(data.nameExsit){
+						// 用户名已经存在
+						$("#result").html("<font color='red' class='check'>用户名已经存在</font>");
+					}else{
+						// 用户名不存在
+						$("#result").html("<font color='green' class='check'>用户名不存在，可以使用</font>");
+					}
+				});
+			}
 		}); 
-	});
+	}); 
 	function check(){
 		var flag=$(".check").html();
 		if(flag=="用户名已经存在"){
 			return false;
-		}else if(flag==null){
-			return false;
-		}else{
+		}else {
 			return true;
 		}
 	}
@@ -54,22 +55,21 @@
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </head>
-<body class="">
-	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">collection of professors platform</span>
-		</a>
-	</div>
+<body>
 	<div class="container" style="margin-top:10px">
 		<div align="center">
-			<span id="result"></span><font color="red"> <s:actionerror />
-				<s:fielderror /> </font>
+			<span id="result"></span>
+			<span>
+				<font color="red">
+					<b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
+				</font>
+			</span>
 		</div>
-		<s:form cssClass="form-signin" action="professor_register" namespace="/token" theme="simple" method="post" cssStyle="max-height: 400px;"
+		<s:form cssClass="form-signin" action="company_updateProfessorInfo" namespace="/company" theme="simple" method="post" cssStyle="max-height: 400px;"
 			onsubmit="return check();">
-			
 			<div>
 				<div class="main">
-					<div class="">
+					<div>
 						<p align="center">UserInfo</p>
 						<hr class="hr1" />
 					</div>
@@ -77,31 +77,31 @@
 						<tr>
 							<td>Username</td>
 							<td>
-								<input type="text" value="${model.name}">
+								<input type="text" name="name" value="${model.name}" id="add_username">
 							</td>
 						</tr>
 						<tr>
 							<td>Email</td>
 							<td>
-								<input type="text" value="${model.email}">
+								<input type="text" name="email" value="${model.email}">
 							</td>
 						</tr>
 						<tr>
 							<td>Telephone</td>
 							<td>
-								<input type="text" value="${model.telephone}">
+								<input type="text" name="telephone" value="${model.telephone}">
 							</td>
 						</tr>
 						<tr>
 							<td>Address</td>
 							<td>
-								<input type="text" value="${model.address}">
+								<input type="text" name="address" value="${model.address}">
 							</td>
 						</tr>
 						<tr>
 							<td>Website</td>
 							<td>
-								<input type="text" value="${model.website}">
+								<input type="text" name="website" value="${model.website}">
 							</td>
 						</tr>
 						<tr>
@@ -116,11 +116,16 @@
 								<div id="field" ></div>
 							</td>
 						</tr>
+						<tr>
+							<td>Annotation</td>
+							<td>
+								<textarea rows="2" name="annotation" cols="30">${model.annotation}</textarea>
+							</td>
+						</tr>
 					</table>
 					<br>
-					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">submit</button>
-					<button class="btn" type="reset" align="right">reset</button>
+					<button class="btn btn-info" type="submit">submit</button>
+					<button class="btn btn-warning" onclick="javascript:history.go(-1);">back</button>
 				</div>
 			</div>
 		</s:form>

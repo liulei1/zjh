@@ -115,7 +115,12 @@
 				<param name="actionName">company_skipBalancePage</param>
 				<param name="namespace">/company</param>
 			</result>
-			<result name="viewCompanyInfoSUCCESS">/company/company_register.jsp</result>
+			<result name="viewCompanyInfoSUCCESS">/company/company_view.jsp</result>
+			<result name="updateProfessorInfoSUCCESS" type="redirectAction">
+				<param name="actionName">company_viewCompanyInfo</param>
+				<param name="namespace">/company</param>
+			</result>
+			<result name="changePasswordSUCCESS">/company/company_password.jsp</result>
 		</action>
 	</package>
 	
@@ -139,4 +144,5 @@
 			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
 		</action>
 	</package>
+	
 </struts>

@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>专家密码修改</title>
+<title>企业用户密码修改</title>
 <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
 rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
@@ -35,7 +35,7 @@ rel="stylesheet">
 				<b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
 			</font>
 		</span>
-		<s:form onsubmit="return passwordConfirm();" action="professor_changePassword" namespace="/professor" theme="simple" method="post">
+		<s:form onsubmit="return passwordConfirm();" action="company_changePassword" namespace="/company" theme="simple" method="post">
 			<table>
 				<tr>
 					<td>Password</td>

@@ -24,7 +24,6 @@
 		$("#add_username").blur(function(){
 			var name = "${model.name}";
 			if(name != $(this).val()){
-				alert($(this).val());
 				$.post("${pageContext.request.contextPath}/json/checkProfessorName.action",{"name":$(this).val()},function(data){
 					if(data.nameExsit){
 						// 用户名已经存在
@@ -71,7 +70,6 @@ rel="stylesheet">
 			<span id="result"></span><font color="red"> <s:actionerror /><s:fielderror /> </font>
 		</div>
 		<s:form cssClass="form-signin" action="professor_updateProfessorInfo" namespace="/professor" theme="simple" method="post" cssStyle="max-height: 400px;" >
-			
 			<div>
 				<div class="main">
 					<div class="">
@@ -130,8 +128,8 @@ rel="stylesheet">
 					</table>
 					<br>
 					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">submit</button>
-					<button class="btn" type="reset" align="right">reset</button>
+					<button class="btn btn-info" type="submit">submit</button>
+					<button class="btn btn-warning" onclick="javascript:history.go(-1);">back</button>
 				</div>
 			</div>
 		</s:form>
