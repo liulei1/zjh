@@ -43,6 +43,8 @@ public class ProjectService {
 		evaluate.setCom_id(p.getConsult().getCom_id());
 		evaluate.setProj_id(p.getId());
 		evaluate.setProf_id(p.getProf_id());
+		evaluate.setProf_state(Evaluate.UNCOMPLETED);
+		evaluate.setCom_state(Evaluate.UNCOMPLETED);
 		evaluateDAO.insert(evaluate);
 	}
 	

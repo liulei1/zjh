@@ -6,7 +6,7 @@ package cn.ustc.domain;
  *
  */
 public class Evaluate {
-	public static final String EVALUATE = "0";
+	public static final String UNCOMPLETED = "0";
 	public static final String COMPLETED = "1";
 	
 	private String id;
@@ -14,11 +14,12 @@ public class Evaluate {
 	private String com_id;
 	private String prof_id;
 	private String begin_date;
-	private int prof_grade;
+	private int prof_grade;	// 专家得分
 	private String prof_text;
-	private int com_grade;
+	private int com_grade;	// 企业得分
 	private String com_text;
-	private String state;
+	private String com_state; // 企业评价状态
+	private String prof_state; // 专家评价状态
 	
 	private String title; // 项目标题
 	public String getTitle() {
@@ -81,19 +82,17 @@ public class Evaluate {
 	public void setCom_text(String com_text) {
 		this.com_text = com_text;
 	}
-	public String getState() {
-		return state;
+	public String getCom_state() {
+		return com_state;
 	}
-	public void setState(String state) {
-		this.state = state;
+	public void setCom_state(String com_state) {
+		this.com_state = com_state;
 	}
-	@Override
-	public String toString() {
-		return "Evaluate [id=" + id + ", proj_id=" + proj_id + ", com_id="
-				+ com_id + ", prof_id=" + prof_id + ", begin_date="
-				+ begin_date + ", prof_grade=" + prof_grade + ", prof_text="
-				+ prof_text + ", com_grade=" + com_grade + ", com_text="
-				+ com_text + ", state=" + state + ", title=" + title + "]";
+	public String getProf_state() {
+		return prof_state;
+	}
+	public void setProf_state(String prof_state) {
+		this.prof_state = prof_state;
 	}
 	
 }

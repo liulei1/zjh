@@ -12,6 +12,7 @@ import cn.ustc.domain.Evaluate;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.utils.DateUtils;
+import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.web.service.EvaluateService;
 import cn.ustc.web.service.ProjectService;
 
@@ -44,19 +45,25 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 	public String compEvaluate() {
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		Evaluate eva = evaluateService.findById(evaluate.getId());
-		eva.setBegin_date(DateUtils.dateToString(new Date()));
-		eva.setCom_id(company.getId());
-		eva.setCom_grade(evaluate.getCom_grade());
-		eva.setCom_text(evaluate.getCom_text());
-		eva.setState(Evaluate.EVALUATE);
 		
-		Project project = projectService.findById(eva.getProj_id());
-		project.setCurrent_state(Project.PROFESSOREVALUATE);
-		
-		evaluateService.update(evaluate);
-		projectService.update(project);
-		return SUCCESS;
-		// return "compEvaluateSUCCESS";
+		if(Evaluate.COMPLETED.equals(eva.getCom_state())){
+			// 已评价
+			this.addActionError(GetPropertiesUtil.getPropertiesValueByKey("haveEvaluated"));
+			return ERROR;
+		}else{
+			
+			eva.setBegin_date(DateUtils.dateToString(new Date()));
+			eva.setCom_id(company.getId());
+			eva.setCom_grade(evaluate.getCom_grade());
+			eva.setCom_text(evaluate.getCom_text());
+			eva.setCom_state(Evaluate.COMPLETED);
+			Project project = projectService.findById(eva.getProj_id());
+			project.setCurrent_state(Project.PROFESSOREVALUATE);
+			
+			evaluateService.update(eva);
+			projectService.update(project);
+			return "compEvaluateSUCCESS";
+		}
 	}
 
 	// 专家评价
@@ -64,16 +71,23 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		
 		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		Evaluate eva=evaluateService.findById(evaluate.getId());
-		Project project=projectService.findById(eva.getProj_id());
 		
-		eva.setProf_id(professor.getId());
-		eva.setProf_grade(evaluate.getProf_grade());
-		eva.setProf_text(evaluate.getProf_text());
-		eva.setState(Evaluate.COMPLETED);
-		project.setCurrent_state(Project.COMPELETED);
-		
-		evaluateService.update(eva);
-		projectService.update(project);
-		return SUCCESS;
+		if(Evaluate.COMPLETED.equals(eva.getProf_state())){
+			// 已评价
+			this.addActionError(GetPropertiesUtil.getPropertiesValueByKey("haveEvaluated"));
+			return ERROR;
+		}else {
+			
+			Project project=projectService.findById(eva.getProj_id());
+			eva.setProf_id(professor.getId());
+			eva.setProf_grade(evaluate.getProf_grade());
+			eva.setProf_text(evaluate.getProf_text());
+			eva.setProf_state(Evaluate.COMPLETED);
+			project.setCurrent_state(Project.COMPELETED);
+			
+			evaluateService.update(eva);
+			projectService.update(project);
+			return  "profEvaluateSUCCESS";
+		}
 	}
 }

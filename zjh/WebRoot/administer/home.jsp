@@ -123,15 +123,14 @@
         </div>
         <ul class="nav">
             <li  role="presentation"><a href="../index_new.html" target="_blank">首页</a></li>
-            <li  role="presentation"><a href="../project/consult_list.html" target="myframe">审核需求</a></li>
-            <li  role="presentation"><a href="../user/userlist.html" target="myframe">审核用户</a></li>
-            <li  role="presentation"><a href="../user/userlist.html" target="myframe">查看用户</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_unCheckList.action" target="myframe">ConsultCheck</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/user/user_list" target="myframe">UserList</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/manage/management.jsp" target="myframe">Viewuser</a></li>
         </ul>
     </div>
 </div>
 <div>
-    <iframe name="myframe" id="iframepage" src="../project/consult_list.jsp"width="100%" height="500px" frameborder="0"scrolling="no"></iframe>
-    <!--iframe name="myframe" id="ifamepage-2"src="consult_queryMyConsult.html" frameborder="0" height="485px" width="100%"></iframe-->
+    <iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/project/consult_list.jsp"width="100%" height="500px" frameborder="0"scrolling="no"></iframe>
 </div>
 </body>
 </html>

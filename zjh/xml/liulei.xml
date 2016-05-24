@@ -22,26 +22,6 @@
 		</global-results>
 	</package>
 
-	<!-- 防止表单重复提交 -->
-	<package name="token" namespace="/token" extends="myDefault">
-		<action name="user_register" method="register" class="cn.ustc.web.action.UserAction">
-			<interceptor-ref name="token"/>
-			<interceptor-ref name="myStack"/>
-			<result name="invalid.token">/token_error.jsp</result>
-			<result name="input">/user/login.jsp</result>
-			<result name="registerOK">/user/login.jsp</result>
-			<result name="registerINPUT">/user/register.jsp</result>
-		</action>
-		<action name="company_register" method="register" class="cn.ustc.web.action.CompanyAction">
-			<result name="companyRegisterSuccess">/user/login.jsp</result>
-			<result name="companyRegister">/company/register.jsp</result>
-		</action>
-		<action name="professor_register" method="register" class="cn.ustc.web.action.ProfessorAction">
-			<result name="professorRegisterSuccess">/user/login.jsp</result>
-			<result name="professorRegister">/company/register.jsp</result>
-		</action>
-	</package>
-	
 	<package name="consult" namespace="/consult" extends="myDefault">
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
 			<result name="publishSUCCESS">/success.jsp</result>
@@ -85,9 +65,10 @@
 	
 	<package name="project" namespace="/project" extends="myDefault">
 		<action name="project_*" method="{1}" class="cn.ustc.web.action.ProjectAction">
-			<result name="queryMyProjectSUCCESS">/project/project_list.jsp</result>
+			<result name="queryCompanyProjectSUCCESS">/company/company_project.jsp</result>
+			<result name="queryProfessorProjectSUCCESS">/professor/professor_project.jsp</result>
+			
 			<result name="completeSUCCESS" type="redirectAction">project_queryMyProject</result>
-						
 			<result name="downSUCCESS" type="stream">
 				<!-- 下载流 getInputStream -->
 				<param name="contentType">${contentType}</param>
@@ -104,6 +85,15 @@
 				<!-- 下载流 getInputStream -->
 				<param name="contentType">${contentType}</param>
 				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+			</result>
+			
+			<result name="compEvaluateSUCCESS" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">project_queryMyProject</param>
+			</result>
+			<result name="profEvaluateSUCCESS" type="redirectAction">
+				<param name="namespace">/project</param>
+				<param name="actionName">project_queryMyProject</param>
 			</result>
 		</action>
 	</package>

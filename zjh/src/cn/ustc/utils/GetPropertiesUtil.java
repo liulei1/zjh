@@ -24,4 +24,20 @@ public class GetPropertiesUtil {
 		}
 		return properties;
 	}
+	
+	/**
+	 * 根据key 获取配置文件的参数
+	 * @param key
+	 * @return
+	 */
+	public static String getPropertiesValueByKey(String key){
+		InputStream in = new GetPropertiesUtil().getClass().getResourceAsStream("/config.properties");
+		Properties properties = new Properties();
+		try {
+			properties.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return properties.getProperty(key);
+	}
 }

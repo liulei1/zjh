@@ -156,7 +156,7 @@ public class ConsultService {
 		consult.setState(Consult.COMPLETED);
 		consultDAO.update(consult);
 		
-		Scheme scheme = schemeDAO.findById(consult.getScm_id());
+		Scheme scheme = schemeDAO.findById(project.getScm_id());
 		// 发送消息给专家
 		Message message = new Message();
 		// 发送给专家

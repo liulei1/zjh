@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
+import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.ProjectService;
 
@@ -52,6 +53,7 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 				criteria.add(Restrictions.eq("com_id", company.getId()));
 				projects = projectService.findByDetachedCriteria(criteria);
 			}
+			return "queryCompanyProjectSUCCESS";
 			
 		}else if(o instanceof Professor){
 			Professor professor =(Professor) o;
@@ -65,8 +67,12 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 				criteria.add(Restrictions.eq("prof_id", professor.getId()));
 				projects = projectService.findByDetachedCriteria(criteria);
 			}
+			return "queryProfessorProjectSUCCESS";
+		}else{
+			// 增加错误信息，返回全局错误页面
+			this.addActionError(GetPropertiesUtil.getPropertiesValueByKey("queryMyProjectWithErrorRole"));
+			return ERROR;
 		}
-		return "queryMyProjectSUCCESS";
 	}
 	
 	public String complete(){

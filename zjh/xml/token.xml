@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<!-- 防止表单重复提交 -->
+	<package name="token" namespace="/token" extends="myDefault">
+		<action name="user_register" method="register" class="cn.ustc.web.action.UserAction">
+			<interceptor-ref name="token"/>
+			<interceptor-ref name="myStack"/>
+			<result name="invalid.token">/token_error.jsp</result>
+			<result name="input">/user/login.jsp</result>
+			<result name="registerOK">/user/login.jsp</result>
+			<result name="registerINPUT">/user/register.jsp</result>
+		</action>
+		<action name="company_register" method="register" class="cn.ustc.web.action.CompanyAction">
+			<result name="companyRegisterSuccess">/user/login.jsp</result>
+			<result name="companyRegister">/company/register.jsp</result>
+		</action>
+		<action name="professor_register" method="register" class="cn.ustc.web.action.ProfessorAction">
+			<result name="professorRegisterSuccess">/user/login.jsp</result>
+			<result name="professorRegister">/company/register.jsp</result>
+		</action>
+	</package>
+	
+</struts>

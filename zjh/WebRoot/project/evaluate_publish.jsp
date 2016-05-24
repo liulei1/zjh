@@ -21,7 +21,7 @@
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var usertype = ${user.usertype};
+		var usertype = "${user.usertype}";
 		if(usertype == "1"){
 			// 企业
 			$("#form").attr("action","evaluate_compEvaluate");
@@ -46,13 +46,13 @@
 		<s:form id="form" cssClass="form-horizontal" role="form" action="" namespace="/evaluate" method="post" enctype="multipart/form-data" theme="simple">
 			<s:hidden name="id" value="%{model.id}"></s:hidden>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">name of project</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">ProjectTitle</label>
 				<div class="col-sm-2">
 					${model.title}
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet"> grade</label>
+				<label class="col-sm-2 control-label col-sm-offset-3" for="bugdet">Grade</label>
 				<div>
 					<select name="" id="grade" class="col-sm-1">
 						<option value="0">0 分</option>
@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label col-sm-offset-3">content of evaluation</label>
+				<label class="col-sm-2 control-label col-sm-offset-3">Content</label>
 				<div class="col-sm-2">
 					<textarea id="text" rows="3" class="form-control" name=""></textarea>
 				</div>

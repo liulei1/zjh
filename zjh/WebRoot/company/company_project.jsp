@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>Company Projects</title>
+     <title>my project</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -113,11 +113,13 @@
 							<td align="center">
 								<s:a action="project_complete" namespace="/project" cssClass="btn btn-success btn-xs hidden complete">
 									<s:param name="id" value="id"></s:param>
+									<!-- <button type="button" class="btn btn-success btn-xs hidden complete">完成</button> -->
 									complicated
 								</s:a>
 								<s:a action="evaluate_publishView" namespace="/evaluate" cssClass="btn btn-success btn-xs disabled evaluate">
 									<s:param name="proj_id" value="id"></s:param>
 									evaluate
+									<!-- <button type="button" class="btn btn-success btn-xs disabled hidden evaluate">评价</button> -->
 								</s:a>
 								<div class="tag"></div>
 							</td>

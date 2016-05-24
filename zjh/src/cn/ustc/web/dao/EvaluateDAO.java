@@ -39,15 +39,7 @@ public class EvaluateDAO extends HibernateDaoSupport{
 	}
 
 	public void update(Evaluate evaluate) {
-		Session session = this.getSession();
-		try{
-			session.update(evaluate);
-		}catch(Exception e){
-			System.out.println("出错了，么么哒");
-			throw new RuntimeException();
-		}finally{
-			session.close();
-		}
+		this.getHibernateTemplate().update(evaluate);
 	}
 
 }

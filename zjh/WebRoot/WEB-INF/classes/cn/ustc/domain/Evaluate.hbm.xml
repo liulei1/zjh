@@ -13,8 +13,9 @@
 		<property name="begin_date" type="string"/>
 		<property name="prof_grade" type="int"/>
 		<property name="prof_text" type="string"/>
+		<property name="prof_state" type="string"/>
 		<property name="com_grade" type="int"/>
 		<property name="com_text" type="string"/>
-		<property name="state" type="string"/>
+		<property name="com_state" type="string"/>
 	</class>
 </hibernate-mapping>
