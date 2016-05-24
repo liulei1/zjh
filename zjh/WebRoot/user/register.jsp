@@ -59,19 +59,19 @@
         <div class="content">
         <div class="main">
         <div>
-            <h3>注册</h3>
+            <h3>User Register</h3>
             <hr class="hr1"/>
         </div>
-            <input type="text" class="input-block-level" placeholder="用户名"  name="uname"><br/>
-            <input type="text" class="input-block-level" placeholder="邮箱"  name="password"><br/>
-            <input type="password" class="input-block-level" placeholder="密码"  name="password"><br/>
-            <input type="password" class="input-block-level" placeholder="重复密码"  name="repassword"><br/>
-            <label for="male">男</label>
+            <input type="text" class="input-block-level" placeholder="Username"  name="uname"><br/>
+            <input type="text" class="input-block-level" placeholder="Email"  name="password"><br/>
+            <input type="password" class="input-block-level" placeholder="Password"  name="password"><br/>
+            <input type="password" class="input-block-level" placeholder="Repassword"  name="repassword"><br/>
+            <label for="male">male</label>
             <input type="radio" name="sex" id="male" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <label for="female">女</label>
+            <label for="female">female</label>
             <input type="radio" name="sex" id="female" />
-            <button class="btn btn-primary btn1" type="submit">注册</button>
-            <button class="btn" type="reset">重置</button>
+            <button class="btn btn-primary btn1" type="submit">register</button>
+            <button class="btn" type="reset">reset</button>
         </div>
         <div class="aside">
             <div class="passport-goto">已有账号? <a href="load.html">立即登录</a></div>

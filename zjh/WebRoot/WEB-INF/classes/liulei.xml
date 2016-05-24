@@ -120,6 +120,7 @@
 				<param name="actionName">company_viewCompanyInfo</param>
 				<param name="namespace">/company</param>
 			</result>
+			<result name="viewChangePasswordSUCCESS">/company/company_password.jsp</result>
 			<result name="changePasswordSUCCESS">/company/company_password.jsp</result>
 		</action>
 	</package>
@@ -141,6 +142,7 @@
 				<param name="actionName">professor_viewProfessorInfo</param>
 				<param name="namespace">/professor</param>
 			</result>
+			<result name="viewChangePasswordSUCCESS">/professor/professor_password.jsp</result>
 			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
 		</action>
 	</package>

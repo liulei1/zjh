@@ -10,14 +10,17 @@
     <link href="qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="qing_style/css/app_new.css">
 </head>
+
 <body>
 <div class="headerBar">
     <div class="logoBar">
         <div class="logo">
             <!-- start logo -->
-            <a class="logoText fl" href="#" title="专家汇平台">
-                <h2>ZJH</h2>
-            </a>
+            <h2>
+	            <a class="logoText fl" href="${pageContext.request.contextPath }/index.jsp" title="专家汇平台">
+	            	ZJH
+	            </a>
+            </h2>
         </div>
         <p class="lineText fl">行业专家和短期项目的交流平台</p>
 

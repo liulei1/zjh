@@ -83,6 +83,11 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "updateProfessorInfoSUCCESS";
 	}
 	
+	// 修改密码视图
+	public String viewChangePassword(){
+		return "viewChangePasswordSUCCESS";
+	}
+	
 	// 更新密码
 	public String changePassword(){
 		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");

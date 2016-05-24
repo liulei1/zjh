@@ -97,6 +97,11 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "updateProfessorInfoSUCCESS";
 	}
 	
+	// 修改密码视图
+	public String viewChangePassword(){
+		return "viewChangePasswordSUCCESS";
+	}
+	
 	// 更新密码
 	public String changePassword(){
 		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");

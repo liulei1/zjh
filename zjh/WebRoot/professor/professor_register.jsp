@@ -97,7 +97,7 @@ rel="stylesheet">
 					<br>
 					<s:textfield name="introduction" placeholder="个人简介"></s:textfield>
 					<br>
-					性别:<s:radio list="{'男','女'}" name="sex" id="female" align="right"/>
+					性别:<s:radio list="{'male','female'}" name="sex" align="right"/>
 					<br>
 					<div id="field"></div>
 					<button class="btn btn-warning btn1" type="submit">regist</button>

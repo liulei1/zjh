@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span class="user_login" onmouseover="userShow()"onmouseout="userHide()">${user.name}&nbsp;&gt;</span>
             <ul class="user_info" id="user_info" onmouseover="userShow()"onmouseout="userHide()">
                 <li><a href="${pageContext.request.contextPath}/company/company_viewCompanyInfo" target="myframe">用户管理</a></li>
-                <li><a href="${pageContext.request.contextPath}/company/company_changePassword" target="myframe">修改密码</a></li>
+                <li><a href="${pageContext.request.contextPath}/company/company_viewChangePassword" target="myframe">修改密码</a></li>
                 <li><a href="#" onclick="logout()">退出</a></li>
             </ul>
             <div class="message">

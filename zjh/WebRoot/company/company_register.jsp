@@ -52,7 +52,7 @@ rel="stylesheet">
 
 
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
 </head>
 
 <body class="">
@@ -94,7 +94,7 @@ rel="stylesheet">
 					<br>
 					<s:textfield name="website" placeholder="网址"></s:textfield>
 					<br>
-					性别:<s:radio list="{'男','女'}" name="sex" id="female" align="right"/>
+					性别:<s:radio list="{'male','female'}" name="sex" align="right"/>
 					<br>
 					<div id="field"></div>
 					<button class="btn btn-warning btn1" type="submit">regist</button>
