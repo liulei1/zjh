@@ -113,7 +113,7 @@
 								view
 							</th>
 							<th style="text-align:center;">
-								project view
+								scheme view
 							</th>
 						</tr>
 					</thead>
@@ -151,7 +151,7 @@
 							<td align="center">
 								<s:a action="scheme_findConsultSchemes" namespace="/scheme">
 									<s:param name="cons_id" value="id" />
-									<button type="button" class="btn btn-success btn-xs">projects</button>
+									<button type="button" class="btn btn-success btn-xs">schemes</button>
 								</s:a>
 							</td>
 						</tr>

@@ -63,10 +63,10 @@
 								telephone
 							</th>
 							<th style="text-align:center;">
-								scheme view
+								address
 							</th>
 							<th style="text-align:center;">
-								project view
+								website
 							</th>
 						</tr>
 					</thead>
@@ -86,17 +86,10 @@
 								${telephone}
 							</td>
 							<td align="center">
-								<s:a action="scheme_queryMyScheme" namespace="/scheme">
-									<s:param name="professor.id" value="id" />
-									<button type="button" class="btn btn-info btn-xs">scheme view</button>
-								</s:a>
-								
+								${address }
 							</td>
 							<td align="center">
-								<s:a action="project_queryMyProject" namespace="/project">
-									<s:param name="professor_id" value="id" />
-									<button type="button" class="btn btn-success btn-xs">project view</button>
-								</s:a>
+								${website}
 							</td>
 						</tr>
 						</s:iterator>

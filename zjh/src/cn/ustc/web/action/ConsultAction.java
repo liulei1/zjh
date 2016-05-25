@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,7 +33,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class ConsultAction extends ActionSupport implements ModelDriven<Consult> {
-	private static final int PAGESIZE = 2;
+	private static final int PAGESIZE = 4;
 	private Consult model = new Consult();
 	@Override
 	public Consult getModel() {
@@ -154,7 +155,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		//Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		Object obj=ServletActionContext.getServletContext().getAttribute("user");
 		if(obj instanceof Company){
-		Company company=(Company)obj;
+			Company company=(Company)obj;
 		
 		// 记录的总条数
 		int count = consultService.getCount(company.getId());
@@ -163,21 +164,33 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		
 		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
 		criteria.add(Restrictions.eq("com_id", company.getId()));
-		criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+		//criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
 		int pageIndex = model.getPageIndex();
 		if(pageIndex == 0){
 			model.setPageIndex(1);
 			consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
 		}else{
 			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+			System.out.println("");
 		}
 		}else if(obj instanceof Professor){
 			String id=ServletActionContext.getRequest().getParameter("company_id");
+			
+			//记录的条数
+			int count=consultService.getCount(id);
+			model.setTotal(count);//第多少条记录
+			model.setPageCount((count-1)/PAGESIZE+1);//设置页数
+			
 			DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
-			criteria.add(Restrictions.eq("com_id",id));
-			criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
-			consults = consultService.findConsultsByDetachedCriteria(criteria);
-			System.out.println("123");
+			//criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+			criteria.addOrder(Order.desc("release_date"));
+			int pageIndex=model.getPageIndex();
+			if(pageIndex==0){
+				model.setPageIndex(1);
+				consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+			}else{
+				consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+		}
 		}
 		return "queryMyConsultSUCCESS";
 	}
@@ -213,10 +226,23 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	
 	// 显示通过
+	
 	public String allowList(){
-		List<Consult> list = consultService.allowConsultList();
-		consults = list;
-		System.out.println(consults);
+		int count=consultService.allowCount();
+		//总条数
+		model.setTotal(count);
+		//当前页
+		model.setPageCount((count-1)/PAGESIZE+1);
+		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+		criteria.add(Restrictions.eq("state", Consult.ALLOW));
+		int pageIndex = model.getPageIndex();
+		if(pageIndex == 0){
+			model.setPageIndex(1);
+			consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		}else{
+			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+		}
+		
 		return "allowListSUCCESS";
 	}
 	

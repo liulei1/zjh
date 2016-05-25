@@ -7,6 +7,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.ustc.domain.Consult;
 import cn.ustc.domain.Evaluate;
 import cn.ustc.domain.Project;
 import cn.ustc.utils.DateUtils;
@@ -48,5 +49,23 @@ public class ProjectService {
 	
 	public void update(Project project){
 		this.projectDAO.update(project);
+	}
+
+	public int getCountByPorfessorID(String pro_id) {
+		// TODO Auto-generated method stub
+		return projectDAO.getCountByPorfessorID(pro_id);
+	}
+	
+	public int getCountByCompanyID(String com_id) {
+		// TODO Auto-generated method stub
+		return projectDAO.getCountByCompanyID(com_id);
+	}
+	
+	public List<Project> findConsultsByDetachedCriteria(DetachedCriteria criteria){
+		return projectDAO.findByDetachedCriteria(criteria);
+	}
+	
+	public List<Project> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		return projectDAO.findByDetachedCriteria(criteria, firstResult, maxResults);
 	}
 }

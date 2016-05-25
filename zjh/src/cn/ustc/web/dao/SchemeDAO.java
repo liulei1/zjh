@@ -1,9 +1,11 @@
 package cn.ustc.web.dao;
 
+import java.awt.image.RescaleOp;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Scheme;
@@ -61,5 +63,21 @@ public class SchemeDAO extends HibernateDaoSupport {
 	 */
 	public Scheme findById(String id) {
 		return this.getHibernateTemplate().get(Scheme.class, id);
+	}
+
+	public List<Scheme> findByDetachedCriteriaPage(DetachedCriteria criteria,
+			int page, int pageSize) {
+		return this.getHibernateTemplate().findByCriteria(criteria,page,pageSize);
+	
+	}
+
+	public int getCountByPorfessorID(String id) {
+		String hql = "select count(*) from Scheme as scheme";
+		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
+		criteria.add(Restrictions.eq("professor.id", id));
+		List findByCriteria = this.getHibernateTemplate().findByCriteria(criteria);
+		//Long count = (Long) this.getHibernateTemplate().find(hql, id).listIterator().next();
+		Long count=(long) findByCriteria.size();
+		return count.intValue();
 	}
 }

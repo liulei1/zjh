@@ -29,6 +29,7 @@
 		<property name="education"/>
 		<property name="honour"/>
 		
+		
 		<!-- name 关联方案集合的属性名 -->
 		<set name="schemes" cascade="save-update,delete,delete-orphan" inverse="true">  <!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->
 			<!-- 专家关联方案后，在对方表 添加 外键列 -->

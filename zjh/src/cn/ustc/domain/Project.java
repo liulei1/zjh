@@ -22,6 +22,39 @@ public class Project {
 	private String current_state; // 项目进度，4是进行中，5是企业评价，6是专家评价
 	private String com_id;	// 企业id 冗余数据
 	private Consult consult;	// 与咨询表一对一
+	
+	private int pageSize; // 每页的数据条数
+	private int total; // 数据总条数
+	private int pageIndex; // 当前页面号
+	private int pageCount; // 页面总数
+	
+	
+	
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getPageIndex() {
+		return pageIndex;
+	}
+	
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 	public int getId() {
 		return id;
 	}

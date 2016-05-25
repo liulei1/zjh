@@ -8,6 +8,29 @@
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+//翻页
+function changePage(operate){
+	var pageIndex = "${pageIndex}";
+	var pageCount = "${pageCount}";
+	if(operate == "last"){
+		pageIndex = parseInt(pageIndex) - 1;
+	}else if(operate == "next"){
+		pageIndex = parseInt(pageIndex) + 1;
+	}
+	if(pageIndex < 1){
+		pageIndex = 1;
+	}else if(pageIndex > pageCount){
+		pageIndex = pageCount;
+	}
+	$.post("${pageContext.request.contextPath}/scheme/scheme_queryMyScheme",{pageIndex:pageIndex},function(data){
+			document.open("text/html","replace");
+			document.writeln(data);
+			document.close();
+	});
+	
+}
+</script>
 <title>方案列表</title>
 </head>
 <body>
@@ -47,6 +70,13 @@
 				</tr>
 			</s:iterator>
 		</table>
+		<p id="pageIndex" style="font-size:20px;font-weight:bold;color:blue;margin-left:150px;"></p>
+				<!-- 分页 -->
+				<ul class="pager">
+			      <li id="lastpage"><a href="#" onclick="changePage('last')">上一页</a></li>
+			      <li id="lastpage"><a href="#" onclick="changePage('next')">下一页</a></li>
+			    </ul>
+			    <span>第&nbsp;${pageIndex}/${pageCount}&nbsp;页&nbsp;</span><br>
 	<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
 	</div>
 </body>

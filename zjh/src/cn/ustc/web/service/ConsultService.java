@@ -186,4 +186,8 @@ public class ConsultService {
 	public int getCount(String companyId){
 		return consultDAO.getCount(companyId);
 	}
+
+	public int allowCount(){
+		return consultDAO.getAllowCount();
+	}
 }
