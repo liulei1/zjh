@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 </div>
 <div>
-    <iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/project/consult_recieve.html" width="100%" height="500px" frameborder="0"></iframe>
+    <iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/consult/consult_allowList" width="100%" height="500px" frameborder="0"></iframe>
 </div>
 </body>
 </html>
