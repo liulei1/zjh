@@ -46,7 +46,7 @@ public class SchemeService {
 		message.setState(Message.UNREAD);
 		message.setTitle("您的咨询 "+consult.getTitle()+" 有了回复");
 		// TODO 发布方案后发送的消息内容写什么
-		message.setContent(scheme.getProfessor().getName() + "对您的咨询-"+ consult.getTitle() + "提供了解决方案");
+		message.setContent(scheme.getProfessor().getName() + "对您的咨询-"+ consult.getTitle() + " 提供了解决方案");
 		schemeDAO.add(scheme);
 		messageDAO.addMessage(message);
 	}

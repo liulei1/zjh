@@ -107,7 +107,7 @@
 						<tr>
 							<td>Sex</td>
 							<td>
-								<s:radio list="{'男','女'}" name="sex" id="female" align="right" value="%{model.sex}"/>
+								<s:radio list="{'male','female'}" name="sex" align="right" value="%{model.sex}"/>
 							</td>
 						</tr>
 						<tr>

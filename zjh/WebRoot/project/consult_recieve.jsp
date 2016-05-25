@@ -41,39 +41,34 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>consult have not been received</strong></h1>
+<h1 align="center"><strong>Consult List</strong></h1>
 	<div align="center">
-		<s:actionerror/>
-		<table frame="border" rules="all">
+		<table class="table table-striped">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">title</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">money</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">category</td>
-				<!-- <td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">状态</td> -->
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">review</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">receive</td>
+				<th style="text-align:center;" width="25%">Title</th>
+				<th style="text-align:center;" width="25%">Money</th>
+				<th style="text-align:center;" width="20%">Category</th>
+				<th style="text-align:center;" width="15%" >View</th>
+				<th style="text-align:center;" width="15%">Receive</th>
 			</tr>
 			<s:iterator value="consults" var="consult">
 				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
+					<td align="center">
 						${title}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
+					<td align="center">
 						${budget}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+					<td align="center">
 						${category}
 					</td>
-					<%-- <td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
-						${state}
-					</td> --%>
-					<td align="center" style="HEIGHT: 22px">
+					<td align="center">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id"/>
 							<button type="button" class="btn btn-info btn-xs">review</button>
 						</s:a>
 					</td>
-					<td align="center" style="HEIGHT: 22px">
+					<td align="center">
 						<s:a action="scheme_submitView" namespace="/scheme">
 							<s:param name="cons_id" value="id"/>
 							<button type="button" class="btn btn-success btn-xs">receive</button>
