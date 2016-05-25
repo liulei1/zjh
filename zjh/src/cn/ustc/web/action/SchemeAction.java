@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
@@ -17,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
+import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
@@ -32,7 +36,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
-	
+	private final int PAGESIZE=4;
 	@Autowired
 	private ProfessorService professorService;
 	
@@ -163,22 +167,43 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return "publishSUCCESS";
 	}
 	
+
 	// 查找登录专家发布的所有方案
 	public String queryMyScheme(){
 		Object obj=ServletActionContext.getServletContext().getAttribute("user");
+		int count=0;
+		//条件1查询的是scheme类
+		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
+		ServletContext servletContext=null;
 		if(obj instanceof Professor){
 			Professor professor = (Professor)obj;
-			schemes = schemeService.findMyScheme(professor);
+			count = schemeService.getCountByPorfessorID(professor.getId());
+			criteria.add(Restrictions.eq("professor.id", professor.getId()));
 		}
 		if(obj instanceof Company){
-			String id = model.getProfessor().getId();
-			System.out.println("-------------------------"+id);
-			if(professorService==null){
-				System.out.println("++++++++++"+"空");
+			String prof_id=ServletActionContext.getRequest().getParameter("professor_id");;
+			servletContext=ServletActionContext.getServletContext();
+			servletContext.setAttribute("prof_id", prof_id);
+			//条件2查询的条件是professor
+		
+			if(prof_id==null){
+			prof_id=(String) servletContext.getAttribute("prof_id");
 			}
-			Professor professor=professorService.findProfessorById(id);
-			System.out.println(professor);
-			schemes = schemeService.findMyScheme(professor);
+			count = schemeService.getCountByPorfessorID(prof_id);
+			criteria.add(Restrictions.eq("professor.id", prof_id));
+			//schemes = schemeService.findMyScheme(professor);
+		}
+		
+		model.setTotal(count);
+		model.setPageCount((count-1)/PAGESIZE+1);
+		
+		int pageIndex = model.getPageIndex();
+		if(pageIndex == 0){
+			model.setPageIndex(1);
+			//条件3，查询多少条scheme
+			schemes = schemeService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		}else{
+			schemes = schemeService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
 		}
 		return "queryMySchemeSUCCESS";
 	} 

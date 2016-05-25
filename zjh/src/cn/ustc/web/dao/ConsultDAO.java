@@ -103,6 +103,7 @@ public class ConsultDAO extends HibernateDaoSupport{
 	}
 	
 	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		//return this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
 		List<Consult> list = this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
 		return list;
 	}
@@ -114,6 +115,12 @@ public class ConsultDAO extends HibernateDaoSupport{
 	public int getCount(String id){
 		String hql = "select count(*) from Consult as consult where consult.com_id =?";
 		Long count = (Long) this.getHibernateTemplate().find(hql, id).listIterator().next();
+		return count.intValue();
+	}
+
+	public int getAllowCount(){
+		String hql="select count(*) from Consult as consult where consult.state=?";
+		Long count=(Long)this.getHibernateTemplate().find(hql,Consult.ALLOW).listIterator().next();
 		return count.intValue();
 	}
 	

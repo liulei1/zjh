@@ -60,10 +60,10 @@ find by vocation:<div id="field"></div>
 								telephone
 							</th>
 							<th style="text-align:center;">
-								consult check
+								address
 							</th>
 							<th style="text-align:center;">
-								project check
+								website
 							</th>
 						</tr>
 					</thead>
@@ -80,17 +80,10 @@ find by vocation:<div id="field"></div>
 								${telephone}
 							</td>
 							<td align="center">
-								<s:a action="consult_queryMyConsult" namespace="/consult">
-									<s:param name="company_id" value="id" />
-									<button type="button" class="btn btn-info btn-xs">consult view</button>
-								</s:a>
-								
+								${address }
 							</td>
 							<td align="center">
-								<s:a action="project_queryMyProject" namespace="/project">
-									<s:param name="professor_id" value="id" />
-									<button type="button" class="btn btn-success btn-xs">project view</button>
-								</s:a>
+								${website }
 							</td>
 						</tr>
 						</s:iterator>

@@ -45,6 +45,30 @@
 				$(".state")[i].innerHTML = state;
 			});
 		});
+		
+		//翻页
+		function changePage(operate){
+			var pageIndex = "${pageIndex}";
+			var pageCount = "${pageCount}";
+			if(operate == "last"){
+				pageIndex = parseInt(pageIndex) - 1;
+			}else if(operate == "next"){
+				pageIndex = parseInt(pageIndex) + 1;
+			}
+			if(pageIndex < 1){
+				pageIndex = 1;
+			}else if(pageIndex > pageCount){
+				pageIndex = pageCount;
+			}
+			$.post("${pageContext.request.contextPath}/project/project_queryMyProject",{pageIndex:pageIndex},function(data){
+					document.open("text/html","replace");
+					document.writeln(data);
+					document.close();
+			});
+			
+		}
+		
+		
 	</script>
    </head>
    <body>
@@ -125,17 +149,13 @@
 					</s:iterator>
 				</tbody>
 				</table>
-				<div align="center">
-					<ul class="pagination pagination-sm pagination-centered">
-					  <li><a href="#">&laquo;</a></li>
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#">&raquo;</a></li>
-					</ul>
-				</div>
+				<p id="pageIndex" style="font-size:20px;font-weight:bold;color:blue;margin-left:150px;"></p>
+				<!-- 分页 -->
+				<ul class="pager">
+			      <li id="lastpage"><a href="#" onclick="changePage('last')">上一页</a></li>
+			      <li id="lastpage"><a href="#" onclick="changePage('next')">下一页</a></li>
+			    </ul>
+			    <span>第&nbsp;${pageIndex}/${pageCount}&nbsp;页&nbsp;</span>
 			</div>
 		</div>
 	</div>

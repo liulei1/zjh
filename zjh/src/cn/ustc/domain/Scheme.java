@@ -10,6 +10,13 @@ import java.util.Date;
 public class Scheme {
 	private String id;
 	private Professor professor;
+/*	private String prof_id;//专家的id
+	public String getProf_id() {
+		return prof_id;
+	}
+	public void setProf_id(String prof_id) {
+		this.prof_id = prof_id;
+	}*/
 	private String title; // 方案标题
 	private String cons_id;	// 方案对应的需求id
 	private String details;
@@ -17,6 +24,34 @@ public class Scheme {
 	private String fileName;	// 文档名
 	private String filePath;	// 文档的路径
 	
+	private int pageSize; // 每页的数据条数
+	private int total; // 数据总条数
+	private int pageIndex; // 当前页面号
+	private int pageCount; // 页面总数
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getPageIndex() {
+		return pageIndex;
+	}
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 	public String getId() {
 		return id;
 	}

@@ -25,6 +25,11 @@ public class ProjectDAO extends HibernateDaoSupport{
 	public List<Project> findByDetachedCriteria(DetachedCriteria criteria){
 		return this.getHibernateTemplate().findByCriteria(criteria);
 	}
+	
+	//查询指定条数的项目list
+	public List<Project> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		return this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
+	}
 
 	/**
 	 * 更新
@@ -41,5 +46,17 @@ public class ProjectDAO extends HibernateDaoSupport{
 	 */
 	public Project findById(int id){
 		return this.getHibernateTemplate().get(Project.class, id);
+	}
+
+	public int getCountByPorfessorID(String pro_id) {
+		String hql = "select count(*) from Project as project where project.prof_id =?";
+		Long count = (Long) this.getHibernateTemplate().find(hql, pro_id).listIterator().next();
+		return count.intValue();
+	}
+	
+	public int getCountByCompanyID(String com_id) {
+		String hql = "select count(*) from Project as project where project.com_id =?";
+		Long count = (Long) this.getHibernateTemplate().find(hql, com_id).listIterator().next();
+		return count.intValue();
 	}
 }

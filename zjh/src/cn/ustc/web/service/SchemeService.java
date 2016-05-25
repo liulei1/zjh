@@ -95,4 +95,13 @@ public class SchemeService {
 		criteria.add(Restrictions.eq("professor", professor));
 		return schemeDAO.findByDetachedCriteria(criteria);
 	}
+	//查询指定条数的方案，做分页
+	public List<Scheme> findByDetachedCriteria(DetachedCriteria criteria,int page,int pageSize){
+		return schemeDAO.findByDetachedCriteriaPage(criteria,page,pageSize);
+	}
+
+	public int getCountByPorfessorID(String id) {
+		// TODO Auto-generated method stub
+		return schemeDAO.getCountByPorfessorID(id);
+	}
 }

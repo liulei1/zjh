@@ -21,7 +21,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class ProjectAction extends ActionSupport implements ModelDriven<Project> {
 	private Project project = new Project();
-	
+	private static final int PAGESIZE=4;
 	@Override
 	public Project getModel() {
 		return project;
@@ -40,33 +40,40 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 	private ProfessorService professorService;
 	/********************************* 项目操作 ************************************/
 	public String queryMyProject(){
+		int count=0;
+		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
 		Object o = ServletActionContext.getServletContext().getAttribute("user");
 		if(o instanceof Company){
 			Company company =(Company) o;
-			DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
-			String pro_id=ServletActionContext.getRequest().getParameter("professor_id");
-			//前台传入专家的id,拿着id查找项目
-			if(pro_id!=null){
-			criteria.add(Restrictions.eq("prof_id", pro_id));
+			
+			criteria.add(Restrictions.eq("com_id", company.getId()));
 			projects = projectService.findByDetachedCriteria(criteria);
-			}else{
-				criteria.add(Restrictions.eq("com_id", company.getId()));
-				projects = projectService.findByDetachedCriteria(criteria);
-			}
+			project.setTotal(count);
+			project.setPageCount((count-1)/PAGESIZE+1);
+		
+		int pageIndex = project.getPageIndex();
+		if(pageIndex == 0){
+			project.setPageIndex(1);
+			projects = projectService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		}else{
+			projects = projectService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+		}
 			return "queryCompanyProjectSUCCESS";
 			
 		}else if(o instanceof Professor){
 			Professor professor =(Professor) o;
-			DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
-			//前台传入company的id，拿着id找项目
-			String com_id=ServletActionContext.getRequest().getParameter("company_id");
-			if(com_id!=null){
-				criteria.add(Restrictions.eq("com_id", com_id));
-				projects=projectService.findByDetachedCriteria(criteria);
-			}else{
-				criteria.add(Restrictions.eq("prof_id", professor.getId()));
-				projects = projectService.findByDetachedCriteria(criteria);
-			}
+			criteria.add(Restrictions.eq("prof_id", professor.getId()));
+			projects = projectService.findByDetachedCriteria(criteria);
+			project.setTotal(count);
+			project.setPageCount((count-1)/PAGESIZE+1);
+		
+		int pageIndex = project.getPageIndex();
+		if(pageIndex == 0){
+			project.setPageIndex(1);
+			projects = projectService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		}else{
+			projects = projectService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+		}
 			return "queryProfessorProjectSUCCESS";
 		}else{
 			// 增加错误信息，返回全局错误页面
