@@ -5,13 +5,13 @@
 <hibernate-mapping>
 	<class name="cn.ustc.domain.Project" table="project" catalog="zjh">
 		<id name="id">
-			<generator class="increment"/>
+			<generator class="uuid"/>
 		</id>
 		
 		<property name="prof_id" type="string"/>
 		<property name="scm_id" type="string"/>
-		<property name="start_date"/>
-		<property name="end_date"/>
+		<property name="start_date" type="string"/>
+		<property name="end_date" type="string"/>
 		<property name="com_id" not-null="true"/>
 		<property name="current_state" type="string"/>
 		

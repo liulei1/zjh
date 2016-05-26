@@ -44,7 +44,7 @@ public class ProjectDAO extends HibernateDaoSupport{
 	 * @param id
 	 * @return
 	 */
-	public Project findById(int id){
+	public Project findById(String id){
 		return this.getHibernateTemplate().get(Project.class, id);
 	}
 

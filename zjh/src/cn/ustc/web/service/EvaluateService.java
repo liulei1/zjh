@@ -20,7 +20,7 @@ public class EvaluateService {
 		return evaluateDAO.findById(id);
 	}
 	
-	public Evaluate findByProjId(int id){
+	public Evaluate findByProjId(String id){
 		DetachedCriteria criteria = DetachedCriteria.forClass(Evaluate.class);
 		criteria.add(Restrictions.eq("proj_id", id));
 		List<Evaluate> list = this.evaluateDAO.findByDetachedCriteria(criteria);

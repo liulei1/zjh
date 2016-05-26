@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
+import cn.ustc.domain.Vocation;
+import cn.ustc.web.dao.VocationDAO;
 import cn.ustc.web.service.ProfessorService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -28,6 +30,8 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	
 	@Autowired
 	private ProfessorService professorService;
+	@Autowired
+	private VocationDAO vocationDAO;
 
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
@@ -101,5 +105,14 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 			context.put("result", "passwords entered did not match");
 		}
 		return "changePasswordSUCCESS";
+	}
+	
+	// 通过传来的专家的id 获取专家信息
+	public String viewProfessorInfoById(){
+		String id = professor.getId();
+		professor = professorService.findProfessorById(id);
+		Vocation vocation = vocationDAO.findVocationById(professor.getField());
+		professor.setField(vocation.getName());
+		return "viewProfessorInfoByIdSUCCESS";
 	}
 }

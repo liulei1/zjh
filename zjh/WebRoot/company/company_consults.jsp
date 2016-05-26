@@ -22,6 +22,8 @@
 					state = "通过";
 				}else if(tag == 2){
 					state = "拒绝";
+				}else {
+					state = "已立项";
 				}
 				$(".state")[i].innerHTML = state;
 			});
@@ -73,17 +75,6 @@
 					document.close();
 			});
 			
-			//禁用翻页
-			/* if(pageIndex == 1){
-				$("#lastpage").attr("class",'disabled');
-			}else{
-				$("#lastpage").removeAttr("class");
-			}
-			if(pageIndex == pageCount){
-				$("#nextpage").attr("class",'disabled');
-			}else{
-				$("#nextpage").removeAttr("class");
-			} */
 		}
 	</script>
    </head>
@@ -92,28 +83,28 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					Consult List
+					My Consults
 				</h3>
 				<table class="table table-bordered" id="consult_table">
 					<thead>
 						<tr class="warning">
 							<th style="text-align:center;">
-								title
+								Title
 							</th>
 							<th style="text-align:center;">
-								money
+								Money
 							</th>
 							<th style="text-align:center;">
-								vocation
+								Vocation
 							</th>
 							<th style="text-align:center;">
-								state
+								State
 							</th>
 							<th style="text-align:center;">
-								view
+								View
 							</th>
 							<th style="text-align:center;">
-								scheme view
+								Scheme View
 							</th>
 						</tr>
 					</thead>
@@ -144,7 +135,7 @@
 							<td align="center">
 								<s:a action="consult_view" namespace="/consult">
 									<s:param name="id" value="id" />
-									<button type="button" class="btn btn-info btn-xs">have a look</button>
+									<button type="button" class="btn btn-info btn-xs">details</button>
 								</s:a>
 								
 							</td>

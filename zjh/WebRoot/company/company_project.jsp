@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>my project</title>
+     <title>企业的项目</title>
+     
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -14,7 +15,6 @@
 		$(function(){
 			$(".state").each(function(i){
 				var tag = $(".state")[i].innerHTML;
-				//var para = $($(".state")[i]).next("td").children("a");
 				var para = $($(".state")[i]).next("td").next("td");
 				var state;
 				if(tag == 4){
@@ -73,34 +73,34 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					Project List
+					My Projects
 				</h3>
 				<table class="table table-bordered">
 					<thead>
 						<tr class="warning">
 							<th style="text-align:center;">
-								title
+								Title
 							</th>
 							<th style="text-align:center;">
-								consult document
+								Document
 							</th>
 							<th style="text-align:center;">
-								money
+								Money
 							</th>
 							<th style="text-align:center;">
-								begain time
+								Begain Time
 							</th>
 							<th style="text-align:center;">
-								end time
+								End Time
 							</th>
 							<th style="text-align:center;">
-								speed
+								State
 							</th>
 							<th style="text-align:center;">
-								view project
+								Scheme
 							</th>
 							<th style="text-align:center;">
-								operation
+								Operation
 							</th>
 						</tr>
 					</thead>
@@ -111,7 +111,10 @@
 								${consult.title}
 							</td>
 							<td align="center">
-								${consult.fileName}
+								<s:a action="consult_download" namespace="/consult">
+									<s:param name="id" value="consult.id"></s:param>
+									<s:property value="consult.fileName"/>
+								</s:a>
 							</td>
 							<td align="center">
 								${consult.budget}

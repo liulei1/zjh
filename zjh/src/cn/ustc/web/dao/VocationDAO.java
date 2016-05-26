@@ -17,5 +17,14 @@ public class VocationDAO extends HibernateDaoSupport {
 		List<Vocation> list = this.getHibernateTemplate().find(hql);
 		return list;
 	}
+	
+	/**
+	 * 根据id 查找领域
+	 * @param id
+	 * @return
+	 */
+	public Vocation findVocationById(String id){
+		return this.getHibernateTemplate().get(Vocation.class, id);
+	}
 
 }

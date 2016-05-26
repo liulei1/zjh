@@ -23,6 +23,7 @@ import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
+import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.ConsultService;
@@ -297,7 +298,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		Project project = new Project();
 		
 		project.setScm_id(model.getScm_id());
-		project.setStart_date(new Date());
+		project.setStart_date(DateUtils.dateToString(new Date()));
 		project.setCurrent_state(Project.ONGOING);
 		project.setConsult(consult);
 		

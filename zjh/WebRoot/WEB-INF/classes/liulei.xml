@@ -134,6 +134,7 @@
 			</result>
 			<result name="viewChangePasswordSUCCESS">/professor/professor_password.jsp</result>
 			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
+			<result name="viewProfessorInfoByIdSUCCESS">/professor/professorInfo_scheme.jsp</result>
 		</action>
 	</package>
 	
