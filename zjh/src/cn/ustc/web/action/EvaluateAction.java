@@ -115,13 +115,15 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		String prof_id = eva.getProf_id();
 		int prof_grade = eva.getProf_grade();
 		Professor professor = professorService.findProfessorById(prof_id);
-		professor.setPoints(professor.getPoints()+prof_grade);
+		// 积分不能超过5，超过表示是 恶意操作
+		professor.setPoints(professor.getPoints()+Math.min(prof_grade, 5));
 		professorService.update(professor);
 		
 		String com_id = eva.getCom_id();
 		int com_grade = eva.getCom_grade();
 		Company company = companyService.findCompanyById(com_id);
-		company.setPoints(company.getPoints()+com_grade);
+		// 积分不能超过5，超过表示是 恶意操作
+		company.setPoints(company.getPoints()+Math.min(com_grade, 5));
 		companyService.update(company);
 	}
 }

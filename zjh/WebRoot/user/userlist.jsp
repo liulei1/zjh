@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>common-user list</title>
+<title>所有用户信息</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>

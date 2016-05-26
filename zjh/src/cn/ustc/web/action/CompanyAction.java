@@ -70,6 +70,7 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "skipBalancePageSUCCESS";
 	}
 	
+	// 企业用户充值
 	public String addBalance(){
 		String id = company.getId();
 		double balance = Double.parseDouble(company.getBalance());
