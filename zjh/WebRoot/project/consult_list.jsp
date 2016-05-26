@@ -21,6 +21,8 @@
 					state = "通过";
 				}else if(tag == 2){
 					state = "拒绝";
+				}else {
+					state = "已接受";
 				}
 				$(".state")[i].innerHTML = state;
 			});
