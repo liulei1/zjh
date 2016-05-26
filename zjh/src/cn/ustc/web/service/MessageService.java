@@ -42,4 +42,16 @@ public class MessageService {
 		message.setState(Message.READED);
 		messageDAO.update(message);
 	}
+
+	public List<Message> getUserReadedMessages(User user) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Message.class);
+		if(user.getId().equals("")){
+			//如果 user的id为空（用户注销）则直接返回一个空List
+			return new ArrayList<Message>();
+		}else{
+			criteria.add(Restrictions.eq("recipientId", user.getId()));
+			criteria.add(Restrictions.eq("state", Message.READED));
+			return messageDAO.findMessageByCriteria(criteria);
+		}
+	}
 }

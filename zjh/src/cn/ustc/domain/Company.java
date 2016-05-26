@@ -14,10 +14,17 @@ public class Company extends User{
 	private String annotation;//备注
 	private String state;
 	private String balance; //账户余额
+	private Integer points; //积点，通过评价获取
 	
 	private Set<Consult> consults = new HashSet<Consult>();//
 	private String newPassword;// 新密码
 	
+	public Integer getPoints() {
+		return points;
+	}
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
 	public String getNewPassword() {
 		return newPassword;
 	}

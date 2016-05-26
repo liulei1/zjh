@@ -14,7 +14,6 @@
 		$(function(){
 			$(".state").each(function(i){
 				var tag = $(".state")[i].innerHTML;
-				//var para = $($(".state")[i]).next("td").children("a");
 				var para = $($(".state")[i]).next("td").next("td");
 				var state;
 				if(tag == 4){
@@ -24,18 +23,12 @@
 					// 不显示  完成  按钮
 					para.children(".complete").attr("class","btn btn-danger btn-xs hidden complete");
 				}else if(tag == 5){
-					state = "企业评价";
-					// 禁用 评价 按钮
-					para.children(".evaluate").attr("class","btn btn-info btn-xs disabled evaluate");
-					// 不显示  完成  按钮
-					para.children(".complete").attr("class","btn btn-danger btn-xs hidden complete");
-				}else if(tag == 6){
-					state = "专家评价";
+					state = "用户评价";
 					// 显示 评价
 					para.children(".evaluate").attr("class","btn btn-success btn-xs evaluate");
 					// 不显示 完成
 					para.children(".complete").attr("class","btn btn-danger btn-xs hidden complete");
-				}else if(tag == 7){
+				}else if(tag == 6){
 					state = "完成";
 					// 不显示 评价
 					para.children(".evaluate").attr("class","btn btn-success btn-xs hidden evaluate");

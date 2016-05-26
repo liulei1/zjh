@@ -10,9 +10,8 @@ import java.util.Date;
 public class Project {
 	// 定义状态常量
 	public static String ONGOING = "4";
-	public static String COMPANYEVALUATE = "5";
-	public static String PROFESSOREVALUATE = "6";
-	public static String COMPELETED = "7";
+	public static String EVALUATE = "5";
+	public static String COMPELETED = "6";
 	
 	private String id;
 	private String prof_id;	// 专家id

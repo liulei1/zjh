@@ -36,6 +36,12 @@ public class MessageAction extends ActionSupport implements ModelDriven<Message>
 		return "queryMyUnreadSUCCESS";
 	}
 	
+	public String queryMyReaded(){
+		User loginUser = (User) ServletActionContext.getServletContext().getAttribute("user");
+		messages = messageService.getUserReadedMessages(loginUser);
+		return "queryMyUnreadSUCCESS";
+	}
+	
 	public String haveReaded(){
 		String id = messageModel.getId();
 		messageService.readMessageById(id);

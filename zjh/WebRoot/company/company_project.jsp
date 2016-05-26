@@ -24,18 +24,12 @@
 					// 显示  完成  按钮
 					para.children(".complete").attr("class","btn btn-danger btn-xs complete");
 				}else if(tag == 5){
-					state = "企业评价";
+					state = "用户评价";
 					// 显示 评价
 					para.children(".evaluate").attr("class","btn btn-success btn-xs evaluate");
 					// 不显示 完成
 					para.children(".complete").attr("class","btn btn-danger btn-xs hidden complete");
 				}else if(tag == 6){
-					state = "专家评价";
-					// 显示 评价
-					para.children(".evaluate").attr("class","btn btn-success btn-xs disabled evaluate");
-					// 不显示 完成
-					para.children(".complete").attr("class","btn btn-danger btn-xs hidden complete");
-				}else if(tag == 7){
 					state = "完成";
 					// 不显示 评价
 					para.children(".evaluate").attr("class","btn btn-success btn-xs hidden evaluate");

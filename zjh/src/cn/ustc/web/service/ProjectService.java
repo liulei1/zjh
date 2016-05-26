@@ -35,7 +35,7 @@ public class ProjectService {
 	 */
 	public void projectComplete(Project project) {
 		Project p = projectDAO.findById(project.getId());
-		p.setCurrent_state(Project.COMPANYEVALUATE);
+		p.setCurrent_state(Project.EVALUATE);
 		p.setEnd_date(DateUtils.dateToString(new Date()));
 		projectDAO.update(p);
 		

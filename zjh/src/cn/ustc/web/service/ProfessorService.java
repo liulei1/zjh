@@ -38,7 +38,7 @@ public class ProfessorService {
 	}
 
 	/**
-	 * 根据id更新传入的用户信息
+	 * 根据id,更新传入的属性值
 	 * @param professor
 	 */
 	public void updateInfo(Professor professor) {
