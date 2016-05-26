@@ -10,7 +10,7 @@ public class Evaluate {
 	public static final String COMPLETED = "1";
 	
 	private String id;
-	private int proj_id;
+	private String proj_id;
 	private String com_id;
 	private String prof_id;
 	private String begin_date;
@@ -40,10 +40,10 @@ public class Evaluate {
 	public void setProf_id(String prof_id) {
 		this.prof_id = prof_id;
 	}
-	public int getProj_id() {
+	public String getProj_id() {
 		return proj_id;
 	}
-	public void setProj_id(int proj_id) {
+	public void setProj_id(String proj_id) {
 		this.proj_id = proj_id;
 	}
 	public String getCom_id() {

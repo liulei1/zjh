@@ -22,28 +22,28 @@
 <body>
 <div align="center">
 		<s:debug></s:debug>
-		<h1>consult information</h1>
+		<h1>Consult Information</h1>
 		<table>
 			<tr>
-				<td>title</td>
+				<td>Title</td>
 				<td>
 					${model.title}
 				</td>
 			</tr>
 			<tr>
-				<td>money</td>
+				<td>Money</td>
 				<td>
 					${model.budget}&nbsp;元
 				</td>
 			</tr>
 			<tr>
-				<td>describation</td>
+				<td>Describation</td>
 				<td>
 					${model.details}
 				</td>
 			</tr>
 			<tr>
-				<td>document</td>
+				<td>Document</td>
 				<td>
 					<s:a action="consult_download" namespace="/consult">
 						<s:param name="id" value="model.id"></s:param>

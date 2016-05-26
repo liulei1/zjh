@@ -25,7 +25,7 @@ public class ProjectService {
 		return this.projectDAO.findByDetachedCriteria(criteria);
 	}
 	
-	public Project findById(int id){
+	public Project findById(String id){
 		return projectDAO.findById(id);
 	}
 
@@ -36,7 +36,7 @@ public class ProjectService {
 	public void projectComplete(Project project) {
 		Project p = projectDAO.findById(project.getId());
 		p.setCurrent_state(Project.COMPANYEVALUATE);
-		p.setEnd_date(new Date());
+		p.setEnd_date(DateUtils.dateToString(new Date()));
 		projectDAO.update(p);
 		
 		Evaluate evaluate = new Evaluate();
