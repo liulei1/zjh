@@ -45,7 +45,7 @@ find by vocation:<div id="field"></div>
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					company user list
+					Company List
 				</h3>
 				<table class="table table-bordered">
 					<thead>

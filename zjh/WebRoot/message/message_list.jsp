@@ -4,29 +4,16 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>personal message</title>
+     <title>消息列表</title>
+     
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 	 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 	 <script type="text/javascript">
-		$(function() {
-			/* $(".view").bind("click", function(event) {
-				var r = confirm("是将这条消息设为已读吗？");
-				if(r){
-					var td = event.target;
-					var id = $(td).prev("input[name='id']").val();
-					$.post("${pageContext.request.contextPath}/message/message_haveReaded",{id:id},function(data){
-						document.write(data);
-						//parent.getMessageCountNow();
-					});
-				}
-			}); */
-			
-		});
 		function read(target){
-				var r = confirm("set this message readed?");
+				var r = confirm("Set this message readed?");
 				if(r){
 					var td = $(target).children("td");
 					var id = $(td).prev("input[name='id']").val();
@@ -45,7 +32,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					my message
+					New Messages
 				</h3>
 				<table class="table table-bordered table-hover">
 					<s:if test="messages.size() == 0">

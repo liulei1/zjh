@@ -4,9 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>未接受的咨询列表</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
-<title>consult receive</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -41,7 +42,7 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>Consult List</strong></h1>
+<h1 align="center"><strong>Receive Consult</strong></h1>
 	<div align="center">
 		<table class="table table-striped">
 			<tr>

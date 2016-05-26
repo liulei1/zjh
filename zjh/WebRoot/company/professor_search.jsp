@@ -45,7 +45,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					professor list
+					Professor List
 				</h3>
 				<table class="table table-bordered">
 					<thead>

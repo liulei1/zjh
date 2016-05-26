@@ -92,7 +92,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					consult list
+					Consult List
 				</h3>
 				<table class="table table-bordered" id="consult_table">
 					<thead>

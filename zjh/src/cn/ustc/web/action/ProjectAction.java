@@ -62,7 +62,7 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 			
 		}else if(o instanceof Professor){
 			Professor professor =(Professor) o;
-			count=projectService.getCountByCompanyID(professor.getId());
+			count=projectService.getCountByPorfessorID(professor.getId());
 
 			criteria.add(Restrictions.eq("prof_id", professor.getId()));
 			projects = projectService.findByDetachedCriteria(criteria);

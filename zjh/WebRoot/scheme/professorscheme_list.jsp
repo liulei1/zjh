@@ -34,41 +34,56 @@ function changePage(operate){
 <title>方案列表</title>
 </head>
 <body>
-<h1 align="center"><strong>我的方案</strong></h1>
-	<div align="center">
-		<s:actionerror/>
-		<table frame="border" rules="all">
-			<s:if test="schemes != null">
-				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">项目编号</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">方案标题</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">查看详细</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">发布时间</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">方案文档</td>
-				</tr>
-			</s:if>
-			<s:iterator value="schemes" var="scheme">
-				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
-						${cons_id}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
-						${title}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
-						${details}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
-						${upload_date}
-					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">
-						<s:a action="scheme_download" namespace="/scheme">
-						<s:param name="id" value="id"></s:param>
-						<s:property value="fileName"/>
-					</s:a>
-					</td>
-				</tr>
-			</s:iterator>
+	<div id="LG" class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<h3 class="text-center">
+					My Schemes
+				</h3>
+			<table class="table table-bordered">
+				<thead>
+						<tr class="warning">
+							<th style="text-align:center;">
+								SchemeNumber
+							</th>
+							<th style="text-align:center;">
+								Title
+							</th>
+							<th style="text-align:center;">
+								Details
+							</th>
+							<th style="text-align:center;">
+								ReleaseDate
+							</th>
+							<th style="text-align:center;">
+								Document
+							</th>
+						</tr>
+					</thead>
+				<tbody>
+					<s:iterator value="schemes" var="scheme">
+						<tr class="info">
+							<td align="center" id="1">
+								${cons_id}
+							</td>
+							<td align="center">
+								${title}
+							</td>
+							<td align="center">
+								${details}
+							</td>
+							<td align="center">
+								${upload_date}
+							</td>
+							<td align="center">
+								<s:a action="scheme_download" namespace="/scheme">
+								<s:param name="id" value="id"></s:param>
+								<s:property value="fileName"/>
+							</s:a>
+							</td>
+						</tr>
+					</s:iterator>
+				</tbody>
 		</table>
 		<p id="pageIndex" style="font-size:20px;font-weight:bold;color:blue;margin-left:150px;"></p>
 				<!-- 分页 -->
@@ -77,7 +92,5 @@ function changePage(operate){
 			      <li id="lastpage"><a href="#" onclick="changePage('next')">下一页</a></li>
 			    </ul>
 			    <span>第&nbsp;${pageIndex}/${pageCount}&nbsp;页&nbsp;</span><br>
-	<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">返回</span></a>
-	</div>
 </body>
 </html>
