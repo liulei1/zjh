@@ -19,19 +19,18 @@
 		<property name="image"/>
 		<property name="telephone" not-null="true"/>
 		<property name="identity" not-null="true"/>
-		<property name="id_image"/>
 		<property name="introduction"/>
 		<property name="field" not-null="true"/>
 		<property name="authority"/>
 		<property name="achieve"/>
-		<property name="annotation"/>
 		<property name="balance"/>
 		<property name="education"/>
-		<property name="honour"/>
+		<property name="points"/>
 		
 		
 		<!-- name 关联方案集合的属性名 -->
-		<set name="schemes" cascade="save-update,delete,delete-orphan" inverse="true">  <!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->
+		<!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->
+		<set name="schemes" cascade="save-update,delete,delete-orphan" inverse="true">
 			<!-- 专家关联方案后，在对方表 添加 外键列 -->
 			<!-- column 对方表 外键列 列名 -->
 			<key column="prof_id"></key>

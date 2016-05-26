@@ -8,17 +8,15 @@ public class Professor extends User{
 	private String image;//头像
 	private String telephone;//电话
 	private String identity;//身份证号
-	private String id_image;//身份证照片
 	private String introduction;//个人简介
 	private String field;//擅长领域
 	private String authority;//权限
 	private String achieve;//成就
-	private String annotation;//注解
 	private String address;
 	private String website;
 	private String balance; // 余额
 	private String education; // 学历
-	private String honour;	// 荣誉
+	private Integer points;	// 积点，完成项目获得
 
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
@@ -42,11 +40,11 @@ public class Professor extends User{
 	public void setEducation(String education) {
 		this.education = education;
 	}
-	public String getHonour() {
-		return honour;
+	public Integer getPoints() {
+		return points;
 	}
-	public void setHonour(String honour) {
-		this.honour = honour;
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 	public String getAddress() {
 		return address;
@@ -84,12 +82,6 @@ public class Professor extends User{
 	public void setIdentity(String identity) {
 		this.identity = identity;
 	}
-	public String getId_image() {
-		return id_image;
-	}
-	public void setId_image(String id_image) {
-		this.id_image = id_image;
-	}
 	public String getIntroduction() {
 		return introduction;
 	}
@@ -113,12 +105,6 @@ public class Professor extends User{
 	}
 	public void setAchieve(String achieve) {
 		this.achieve = achieve;
-	}
-	public String getAnnotation() {
-		return annotation;
-	}
-	public void setAnnotation(String annotation) {
-		this.annotation = annotation;
 	}
 	public Set<Scheme> getSchemes() {
 		return schemes;

@@ -7,7 +7,7 @@
 	<class name="Vocation" table="vocation" catalog="zjh">
 
 		<id name="id">
-			<generator class="native"/>
+			<generator class="uuid"/>
 		</id>
 		<property name="name"/>
 		

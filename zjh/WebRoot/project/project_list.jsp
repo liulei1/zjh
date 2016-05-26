@@ -68,7 +68,6 @@
 			
 		}
 		
-		
 	</script>
    </head>
    <body>
@@ -76,7 +75,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					project list
+					My Projects
 				</h3>
 				<table class="table table-bordered">
 					<thead>

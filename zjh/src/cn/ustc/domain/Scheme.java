@@ -10,13 +10,6 @@ import java.util.Date;
 public class Scheme {
 	private String id;
 	private Professor professor;
-/*	private String prof_id;//专家的id
-	public String getProf_id() {
-		return prof_id;
-	}
-	public void setProf_id(String prof_id) {
-		this.prof_id = prof_id;
-	}*/
 	private String title; // 方案标题
 	private String cons_id;	// 方案对应的需求id
 	private String details;

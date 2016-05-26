@@ -9,22 +9,22 @@
 </head>
 <body>
 <div align="center">
-		<h1>details of scheme</h1>
+		<h1>Scheme Details</h1>
 		<table>
 			<tr>
-				<td>标题：</td>
+				<td>Title</td>
 				<td>
 					${model.title}
 				</td>
 			</tr>
 			<tr>
-				<td>description</td>
+				<td>Description</td>
 				<td>
 					${model.details}
 				</td>
 			</tr>
 			<tr>
-				<td>document</td>
+				<td>Document</td>
 				<td>
 					<s:a action="scheme_download" namespace="/scheme">
 						<s:param name="id" value="model.id"></s:param>
@@ -34,10 +34,10 @@
 			</tr>
 			<tr>
 				<td>
-					author
+					Author
 				</td>
 				<td>
-					<s:a action="" namespace="">
+					<s:a action="professor_viewProfessorInfoById" namespace="/professor">
 						<s:param name="id" value="model.professor.id"></s:param>
 						${model.professor.name}
 					</s:a>
