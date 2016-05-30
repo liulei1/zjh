@@ -5,11 +5,33 @@
 <struts>
 	<!-- ajax 请求，返回json数据 -->
 	<package name="myjson" namespace="/json" extends="json-default">
+		<!-- 首页获取推荐专家 -->
+		<action name="recommendProfessor" class="cn.ustc.web.action.ProfessorAction" method="recommendProfessor">
+			<!-- 结果集类型 必须指定为 json -->
+			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
+			<result type="json">
+				<param name="root">action</param>
+			</result>
+		</action>
+
+		<!-- 首页获取推荐咨询 -->
+		<action name="getRecommendConsult" class="cn.ustc.web.action.ConsultAction"
+			method="recommendConsult">
+			<result type="json">
+				<param name="root">action</param>
+			</result>
+		</action>
+		
+		<!-- 上传企业头像 -->
+		<action name="uploadCompanyImage" class="cn.ustc.web.action.CompanyAction" method="uploadCompanyImage">
+			<result type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">imgPath</param>
+			</result>
+		</action>
 
 		<action name="checkUserName" class="cn.ustc.web.action.UserAction"
 			method="checkUserName">
-			<!-- 要点二 ：结果集类型 必须指定为 json -->
-			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
 			<result type="json"></result>
 		</action>
 
@@ -43,5 +65,6 @@
 				<param name="root">action</param>
 			</result>
 		</action>
+		
 	</package>
 </struts>

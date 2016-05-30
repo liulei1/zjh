@@ -23,8 +23,8 @@ import java.util.Date;
 public class Consult {
 	// 定义状态常量
 	public static String UNCHECKED = "0";
-	public static String ALLOW = "1";
-	public static String REJECT = "2";
+	public static String ALLOW = "1"; // 待接收
+	public static String REJECT = "2";	// 审核拒绝
 	public static String COMPLETED = "3";
 	
 	private String id;
@@ -32,8 +32,8 @@ public class Consult {
 	private String title; 		// 标题
 	private String details; 	// 咨询描述
 	private BigDecimal budget;	// 酬金
-	private Date release_date; 	// 发布日期
-	private Date deadline;		// 咨询失效日期
+	private String release_date; 	// 发布日期
+	private String deadline;		// 咨询失效日期
 	private String checked_id; 	// 关联审核表
 	private String category; 	// 领域,分类
 	private String fileName;	// 文档名
@@ -142,23 +142,18 @@ public class Consult {
 	public void setBudget(BigDecimal budget) {
 		this.budget = budget;
 	}
-
-	public Date getRelease_date() {
+	public String getRelease_date() {
 		return release_date;
 	}
-
-	public void setRelease_date(Date release_date) {
+	public void setRelease_date(String release_date) {
 		this.release_date = release_date;
 	}
-
-	public Date getDeadline() {
+	public String getDeadline() {
 		return deadline;
 	}
-
-	public void setDeadline(Date deadline) {
+	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
-
 	public String getChecked_id() {
 		return checked_id;
 	}

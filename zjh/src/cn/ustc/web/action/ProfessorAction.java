@@ -70,7 +70,7 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "findSuccess";
 	}
 
-	// 查看专家用户信息
+	// 查看当前登录的专家用户信息
 	public String viewProfessorInfo(){
 		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		professor = professorService.findProfessorById(user.getId());
@@ -114,5 +114,14 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		Vocation vocation = vocationDAO.findVocationById(professor.getField());
 		professor.setField(vocation.getName());
 		return "viewProfessorInfoByIdSUCCESS";
+	}
+	
+	public String recommendProfessor(){
+		professors = professorService.getRecommendProfessor(5);
+		for (Professor p : professors) {
+			Vocation vocation = vocationDAO.findVocationById(p.getField());
+			p.setField(vocation.getName());
+		}
+		return SUCCESS;
 	}
 }

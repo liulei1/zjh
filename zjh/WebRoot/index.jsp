@@ -9,25 +9,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="qing_style/css/app_new.css">
+    <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 </head>
-
+<script type="text/javascript">
+	$(function(){
+		getRecommendProfessor();
+		getRecommendConsult();
+	});
+	
+	//获取推荐的专家
+	function getRecommendProfessor(){
+		$.post("${pageContext.request.contextPath}/json/recommendProfessor.action",function(data){
+			var html='';
+			$.each(data.professors,function(index,professor){
+				html+='<li><div class="pd"><a><img src="'+professor.img+'" onerror="javascript:this.src=\'qing_style/img/list/04.jpg\'"></a></div>';
+				var url = "${pageContext.request.contextPath}/professor/professor_viewProfessorInfoById?id="+professor.id;
+				html+='<div class="pd_name"><a href='+url+'>'+professor.name+'</a></div>';
+				html+='<div><span>Points:</span>&nbsp;&nbsp;<span class="money">'+professor.points+'</span></div>';
+				html+='<div><span>Feild:&nbsp;'+professor.field+'</span></div>';
+				html+='<div><span>Address:'+professor.address+'</span></div>'; 
+				html+='<div><span>Education:'+professor.education+'</span></div></li>';
+			});
+			$('#recommendProfessor').html(html);
+		});
+	}
+	
+	//获取推荐的需求
+	function getRecommendConsult(){
+		var pic = new Array("qing_style/img/list/05.jpg","qing_style/img/list/06.jpg","qing_style/img/list/07.jpg","qing_style/img/list/08.jpg","qing_style/img/list/09.jpg");
+		var length = pic.length;
+		$.post("${pageContext.request.contextPath}/json/getRecommendConsult.action",function(data){
+			var html='';
+			var i = 0;
+			$.each(data.consults,function(index,consult){
+				html+='<li>';
+				var url = pic[i++%length];
+				html+='<div class="pd"><a><img src='+url+'></a></div>';
+				html+='<div class="pd_name"><a href="#">'+consult.title+'</a></div>';
+				html+='<div><span class="money">Budget:¥'+consult.budget+'</span></div>';
+				html+='<div><span>Release:'+consult.release_date+'</span></div>';
+				html+='<div><span>End Time:'+consult.deadline+'</span></div>';
+				html+='<div><span>Feild:'+consult.category+'</span></div>';
+				html+='</li>';
+			});
+			$('#recommendConsult').html(html);
+		});
+	}
+	
+</script>
 <body>
 <div class="headerBar">
     <div class="logoBar">
         <div class="logo">
             <!-- start logo -->
             <h2>
-	            <a class="logoText fl" href="${pageContext.request.contextPath }/index.jsp" title="专家汇平台">
+	            <a class="logoText fl" href="${pageContext.request.contextPath}" title="专家汇平台">
 	            	ZJH
 	            </a>
             </h2>
         </div>
         <p class="lineText fl">行业专家和短期项目的交流平台</p>
 
-        <!--div class="searchBox fl" style="display:none">
-            <input type="text" class="search_query fl">
-            <input type="button" class="search_btn fr" value="搜索">
-        </div-->
         <div class="loginText fr">
             <span>欢迎来到zjh!</span>
             <a class="linkText" href="user/login.jsp">[登录]</a>
@@ -111,7 +153,7 @@
             </ul>
     </div>
 </div>
-<div class="mainBody"><!--/*1263*424*/-->
+<div class="mainBody">
 <div class="bannerBar">
     <ul class="imgBox">
         <li><a href="#"><img src="qing_style/img/banner/05.jpg"></a></li>
@@ -122,62 +164,21 @@
 </div>
 <div>
 <div class="title">
-    <span style="float:left">推荐专家</span>
-    <a class="more" href="#"style="float:right">更多&gt&gt</a>
+    <span style="float:left" onclick="getRecommendProfessor()">推荐专家</span>
+    <a class="more" href="#"style="float:right">更多&gt;&gt;</a>
 </div>
     <div class="content">
-        <ul class="list">
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/04.jpg"></a></div>
-                <div class="pd_name"><a href="#">如沐春风网络</a></div>
-                <div><span>近三个月收入:</span>&nbsp;&nbsp;<span class="money"> ¥116979</span></div>
-                <div><span>成交数量:9 &nbsp;&nbsp;&nbsp;&nbsp;好评率:100%</span></div>
-                <div><span>服务: 暂无</span></div>
-                <div><span>个人 广东 广州</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/04.jpg"></a></div>
-                <div class="pd_name"><a href="#">如沐春风网络</a></div>
-                <div><span>近三个月收入:</span>&nbsp;&nbsp;<span class="money"> ¥116979</span></div>
-                <div><span>成交数量:9 &nbsp;&nbsp;&nbsp;&nbsp;好评率:100%</span></div>
-                <div><span>服务: 暂无</span></div>
-                <div><span>个人 广东 广州</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/04.jpg"></a></div>
-                <div class="pd_name"><a href="#">如沐春风网络</a></div>
-                <div><span>近三个月收入:</span>&nbsp;&nbsp;<span class="money"> ¥116979</span></div>
-                <div><span>成交数量:9 &nbsp;&nbsp;&nbsp;&nbsp; 好评率:100%</span></div>
-                <div><span>服务: 暂无</span></div>
-                <div><span>个人 广东 广州</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/04.jpg"></a></div>
-                <div class="pd_name"><a href="#">如沐春风网络</a></div>
-                <div><span>近三个月收入:</span>&nbsp;&nbsp;<span class="money"> ¥116979</span></div>
-                <div><span>成交数量:9 &nbsp;&nbsp;&nbsp;&nbsp;好评率:100%</span></div>
-                <div><span>服务: 暂无</span></div>
-                <div><span>个人 广东 广州</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/04.jpg"></a></div>
-                <div class="pd_name"><a href="#">如沐春风网络</a></div>
-                <div><span>近三个月收入:</span>&nbsp;&nbsp;<span class="money"> ¥116979</span></div>
-                <div><span>成交数量:9 &nbsp;&nbsp;&nbsp;&nbsp;好评率:100%</span></div>
-                <div><span>服务: 暂无</span></div>
-                <div><span>个人 广东 广州</span></div>
-            </li>
-        </ul>
+        <ul class="list" id="recommendProfessor"></ul>
     </div>
 </div>
 <div>
     <div class="title">
-        <span style="float:left">推荐需求</span>
-        <a class="more" href="#"style="float:right">更多&gt&gt</a>
+        <span style="float:left" onclick="getRecommendConsult()">推荐需求</span>
+        <a class="more" href="#"style="float:right">更多&gt;&gt;</a>
     </div>
     <div class="content">
-        <ul class="list">
-            <li>
+        <ul class="list" id="recommendConsult">
+            <%-- <li>
                 <div class="pd"><a><img src="qing_style/img/list/05.jpg"></a></div>
                 <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
                 <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
@@ -211,7 +212,7 @@
                 <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
                 <div><span>专业APP实体公司</span></div>
                 <div><span>广东 东莞</span></div>
-            </li>
+            </li> --%>
         </ul>
     </div>
 </div>

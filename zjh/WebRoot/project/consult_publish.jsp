@@ -14,10 +14,9 @@
 <script type="text/javascript">
 	$(function(){
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			//alert(data.vocationList[0].name);
 			var html = '<select name="category"><option selected="selected" value="">-- select --</option>';
 			$.each(data.vocationList, function(index, context){
-  				html += '<option value="' + context.name +'">' + context.name +'</option>';
+  				html += '<option value="' + context.id +'">' + context.name +'</option>';
              });
              html += '</select>';
              $('#field').html(html);
@@ -38,7 +37,7 @@
 	<div align="center">
 		<h1>Publish Consult</h1>
 		<br>
-		<s:form cssClass="form-horizontal" role="form" action="consult_publish" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple" onsubmit="return publishCheck()">
+		<s:form cssClass="form-horizontal" role="form" action="consult_publishConsult" namespace="/consult" method="post" enctype="multipart/form-data" theme="simple" onsubmit="return publishCheck()">
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">Title</label>
 				<div class="col-sm-2">

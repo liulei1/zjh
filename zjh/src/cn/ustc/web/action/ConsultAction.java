@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -23,9 +22,11 @@ import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
+import cn.ustc.domain.Vocation;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
+import cn.ustc.web.dao.VocationDAO;
 import cn.ustc.web.service.ConsultService;
 import cn.ustc.web.service.SchemeService;
 
@@ -33,6 +34,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+@SuppressWarnings("serial")
 public class ConsultAction extends ActionSupport implements ModelDriven<Consult> {
 	private static final int PAGESIZE = 4;
 	private Consult model = new Consult();
@@ -44,7 +46,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	/****************************文件上传****************************/
 	private File file;
 	private String fileFileName;
-	@SuppressWarnings("unused")
 	private String fileContentType;
 
 	public void setFile(File file) {
@@ -62,6 +63,8 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	private ConsultService consultService;
 	@Autowired
 	private SchemeService schemeService;
+	@Autowired
+	private VocationDAO vocationDAO;
 
 	/************************************* 发布上传下载 ****************************************/
 
@@ -98,7 +101,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	// 咨询发布
 	@InputConfig(resultName = "input")
-	public String publish() {
+	public String publishConsult() {
 		if (file != null) {
 			Properties properties = GetPropertiesUtil.getProperties();
 			String fileRootPath = properties.getProperty("consultFileRootPath");
@@ -107,13 +110,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 			model.setFilePath(filePath);
 		}
 		model.setState(Consult.UNCHECKED);
-		model.setRelease_date(new Date());
+		model.setRelease_date(DateUtils.dateToString(new Date()));
 		Company company = (Company) ServletActionContext.getServletContext()
 				.getAttribute("user");
 		model.setCom_id(company.getId()); // 获取企业的id
 		boolean res = consultService.publish(model);
 		if (res) {
-			return "publishSUCCESS";
+			return "publishConsultSUCCESS";
 		}
 		return NONE;
 	}
@@ -310,4 +313,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return NONE;
 	}
 	
+	// 首页获取推荐的咨询
+	public String recommendConsult(){
+		consults = consultService.getRecommendConsult(5);
+		for (Consult c : consults) {
+			Vocation vocation = vocationDAO.findVocationById(c.getCategory());
+			c.setCategory(vocation.getName());
+		}
+		return SUCCESS;
+	}
 }

@@ -129,6 +129,9 @@
 				</div>
 			</div>
 		</s:form>
+			<div class="aside">
+				
+	        </div>
 	</div>
 </body>
 </html>

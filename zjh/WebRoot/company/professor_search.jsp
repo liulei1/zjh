@@ -5,10 +5,9 @@
 <head>
     <title>条件查询专家用户</title>
     
-    <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 
     <script type="text/javascript">
         $(function() {

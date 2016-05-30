@@ -58,4 +58,28 @@ public class UploadAndDownloadUtils {
 			return null;
 		}
 	}
+	
+	/**
+	 * 存储上传文件,文件用用户的Id命名.文件已存在则删除源文件
+	 * @param file 要存储的文件
+	 * @param fileRootPath 要存储的根路径
+	 * @param id 用户id
+	 * @return 文件在项目中的绝对地址
+	 */
+	public static String restoreFile(File file, String fileRootPath, String id){
+		
+		String filePath =  fileRootPath + "/" + id + ".png";
+		File destFile = new File(filePath);
+		// 若存在则先删除
+		if(destFile.exists()){
+			destFile.delete();
+		}
+		try {
+			FileUtils.copyFile(file, destFile);
+			return GetPropertiesUtil.getPropertiesValueByKey("imgUploadPath")+"/"+id+".png";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

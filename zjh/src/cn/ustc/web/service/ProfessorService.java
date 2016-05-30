@@ -2,6 +2,9 @@ package cn.ustc.web.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -82,5 +85,17 @@ public class ProfessorService {
 		instance.setField(professor.getField());
 		instance.setIntroduction(professor.getIntroduction());
 		return instance;
+	}
+
+	/**
+	 * 获取推荐的专家
+	 * @return
+	 */
+	public List<Professor> getRecommendProfessor(int maxSize) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Professor.class);
+		// 用户状态必须为可用
+//		criteria.add(Restrictions.eq("state", "1"));
+		criteria.addOrder(Order.desc("points"));
+		return professorDAO.findProfessorByCriteria(criteria, maxSize);
 	}
 }

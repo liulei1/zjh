@@ -1,10 +1,13 @@
 package cn.ustc.web.service;
 
+import java.awt.image.RescaleOp;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -98,7 +101,21 @@ public class ConsultService {
 		consultCheckDAO.insert(consultCheck);
 		int res = consultDAO.check(id,Consult.ALLOW); // 更新需求信息的状态
 		
-		// TODO 使用算法来确定推送的人
+		// 使用算法，推送给专家
+		this.sendMessageToProfessor();
+		
+		if(res > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	 * 推送信息给专家的方法
+	 */
+	private void sendMessageToProfessor() {
+		// TODO 使用算法来确定推送的人，推送的内容
 		List<Professor> professors = professorDAO.findAll();
 		int num = Integer.parseInt(GetPropertiesUtil.getProperties().getProperty("MessageSendNumber"));
 		if(num>professors.size()){
@@ -119,12 +136,6 @@ public class ConsultService {
 			// 发送消息
 			messageDAO.addMessage(message);
 			professors.remove(index);
-		}
-		
-		if(res > 0){
-			return true;
-		}else{
-			return false;
 		}
 	}
 
@@ -189,5 +200,17 @@ public class ConsultService {
 
 	public int allowCount(){
 		return consultDAO.getAllowCount();
+	}
+
+	/**
+	 * 获取推荐的咨询
+	 * @param maxSize 推荐的咨询条数
+	 * @return
+	 */
+	public List<Consult> getRecommendConsult(int maxSize) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+		criteria.add(Restrictions.eq("state", Consult.ALLOW));
+		criteria.addOrder(Order.desc("release_date"));
+		return consultDAO.findConsultByCriteria(criteria,maxSize);
 	}
 }

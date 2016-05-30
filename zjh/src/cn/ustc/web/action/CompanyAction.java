@@ -1,13 +1,22 @@
 package cn.ustc.web.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import sun.org.mozilla.javascript.internal.json.JsonParser;
+
 import cn.ustc.domain.Company;
 import cn.ustc.domain.User;
-import cn.ustc.domain.Professor;
+import cn.ustc.utils.GetPropertiesUtil;
+import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.service.CompanyService;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -116,5 +125,48 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 			context.put("result", "passwords entered did not match");
 		}
 		return "changePasswordSUCCESS";
+	}
+	
+	private File file;
+	private String fileContentType;
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+	private String imgPath;
+	public String getImgPath() {
+		return imgPath;
+	}
+
+	//头像上传
+	public String uploadCompanyImage(){
+		
+		// 判断文件不为空，且是图片
+		if (file != null && "image/png".equals(fileContentType)) {
+			HttpServletRequest request = ServletActionContext.getRequest();
+			// 图片大小默认最大10M
+			String fileSize = request.getParameter("fileSize")!=null?request.getParameter("fileSize"):"10";
+			try {
+				FileInputStream f = new FileInputStream(file);
+				int imgSize = f.available()>>20; // 单位变为M
+				if(imgSize<Integer.valueOf(fileSize)){
+					String uploadPath = GetPropertiesUtil.getPropertiesValueByKey("imgUploadPath");
+					String imgRootPath = ServletActionContext.getServletContext().getRealPath(uploadPath);
+					
+					// 更新信息
+//					company = (Company)ServletActionContext.getServletContext().getAttribute("user");
+					imgPath = UploadAndDownloadUtils.restoreFile(file,imgRootPath,"1111");
+//					Company companyById = companyService.findCompanyById(company.getId());
+//					companyById.setImage(imgPath);
+//					companyService.update(companyById);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
 	}
 }

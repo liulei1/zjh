@@ -9,7 +9,7 @@
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="loginInterceptor">
-					<param name="exclude">user_login,user_register,company_register,professor_register</param>	
+					<param name="exclude">company_uploadCompanyImage,user_login,user_register,company_register,professor_register,professor_viewProfessorInfoById</param>	
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
@@ -24,7 +24,7 @@
 
 	<package name="consult" namespace="/consult" extends="myDefault">
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
-			<result name="publishSUCCESS">/success.jsp</result>
+			<result name="publishConsultSUCCESS">/success.jsp</result>
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
 			<result name="allowListSUCCESS">/project/consult_recieve.jsp</result>
 			<result name="viewSUCCESS">/project/consultInfo.jsp</result>
