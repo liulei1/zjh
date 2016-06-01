@@ -2,16 +2,12 @@ package cn.ustc.web.action;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.User;
