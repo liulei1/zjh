@@ -1,14 +1,18 @@
 package cn.ustc.web.action;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.Message;
 import cn.ustc.domain.User;
-import cn.ustc.domain.Professor;
+import cn.ustc.utils.DateUtils;
 import cn.ustc.web.service.CompanyService;
+import cn.ustc.web.service.MessageService;
+import cn.ustc.web.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,9 +33,20 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	
 	@Autowired
 	private CompanyService companyService;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private MessageService messageService;
 	
 	@InputConfig(resultName = "companyRegister")
 	public String register() {
+		User user=(User) ServletActionContext.getServletContext().getAttribute("user");
+		if(user!=null){
+			company.setState("0");
+		}else{
+			company.setState("1");
+		}
+		company.setUsertype("1");
 		companyService.insertCompany(company);
 		return "companyRegisterSuccess";
 	}
@@ -116,4 +131,55 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		}
 		return "changePasswordSUCCESS";
 	}
+	
+	//查询所有状态为0的company,放在companys中
+	public String unauditlist(){
+		companys=companyService.findAllUnaudit();
+		return "uneditCompanys";
+	}
+	
+	//通过一个company申请
+	public String pass(){
+		//传进来的company只有id一个属性
+		companyService.pass(company.getId());
+		//为user放一条消息，先查到company的名字，再拿着名字查找user,给这个id的user放一条消息
+		company=companyService.findCompanyById(company.getId());
+		String name=company.getName();
+		User user=companyService.findCompanyByName(name).get(0);
+		String userID=user.getId();
+		//生成一条完整的message
+		Message message=new Message();
+		message.setRecipientId(userID);
+		message.setType(Message.TOUSER);
+		String time=DateUtils.dateToString(new Date());
+		message.setSendTime(time);
+		message.setState(Message.UNREAD);
+		message.setTitle("系统通知");
+		message.setContent("您注册成为企业用户的申请已经通过，现在可以以企业用户身份登录");
+		messageService.sendMessage(message);
+		return "passSuccess";
+	}
+	
+	//拒绝一个company申请
+	public String refuse(){
+		company=companyService.findCompanyById(company.getId());
+		String name=company.getName();
+		User user=userService.findUserByName(name).get(0);
+		String userID=user.getId();
+		//生成一条完整的message
+		Message message=new Message();
+		message.setRecipientId(userID);
+		message.setType(Message.TOUSER);
+		String time=DateUtils.dateToString(new Date());
+		message.setSendTime(time);
+		message.setState(Message.UNREAD);
+		message.setTitle("系统通知");
+		message.setContent("您注册成为专家的申请未通过，可再次申请");
+		messageService.sendMessage(message);
+		
+		companyService.refuse(company.getId());
+		return "refused";
+		
+	}
+	
 }

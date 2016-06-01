@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="/struts-tags" prefix="s"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>regist collection of professors</title>
-<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-</head>
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
@@ -24,7 +18,7 @@
 		});
 
 		$("#add_username").blur(function(){
-			$.post("${pageContext.request.contextPath}/json/checkProfessorName.action",{"name":$(this).val()},function(data){
+			$.post("${pageContext.request.contextPath}/user/checkCompanyName.action",{"name":$(this).val()},function(data){
 				if(data.nameExsit){
 					// 用户名已经存在
 					$("#result").html("<font color='red' class='check'>用户名已经存在</font>");
@@ -45,29 +39,46 @@
 			return true;
 		}
 	}
+	
 </script>
-<body>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Apply to be Company</title>
+<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
+rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
+
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/bootstrap.min.js"></script>
+</head>
+
+<body class="">
 	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">collection of professors platform</span>
+		<a class="brand" href="index.html"><span class="first">Collection of professors platform</span>
 		</a>
 	</div>
-		<s:form action="professorRegister" namespace="/token" theme="simple" method="post">
+	<div class="container" style="margin-top:10px">
+		<div align="center">
+			<span id="result"></span><font color="red"> <s:actionerror />
+				<s:fielderror /> </font>
+		</div>
+		<s:form cssClass="form-signin" action="company_register"  namespace="/token" theme="simple" method="post" cssStyle="max-height: 400px;">
 			<div class="content">
 				<div class="main">
 					<div class="">
-						<p align="center">Register</p>
+				<p align="center">Apply to be Company</p>
 						<hr class="hr1" />
 					</div>
-					<s:token></s:token>
 					<s:textfield name="name" id="add_username"
-						class="input-block-level" placeholder="用户名" />
-					
+						class="input-block-level" placeholder="用户名" value="%{model.name}" readonly="true"/>
+
 					<s:textfield name="email" class="input-block-level"
-						placeholder="邮箱" />
+						placeholder="邮箱" value="%{model.email}" readonly="true"/>
 					<s:textfield type="password" name="password"
-						class="input-block-level" placeholder="密码" />
-					<s:textfield type="password" name="repassword"
-						class="input-block-level" placeholder="重复密码" />
+						class="input-block-level" placeholder="密码" value="%{model.password}" readonly="true"/>
 					<br>
 					<s:textfield name="real_name" placeholder="真实姓名"></s:textfield>
 					<br>
@@ -77,24 +88,21 @@
 					<br>
 					<s:textfield name="website" placeholder="网址"></s:textfield>
 					<br>
-					<s:textfield name="identity" placeholder="身份证号"></s:textfield>
-					<br>
-					<s:textfield name="introduction" placeholder="个人简介"></s:textfield>
-					<br>
-					性别:<s:radio list="{'male','female'}" name="sex" align="right"/>
+					性别:<s:radio list="{'male','female'}" name="sex" align="right" value="%{model.sex}" readonly="true"/>
 					<br>
 					<div id="field"></div>
 					<button class="btn btn-warning btn1" type="submit">regist</button>
 					<button class="btn" type="reset">reset</button>
-				
 				</div>
 				<div class="aside">
 					<div class="passport-goto" style="text-align: center">
-						haven a  account?
-					<a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
+						haven a account? <a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
 					</div>
 				</div>
 			</div>
 		</s:form>
+	</div>
+
+
 </body>
 </html>

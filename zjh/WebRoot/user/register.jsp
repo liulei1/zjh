@@ -55,15 +55,16 @@
 <br/>
 <br/>
 <div class="container">
-    <form class="form-signin" action="user_register" namespace="/token" theme="simple" method="post">
+    <s:form class="form-signin" action="user_register"  namespace="/token" theme="simple" method="post">
+    	<s:token/>
         <div class="content">
         <div class="main">
         <div>
             <h3>User Register</h3>
             <hr class="hr1"/>
         </div>
-            <input type="text" class="input-block-level" placeholder="Username"  name="uname"><br/>
-            <input type="text" class="input-block-level" placeholder="Email"  name="password"><br/>
+            <input type="text" class="input-block-level" placeholder="Username"  name="name"><br/>
+            <input type="text" class="input-block-level" placeholder="Email"  name="email"><br/>
             <input type="password" class="input-block-level" placeholder="Password"  name="password"><br/>
             <input type="password" class="input-block-level" placeholder="Repassword"  name="repassword"><br/>
             <label for="male">male</label>
@@ -77,7 +78,7 @@
             <div class="passport-goto">已有账号? <a href="load.html">立即登录</a></div>
         </div>
         </div>
-    </form>
+    </s:form>
 </div>
 <div class="footer">
     <p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>

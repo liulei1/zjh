@@ -12,7 +12,9 @@ import cn.ustc.web.dao.ProfessorDAO;
 public class ProfessorService {
 	@Autowired
 	private ProfessorDAO professorDAO;
-
+	
+	private List<Professor> professors=null;
+	
 	public boolean insertProfessor(Professor professor){
 		int res = 0;
 		res = professorDAO.insertProfessor(professor);
@@ -82,5 +84,18 @@ public class ProfessorService {
 		instance.setField(professor.getField());
 		instance.setIntroduction(professor.getIntroduction());
 		return instance;
+	}
+
+	public List<Professor> findAllUnaudit() {
+		professors=professorDAO.findAllUnaudit();
+		return professors;
+	}
+
+	public void pass(String id) {
+		professorDAO.pass(id);
+	}
+
+	public void refuse(String id) {
+		professorDAO.refuse(id);
 	}
 }

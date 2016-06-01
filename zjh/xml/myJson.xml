@@ -43,5 +43,14 @@
 				<param name="root">action</param>
 			</result>
 		</action>
+		
+		<action name="userInformation" class="cn.ustc.web.action.UserAction"
+			method="userInformation">
+			<result type="json">
+				<param name="root">action</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>

@@ -15,6 +15,7 @@ import cn.ustc.utils.HibernateUtils;
  *
  */
 public class ProfessorDAO extends HibernateDaoSupport{
+	private Professor professor;
 	
 	@SuppressWarnings("unchecked")
 	public Professor findProfessorByProfessorNameAndPwd(String professorname, String password) {
@@ -60,6 +61,23 @@ public class ProfessorDAO extends HibernateDaoSupport{
 //		List<Professor> professorList = this.getHibernateTemplate().findByNamedQuery(hql, cat);
 		List<Professor> professorList = this.getHibernateTemplate().find(hql, cat);
 		return professorList;
+	}
+
+	public List<Professor> findAllUnaudit() {
+		String hql="from Professor where state=?";
+		List<Professor> professorList=this.getHibernateTemplate().find(hql,"0");
+		return professorList;
+	}
+
+	public void pass(String id) {
+		professor=findByProfessorID(id);
+		professor.setState("1");
+		this.getHibernateTemplate().update(professor);
+	}
+
+	public void refuse(String id) {
+		professor=findByProfessorID(id);
+		this.getHibernateTemplate().delete(professor);
 	}
 	
 }

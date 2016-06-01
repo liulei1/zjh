@@ -125,7 +125,10 @@
             <li  role="presentation"><a href="../index_new.html" target="_blank">首页</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_unCheckList.action" target="myframe">ConsultCheck</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/user/user_list" target="myframe">UserList</a></li>
-            <li  role="presentation"><a href="${pageContext.request.contextPath}/manage/management.jsp" target="myframe">Viewuser</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/manage/management.jsp" target="myframe">Viewuser</a></li><%--<%--
+            <%--professor审核，列出所有状态为0的professor，审核通过，professor改成1，user之前的状态改成1--%>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/professor/professor_unauditlist" target="myframe">Audit for Professor</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/company/company_unauditlist" target="myframe">Audit for Company</a></li>
         </ul>
     </div>
 </div>

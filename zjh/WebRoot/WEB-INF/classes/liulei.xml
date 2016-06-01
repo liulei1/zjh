@@ -9,7 +9,7 @@
 			<interceptor-stack name="myStack">
 				<interceptor-ref name="defaultStack"/>
 				<interceptor-ref name="loginInterceptor">
-					<param name="exclude">user_login,user_register,company_register,professor_register</param>	
+					<param name="exclude">user_login,user_register,company_register,professor_register,professorRegister</param>	
 				</interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
@@ -112,6 +112,11 @@
 			</result>
 			<result name="viewChangePasswordSUCCESS">/company/company_password.jsp</result>
 			<result name="changePasswordSUCCESS">/company/company_password.jsp</result>
+			
+			<result name="uneditCompanys">/manage/compAudit.jsp</result>
+			<result name="passSuccess">/manage/compAudit.jsp</result>
+			<result name="refused">/manage/compAudit.jsp</result>
+			
 		</action>
 	</package>
 	
@@ -135,6 +140,11 @@
 			<result name="viewChangePasswordSUCCESS">/professor/professor_password.jsp</result>
 			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
 			<result name="viewProfessorInfoByIdSUCCESS">/professor/professorInfo_scheme.jsp</result>
+			<result name="viewRegisterSUCCESS">/professor/professor_register.jsp</result>
+			
+			<result name="uneditProfessors">/manage/proAudit.jsp</result>
+			<result name="passSuccess">/manage/proAduit.jsp</result>
+			<result name="refused">/manage/proAduit.jsp</result>
 		</action>
 	</package>
 	

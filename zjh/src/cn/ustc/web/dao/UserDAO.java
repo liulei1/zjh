@@ -87,6 +87,6 @@ public class UserDAO extends HibernateDaoSupport {
 
 	public User findByCriteria(DetachedCriteria criteria) {
 		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
-		return list.isEmpty() ? null : list.get(0);
+		return list.isEmpty() ? null : list.get(1);
 	}
 }

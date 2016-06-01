@@ -2,11 +2,14 @@ package cn.ustc.web.dao;
 
 import java.util.List;
 
+import javax.ejb.TransactionManagement;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Consult;
 
@@ -117,7 +120,7 @@ public class ConsultDAO extends HibernateDaoSupport{
 		Long count = (Long) this.getHibernateTemplate().find(hql, id).listIterator().next();
 		return count.intValue();
 	}
-
+	
 	public int getAllowCount(){
 		String hql="select count(*) from Consult as consult where consult.state=?";
 		Long count=(Long)this.getHibernateTemplate().find(hql,Consult.ALLOW).listIterator().next();

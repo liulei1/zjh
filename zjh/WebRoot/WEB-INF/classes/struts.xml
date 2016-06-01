@@ -2,6 +2,7 @@
 <!DOCTYPE struts PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
+    
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.custom.i18n.resources" value="messages"/>
@@ -15,6 +16,8 @@
 
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
 		
+			<result name="userInitInformation">/user/professorApply.jsp</result>
+			<result name="companyInit">/user/companyApply.jsp</result>
 			<result name="registerOK">/user/login.jsp</result>
 			<result name="professorregister">/professor/professor_register.jsp</result>
 			<result name="companyRegister">/company/company_register.jsp</result>
@@ -25,7 +28,8 @@
 			<result name="administerloginSUCCESS">/administer/home.jsp</result>
 
 			<result name="input">/user/login.jsp</result>
-			<result name="loginSUCCESS" type="redirect">/user/home.jsp</result>
+			
+			<result name="loginSUCCESS" type="redirect">/user/newhome.jsp</result>
 			<result name="loginINPUT" type="redirect">/user/login.jsp</result>
 
 			<result name="listSUCCESS">/user/userlist.jsp</result>
@@ -46,8 +50,9 @@
 		</action>
 
 	</package>
-	<include file="liulei.xml" />
-	<include file="why.xml" />
-	<include file="android.xml" />
-	<include file="myJson.xml" />
+	<include file="liulei.xml"/>
+	<include file="why.xml"/>
+	<include file="android.xml"/>
+	<include file="myJson.xml"/>
+	<include file="token.xml"/>
 </struts>
