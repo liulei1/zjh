@@ -56,7 +56,9 @@
 
 		<action name="getMyUnreadMessageCount" class="cn.ustc.web.action.MessageAction"
 			method="getMyUnreadMessageCount">
-			<result type="json"></result>
+			<result type="json">
+				<param name="root">action</param>
+			</result>
 		</action>
 
 		<action name="queryMyConsultReturnJson" class="cn.ustc.web.action.ConsultAction"
@@ -66,5 +68,6 @@
 			</result>
 		</action>
 		
+
 	</package>
 </struts>

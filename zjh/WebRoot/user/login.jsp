@@ -11,7 +11,6 @@
     <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function loginCheck(){
             var usertype = $("#usertype").val();
@@ -52,6 +51,12 @@
         <div>
             <h3>User Login</h3>
             <hr class="hr1"/>
+            <s:actionerror/>
+            <span>
+			<font color="red">
+				<b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
+			</font>
+		</span>
         </div>
         <input type="text" class="input-block-level" placeholder="Username"  name="name"><br/>
         <input type="password" class="input-block-level" placeholder="Password"  name="password"><br/>

@@ -55,8 +55,6 @@
 <link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
 rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
-
-
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>

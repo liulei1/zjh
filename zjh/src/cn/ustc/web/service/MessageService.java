@@ -1,6 +1,7 @@
 package cn.ustc.web.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.ustc.domain.Message;
 import cn.ustc.domain.User;
+import cn.ustc.utils.DateUtils;
 import cn.ustc.web.dao.MessageDAO;
 
 @Transactional
@@ -53,5 +55,10 @@ public class MessageService {
 			criteria.add(Restrictions.eq("state", Message.READED));
 			return messageDAO.findMessageByCriteria(criteria);
 		}
+	}
+	
+	public void sendMessage(Message message){
+		//message.setSendTime(DateUtils.dateToString(new Date()));
+		messageDAO.addMessage(message);
 	}
 }

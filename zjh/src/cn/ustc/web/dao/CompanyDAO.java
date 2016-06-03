@@ -96,5 +96,22 @@ public class CompanyDAO extends HibernateDaoSupport{
 		List<Company> companyList = this.getHibernateTemplate().find(hql, cat);
 		return companyList;
 	}
+
+	public List<Company> findAllUnaudit() {
+		String hql="from Company where state=?";
+		List<Company> companys=this.getHibernateTemplate().find(hql,"0");
+		return companys;
+	}
+
+	public void pass(String id) {
+		Company company=findByCompanyID(id);
+		company.setState("1");
+		this.getHibernateTemplate().update(company);
+	}
+
+	public void refuse(String id) {
+		Company company=findByCompanyID(id);
+		this.getHibernateTemplate().delete(company);
+	}
 	
 }

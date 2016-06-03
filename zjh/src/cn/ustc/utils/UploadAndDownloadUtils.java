@@ -76,7 +76,7 @@ public class UploadAndDownloadUtils {
 		}
 		try {
 			FileUtils.copyFile(file, destFile);
-			return GetPropertiesUtil.getPropertiesValueByKey("imgUploadPath")+"/"+id+".png";
+			return id+".png";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
