@@ -80,32 +80,32 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		if (user.getUsertype().equals("professor")) {
 			//professor的状态为0表示审核中，往通被跳转页面放一条审核中的消息
 			
-			/*if(user.getState().equals("0")){
-				this.addActionError("正在审核中");
-				return "loginINPUT";
-			}*/
-			
 			Professor professor = new Professor();
 			professor.setName(user.getName());
 			professor.setPassword(user.getPassword());
 			professor = professorService.login(professor);
 
+			
 			if (professor != null) {
+				if(professor.getState().equals("0")){
+					this.addActionError("正在审核中");
+					return "loginINPUT";
+				}
 				ServletActionContext.getServletContext().setAttribute("user",
 						professor);
 				return "professorloginSUCCESS";
 			}
 
 		} else if (user.getUsertype().equals("company")) {
-			/*if(user.getState().equals("0")){
-				this.addActionError("正在审核中");
-				return "loginINPUT";
-			}*/
 			Company company = new Company();
 			company.setName(user.getName());
 			company.setPassword(user.getPassword());
 			company = companyService.login(company);
 			if (company != null) {
+				if(company.getState().equals("0")){
+				this.addActionError("正在审核中");
+				return "loginINPUT";
+			}
 				ServletActionContext.getServletContext().setAttribute("user",
 						company);
 				return "companyloginSUCCESS";

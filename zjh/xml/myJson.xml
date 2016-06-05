@@ -57,7 +57,7 @@
 		<action name="getMyUnreadMessageCount" class="cn.ustc.web.action.MessageAction"
 			method="getMyUnreadMessageCount">
 			<result type="json">
-				<param name="root">action</param>
+				<param name="root">model</param>
 			</result>
 		</action>
 

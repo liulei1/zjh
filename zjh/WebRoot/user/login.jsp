@@ -38,12 +38,12 @@
     </div>
     <ul class="nav_list" >
         <li ><a href="index.html" target="_blank">首页</a></li>
-        <li ><a href="#">服务介绍</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.html">服务介绍</a></li>
     </ul>
 </div>
 <br/>
 <br/>
-
+ <s:actionerror/>
 <div class="container">
     <form class="form-signin" action="${pageContext.request.contextPath}/user/user_login" method="post" onsubmit="return loginCheck()">
         <div class="content">
