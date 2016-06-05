@@ -9,63 +9,68 @@
 	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/jquery/ajaxfileupload.js"></script>
 	<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
+	<% String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";%>
 <style>
- .fileInputContainer{
-        height:256px;
-        background:url(qing_style/img/list/04.jpg) no-repeat;
-        background-size:100% 100%;
-        position:relative;
-        width: 256px;
-        border-style:solid;
-		border-width:1px;
-    }
-    .fileInput{
-        height:256px;
-        overflow: hidden;
-        font-size: 300px;
-        position:absolute;
-        outline: medium none;
-        right:0;
-        top:0;
-        opacity: 0;
-        filter:alpha(opacity=0);
-        cursor:pointer;
-    }
+	.fileInputContainer {
+		height: 256px;
+		background: url(qing_style/img/list/04.jpg) no-repeat;
+		background-size: 100% 100%;
+		position: relative;
+		width: 256px;
+		border-style: solid;
+		border-width: 1px;
+	}
+	
+	.fileInput {
+		height: 256px;
+		overflow: hidden;
+		font-size: 300px;
+		position: absolute;
+		outline: medium none;
+		right: 0;
+		top: 0;
+		opacity: 0;
+		filter: alpha(opacity = 0);
+		cursor: pointer;
+	}
 </style>
 </head>
 <script type="text/javascript">
 	//上传图片
-	function uploadFile(id){
+	function uploadFile(id) {
 		//判断图片格式是否正确
 		var fileName = $("#img").val();
 		fileName = fileName.toLowerCase();
-		var fileType = fileName.substring(fileName.lastIndexOf(".")+1);
-		if(fileType != "jpg" && fileType != "png" && fileType!="jpeg" && fileType != "gif" && fileType != "bmp"){
+		var fileType = fileName.substring(fileName.lastIndexOf(".") + 1);
+		if (fileType != "jpg" && fileType != "png" && fileType != "jpeg"
+				&& fileType != "gif" && fileType != "bmp") {
 			alert('上传文件格式错误，全部附件为.jpg、.png、.jpeg、.gif 或 .bmp格式的图片！');
-       	 	return false;
+			return false;
 		}
-	
-		$.ajaxFileUpload(
-        {
-            url: '${pageContext.request.contextPath}/json/uploadCompanyImage', //用于文件上传的服务器端请求地址
-            secureuri: false, //是否需要安全协议，一般设置为false
-            fileElementId: id, //文件上传域的ID
-            dataType: 'json', //返回值类型 一般设置为json
-            data: {"fileSize":"10"}, //将图片的上限大小传入后台 
-            success: function (data)  //服务器成功响应处理函数
-            {
-            	if(data.imgPath != null){
-                	$("#imgView").css("background", "url("+data.imgPath+") no-repeat");
-            	}else{
-            		alert("Upload Fail, Please try again!");
-            	}
-            },
-            error: function (data)//服务器响应失败处理函数
-            {
-                alert("Upload Fail");
-            }
-        });
-        return false;
+
+		$.ajaxFileUpload({
+			url : '${pageContext.request.contextPath}/json/uploadCompanyImage', //用于文件上传的服务器端请求地址
+			secureuri : false, //是否需要安全协议，一般设置为false
+			fileElementId : id, //文件上传域的ID
+			dataType : 'json', //返回值类型 一般设置为json
+			data : {
+				"fileSize" : "10"
+			}, //将图片的上限大小传入后台 
+			success : function(data) //服务器成功响应处理函数
+			{
+				if (data.imgPath != null) {
+					$("#imgView").css("background","url(" +"<%=imgRootPath%>"+data.imgPath+") no-repeat ");
+					$("#imgView").css("background-size","100% 100%");
+				} else {
+					alert("Upload Fail, Please try again!");
+				}
+			},
+			error : function(data)//服务器响应失败处理函数
+			{
+				alert("Upload Fail");
+			}
+		});
+		return false;
 	}
 </script>
 <body>

@@ -2,16 +2,12 @@ package cn.ustc.web.action;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 import cn.ustc.domain.Company;
 import cn.ustc.domain.User;
@@ -153,8 +149,8 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 				FileInputStream f = new FileInputStream(file);
 				int imgSize = f.available()>>20; // 单位变为M
 				if(imgSize<Integer.valueOf(fileSize)){
-					String uploadPath = GetPropertiesUtil.getPropertiesValueByKey("imgUploadPath");
-					String imgRootPath = ServletActionContext.getServletContext().getRealPath(uploadPath);
+					String imgRootPath = GetPropertiesUtil.getPropertiesValueByKey("imgRootPath");
+					//String imgRootPath = ServletActionContext.getServletContext().getRealPath(uploadPath);
 					
 					// 更新信息
 //					company = (Company)ServletActionContext.getServletContext().getAttribute("user");
