@@ -61,16 +61,6 @@ rel="stylesheet">
 </head>
 
 <body class="changeColor">
-	<div class="navBar">
-	<div class="design_class">
-		<h3>ZJH</h3>
-	</div>
-	<ul class="nav_list" >
-		<li ><a href="index.html" target="_blank">首页</a></li>
-		<li ><a href="#">服务介绍</a></li>
-	</ul>
-	<a href="../user/login_new.html" target="_parent"><span>登录</span></a>
-</div>
 <br/>
 <div class="container">
 	<div class="row">

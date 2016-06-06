@@ -153,7 +153,6 @@ public class AdministerDAO  extends HibernateDaoSupport {
 	
 	
 	public Administer findByAdminInfo(String name, String password) {
-		
 		String hql="from Administer where name=:name and password=:password";
 		List<Administer> adminList=this.getHibernateTemplate().findByNamedParam(hql, new String[]{"name","password"}, new Object[]{name,password});
 		return adminList.get(0)==null?null:adminList.get(0);

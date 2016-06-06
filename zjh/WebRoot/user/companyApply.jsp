@@ -57,16 +57,6 @@
 
 <body class="">
 <body class="changeColor">
-	<div class="navBar">
-	<div class="design_class">
-		<h3>ZJH</h3>
-	</div>
-	<ul class="nav_list" >
-		<li ><a href="index.html" target="_blank">首页</a></li>
-		<li ><a href="#">服务介绍</a></li>
-	</ul>
-	<a href="../user/login_new.html" target="_parent"><span>登录</span></a>
-</div>
 <br/>
 <!--span>Collection of professors platform</span-->
 	<div class="container">
@@ -152,43 +142,6 @@
 					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
 				</div>
 			</div>
-			
-			<!--div class="content">
-				<div class="main">
-					<div class="">
-				<p align="center">Regist</p>
-						<hr class="hr1" />
-					</div>
-					<s:textfield name="name" id="add_username"
-						class="input-block-level" placeholder="用户名" />
-
-					<s:textfield name="email" class="input-block-level"
-						placeholder="邮箱" />
-					<s:textfield type="password" name="password"
-						class="input-block-level" placeholder="密码" />
-					<s:textfield type="password" name="repassword"
-						class="input-block-level" placeholder="重复密码" />
-					<br>
-					<s:textfield name="real_name" placeholder="真实姓名"></s:textfield>
-					<br>
-					<s:textfield name="telephone" placeholder="联系方式"></s:textfield>
-					<br>
-					<s:textfield name="address" placeholder="地址"></s:textfield>
-					<br>
-					<s:textfield name="website" placeholder="网址"></s:textfield>
-					<br>
-					性别:<s:radio list="{'male','female'}" name="sex" align="right"/>
-					<br>
-					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">regist</button>
-					<button class="btn" type="reset">reset</button>
-				</div>
-				<div class="aside">
-					<div class="passport-goto" style="text-align: center">
-						haven a account? <a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
-					</div>
-				</div>
-			</div-->
 		</s:form>
 
 					</div>
