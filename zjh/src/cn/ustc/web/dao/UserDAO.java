@@ -85,6 +85,12 @@ public class UserDAO extends HibernateDaoSupport {
 		}
 		return list.isEmpty() ? null : list.get(max);
 	}
+
+	public User findByUserInfo(String name, String password) {
+		String hql="from User where name=? and password=?";
+		List<User> userList=this.getHibernateTemplate().find(hql, name,password);
+		return userList.get(0)==null?null:userList.get(0);
+	}
 	
 	
 }

@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.Professor;
 import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
@@ -112,6 +113,13 @@ public class CompanyDAO extends HibernateDaoSupport{
 	public void refuse(String id) {
 		Company company=findByCompanyID(id);
 		this.getHibernateTemplate().delete(company);
+	}
+
+	public Company findByCompInfo(String name, String password) {
+		
+		String hql="from Company where name=:name and password=:password";
+		List<Company> complist=this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"},new Object[]{name,password});
+		return complist.size()==0?null:complist.get(0);
 	}
 	
 }

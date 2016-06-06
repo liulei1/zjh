@@ -24,11 +24,8 @@ public class AdministerService {
 		return false;
 	}
 
-	public Administer login(Administer Administer) {
-		DetachedCriteria criteria = DetachedCriteria.forClass(Administer.class);
-		criteria.add(Restrictions.eq("name", Administer.getName()));
-		criteria.add(Restrictions.eq("password", Administer.getPassword()));
-		Administer loginAdminister = administerDAO.findByCriteria(criteria);
+	public Administer login(Administer admin) {
+		Administer loginAdminister=administerDAO.findByAdminInfo(admin.getName(),admin.getPassword());
 		return loginAdminister;
 	}
 

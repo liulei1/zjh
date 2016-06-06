@@ -3,6 +3,7 @@ package cn.ustc.web.dao;
 import java.util.List;
 import java.util.UUID;
 
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -147,5 +148,14 @@ public class AdministerDAO  extends HibernateDaoSupport {
 	public Administer findByCriteria(DetachedCriteria criteria) {
 		List<Administer> list = this.getHibernateTemplate().findByCriteria(criteria);
 		return list.isEmpty() ? null : list.get(0);
+	}
+
+	
+	
+	public Administer findByAdminInfo(String name, String password) {
+		
+		String hql="from Administer where name=:name and password=:password";
+		List<Administer> adminList=this.getHibernateTemplate().findByNamedParam(hql, new String[]{"name","password"}, new Object[]{name,password});
+		return adminList.get(0)==null?null:adminList.get(0);
 	}
 }
