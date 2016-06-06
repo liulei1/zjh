@@ -76,9 +76,9 @@
 						<th style="text-align:center;">
 							Points
 						</th>
-						<th style="text-align:center;">
+					<!-- 	<th style="text-align:center;">
 							Message
-						</th>
+						</th> -->
 					</tr>
                 </thead>
                 <tbody>
@@ -102,11 +102,11 @@
 						<td align="center">
 							${points}
 						</td>
-						<td align="center">
+						<%-- <td align="center">
 							<s:a action="" namespace="" cssClass="btn btn-success btn-xs">
 								send message
 							</s:a>
-						</td>
+						</td> --%>
 					</tr>
 				</s:iterator>
 			</tbody>

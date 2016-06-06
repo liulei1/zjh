@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登陆-专家汇</title>
-    <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../qing_style/css/load_new.css">
+    <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
         function loginCheck(){
@@ -37,7 +37,7 @@
         <h3>ZJH</h3>
     </div>
     <ul class="nav_list" >
-        <li ><a href="index.html" target="_blank">首页</a></li>
+        <li ><a href="${pageContext.request.contextPath}" target="_blank">首页</a></li>
         <li ><a href="${pageContext.request.contextPath}/user/introduction.html">服务介绍</a></li>
     </ul>
 </div>

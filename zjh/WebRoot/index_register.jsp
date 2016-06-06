@@ -1,0 +1,349 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>首页注册</title>
+<link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/qing_style/css/navtop_new.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/load_new.css">
+<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
+
+<style>
+html,body {
+	color: #505050;
+	background-color: #f9f9f9;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.8;
+}
+
+hr {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #f6f6f6 -moz-use-text-color #b4b4b4;
+	border-image: none;
+	border-style: solid none;
+	border-width: 1px 0;
+	margin: 20px 0;
+}
+
+.footer {
+	height: 30px;
+	border-top: 1px dashed #999999;
+	margin-top: 10px;
+}
+
+.footer p {
+	text-align: center
+}
+</style>
+
+<script type="text/javascript">
+	$(function(){
+		$("#username").blur(function(){
+			if($("#username").val()==""){
+				return;
+			}
+			$.post("${pageContext.request.contextPath}/json/checkUserName.action",{"name":$(this).val()},function(data){
+				if(data.nameExsit){
+					// 用户名已经存在
+					
+					$("#username_result").html("<font color='red' id='username_check'>用户名已经存在</font>");
+				}else{
+					// 用户名不存在
+					$("#username_result").html("<font color='green' id='username_check'>用户名不存在，可以使用</font>");
+				}
+			}); 
+		});
+		
+		$("#professorname").blur(function(){
+		if($("#professorname").val()==""){
+				return;
+			}
+			$.post("${pageContext.request.contextPath}/json/checkProfessorName.action",{"name":$(this).val()},function(data){
+				if(data.nameExsit){
+					// 用户名已经存在
+					$("#professor_result").html("<font color='red' id='company_check'>用户名已经存在</font>");
+				}else{
+					// 用户名不存在
+					$("#professor_result").html("<font color='green' id='company_check'>用户名不存在，可以使用</font>");
+				}
+			}); 
+		});
+	});
+	
+	function addFieldList(type){
+		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
+			var html='<select name="field"><option selected="selected">--请选择领域--</option>';
+			$.each(data.vocationList,function(index,context){
+				html+='<option value="'+context.id+'">'+context.name+'</option>';
+			});
+			html+='</select>';
+			if(type=='company'){
+				$('#field_company').html(html);
+			}else {
+				$('#field_professor').html(html);
+			}
+		});
+	}
+	
+	function check(type){
+		var flag;
+		if(type=="common"){
+			flag=$("#common_check").html();
+		}else if(type="company"){
+			flag=$("company_check").html();
+		}else if(type="professor"){
+			flag=$("professor_check").html();
+		}
+		if(flag=="用户名已经存在"){
+			return false;
+		}else if(flag==null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+</script>
+</head>
+<body>
+<div class="navBar">
+	<div class="design_class">
+		<h3>ZJH</h3>
+	</div>
+	<ul class="nav_list" >
+		<li ><a href="index.html" target="_blank">首页</a></li>
+		<li ><a href="#">服务介绍</a></li>
+	</ul>
+</div>
+<h1>User Register</h1>
+
+<ul id="myTab" class="nav nav-tabs">
+	<li class="active"><a href="#common" data-toggle="tab">Common User</a></li>
+	<li><a href="#company" data-toggle="tab" onclick="addFieldList('company')">Company User</a></li>
+	<li><a href="#professor" data-toggle="tab" onclick="addFieldList('professor')">Professor User</a></li>
+</ul>
+
+<div id="myTabContent" class="tab-content">
+		<div class="container tab-pane fade in active" style="margin-top:10px" id="common">
+			<s:form cssClass="form-signin" action="user_register" namespace="/token" theme="simple" method="post">
+				<s:token />
+				<div class="content">
+					<div class="form-group">
+						<div>
+							<h1>
+								Regist Common User
+								<small>Enterprise users registered in this interface.</small>
+							</h1>
+							<hr>
+							<hr class="hr1" />
+							<span id="username_result"></span>
+						</div>
+						<input type="text" class="input-block-level" placeholder="Username" name="name" id="username"><br /> 
+						<input type="text" class="input-block-level" placeholder="Email" name="email"><br /> 
+						<input type="password" class="input-block-level" placeholder="Password" name="password"><br />
+						<input type="password" class="input-block-level" placeholder="Repassword" name="repassword"><br /> 
+						<label for="male">male</label> <input type="radio" name="sex" id="male" />&nbsp;&nbsp;&nbsp;&nbsp;
+						<label for="female">female</label> <input type="radio" name="sex" id="female" />
+						<button class="btn btn-primary btn1" type="submit">register</button>
+						<button class="btn" type="reset">reset</button>
+					</div>
+				</div>
+			</s:form>
+		</div>
+
+	<!-- 企业用户注册 -->
+	<div class=" container tab-pane fade" id="company">
+		<s:form cssClass="form-horizontal" action="company_register"  namespace="/token" theme="simple" method="post" cssStyle="max-height: 400px;"
+			onsubmit="return check();">
+			<div class="form-group">
+				<h1>
+					Regist Company User
+					<small>Welcome to ZJH, Enterprise users registered in this interface.</small>
+				</h1>
+				<hr>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Username</label>
+				<div class="col-sm-4">
+					<s:textfield name="name" id="companyusername"
+						cssClass="form-control" placeholder="用户名" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Email</label>
+				<div class="col-sm-4">
+					<s:textfield name="email" cssClass="form-control"
+								 placeholder="邮箱"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Password</label>
+				<div class="col-sm-4">
+					<s:textfield type="password" name="password"
+								 cssClass="form-control" placeholder="输入密码"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">RepeatPassword</label>
+				<div class="col-sm-4">
+					<s:textfield type="repassword" name="repassword"
+						   cssClass="form-control" placeholder="重复密码"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Realname</label>
+				<div class="col-sm-4">
+					<s:textfield name="real_name"  cssClass="form-control" placeholder="真实姓名"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Telephone</label>
+				<div class="col-sm-4">
+					<s:textfield name="telephone" cssClass="form-control" placeholder="联系方式"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">address</label>
+				<div class="col-sm-4">
+					<s:textfield name="address" cssClass="form-control"  placeholder="地址"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">website</label>
+				<div class="col-sm-4">
+					<s:textfield name="website" cssClass="form-control" placeholder="网址"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Sex</label>
+				<div class="col-sm-4">
+					<s:radio list="{'male','female'}" name="sex" align="right" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Field</label>
+				<div class="col-sm-4">
+					<div id="field_company" ></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-4 col-md-7 form-btn-group">
+					<input type="submit" class="btn btn-success btn-large pull-left" value="submit">
+					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
+				</div>
+			</div>
+		</s:form>
+	</div>
+
+	<!-- 专家用户注册 -->	
+	<div class="tab-pane fade" id="professor">
+		<s:form cssClass="form-horizontal" action="professorRegister" namespace="/token" theme="simple" method="post">
+			<div class="form-group">
+				<h1>
+					Regist
+					<small>Welcome to ZJH, Expert users registered in this interface.</small>
+				</h1>
+				<hr>
+				<span id="professorname_result"></span>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Username</label>
+				<div class="col-sm-4">
+					<s:textfield name="name" id="professorname"
+						   cssClass="form-control" placeholder="用户名" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Email</label>
+				<div class="col-sm-4">
+					<s:textfield name="email" cssClass="form-control"
+						   placeholder="邮箱"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Password</label>
+				<div class="col-sm-4">
+					<s:textfield type="password" name="password"
+						   class="form-control" placeholder="输入密码"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">RepeatPassword</label>
+				<div class="col-sm-4">
+					<s:textfield type="repassword" name="repassword"
+						   cssClass="form-control" placeholder="重复密码"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Realname</label>
+				<div class="col-sm-4">
+					<s:textfield name="real_name"  cssClass="form-control" placeholder="真实姓名"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Telephone</label>
+				<div class="col-sm-4">
+					<s:textfield name="telephone" cssClass="form-control" placeholder="联系方式"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">address</label>
+				<div class="col-sm-4">
+					<s:textfield name="address" cssClass="form-control"  placeholder="地址"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">website</label>
+				<div class="col-sm-4">
+					<s:textfield name="website" cssClass="form-control" placeholder="网址"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">identityNumber</label>
+				<div class="col-sm-4">
+					<s:textfield name="identity" cssClass="form-control" placeholder="身份证号"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">introduction</label>
+				<div class="col-sm-4">
+
+					<s:textarea rows="2" cssClass="form-control" name="annotation" cols="30" placeholder="个人简介"/>
+
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Sex</label>
+				<div class="col-sm-4">
+					<s:radio list="{'male','female'}" name="sex" align="right" value="%{model.sex}"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Field</label>
+				<div class="col-sm-4" id="field_professor">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-4 col-md-7 form-btn-group">
+					<input type="submit" class="btn btn-success btn-large pull-left" value="regist">
+					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
+				</div>
+			</div>
+		</s:form>
+	</div>
+</div>
+</body>
+</html>

@@ -103,6 +103,7 @@ hr {
 					<small>Welcome to ZJH, Expert users registered in this interface.</small>
 				</h1>
 				<hr>
+				<span id="result"></span>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-4 control-label">Username</label>
