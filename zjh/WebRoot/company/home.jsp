@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    });
 	    function getMessageCount(){
 			var url="${pageContext.request.contextPath}/json/getMyUnreadMessageCount.action";
-			var delay=10; // 延时时间,单位秒
+			var delay=60; // 延时时间,单位秒
 			$.post(url, function (message){
 				//alert(message.count);
 				if(message.count > 0){

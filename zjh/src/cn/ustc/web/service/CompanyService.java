@@ -28,10 +28,11 @@ public class CompanyService {
 	}
 
 	public Company login(Company company) {
-		DetachedCriteria criteria = DetachedCriteria.forClass(Company.class);
+		/*DetachedCriteria criteria = DetachedCriteria.forClass(Company.class);
 		criteria.add(Restrictions.eq("name", company.getName()));
 		criteria.add(Restrictions.eq("password", company.getPassword()));
-		Company loginCompany = companyDAO.findByCriteria(criteria);
+		Company loginCompany = companyDAO.findByCriteria(criteria);*/
+		Company loginCompany=companyDAO.findByCompInfo(company.getName(),company.getPassword());
 		return loginCompany;
 	}
 
