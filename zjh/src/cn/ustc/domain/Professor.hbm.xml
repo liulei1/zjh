@@ -12,7 +12,7 @@
 		<property name="password" type="string" not-null="true"/>
 		<property name="email" type="string"/>
 		<property name="sex" type="string"/>
-		<property name="usertype" type="string" not-null="true"/>
+		<property name="usertype" type="string"/>
 		<property name="address" type="string"></property>
 		<property name="website" type="string"></property>
 		<property name="real_name" type="string" not-null="true"/>
@@ -26,6 +26,7 @@
 		<property name="balance"/>
 		<property name="education"/>
 		<property name="points"/>
+		<property name="state"/>
 		
 		
 		<!-- name 关联方案集合的属性名 -->

@@ -12,7 +12,6 @@ public class Company extends User{
 	private String authority;//权限
 	private String website;//网址
 	private String annotation;//备注
-	private String state;
 	private String balance; //账户余额
 	private Integer points; //积点，通过评价获取
 	
@@ -42,12 +41,6 @@ public class Company extends User{
 	}
 	public void setWebsite(String website) {
 		this.website = website;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
 	}
 	public Set<Consult> getConsults() {
 		return consults;

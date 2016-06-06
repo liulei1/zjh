@@ -3,8 +3,16 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	
 	<package name="android" namespace="/android" extends="struts-default">
 		<action name="user_*" method="{1}" class="cn.ustc.android.action.UserLogin"></action>
+	</package>
+	
+	<package name="androidJson" namespace="/android/json" extends="json-default">
+		<action name="getProfessorDoingProject" method="getProfessorDoingProject" class="cn.ustc.android.action.ProfessorOperateAction">
+			<result type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">projects.*</param>
+			</result>
+		</action>
 	</package>
 </struts>

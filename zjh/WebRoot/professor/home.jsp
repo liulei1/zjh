@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    }
 	    
 	    function logout(){
-	    	var r=confirm("您确定退出吗？");
+	    	var r=confirm("Confirm Logout？");
 	    	if(r){
 	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
 	    		$.post(url);
@@ -71,19 +71,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="logoBar">
         <div class="logo">
             <!-- start logo -->
-            <a class="logoText fl" href="#" title="专家汇平台">
-                <h2>ZJH</h2>
-            </a>
+            <h2>
+	            <a class="logoText fl" href="${pageContext.request.contextPath}" title="专家汇平台">
+	                ZJH
+	            </a>
+            </h2>
         </div>
         <p class="lineText fl">行业专家和短期项目的交流平台</p>
         <div class="loginText fr">
             <span>欢迎您!&nbsp;&nbsp;</span>
             <span class="user_login" onmouseover="userShow()"onmouseout="userHide()">${user.name}&gt;</span>
             <ul class="user_info" id="user_info" onmouseover="userShow()"onmouseout="userHide()">
-                <li><a href="${pageContext.request.contextPath}/professor/professor_viewProfessorInfo" target="myframe">用户管理</a></li>
+            	<li><a href="${pageContext.request.contextPath}/professor/professor_viewProfessorInfo" target="_blank">用户管理</a></li>
+                <%--<li><a href="${pageContext.request.contextPath}/professor/professor_viewProfessorInfo" target="myframe">用户管理</a></li>
                 <li><a href="${pageContext.request.contextPath}/professor/professor_viewChangePassword" target="myframe">修改密码</a></li>
                 <li><a href="#" onclick="logout()">退出</a></li>
-            </ul>
+            --%></ul>
             <div class="message">
                 <span class="m_title">消息:</span>
                 <a class="m_digital" href="${pageContext.request.contextPath}/message/message_queryMyUnread" id="messageCount" target="myframe"></a>
@@ -162,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul class="nav">
             <li  role="presentation"><a href="${pageContext.request.contextPath}/scheme/scheme_queryMyScheme" target="myframe">My Schemes</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/project/project_queryMyProject" target="myframe">My Projects</a></li>
-            <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_allowList" target="myframe">Search Consult</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_allowList" target="myframe">Receive Consult</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/professor/company_search.jsp" target="myframe">Search Company</a></li>
         </ul>
     </div>

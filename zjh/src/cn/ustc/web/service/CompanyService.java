@@ -15,7 +15,9 @@ import cn.ustc.web.exception.NoUserException;
 public class CompanyService {
 	@Autowired
 	private CompanyDAO companyDAO;
-
+	
+	private List<Company> companys=null;
+	
 	public boolean insertCompany(Company Company){
 		int res = 0;
 		res = companyDAO.insertCompany(Company);
@@ -92,5 +94,18 @@ public class CompanyService {
 		instance.setField(company.getField());
 		instance.setAnnotation(company.getAnnotation());
 		return instance;
+	}
+
+	public List<Company> findAllUnaudit() {
+		companys=companyDAO.findAllUnaudit();
+		return companys;
+	}
+
+	public void pass(String id) {
+		companyDAO.pass(id);
+	}
+
+	public void refuse(String id) {
+		companyDAO.refuse(id);
 	}
 }

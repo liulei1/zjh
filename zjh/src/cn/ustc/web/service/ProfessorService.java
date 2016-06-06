@@ -15,6 +15,8 @@ import cn.ustc.web.dao.ProfessorDAO;
 public class ProfessorService {
 	@Autowired
 	private ProfessorDAO professorDAO;
+	
+	private List<Professor> professors=null;
 
 	public boolean insertProfessor(Professor professor){
 		int res = 0;
@@ -86,7 +88,31 @@ public class ProfessorService {
 		instance.setIntroduction(professor.getIntroduction());
 		return instance;
 	}
+	
+	/**
+	 * 找到所有未审核的用户
+	 * @return
+	 */
+	public List<Professor> findAllUnaudit() {
+		professors=professorDAO.findAllUnaudit();
+		return professors;
+	}
+	
+	/**
+	 * 通过注册审核
+	 * @param id
+	 */
+	public void pass(String id) {
+		professorDAO.pass(id);
+	}
 
+	/**
+	 * 审核注册不通过
+	 * @param id
+	 */
+	public void refuse(String id) {
+		professorDAO.refuse(id);
+	}
 	/**
 	 * 获取推荐的专家
 	 * @return

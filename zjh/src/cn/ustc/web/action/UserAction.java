@@ -40,14 +40,6 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
-	private String usertype=null;//登录者类型
-	
-	public String getUsertype() {
-		return usertype;
-	}
-	public void setUsertype(String usertype) {
-		this.usertype = usertype;
-	}
 	
 	@Override
 	public User getModel() {
@@ -86,12 +78,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 
 		if (user.getUsertype().equals("professor")) {
+			//professor的状态为0表示审核中，往通被跳转页面放一条审核中的消息
+			
 			Professor professor = new Professor();
 			professor.setName(user.getName());
 			professor.setPassword(user.getPassword());
 			professor = professorService.login(professor);
 
+			
 			if (professor != null) {
+				if(professor.getState().equals("0")){
+					this.addActionError("正在审核中");
+					return "loginINPUT";
+				}
 				ServletActionContext.getServletContext().setAttribute("user",
 						professor);
 				return "professorloginSUCCESS";
@@ -103,6 +102,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			company.setPassword(user.getPassword());
 			company = companyService.login(company);
 			if (company != null) {
+				if(company.getState().equals("0")){
+				this.addActionError("正在审核中");
+				return "loginINPUT";
+			}
 				ServletActionContext.getServletContext().setAttribute("user",
 						company);
 				return "companyloginSUCCESS";
@@ -145,6 +148,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	@InputConfig(resultName="registerINPUT")
 	public String register() {
+		user.setState("1");
+		System.out.println("");
 		boolean res = userService.insertUser(user);
 		System.out.println(res);
 		return "registerOK";
@@ -434,6 +439,38 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	}
 	public String professorRegister(){
 		return "professorRegister";
+	}
+	
+	
+	//获得用户信息，在专家申请页面显示
+	public String userInitInformation(){
+		user=(User) ServletActionContext.getServletContext().getAttribute("user");
+		user= userService.findUserById(user.getId());
+		return "userInitInformation";
+	}
+
+	//获得用户信息，在企业申请页面显示
+	public String companyInit(){
+		user=(User) ServletActionContext.getServletContext().getAttribute("user");
+		user=userService.findUserById(user.getId());
+		return "companyInit";
+	}
+	
+	// 跳转到用户中心
+	public String toUserCenter(){
+		String usertype = user.getUsertype();
+		if(User.ADMIN.equals(usertype)){
+			return "ToAdminCenter";
+		}else if(User.PROFESSOR.equals(usertype)){
+			return "ToProfessorCenter";
+		}
+		else if(User.COMPANY.equals(usertype)){
+			return "ToCompanyCenter";
+		}else if(User.USER.equals(usertype)){
+			return "ToUserCenter";
+		}else{
+			return ERROR;
+		}
 	}
 	
 }

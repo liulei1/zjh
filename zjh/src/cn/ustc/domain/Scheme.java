@@ -21,6 +21,15 @@ public class Scheme {
 	private int total; // 数据总条数
 	private int pageIndex; // 当前页面号
 	private int pageCount; // 页面总数
+	
+	private String consultTitle;// 需求的标题
+	
+	public String getConsultTitle() {
+		return consultTitle;
+	}
+	public void setConsultTitle(String consultTitle) {
+		this.consultTitle = consultTitle;
+	}
 	public int getPageSize() {
 		return pageSize;
 	}

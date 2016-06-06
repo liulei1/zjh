@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,8 +14,24 @@
     <link href="qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="qing_style/css/app_new.css">
     <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
+    <link href="${pageContext.request.contextPath}/qing_style/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/expert.css">
 </head>
 <script type="text/javascript">
+	// 用户下拉菜单
+	function show(){
+        document.getElementById("hi").style.display="block";
+    }
+    function hide(){
+        document.getElementById("hi").style.display="none";
+    }
+    function userShow(){
+        document.getElementById("user_info").style.display="block";
+    }
+    function userHide(){
+        document.getElementById("user_info").style.display="none";
+    }
+        
 	$(function(){
 		getRecommendProfessor();
 		getRecommendConsult();
@@ -56,6 +76,15 @@
 		});
 	}
 	
+	function logout(){
+    	var r=confirm("Confirm Logout？");
+    	if(r){
+    		var url="${pageContext.request.contextPath}/user/user_logout.action";
+    		$.post(url,function(){
+    			location.reload(true);
+    		});
+    	}
+    }
 </script>
 <body>
 <div class="headerBar">
@@ -71,9 +100,17 @@
         <p class="lineText fl">行业专家和短期项目的交流平台</p>
 
         <div class="loginText fr">
-            <span>欢迎来到zjh!</span>
-            <a class="linkText" href="user/login.jsp">[登录]</a>
-            <a class="linkText" href="user/register_new.html" target="_blank">[免费注册]</a>
+        	<%if(application.getAttribute("user")==null){%>
+        		<span>Welcome to ZJH!</span>
+	            <a class="linkText" href="user/login.jsp">[Login]</a>
+	            <a class="linkText" href="user/register_new.html" target="_blank">[Register]</a>
+	        <%}else { %>
+            	<span class="user_login" onmouseover="userShow()"onmouseout="userHide()">欢迎您!&nbsp;${user.name}&gt;</span>
+	            <ul class="user_info" id="user_info" onmouseover="userShow()" onmouseout="userHide()">
+	            	<li><a href="${pageContext.request.contextPath}/user/user_toUserCenter?usertype=${user.usertype}">User Center</a></li>
+	                <li><a href="#" onclick="logout()">Logout</a></li>
+	            </ul>
+	         <%} %>
         </div>
     </div>
     <div class="navBar">

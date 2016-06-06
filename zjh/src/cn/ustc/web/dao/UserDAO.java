@@ -56,20 +56,6 @@ public class UserDAO extends HibernateDaoSupport {
 	 * @param id
 	 */
 	public void deleteById(String id) {
-//		Session session = HibernateUtils.openSession();
-//		Transaction tx = session.beginTransaction();
-//		User user = null;
-//
-//		try {
-//			user = findByUserID(id);
-//			session.delete(user);
-//			tx.commit();
-//		} catch (RuntimeException e) {
-//			tx.rollback();
-//			throw e;
-//		} finally {
-//			session.close();
-//		}
 		User user = findByUserID(id);
 		this.getHibernateTemplate().delete(user);
 	}
@@ -87,6 +73,18 @@ public class UserDAO extends HibernateDaoSupport {
 
 	public User findByCriteria(DetachedCriteria criteria) {
 		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
-		return list.isEmpty() ? null : list.get(0);
+		int max=-1;
+		for(int i=0;i<list.size();i++){
+			Object obj=list.get(i);
+			if(obj!=null){
+				max++;
+			}
+		}
+		if(max==-1){
+			max=0;
+		}
+		return list.isEmpty() ? null : list.get(max);
 	}
+	
+	
 }

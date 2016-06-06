@@ -48,8 +48,8 @@
 			<tr>
 				<th style="text-align:center;" width="25%">Title</th>
 				<th style="text-align:center;" width="25%">Money</th>
-				<th style="text-align:center;" width="20%">Category</th>
-				<th style="text-align:center;" width="15%" >View</th>
+				<th style="text-align:center;" width="20%">Field</th>
+				<th style="text-align:center;" width="15%" >Details</th>
 				<th style="text-align:center;" width="15%">Receive</th>
 			</tr>
 			<s:iterator value="consults" var="consult">
@@ -66,13 +66,13 @@
 					<td align="center">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id"/>
-							<button type="button" class="btn btn-info btn-xs">review</button>
+							<button type="button" class="btn btn-info btn-xs">View</button>
 						</s:a>
 					</td>
 					<td align="center">
 						<s:a action="scheme_submitView" namespace="/scheme">
 							<s:param name="cons_id" value="id"/>
-							<button type="button" class="btn btn-success btn-xs">receive</button>
+							<button type="button" class="btn btn-success btn-xs">Submit Scheme</button>
 						</s:a>
 					</td>
 				</tr>

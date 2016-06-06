@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户中心</title>
+<title>user center</title>
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -21,11 +21,10 @@
         </a>
     </p>
 	<div class="btn-group">
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">user list</button>
       <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">consult search</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">scheme view</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/project/project_queryMyProject'">my project</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/professor/company_search.jsp'">company user search</button>
-	</div>
+      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">my project</button>
+    </div>
     <s:debug></s:debug>
 </body>
 </html>

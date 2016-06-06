@@ -6,10 +6,14 @@ package cn.ustc.domain;
  *
  */
 public class Message {
+	/***************消息状态state******************/
 	public static final int UNREAD=0; // 未读
 	public static final int READED=1; // 已读
+	/***************消息类型type******************/
 	public static final int TOCOMPANY = 0; // 发送到企业
 	public static final int TOPROFESSOR = 1; // 发送到专家
+	public static final int TOUSER = 2; // 发送到普通用户
+	
 	
 	private String id;
 	private String recipientId;	// 收信人

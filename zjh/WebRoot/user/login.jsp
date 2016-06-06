@@ -11,7 +11,6 @@
     <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function loginCheck(){
             var usertype = $("#usertype").val();
@@ -39,12 +38,11 @@
     </div>
     <ul class="nav_list" >
         <li ><a href="index.html" target="_blank">首页</a></li>
-        <li ><a href="#">服务介绍</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.html">服务介绍</a></li>
     </ul>
 </div>
 <br/>
 <br/>
-
 <div class="container">
     <form class="form-signin" action="${pageContext.request.contextPath}/user/user_login" method="post" onsubmit="return loginCheck()">
         <div class="content">
@@ -52,6 +50,12 @@
         <div>
             <h3>User Login</h3>
             <hr class="hr1"/>
+            <s:actionerror/>
+            <span>
+			<font color="red">
+				<b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
+			</font>
+		</span>
         </div>
         <input type="text" class="input-block-level" placeholder="Username"  name="name"><br/>
         <input type="password" class="input-block-level" placeholder="Password"  name="password"><br/>

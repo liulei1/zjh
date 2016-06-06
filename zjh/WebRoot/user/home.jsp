@@ -1,30 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>user center</title>
-<!-- 引入 Bootstrap -->
-<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-</head>
-<body>
-	<div align="center">
-		<h1>professor user center</h1>
-	</div>
-	<p class="text-right">
-	    <a href="#">
-          <span class="glyphicon glyphicon-user">&nbsp;${user.name}&nbsp;</span>
-        </a>
-    </p>
-	<div class="btn-group">
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/user/user_list'">user list</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/consult/consult_allowList'">consult search</button>
-      <button class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/scheme/scheme_queryMyScheme'">my project</button>
-    </div>
-    <s:debug></s:debug>
-</body>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>HomePage For User</title>
+    
+	
+  </head>
+  
+  <body>
+   <a href="${pageContext.request.contextPath}/user/user_userInitInformation">Apply to be Professor</a><br>
+   <a href="${pageContext.request.contextPath}/user/user_companyInit">Apply to be Company</a>
+  </body>
 </html>

@@ -1,15 +1,20 @@
 package cn.ustc.web.action;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import cn.ustc.domain.Company;
+import cn.ustc.domain.Message;
 import cn.ustc.domain.Professor;
+import cn.ustc.domain.User;
 import cn.ustc.domain.Vocation;
+import cn.ustc.utils.DateUtils;
 import cn.ustc.web.dao.VocationDAO;
+import cn.ustc.web.service.MessageService;
 import cn.ustc.web.service.ProfessorService;
+import cn.ustc.web.service.UserService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -32,11 +37,24 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	private ProfessorService professorService;
 	@Autowired
 	private VocationDAO vocationDAO;
-
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private MessageService messageService;
+	
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
+		User user=(User) ServletActionContext.getServletContext().getAttribute("user");
+		if(user==null){
+			professor.setState("1");
+		}else{
+			professor.setState("0");
+			//把之前us
+		}
 		professorService.insertProfessor(professor);
-		return "professorRegisterSuccess";
+		ActionContext context = ActionContext.getContext();
+		context.put("result", "operate success!");
+		return "professorRegisterSUCCESS";
 	}
 	
 	public String management(){
@@ -107,6 +125,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "changePasswordSUCCESS";
 	}
 	
+	public String viewRegister(){
+		return "viewRegisterSUCCESS";
+	}
+	
 	// 通过传来的专家的id 获取专家信息
 	public String viewProfessorInfoById(){
 		String id = professor.getId();
@@ -115,6 +137,56 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		professor.setField(vocation.getName());
 		return "viewProfessorInfoByIdSUCCESS";
 	}
+	
+	//返回状态为0的professor列表
+	public String unauditlist(){
+		professors=professorService.findAllUnaudit();
+		return "uneditProfessors";
+	}
+	
+	//通过一个porfessor申请
+	public String pass(){
+		professorService.pass(professor.getId());
+		//为user放一条消息,先查找到professor的名字，再拿着名字查找user,给这个id的user放一条信息
+		professor = professorService.findProfessorById(professor.getId());
+		String name=professor.getName();
+		User user=userService.findUserByName(name).get(0);
+		String userID=user.getId();
+		//生成一条完整的message
+		Message message=new Message();
+		message.setRecipientId(userID);
+		message.setType(Message.TOUSER);
+		String time=DateUtils.dateToString(new Date());
+		message.setSendTime(time);
+		message.setState(Message.UNREAD);
+		message.setTitle("系统通知");
+		message.setContent("您注册成为专家的申请已经通过，现在可以以专家身份登录");
+		messageService.sendMessage(message);
+		return "passSuccess";
+	}
+	
+	//拒绝一个professor申请
+	public String refuse(){
+		professor=professorService.findProfessorById(professor.getId());
+		String name=professor.getName();
+		User user=userService.findUserByName(name).get(0);
+		String userID=user.getId();
+		//生成一条完整的message
+		Message message=new Message();
+		message.setRecipientId(userID);
+		message.setType(Message.TOUSER);
+		String time=DateUtils.dateToString(new Date());
+		message.setSendTime(time);
+		message.setState(Message.UNREAD);
+		message.setTitle("系统通知");
+		message.setContent("您注册成为专家的申请未通过，可再次申请");
+		messageService.sendMessage(message);
+		
+		professorService.refuse(professor.getId());
+		return "refused";
+		
+	}
+	
 	
 	public String recommendProfessor(){
 		professors = professorService.getRecommendProfessor(5);

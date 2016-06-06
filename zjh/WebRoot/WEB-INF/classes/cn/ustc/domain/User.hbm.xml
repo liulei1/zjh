@@ -16,6 +16,6 @@
 		<property name="email" type="string"></property>
 		<property name="sex" type="string"></property>
 		<property name="usertype" type="string"></property>
-
+		<property name="state"></property>
 	</class>
 </hibernate-mapping>

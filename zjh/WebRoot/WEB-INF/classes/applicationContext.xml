@@ -26,6 +26,10 @@
 	<bean id="evaluateAction" class="cn.ustc.web.action.EvaluateAction"/>
 	<bean id="messageAction" class="cn.ustc.web.action.MessageAction"/>
 	
+	<!-- 配置Android Action -->
+	<bean id="userLoginAndroid" class="cn.ustc.android.action.UserLogin"/>
+	<bean id="professorOperateAndroid" class="cn.ustc.android.action.ProfessorOperateAction"/>
+	
 	<!-- 配置Service  -->
 	<bean id="consultService" class="cn.ustc.web.service.ConsultService"/>
 	<bean id="userService" class="cn.ustc.web.service.UserService"/>

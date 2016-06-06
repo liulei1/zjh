@@ -213,4 +213,13 @@ public class ConsultService {
 		criteria.addOrder(Order.desc("release_date"));
 		return consultDAO.findConsultByCriteria(criteria,maxSize);
 	}
+	
+	/**
+	 * 根据条件查询
+	 * @param criteria
+	 * @return
+	 */
+	public List<Consult> findConsultByCriteria(DetachedCriteria criteria){
+		return consultDAO.findByDetachedCriteria(criteria);
+	}
 }

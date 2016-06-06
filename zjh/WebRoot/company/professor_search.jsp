@@ -9,19 +9,6 @@
     <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        $(function() {
-            $.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-                var html='<select name="category"><option selected="selected">--请选择领域--</option>';
-                $.each(data.vocationList,function(index,context){
-                    html+='<option value="'+context.id+'">'+context.name+'</option>';
-                });
-                html+='</select>';
-                $('#field').html(html);
-            });
-
-        });
-    </script>
     <style>
         .order-btn-group form {
             display: inline-block;

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>my project</title>
+     <title>专家的项目列表</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +90,7 @@
 								State
 							</th>
 							<th style="text-align:center;">
-								View
+								Scheme
 							</th>
 							<th style="text-align:center;">
 								Operation

@@ -19,6 +19,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
+import cn.ustc.domain.Consult;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
@@ -66,6 +67,8 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	/******************************* 注入 *********************************/
 	@Autowired
 	private SchemeService schemeService;
+	@Autowired
+	private ConsultService consultService;
 
 	/************************************* 发布上传下载 ****************************************/
 	// 获取下载文件名
@@ -124,6 +127,9 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	
 	// 跳转到方案发布页面
 	public String submitView() {
+		String cons_id = model.getCons_id();
+		Consult consult = consultService.findById(cons_id);
+		model.setConsultTitle(consult.getTitle());
 		return "submitViewSUCCESS";
 	}
 

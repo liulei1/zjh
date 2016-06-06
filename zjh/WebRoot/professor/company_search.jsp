@@ -10,7 +10,6 @@
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 	 <script src="${pageContext.request.contextPath}/bootstrap3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
    
 <script type="text/javascript">
 	$(function() {
@@ -24,74 +23,89 @@
 		});
 
 	});
-	
 </script>
+<style>
+    .order-btn-group form {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        border-top:  1px solid #eee;
+    }
+</style>
 
-
-  </head>
-   
-  <body>
-  <form action="${pageContext.request.contextPath }/personSearch/companySearch" method="post">
-find by vocation:<div id="field"></div>
-  <input type="submit" value="search" >
-  </form>
-  
-  find by name:<form action="${pageContext.request.contextPath }/personSearch/companySearchByName" method="post">
-  <input type="text" name="findByName" >
-  <input type="submit" value="search">
-  </form>
-  
- <div id="LG" class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-				<h3 class="text-center">
-					Company List
-				</h3>
-				<table class="table table-bordered">
-					<thead>
-						<tr class="warning">
-							<th style="text-align:center;">
-								name
-							</th>
-							<th style="text-align:center;">
-								email
-							</th>
-							<th style="text-align:center;">
-								telephone
-							</th>
-							<th style="text-align:center;">
-								address
-							</th>
-							<th style="text-align:center;">
-								website
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<s:iterator value="companys" var="company">
-							<tr class="info">
-							<td align="center">
-								${name}
-							</td>
-							<td align="center">
-								${email}
-							</td>
-							<td align="center" class="state">
-								${telephone}
-							</td>
-							<td align="center">
-								${address }
-							</td>
-							<td align="center">
-								${website }
-							</td>
-						</tr>
-						</s:iterator>
-					</tbody>
-				</table>
+</head>
+<body>
+<div id="LG" class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <h1 class="text-center">
+                <strong>Query Company</strong>
+            </h1>
+			<div class="order-btn-group">
+                <form  class="form-inline col-sm-6 f1" action="${pageContext.request.contextPath }/personSearch/companySearch" method="post">
+                    <label class="control-label">FindByVocation:</label>
+                    <select class="form-control" name="category" style="width:180px;" id="field"></select>
+                    <input type="submit" class="btn btn-info btn-large" value="search">
+                </form>
+                <form class="form-inline col-sm-6 f2" action="${pageContext.request.contextPath }/personSearch/companySearchByName" method="post">
+                  <label class="control-label">FindByName:</label>
+                  <input type="text"class="form-control" name="findByName" >
+                  <input type="submit"class="btn btn-success btn-large"  value="search">
+                </form>
 			</div>
-		</div>
-	</div>
-  </form>
-  </body>
+
+            <table class="table table-striped">
+                <thead>
+	                <tr class="warning">
+						<th style="text-align:center;">
+							Name
+						</th>
+						<th style="text-align:center;">
+							Email
+						</th>
+						<th style="text-align:center;">
+							Telephone
+						</th>
+						<th style="text-align:center;">
+							Address
+						</th>
+						<th style="text-align:center;">
+							Website
+						</th>
+						<th style="text-align:center;">
+							Points
+						</th>
+					</tr>
+                </thead>
+                <tbody>
+					<s:iterator value="companys" var="company">
+						<tr class="info">
+						<td align="center">
+							${name}
+						</td>
+						<td align="center">
+							${email}
+						</td>
+						<td align="center">
+							${telephone}
+						</td>
+						<td align="center">
+							${address }
+						</td>
+						<td align="center">
+							<a href="http://${website}" target="_blank">${website}</a>
+						</td>
+						<td align="center">
+							${points}
+						</td>
+					</tr>
+				</s:iterator>
+			</tbody>
+           </table>
+        </div>
+    </div>
+</div>   
 </html>
