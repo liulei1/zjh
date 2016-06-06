@@ -7,15 +7,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <title>专家汇平台首页</title>
+    
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>专家汇平台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="qing_style/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="qing_style/css/app_new.css">
-    <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
     <link href="${pageContext.request.contextPath}/qing_style/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/app_new.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/expert.css">
+    <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 </head>
 <script type="text/javascript">
 	// 用户下拉菜单
@@ -103,12 +104,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<%if(application.getAttribute("user")==null){%>
         		<span>Welcome to ZJH!</span>
 	            <a class="linkText" href="user/login.jsp">[Login]</a>
-	            <a class="linkText" href="user/register_new.html" target="_blank">[Register]</a>
+	            <a class="linkText" href="${pageContext.request.contextPath}/index_register.jsp" target="_blank">[Regist]</a>
 	        <%}else { %>
             	<span class="user_login" onmouseover="userShow()"onmouseout="userHide()">欢迎您!&nbsp;${user.name}&gt;</span>
 	            <ul class="user_info" id="user_info" onmouseover="userShow()" onmouseout="userHide()">
 	            	<li><a href="${pageContext.request.contextPath}/user/user_toUserCenter?usertype=${user.usertype}">User Center</a></li>
-	                <li><a href="#" onclick="logout()">Logout</a></li>
+	                <li ><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></li>
 	            </ul>
 	         <%} %>
         </div>
@@ -182,13 +183,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             </ul>
         </div>
-            <ul class="nav">
-                <li  class="active" role="presentation"><a href="/">首页</a></li>
-                <li  role="presentation"><a href="http://wenda.ghostchina.com">人才大厅</a></li>
-                <li  role="presentation"><a href="/ghost-cheat-sheet/">需求大厅</a></li>
-                <li  role="presentation"><a href="http://docs.ghostchina.com/zh/">服务介绍</a></li>
-            </ul>
-    </div>
+        <ul class="nav">
+            <li  class="active" role="presentation"><a href="/">首页</a></li>
+            <li  role="presentation"><a href="http://wenda.ghostchina.com">人才大厅</a></li>
+            <li  role="presentation"><a href="/ghost-cheat-sheet/">需求大厅</a></li>
+            <li  role="presentation"><a href="http://docs.ghostchina.com/zh/">服务介绍</a></li>
+        </ul>
+       </div>
 </div>
 <div class="mainBody">
 <div class="bannerBar">
@@ -215,41 +216,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="content">
         <ul class="list" id="recommendConsult">
-            <%-- <li>
-                <div class="pd"><a><img src="qing_style/img/list/05.jpg"></a></div>
-                <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
-                <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
-                <div><span>专业APP实体公司</span></div>
-                <div><span>广东 东莞</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/06.jpg"></a></div>
-                <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
-                <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
-                <div><span>专业APP实体公司</span></div>
-                <div><span>广东 东莞</span></div>
-            </li>
-            <li>
-            <div class="pd"><a><img src="qing_style/img/list/07.jpg"></a></div>
-                <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
-                <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
-            <div><span>专业APP实体公司</span></div>
-            <div><span>广东 东莞</span></div>
-           </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/08.jpg"></a></div>
-                <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
-                <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
-                <div><span>专业APP实体公司</span></div>
-                <div><span>广东 东莞</span></div>
-            </li>
-            <li>
-                <div class="pd"><a><img src="qing_style/img/list/09.jpg"></a></div>
-                <div><span class="money">¥8000/套</span>&nbsp;&nbsp;<span> 成交数量:0</span></div>
-                <div class="pd_name"><a href="#">【APP开发】安卓|IOS|开发代做|APP设计...</a></div>
-                <div><span>专业APP实体公司</span></div>
-                <div><span>广东 东莞</span></div>
-            </li> --%>
         </ul>
     </div>
 </div>
@@ -259,6 +225,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="#">|成功案例</a>
     <a href="#">|隐私保护</a>
     <a href="#">|信息和资源</a>
-    <a href="#">|社交媒体（微信、FaceBook, Twitter）</a></div>
+    <a href="#">|社交媒体（微信、FaceBook, Twitter）</a>
+</div>
+<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	   <div class="modal-dialog">
+	      <div class="modal-content">
+	         <div class="modal-header">
+	            <button type="button" class="close" 
+	               data-dismiss="modal" aria-hidden="true">
+	                  &times;
+	            </button>
+	            <h4 class="modal-title" style="text-align: center" id="modalTitle">
+	             	  消息标题
+	            </h4>
+	         </div>
+	         <div class="modal-body" id="modalContent">
+	           		消息内容
+	         </div>
+	         <s:hidden name="id" id="readMessageId" value=""></s:hidden>
+	         <div class="modal-footer">
+	         	<button type="button" class="btn btn-primary" data-dismiss="modal">
+	              	 标记未读
+	            </button>
+	            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="read()">
+	            	关闭
+	            </button>
+	         </div>
+	      </div>
+		</div>
+	</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title" id="myModalLabel">
+              Message
+            </h4>
+         </div>
+         <div class="modal-body">
+            Confirm Logout?
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+               data-dismiss="modal" onclick="logout()" >logout
+            </button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+             	close
+            </button>
+         </div>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 </html>

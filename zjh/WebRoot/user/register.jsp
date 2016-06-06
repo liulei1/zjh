@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <title>普通用户注册</title>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>注册-专家汇</title>
     <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -55,7 +56,7 @@
 <br/>
 <br/>
 <div class="container">
-    <s:form class="form-signin" action="user_register"  namespace="/token" theme="simple" method="post">
+    <s:form cssClass="form-signin" action="user_register"  namespace="/token" theme="simple" method="post">
     	<s:token/>
         <div class="content">
         <div class="main">
@@ -81,7 +82,7 @@
     </s:form>
 </div>
 <div class="footer">
-    <p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
+    <p><strong>ZJH</strong> &copy; 2016 All Rights Reserved By <a class="links" href="#">USTC</a></p>
 </div>
 </body>
 </html>

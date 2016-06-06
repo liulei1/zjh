@@ -4,8 +4,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<title>Regist</title>
 
-<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../qing_style/css/navtop_new01.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
@@ -39,42 +46,38 @@
 			return true;
 		}
 	}
-	
 </script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html,body {
+	color: #505050;
+	background-color: #f9f9f9;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.8;
+}
 
-<title>regist</title>
-<link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../qing_style/css/navtop_new01.css">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
-	<style>
-		html,body{
-			color:#505050;
-			background-color:#f9f9f9;
-			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-			font-size: 14px;
-			line-height: 1.8;
-		}
-		hr{
-			-moz-border-bottom-colors: none;
-			-moz-border-left-colors: none;
-			-moz-border-right-colors: none;
-			-moz-border-top-colors: none;
-			border-color: #f6f6f6 -moz-use-text-color #b4b4b4;
-			border-image: none;
-			border-style: solid none;
-			border-width: 1px 0;
-			margin: 20px 0;
-		}
-		.footer{
-			height:30px;
-			border-top: 1px dashed #999999;
-			margin-top:10px;}
-		.footer p{text-align: center}
-	</style>
+hr {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: #f6f6f6 -moz-use-text-color #b4b4b4;
+	border-image: none;
+	border-style: solid none;
+	border-width: 1px 0;
+	margin: 20px 0;
+}
+
+.footer {
+	height: 30px;
+	border-top: 1px dashed #999999;
+	margin-top: 10px;
+}
+
+.footer p {
+	text-align: center
+}
+</style>
 </head>
 
 <body class="changeColor">
