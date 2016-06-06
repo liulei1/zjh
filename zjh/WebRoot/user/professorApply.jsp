@@ -200,61 +200,9 @@ rel="stylesheet">
 		</div>
 	</div>
 </div>
-<div class="footer">
+<div class="footer"><%--
 	<p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
-</div>
+</div>--%>
 
-
-----------------------------------------
-	<div class="navbar">
-		<a class="brand" href="index.html"><span class="first">collection of professors platform</span>
-		</a>
-	</div>
-	<div class="container" style="margin-top:10px">
-		<div align="center">
-			<span id="result"></span><font color="red"> <s:actionerror />
-				<s:fielderror /> </font>
-		</div>
-		<s:form action="professorRegister" namespace="/token" theme="simple" method="post">
-			<div class="content">
-				<div class="main">
-					<div class="">
-						<p align="center">Apply to be Professor</p>
-						<hr class="hr1" />
-					</div>
-					
-					<s:textfield name="name" id="add_username"
-						class="input-block-level" placeholder="用户名" readonly="true" value="%{model.name}"/>
-					<s:textfield name="email" class="input-block-level" id="email"
-						placeholder="邮箱" readonly="true" value="%{model.email}"/>
-					<s:textfield type="password" name="password" id="password"
-						class="input-block-level" placeholder="密码" readonly="true" value="%{model.password}"/>
-					<s:textfield name="real_name" placeholder="真实姓名"></s:textfield>
-					<br>
-					<s:textfield name="telephone" placeholder="联系方式"></s:textfield>
-					<br>
-					<s:textfield name="address" placeholder="地址"></s:textfield>
-					<br>
-					<s:textfield name="website" placeholder="网址"></s:textfield>
-					<br>
-					<s:textfield name="identity" placeholder="身份证号"></s:textfield>
-					<br>
-					<s:textfield name="introduction" placeholder="个人简介"></s:textfield>
-					<br>
-					性别:<s:radio list="{'male','female'}" name="sex" align="right" readonly="true" id="sex" value="%{model.sex}"/>
-					<br>
-					<div id="field"></div>
-					<button class="btn btn-warning btn1" type="submit">regist</button>
-					<button class="btn" type="reset">reset</button>
-				</div>
-				<div class="aside">
-					<div class="passport-goto" style="text-align: center">
-						haven a  account?
-					<a href="${pageContext.request.contextPath }/user/login.jsp ">login now</a>
-					</div>
-				</div>
-			</div>
-		</s:form>
-	</div>
 </body>
 </html>

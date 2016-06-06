@@ -124,6 +124,9 @@
         <ul class="nav">
         	<li  role="presentation"><a href="${pageContext.request.contextPath}/user/user_userInitInformation" target="myframe">Apply to be Professor</a></li>
    			<li  role="presentation"><a href="${pageContext.request.contextPath}/user/user_companyInit" target="myframe">Apply to be Company</a></li>
+   			<li  role="presentation"><a href="${pageContext.request.contextPath}/company/professor_search.jsp" target="myframe">Search Professor<span class="badge pull-right" id="messageCount"></span></a>
+   			<li  role="presentation"><a href="${pageContext.request.contextPath}/professor/company_search.jsp" target="myframe">Search Company<span class="badge pull-right" id="messageCount"></span></a>
+   			
         </ul>
     </div>
 </div>

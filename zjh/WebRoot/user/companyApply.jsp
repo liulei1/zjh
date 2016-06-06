@@ -150,7 +150,7 @@
 		</div>
 	</div>
 <div class="footer">
-	<p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
-</div>
+	<%--<p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
+--%></div>
 </body>
 </html>
