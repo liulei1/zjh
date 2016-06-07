@@ -9,8 +9,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../qing_style/css/navtop_new01.css">
+<link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/navtop_new.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style>
 html,body {
@@ -48,7 +48,7 @@ hr {
 	
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="field"><option selected="selected">--请选择领域--</option>';
+			var html='<select name="field" class="form-control"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
@@ -85,10 +85,10 @@ hr {
 		<h3>ZJH</h3>
 	</div>
 	<ul class="nav_list" >
-		<li ><a href="index.html" target="_blank">首页</a></li>
-		<li ><a href="#">服务介绍</a></li>
+		<li ><a href="${pageContext.request.contextPath}/index.jsp" target="_blank">首页</a></li>
+		<li ><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
 	</ul>
-	<a href="../user/login_new.html" target="_parent"><span>登录</span></a>
+	<a href="${pageContext.request.contextPath}/user/login.jsp" target="_parent"><span>登录</span></a>
 </div>
 <br/>
 <div class="container">
@@ -123,7 +123,7 @@ hr {
 				<label class="col-sm-4 control-label">Password</label>
 				<div class="col-sm-4">
 					<s:textfield type="password" name="password"
-						   class="form-control" placeholder="输入密码"/>
+						   cssClass="form-control" placeholder="输入密码"/>
 				</div>
 			</div>
 			<div class="form-group">

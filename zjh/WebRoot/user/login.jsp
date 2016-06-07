@@ -39,7 +39,7 @@
     </div>
     <ul class="nav_list" >
         <li ><a href="${pageContext.request.contextPath}">首页</a></li>
-        <li ><a href="${pageContext.request.contextPath}/user/introduction.html" target="_blank">服务介绍</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.jsp" target="_blank">服务介绍</a></li>
     </ul>
 </div>
 <br/>
