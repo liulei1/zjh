@@ -28,7 +28,9 @@
 	
 	<!-- 配置Android Action -->
 	<bean id="userLoginAndroid" class="cn.ustc.android.action.UserLogin"/>
-	<bean id="professorOperateAndroid" class="cn.ustc.android.action.ProfessorOperateAction"/>
+	<bean id="consultAndriodAction" class="cn.ustc.android.action.ConsultAndriodAction"/>
+	<bean id="projectAndriodAction" class="cn.ustc.android.action.ProjectAndriodAction"/>
+	<bean id="schemeAndriodAction" class="cn.ustc.android.action.SchemeAndriodAction"/>
 	
 	<!-- 配置Service  -->
 	<bean id="consultService" class="cn.ustc.web.service.ConsultService"/>
