@@ -195,7 +195,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
             <li  class="active" role="presentation"><a href="/">首页</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/professor/professor_getProfessorWithPage" target="_blank">人才大厅</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_allowList" target="_blank">需求大厅</a></li>
-            <li  role="presentation"><a href="" target="_blank">服务介绍</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
         </ul>
        </div>
 </div>

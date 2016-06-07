@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>服务介绍</title>
+    <title>services</title>
     <!--link href="qing_style/css/bootstrap.min.css" rel="stylesheet">
     <link href="qing_style/css/navtop_new.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -58,6 +61,10 @@
     <div class="design_class">
         <h3>ZJH</h3>
     </div>
+    <ul class="nav_list" >
+        <li ><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.jsp">Services</a></li>
+    </ul>
 </div>
 <div class="container">
     <!--div class="jumbotron">
@@ -78,7 +85,7 @@
         <div class="col-xs-9">
             <h3 id="section-1">Services</h3>
             <p>Registering a new user. Introduction to business users. Introduction to expert users...</p>
-            <!--p>注册新用户. 企业用户入门. 专家用户入门...</p-->
+             <!--p>注册新用户. 企业用户入门. 专家用户入门...</p-->
             <hr>
             <h3 id="section-2">Company</h3>
             <p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
