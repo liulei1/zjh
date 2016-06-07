@@ -150,8 +150,8 @@
 				<param name="actionName">company_viewCompanyInfo</param>
 				<param name="namespace">/company</param>
 			</result>
-			<result name="viewChangePasswordSUCCESS">/company/company_password.jsp</result>
-			<result name="changePasswordSUCCESS">/company/company_password.jsp</result>
+			<result name="viewChangePasswordSUCCESS">/company/company_view.jsp</result>
+			<result name="changePasswordSUCCESS">/company/company_view.jsp</result>
 			
 			<result name="uneditCompanys">/manage/compAudit.jsp</result>
 			<result name="passSuccess">/manage/compAudit.jsp</result>
@@ -190,8 +190,8 @@
 				<param name="actionName">professor_viewProfessorInfo</param>
 				<param name="namespace">/professor</param>
 			</result>
-			<result name="viewChangePasswordSUCCESS">/professor/professor_password.jsp</result>
-			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
+			<result name="viewChangePasswordSUCCESS">/professor/professor_view.jsp</result>
+			<result name="changePasswordSUCCESS">/professor/professor_view.jsp</result>
 			<result name="viewProfessorInfoByIdSUCCESS">/professor/professorInfoFromSchemeDetail.jsp</result>
 			<result name="viewRegisterSUCCESS">/professor/professor_register.jsp</result>
 			<result name="getProfessorWithPageSUCCESS">/professor/professor_list.jsp</result>

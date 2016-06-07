@@ -52,6 +52,9 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		}else{
 			company.setState("1");
 		}
+		if(company.getName()==null){
+			return "companyRegister";
+		}
 		company.setUsertype("1");
 		//新注册的用户的积分权限设置为普通的
 		company.setAuthority(Company.AUTHORITY_COMMON);

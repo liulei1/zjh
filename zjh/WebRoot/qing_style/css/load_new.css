@@ -32,7 +32,7 @@ html,body{
 .container{width:100%;overflow: hidden;}
 .form-signin {
     max-width: 600px;
-    max-height:420px;
+    max-height:460px;
     padding:20px 50px 100px;
     margin: 0 auto 50px;
     background-color:  #fff;

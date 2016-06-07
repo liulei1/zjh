@@ -64,6 +64,8 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 		if(rpt == newPwd){
 			return true;
 		}else{
+			$("#newPassword").val("");
+			$("#repeatPassword").val("");
 			alert("两次输入不一致");
 			return false;
 		}
@@ -99,8 +101,8 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 		<h3>ZJH</h3>
 	</div>
 	<ul class="nav_list" >
-		<li ><a href="index.html" target="_blank">首页</a></li>
-		<li ><a href="#">服务介绍</a></li>
+		<!--li ><a href="index.html" target="_blank">首页</a></li-->
+		<li ><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
 	</ul>
 	<span>欢迎您,${user.name}用户</span>
 </div>
@@ -197,13 +199,17 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 				<div class="login-wrapper">
 					<div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
 						<div class="form-center">
-						<span>
-			                <font color="red">
-			                	<!-- 修改密码操作提示 -->
-			                    <b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
-			                </font>
-			            </span>
 						<s:form cssClass="form-horizontal" onsubmit="return passwordConfirm();" action="professor_changePassword" namespace="/professor" theme="simple" method="post">
+							<div class="form-group">
+								<div class="col-sm-12" align="center">
+									<span>
+						                <font color="red">
+						                	<!-- 修改密码操作提示 -->
+						                    <b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
+						                </font>
+						            </span>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-4 control-label">Password</label>
 								<div class="col-sm-4">
@@ -278,7 +284,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 	}
 </script>
 	
-	<div class="tab-pane fade" id="image">
+	<div class=" tab-pane fade" id="image" style="padding-top:40px;padding-left:510px;">
 		<div class="fileInputContainer" id="imgView" style="background: url('<%=imgRootPath%>${model.image}') no-repeat;background-size:100% 100%;">
 			<input class="fileInput" id="img" type="file" name="file" onChange="uploadFile('img')">
 			<p style="margin-top: 235px;text-align: center;">点击上传头像<p>

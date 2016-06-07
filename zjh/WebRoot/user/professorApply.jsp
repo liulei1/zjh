@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../qing_style/css/navtop_new01.css">
+<link href="${pageContext.request.contextPath }/qing_style/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/css/navtop_new.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style>
@@ -36,7 +36,7 @@
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="field"><option selected="selected">--请选择领域--</option>';
+			var html='<select name="field" class="form-control"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
@@ -70,8 +70,8 @@ rel="stylesheet">
 		<s:form cssClass="form-horizontal" action="professorRegister" namespace="/token" theme="simple" method="post">
 			<div class="form-group">
 				<h1>
-					Regist
-					<small>Welcome to ZJH, Expert users registered in this interface.</small>
+					Apply
+					<small>Apply common user to expert user.</small>
 				</h1>
 				<hr>
 			</div>
@@ -147,7 +147,7 @@ rel="stylesheet">
 			</div>
 			<div class="form-group">
 				<div class="col-md-offset-4 col-md-7 form-btn-group">
-					<input type="submit" class="btn btn-success btn-large pull-left" value="regist">
+					<input type="submit" class="btn btn-success btn-large pull-left" value="submit">
 					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
 				</div>
 			</div>

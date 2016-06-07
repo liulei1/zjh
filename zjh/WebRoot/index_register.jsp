@@ -281,7 +281,7 @@ hr {
 			<div class="form-group">
 				<label class="col-sm-4 control-label">RepeatPassword</label>
 				<div class="col-sm-4">
-					<s:textfield type="repassword" name="repassword"
+					<s:textfield type="password" name="repassword"
 						   cssClass="form-control" placeholder="重复密码"/>
 				</div>
 			</div>
@@ -373,7 +373,7 @@ hr {
 			<div class="form-group">
 				<label class="col-sm-4 control-label">RepeatPassword</label>
 				<div class="col-sm-4">
-					<s:textfield type="repassword" name="repassword"
+					<s:textfield type="password" name="repassword"
 						   cssClass="form-control" placeholder="重复密码"/>
 				</div>
 			</div>

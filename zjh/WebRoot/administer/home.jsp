@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -25,6 +29,17 @@
         function userHide(){
             document.getElementById("user_info").style.display="none";
         }
+        
+        function logout(){
+	    	var r=confirm("您确定退出吗？");
+	    	if(r){
+	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
+	    		$.post(url,function(){
+	    			location.href = '<%=path%>';
+	    		});
+	    		
+	    	}
+	    }
     </script>
 </head>
 <body>
@@ -41,14 +56,12 @@
             <span>欢迎您!&nbsp;&nbsp;</span>
             <span class="user_login" onmouseover="userShow()" onmouseout="userHide()">${user.name}&nbsp;&gt</span>
             <ul class="user_info" id="user_info" onmouseover="userShow()"onmouseout="userHide()">
-                <li><a href="#">用户管理</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#" onclick="logout()">退出</a></li>
+                <li><a href="#" onclick="logout()">logout</a></li>
             </ul>
-            <div class="message">
+            <!--div class="message">
                 <span class="m_title">消息:</span>
                 <a class="m_digital" href="${pageContext.request.contextPath}/message/message_queryMyUnread" id="messageCount"></a>
-            </div>
+            </div-->
         </div>
     </div>
     </div>

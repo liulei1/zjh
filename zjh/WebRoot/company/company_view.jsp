@@ -99,8 +99,8 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 		<h3>ZJH</h3>
 	</div>
 	<ul class="nav_list" >
-		<li ><a href="index.html" target="_blank">首页</a></li>
-		<li ><a href="#">服务介绍</a></li>
+		<!--li ><a href="index.html" target="_blank">首页</a></li-->
+		<li ><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
 	</ul>
 	<span>欢迎您,${user.name}用户</span>
 </div>
@@ -274,7 +274,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 	}
 </script>
 	
-	<div class="tab-pane fade" id="image">
+	<div class="tab-pane fade" id="image" style="padding-top:40px;padding-left:510px;">
 		<div class="fileInputContainer" id="imgView"><input class="fileInput" id="img" type="file" name="file" onChange="uploadFile('img')">
 			<p style="margin-top: 235px;text-align: center;">点击上传头像<p>
 		</div>

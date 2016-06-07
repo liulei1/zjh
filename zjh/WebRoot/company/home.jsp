@@ -61,8 +61,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	var r=confirm("您确定退出吗？");
 	    	if(r){
 	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
-	    		$.post(url);
-	    		location.href = '<%=path%>';
+	    		$.post(url,function(){
+	    			location.href = '<%=path%>';
+	    		});
+	    		
 	    	}
 	    }
 

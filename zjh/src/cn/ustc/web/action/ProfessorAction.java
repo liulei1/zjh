@@ -75,6 +75,9 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 			professor.setState("0");
 		}
 		
+		if(professor.getName()==null){
+			return "professorRegister";
+		}
 		professorService.insertProfessor(professor);
 		ActionContext context = ActionContext.getContext();
 		context.put("result", "operate success!");
