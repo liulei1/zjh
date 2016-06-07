@@ -243,4 +243,12 @@ public class ConsultService {
 	public int findCompanyOnGoingConsultCount(String id) {
 		return consultDAO.findCompanyOnGoingConsultCount(id);
 	}
+
+	/**
+	 * 查找专家提交了方案，暂未形成项目的咨询
+	 * @param professorId
+	 */
+	public List<Consult> findProfessorApplyConslut(String professorId) {
+		return consultDAO.findProfessorApplyConslut(professorId);
+	}
 }

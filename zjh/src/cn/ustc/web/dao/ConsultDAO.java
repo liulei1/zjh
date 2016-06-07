@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.TransactionManagement;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -152,6 +153,17 @@ public class ConsultDAO extends HibernateDaoSupport{
 		String hql="select count(*) from Consult as consult where consult.com_id=? and consult.state=?";
 		Long count = (Long)this.getHibernateTemplate().find(hql, new Object[]{companyId,Consult.ALLOW}).listIterator().next();
 		return count.intValue();
+	}
+
+	public List<Consult> findProfessorApplyConslut(String professorId) {
+		String sql = "select c.* from consult c inner join (select * from project_scheme where prof_id=:profId) sub on c.id=sub.cons_id where c.state=:state";
+		Session session = this.getSessionFactory().getCurrentSession();
+		professorId="12312";
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Consult.class);
+		query.setString("profId", professorId);
+		query.setString("state", Consult.ALLOW);
+		List<Consult> list = query.list();
+		return list;
 	}
 	
 }
