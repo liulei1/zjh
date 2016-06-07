@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="field"><option selected="selected">--请选择领域--</option>';
+			var html='<select name="field" class="form-control"><option selected="selected">--请选择领域--</option>';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
@@ -46,8 +46,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>regist</title>
-<link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="../qing_style/css/navtop_new01.css">
+<link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/navtop_new.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
 	<style>
@@ -171,7 +171,7 @@
 			<div class="form-group">
 				<label class="col-sm-4 control-label">Field</label>
 				<div class="col-sm-4">
-					<div id="field" ></div>
+					<div id="field"></div>
 				</div>
 			</div>
 			<div class="form-group">

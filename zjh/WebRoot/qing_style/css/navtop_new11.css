@@ -1,6 +1,12 @@
 ul{margin:0;padding:0;}
 li{list-style: none;}
-
+html,body{
+    color:#505050;
+    background:#ffffff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
 .navBar{
     height:55px;
     background-color:#1d7ad9;
@@ -30,6 +36,7 @@ li{list-style: none;}
     padding:5px;
     text-decoration: none;
 }
+
 .control-label {
     margin-bottom: 0;
     padding-top: 7px;
@@ -38,13 +45,9 @@ li{list-style: none;}
 h1 {
     color: #749ac3;
     font-size: 30px;
+
     text-align: center;
 }
-h1 small {
-    font-size: 18px;
-    padding-left: 15px;
-}
-.col-xs-12{  background-color: #fff; }
 .pull-left{ margin-right: 60px; }
 .form-btn-group {  padding: 15px 16px; }
 .footer{

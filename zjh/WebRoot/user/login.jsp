@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登陆-专家汇</title>
-    <link href="../qing_style/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../qing_style/css/load_new.css">
+    <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
         function loginCheck(){
@@ -37,8 +37,8 @@
         <h3>ZJH</h3>
     </div>
     <ul class="nav_list" >
-        <li ><a href="index.html" target="_blank">首页</a></li>
-        <li ><a href="${pageContext.request.contextPath}/user/introduction.html">服务介绍</a></li>
+        <li ><a href="${pageContext.request.contextPath}/index.jsp" target="_blank">首页</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
     </ul>
 </div>
 <br/>
@@ -77,7 +77,7 @@
         </div>
 	        <div class="aside">
 	            <div class="passport-goto"style="text-align: center">没有账号? 免费注册<hr>
-	            <a href="${pageContext.request.contextPath }/user/register.jsp">Regist Of Common User</a><br>
+	            <a href="${pageContext.request.contextPath }/user/register.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Regist Of Common User</a><br>
 	            <a href="${pageContext.request.contextPath }/professor/professor_register.jsp">Regist Of Professor</a><br>
 	            <a href="${pageContext.request.contextPath }/company/company_register.jsp">Regist Of Company</a><br>
 	        	</div>
