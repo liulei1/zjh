@@ -10,7 +10,7 @@
 			<!-- 结果集类型 必须指定为 json -->
 			<!-- 默认将值栈顶端对象返回，如果没有实现ModelDriven ，Action就是顶端对象 -->
 			<result type="json">
-				<param name="root">action</param>
+				<param name="root">professors</param>
 			</result>
 		</action>
 
@@ -18,7 +18,7 @@
 		<action name="getRecommendConsult" class="cn.ustc.web.action.ConsultAction"
 			method="recommendConsult">
 			<result type="json">
-				<param name="root">action</param>
+				<param name="root">consults</param>
 			</result>
 		</action>
 		

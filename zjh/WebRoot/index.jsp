@@ -45,7 +45,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 	function getRecommendProfessor(){
 		$.post("${pageContext.request.contextPath}/json/recommendProfessor.action",function(data){
 			var html='';
-			$.each(data.professors,function(index,professor){
+			$.each(data,function(index,professor){
 				//style="background: url('<%=imgRootPath%>${model.image}') no-repeat;background-size:100% 100%;">
 				html+='<li><div class="pd"><a><img src=<%=imgRootPath%>'+professor.image+' onerror="javascript:this.src=\'qing_style/img/list/04.jpg\'"></a></div>';
 				var url = "${pageContext.request.contextPath}/professor/professor_viewProfessorInfoById?id="+professor.id;
@@ -66,7 +66,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 		$.post("${pageContext.request.contextPath}/json/getRecommendConsult.action",function(data){
 			var html='';
 			var i = 0;
-			$.each(data.consults,function(index,consult){
+			$.each(data,function(index,consult){
 				html+='<li>';
 				var url = pic[i++%length];
 				html+='<div class="pd"><a><img src='+url+'></a></div>';

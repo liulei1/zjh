@@ -217,8 +217,11 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	public String recommendProfessor(){
 		professors = professorService.getRecommendProfessor(5);
 		for (Professor p : professors) {
-			Vocation vocation = vocationDAO.findVocationById(p.getField());
-			p.setField(vocation.getName());
+			try{
+				Vocation vocation = vocationDAO.findVocationById(p.getField());
+				p.setField(vocation.getName());
+			}catch (Exception e) {
+			}
 		}
 		return SUCCESS;
 	}
@@ -258,7 +261,7 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	 * 查询所有专家
 	 * @return
 	 */
-	public String getProfessorWithPage(){
+	public String getProfessorWithPageaasd(){
 		int count = professorService.getProfessorCount();
 		professor.setTotal(count);
 		professor.setPageCount((count-1)/PAGESIZE+1);
@@ -272,8 +275,11 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		}
 		
 		for (Professor p : professors) {
-			Vocation vocation = vocationDAO.findVocationById(p.getField());
-			p.setField(vocation.getName());
+			try {
+				Vocation vocation = vocationDAO.findVocationById(p.getField());
+				p.setField(vocation.getName());
+			} catch (Exception e) {
+			}
 		}
 		return "getProfessorWithPageSUCCESS";
 	}
