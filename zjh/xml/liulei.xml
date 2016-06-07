@@ -3,6 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+
 	<package name="myDefault" namespace="/" extends="struts-default">
 		<interceptors>
 			<interceptor name="loginInterceptor" class="cn.ustc.web.interceptor.LoginInterceptor"/>
@@ -18,11 +19,23 @@
 		<global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
-			<result name="input">/input.jsp</result>
+			<result name="message">/message.jsp</result>
 		</global-results>
+		
+		<!-- <global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/input.jsp</result>
+		</global-results> -->
 	</package>
 
 	<package name="consult" namespace="/consult" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+		</global-results>
+	
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
 			<result name="publishConsultSUCCESS">/success.jsp</result>
 			<result name="listSUCCESS">/project/consult_list.jsp</result>
@@ -39,10 +52,17 @@
 				<param name="contentType">${contentType}</param>
 				<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
 			</result>
+			
 		</action>
 	</package>
 	
 	<package name="scheme" namespace="/scheme" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+		</global-results>
+	
 		<action name="scheme_*" method="{1}" class="cn.ustc.web.action.SchemeAction">
 			<result name="submitViewSUCCESS">/scheme/scheme_publish.jsp</result>
 			<result name="publishSUCCESS" type="redirectAction">
@@ -64,6 +84,12 @@
 	</package>
 	
 	<package name="project" namespace="/project" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+		</global-results>
+	
 		<action name="project_*" method="{1}" class="cn.ustc.web.action.ProjectAction">
 			<result name="queryCompanyProjectSUCCESS">/company/company_project.jsp</result>
 			<result name="queryProfessorProjectSUCCESS">/professor/professor_project.jsp</result>
@@ -78,6 +104,13 @@
 	</package>
 	
 	<package name="evaluate" namespace="/evaluate" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+	
 		<action name="evaluate_*" method="{1}" class="cn.ustc.web.action.EvaluateAction">
 			<result name="publishView">/project/evaluate_publish.jsp</result>
 						
@@ -99,6 +132,13 @@
 	</package>
 	
 	<package name="company" namespace="/company" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+			<result name="success">/success.jsp</result>
+		</global-results>
+	
 		<action name="company_*" method="{1}" class="cn.ustc.web.action.CompanyAction">
 			<result name="skipBalancePageSUCCESS">/company/company_balance.jsp</result>
 			<result name="addBalanceSUCCESS" type="redirectAction">
@@ -117,10 +157,17 @@
 			<result name="passSuccess">/manage/compAudit.jsp</result>
 			<result name="refused">/manage/compAudit.jsp</result>
 			
+			<result name="toVipPageSUCCESS">/company/companyToVip.jsp</result>
 		</action>
 	</package>
 	
 	<package name="message" namespace="/message" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+		</global-results>
+	
 		<action name="message_*" method="{1}" class="cn.ustc.web.action.MessageAction">
 			<result name="queryMyUnreadSUCCESS">/message/message_list.jsp</result>
 			<result name="haveReadedSUCCESS" type="redirectAction">
@@ -131,6 +178,12 @@
 	</package>
 	
 	<package name="professor" namespace="/professor" extends="myDefault">
+		<global-results>
+			<result name="login">/user/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="message">/message.jsp</result>
+		</global-results>
+	
 		<action name="professor_*" method="{1}" class="cn.ustc.web.action.ProfessorAction">
 			<result name="viewProfessorInfoSUCCESS">/professor/professor_view.jsp</result>
 			<result name="updateProfessorInfoSUCCESS" type="redirectAction">
@@ -141,6 +194,7 @@
 			<result name="changePasswordSUCCESS">/professor/professor_password.jsp</result>
 			<result name="viewProfessorInfoByIdSUCCESS">/professor/professorInfoFromSchemeDetail.jsp</result>
 			<result name="viewRegisterSUCCESS">/professor/professor_register.jsp</result>
+			<result name="getProfessorWithPageSUCCESS">/professor/professor_list.jsp</result>
 			
 			<result name="uneditProfessors">/manage/proAudit.jsp</result>
 			<result name="passSuccess">/manage/proAudit.jsp</result>

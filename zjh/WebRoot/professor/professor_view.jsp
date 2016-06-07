@@ -1,13 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%
+String path = request.getContextPath();
+String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +"/";
+%>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<title>专家用户个人信息</title>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>专家用户个人信息</title>
 <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/qing_style/css/navtop_new.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -244,7 +250,7 @@ pageEncoding="UTF-8"%>
 	
 		$.ajaxFileUpload(
         {
-            url: '${pageContext.request.contextPath}/json/uploadCompanyImage', //用于文件上传的服务器端请求地址
+            url: '${pageContext.request.contextPath}/json/uploadProfessorImage', //用于文件上传的服务器端请求地址
             secureuri: false, //是否需要安全协议，一般设置为false
             fileElementId: id, //文件上传域的ID
             dataType: 'json', //返回值类型 一般设置为json
@@ -252,13 +258,19 @@ pageEncoding="UTF-8"%>
             success: function (data)  //服务器成功响应处理函数
             {
             	if(data.imgPath != null){
-                	$("#imgView").css("background", "url("+data.imgPath+") no-repeat");
+                	$("#imgView").css("background", "url("+"<%=imgRootPath%>"+data.imgPath+") no-repeat");
+            		$("#imgView").css("background-size","100% 100%");
+            	}else if(data.imgErrorResult != null){
+            		alert(data.imgErrorResult);
             	}else{
             		alert("Upload Fail, Please try again!");
             	}
             },
             error: function (data)//服务器响应失败处理函数
             {
+            	if(data.imgErrorResult != null){
+            		alert(data.imgErrorResult);
+            	}
                 alert("Upload Fail");
             }
         });
@@ -267,7 +279,8 @@ pageEncoding="UTF-8"%>
 </script>
 	
 	<div class="tab-pane fade" id="image">
-		<div class="fileInputContainer" id="imgView"><input class="fileInput" id="img" type="file" name="file" onChange="uploadFile('img')">
+		<div class="fileInputContainer" id="imgView" style="background: url('<%=imgRootPath%>${model.image}') no-repeat;background-size:100% 100%;">
+			<input class="fileInput" id="img" type="file" name="file" onChange="uploadFile('img')">
 			<p style="margin-top: 235px;text-align: center;">点击上传头像<p>
 		</div>
 	</div>

@@ -97,7 +97,7 @@
 							${address }
 						</td>
 						<td align="center">
-							<a href="${website}">${website}</a>
+							<a href="http://${website}" target="_blank">${website}</a>
 						</td>
 						<td align="center">
 							${points}

@@ -105,6 +105,13 @@ public class ConsultDAO extends HibernateDaoSupport{
 		return list;
 	}
 	
+	/**
+	 * 条件查询
+	 * @param criteria 条件
+	 * @param firstResult 起始记录下标
+	 * @param maxResults 最大记录数
+	 * @return
+	 */
 	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
 		List<Consult> list = this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
 		return list;
@@ -134,6 +141,17 @@ public class ConsultDAO extends HibernateDaoSupport{
 	 */
 	public List<Consult> findConsultByCriteria(DetachedCriteria criteria, int maxSize) {
 		return findByDetachedCriteria(criteria, 0, maxSize);
+	}
+	
+	/**
+	 * 查询企业正在进行的项目个数
+	 * @param companyId 企业的Id
+	 * @return
+	 */
+	public int findCompanyOnGoingConsultCount(String companyId){
+		String hql="select count(*) from Consult as consult where consult.com_id=? and consult.state=?";
+		Long count = (Long)this.getHibernateTemplate().find(hql, new Object[]{companyId,Consult.ALLOW}).listIterator().next();
+		return count.intValue();
 	}
 	
 }

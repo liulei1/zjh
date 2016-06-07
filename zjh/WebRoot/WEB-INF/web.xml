@@ -6,14 +6,14 @@
 	<display-name></display-name>
 
 	<!-- OpenSessionInView 事务开启放在web层 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>OpenSessionInView</filter-name>
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>OpenSessionInView</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<!-- Struts2 核心 过滤器 -->
 	<filter>

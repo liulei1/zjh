@@ -3,6 +3,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +"/";
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -15,10 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="${pageContext.request.contextPath}/qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/app_new.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/expert.css">
-    <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 	 <script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
 </head>
 <script type="text/javascript">
+	if (window != top)
+			top.location.href = location.href;
+
 	// 用户下拉菜单
 	function show(){
         document.getElementById("hi").style.display="block";
@@ -43,7 +46,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$.post("${pageContext.request.contextPath}/json/recommendProfessor.action",function(data){
 			var html='';
 			$.each(data.professors,function(index,professor){
-				html+='<li><div class="pd"><a><img src="'+professor.img+'" onerror="javascript:this.src=\'qing_style/img/list/04.jpg\'"></a></div>';
+				//style="background: url('<%=imgRootPath%>${model.image}') no-repeat;background-size:100% 100%;">
+				html+='<li><div class="pd"><a><img src=<%=imgRootPath%>'+professor.image+' onerror="javascript:this.src=\'qing_style/img/list/04.jpg\'"></a></div>';
 				var url = "${pageContext.request.contextPath}/professor/professor_viewProfessorInfoById?id="+professor.id;
 				html+='<div class="pd_name"><a href='+url+'>'+professor.name+'</a></div>';
 				html+='<div><span>Points:</span>&nbsp;&nbsp;<span class="money">'+professor.points+'</span></div>';
@@ -69,7 +73,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				html+='<div class="pd_name"><a href="#">'+consult.title+'</a></div>';
 				html+='<div><span class="money">Budget:¥'+consult.budget+'</span></div>';
 				html+='<div><span>Release:'+consult.release_date+'</span></div>';
-				html+='<div><span>End Time:'+consult.deadline+'</span></div>';
+				var deadtime="-";
+				if(consult.deadline != null){
+					deadtime=consult.deadline;
+				}
+				html+='<div><span>End Time:'+deadtime+'</span></div>';
 				html+='<div><span>Feild:'+consult.category+'</span></div>';
 				html+='</li>';
 			});
@@ -106,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <a class="linkText" href="user/login.jsp">[Login]</a>
 	            <a class="linkText" href="${pageContext.request.contextPath}/index_register.jsp" target="_blank">[Regist]</a>
 	        <%}else { %>
-            	<span class="user_login" onmouseover="userShow()"onmouseout="userHide()">欢迎您!&nbsp;${user.name}&gt;</span>
+            	<span class="user_login" onmouseover="userShow()"onmouseout="userHide()">Welcome !&nbsp;${user.name}&gt;</span>
 	            <ul class="user_info" id="user_info" onmouseover="userShow()" onmouseout="userHide()">
 	            	<li><a href="${pageContext.request.contextPath}/user/user_toUserCenter?usertype=${user.usertype}">User Center</a></li>
 	                <li ><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></li>
@@ -116,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="navBar">
         <div class="design_class fl">
-            <h3>全部分类</h3>
+            <h3 onmouseover="show()"onmouseout="hide()">全部分类</h3>
             <ul class="item">
                 <li class="item_list">
                     <a href="#" target="_blank">logo</a>
@@ -185,25 +193,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <ul class="nav">
             <li  class="active" role="presentation"><a href="/">首页</a></li>
-            <li  role="presentation"><a href="http://wenda.ghostchina.com">人才大厅</a></li>
-            <li  role="presentation"><a href="/ghost-cheat-sheet/">需求大厅</a></li>
-            <li  role="presentation"><a href="http://docs.ghostchina.com/zh/">服务介绍</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/professor/professor_getProfessorWithPage" target="_blank">人才大厅</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_allowList" target="_blank">需求大厅</a></li>
+            <li  role="presentation"><a href="" target="_blank">服务介绍</a></li>
         </ul>
        </div>
 </div>
 <div class="mainBody">
 <div class="bannerBar">
     <ul class="imgBox">
-        <li><a href="#"><img src="qing_style/img/banner/05.jpg"></a></li>
-        <li><a href="#"><img src="qing_style/img/banner/02.jpg"></a></li>
-        <li><a href="#"><img src="qing_style/img/banner/06.jpg"></a></li>
+        <li><a href="#"><img src="${pageContext.request.contextPath}/qing_style/img/banner/05.jpg"></a></li>
+        <li><a href="#"><img src="${pageContext.request.contextPath}/qing_style/img/banner/02.jpg"></a></li>
+        <li><a href="#"><img src="${pageContext.request.contextPath}/qing_style/img/banner/06.jpg"></a></li>
     </ul>
 </div>
 </div>
 <div>
 <div class="title">
-    <span style="float:left" onclick="getRecommendProfessor()">推荐专家</span>
-    <a class="more" href="#"style="float:right">更多&gt;&gt;</a>
+    <span style="float:left">推荐专家</span>
+    <a class="more" onclick="getRecommendProfessor()" style="float:right">更多&gt;&gt;</a>
 </div>
     <div class="content">
         <ul class="list" id="recommendProfessor"></ul>
@@ -211,8 +219,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div>
     <div class="title">
-        <span style="float:left" onclick="getRecommendConsult()">推荐需求</span>
-        <a class="more" href="#"style="float:right">更多&gt;&gt;</a>
+        <span style="float:left">推荐需求</span>
+        <a class="more" href="getRecommendConsult()"style="float:right">更多&gt;&gt;</a>
     </div>
     <div class="content">
         <ul class="list" id="recommendConsult">
@@ -227,36 +235,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="#">|信息和资源</a>
     <a href="#">|社交媒体（微信、FaceBook, Twitter）</a>
 </div>
+
 <!-- 模态框（Modal） -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	   <div class="modal-dialog">
-	      <div class="modal-content">
-	         <div class="modal-header">
-	            <button type="button" class="close" 
-	               data-dismiss="modal" aria-hidden="true">
-	                  &times;
-	            </button>
-	            <h4 class="modal-title" style="text-align: center" id="modalTitle">
-	             	  消息标题
-	            </h4>
-	         </div>
-	         <div class="modal-body" id="modalContent">
-	           		消息内容
-	         </div>
-	         <s:hidden name="id" id="readMessageId" value=""></s:hidden>
-	         <div class="modal-footer">
-	         	<button type="button" class="btn btn-primary" data-dismiss="modal">
-	              	 标记未读
-	            </button>
-	            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="read()">
-	            	关闭
-	            </button>
-	         </div>
-	      </div>
-		</div>
-	</div>
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -276,8 +257,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              	close
             </button>
          </div>
-      </div><!-- /.modal-content -->
-   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      </div>/.modal-content
+   </div>/.modal-dialog
+</div>/.modal -->
 </body>
 </html>

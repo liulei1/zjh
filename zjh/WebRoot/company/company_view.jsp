@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%
+String path = request.getContextPath();
+String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() +"/";
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -255,7 +259,8 @@
             success: function (data)  //服务器成功响应处理函数
             {
             	if(data.imgPath != null){
-                	$("#imgView").css("background", "url("+data.imgPath+") no-repeat");
+                	$("#imgView").css("background","url(" +"<%=imgRootPath%>"+data.imgPath+") no-repeat ");
+					$("#imgView").css("background-size","100% 100%");
             	}else{
             		alert("Upload Fail, Please try again!");
             	}

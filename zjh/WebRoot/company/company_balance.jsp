@@ -89,6 +89,7 @@
 					<div class="form-group">
 					<div class="col-md-offset-3 col-md-7 form-btn-group">
 							<input type="submit" class="btn btn-success btn-large pull-left" value="submit">
+							<a class="btn btn-warning btn-large pull-left" href="${pageContext.request.contextPath}/company/company_toVipPage">ToVIP</a>
 							<button class="btn btn-info btn-large pull-left" type="button" onClick="javascript:history.go(-1);">back</button>
 						</div>
 					</div>

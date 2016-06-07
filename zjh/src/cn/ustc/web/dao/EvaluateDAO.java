@@ -2,13 +2,10 @@ package cn.ustc.web.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Evaluate;
-import cn.ustc.utils.HibernateUtils;
 
 /**
  * 评价操作

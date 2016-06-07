@@ -43,43 +43,48 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 		int count=0;
 		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
 		Object o = ServletActionContext.getServletContext().getAttribute("user");
-		if(o instanceof Company){
-			Company company =(Company) o;
-			count=projectService.getCountByCompanyID(company.getId());
+		if (o instanceof Company) {
+			Company company = (Company) o;
+			count = projectService.getCountByCompanyID(company.getId());
 			criteria.add(Restrictions.eq("com_id", company.getId()));
 			projects = projectService.findByDetachedCriteria(criteria);
 			project.setTotal(count);
-			project.setPageCount((count-1)/PAGESIZE+1);
-		
-		int pageIndex = project.getPageIndex();
-		if(pageIndex == 0){
-			project.setPageIndex(1);
-			projects = projectService.findByDetachedCriteria(criteria, 0, PAGESIZE);
-		}else{
-			projects = projectService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
-		}
+			project.setPageCount((count - 1) / PAGESIZE + 1);
+
+			int pageIndex = project.getPageIndex();
+			if (pageIndex == 0) {
+				project.setPageIndex(1);
+				projects = projectService.findByDetachedCriteria(criteria, 0,
+						PAGESIZE);
+			} else {
+				projects = projectService.findByDetachedCriteria(criteria,
+						(pageIndex - 1) * PAGESIZE, PAGESIZE);
+			}
 			return "queryCompanyProjectSUCCESS";
-			
-		}else if(o instanceof Professor){
-			Professor professor =(Professor) o;
-			count=projectService.getCountByPorfessorID(professor.getId());
+
+		} else if (o instanceof Professor) {
+			Professor professor = (Professor) o;
+			count = projectService.getCountByPorfessorID(professor.getId());
 
 			criteria.add(Restrictions.eq("prof_id", professor.getId()));
 			projects = projectService.findByDetachedCriteria(criteria);
 			project.setTotal(count);
-			project.setPageCount((count-1)/PAGESIZE+1);
-		
-		int pageIndex = project.getPageIndex();
-		if(pageIndex == 0){
-			project.setPageIndex(1);
-			projects = projectService.findByDetachedCriteria(criteria, 0, PAGESIZE);
-		}else{
-			projects = projectService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
-		}
+			project.setPageCount((count - 1) / PAGESIZE + 1);
+
+			int pageIndex = project.getPageIndex();
+			if (pageIndex == 0) {
+				project.setPageIndex(1);
+				projects = projectService.findByDetachedCriteria(criteria, 0,
+						PAGESIZE);
+			} else {
+				projects = projectService.findByDetachedCriteria(criteria,
+						(pageIndex - 1) * PAGESIZE, PAGESIZE);
+			}
 			return "queryProfessorProjectSUCCESS";
-		}else{
+		} else {
 			// 增加错误信息，返回全局错误页面
-			this.addActionError(GetPropertiesUtil.getPropertiesValueByKey("queryMyProjectWithErrorRole"));
+			this.addActionError(GetPropertiesUtil
+					.getPropertiesValueByKey("queryMyProjectWithErrorRole"));
 			return ERROR;
 		}
 	}

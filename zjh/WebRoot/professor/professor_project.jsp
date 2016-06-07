@@ -38,6 +38,7 @@
 				$(".state")[i].innerHTML = state;
 			});
 		});
+		
 		//翻页
 		function changePage(operate){
 			var pageIndex = "${pageIndex}";

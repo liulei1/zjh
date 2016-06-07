@@ -1,5 +1,6 @@
 package cn.ustc.web.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import cn.ustc.domain.Consult;
 import cn.ustc.domain.Professor;
 import cn.ustc.utils.HibernateUtils;
 
@@ -84,5 +86,27 @@ public class ProfessorDAO extends HibernateDaoSupport{
 	
 	public List<Professor> findProfessorByCriteria(DetachedCriteria criteria, int maxSize) {
 		return this.getHibernateTemplate().findByCriteria(criteria, 0, maxSize);
+	}
+	
+	/**
+	 * 查询专家总数
+	 * @return
+	 */
+	public int getProfessorCount(){
+		String hql = "select count(*) from Professor";
+		Long count = (Long)this.getHibernateTemplate().find(hql).listIterator().next();
+		return count.intValue();
+	}
+	
+	/**
+	 * 条件查询
+	 * @param criteria 条件
+	 * @param firstResult 起始记录下标
+	 * @param maxResults 最大记录数
+	 * @return
+	 */
+	public List<Professor> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
+		List<Professor> list = this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
+		return list;
 	}
 }

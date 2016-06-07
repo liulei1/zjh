@@ -25,6 +25,7 @@
 		<property name="state"/>
 		<property name="balance"/>
 		<property name="points"/>
+		<property name="vipEndTime"/>
 		
 		<!-- 一个企业关联多个咨询 -->
 		<set name="consults" cascade="save-update,delete,delete-orphan" inverse="true">  <!-- save-update,delete,delete-orphan 可以写为 all-delete-orphan  -->

@@ -140,13 +140,9 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	}
 	
 	private File file;
-	private String fileContentType;
 
 	public void setFile(File file) {
 		this.file = file;
-	}
-	public void setFileContentType(String fileContentType) {
-		this.fileContentType = fileContentType;
 	}
 	private String imgPath;
 	public String getImgPath() {
@@ -219,16 +215,71 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 					//String imgRootPath = ServletActionContext.getServletContext().getRealPath(uploadPath);
 					
 					// 更新信息
-//					company = (Company)ServletActionContext.getServletContext().getAttribute("user");
-					imgPath = UploadAndDownloadUtils.restoreFile(file,imgRootPath,"1111");
-//					Company companyById = companyService.findCompanyById(company.getId());
-//					companyById.setImage(imgPath);
-//					companyService.update(companyById);
+					company = (Company)ServletActionContext.getServletContext().getAttribute("user");
+					imgPath = UploadAndDownloadUtils.restoreFile(file,imgRootPath,company.getId());
+					Company companyById = companyService.findCompanyById(company.getId());
+					companyById.setImage(imgPath);
+					companyService.update(companyById);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return SUCCESS;
+	}
+	
+	public String toVipPage(){
+		Object o = ServletActionContext.getServletContext().getAttribute("user");
+		// 判断发布用户是否合法
+		if(!(o instanceof Company)){
+			ServletActionContext.getRequest().setAttribute("error", "Illegal User");
+			return ERROR;
+		}
+		Company c =(Company)o;
+		company = companyService.findCompanyById(c.getId());
+		if(Company.AUTHORITY_COMMON.equals(company.getAuthority())){
+			company.setAuthority("Common User");
+		}else {
+			company.setAuthority("VIP User");
+		}
+		if("".equals(company.getVipEndTime())||company.getVipEndTime() == null){
+			company.setVipEndTime("-");
+		}
+//		String vipBalance = GetPropertiesUtil.getPropertiesValueByKey("VIPBalance");
+		company.setVipBalance(GetPropertiesUtil.getPropertiesValueByKey("VIPBalance"));
+		return "toVipPageSUCCESS";
+	}
+	
+	public String toVip(){
+		Object o = ServletActionContext.getServletContext().getAttribute("user");
+		// 判断发布用户是否合法
+		if(!(o instanceof Company)){
+			ServletActionContext.getRequest().setAttribute("error", "Illegal User");
+			return ERROR;
+		}
+		Company c =(Company)o;
+		c = companyService.findCompanyById(c.getId());
+		// 判断充值余额
+		String effectiveMonth = company.getEffectiveMonth();
+		// 获取充值月数
+		Integer month = Integer.valueOf(effectiveMonth);
+		
+		float price = Float.valueOf(GetPropertiesUtil.getPropertiesValueByKey("VIPBalance"));
+		price = price*month;
+		float balance = Float.valueOf(c.getBalance());
+		if(price>balance){
+			ServletActionContext.getRequest().setAttribute("error", "Sorry, Your balance is not enough!");
+			return "message";
+		}else {
+			c.setBalance(String.valueOf(balance-price));
+			c.setAuthority(Company.AUTHORITY_VIP);
+			// 有效期一个月
+//			String vipEndTime = c.getVipEndTime();
+//			if(vipEndTime == null){
+				c.setVipEndTime(DateUtils.dateAddMonthToString(new Date(), month));
+//			}
+			companyService.update(c);
+			return SUCCESS;
+		}
 	}
 }

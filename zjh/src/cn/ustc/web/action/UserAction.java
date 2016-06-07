@@ -106,8 +106,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 				this.addActionError("正在审核中");
 				return "loginINPUT";
 			}
-				ServletActionContext.getServletContext().setAttribute("user",
-						company);
+				ServletActionContext.getServletContext().setAttribute("user", company);
 				return "companyloginSUCCESS";
 			}
 
@@ -130,7 +129,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			}
 		}
 		
-		addActionError("查无此人");
+		this.addActionError("用户名或密码错误");
 		return "loginINPUT";
 	}
 	

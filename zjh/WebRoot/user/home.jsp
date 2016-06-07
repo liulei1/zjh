@@ -54,8 +54,8 @@
     </div>
     <div class="navBar">
         <div class="design_class fl">
-            <h3 onmouseover="show()"onmouseout="hide()">全部分类&gt</h3>
-            <ul class="item" id="hi" onmouseover="show()"onmouseout="hide()">
+            <h3 onmouseover="show()"onmouseout="hide()">全部分类&gt;</h3>
+            <%-- <ul class="item" id="hi" onmouseover="show()"onmouseout="hide()">
                 <li class="item_list" >
                     <a href="#" target="_blank">logo</a>
                     <a href="#" target="_blank">包装</a>
@@ -127,7 +127,7 @@
    			<li  role="presentation"><a href="${pageContext.request.contextPath}/company/professor_search.jsp" target="myframe">Search Professor<span class="badge pull-right" id="messageCount"></span></a>
    			<li  role="presentation"><a href="${pageContext.request.contextPath}/professor/company_search.jsp" target="myframe">Search Company<span class="badge pull-right" id="messageCount"></span></a>
    			
-        </ul>
+        </ul> --%>
     </div>
 </div>
 <div>

@@ -3,6 +3,7 @@ package cn.ustc.utils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Test;
 
@@ -67,5 +68,18 @@ public class DateUtils {
 	private static SimpleDateFormat getDateFormat(String parttern)
 			throws RuntimeException {
 		return new SimpleDateFormat(parttern);
+	}
+	
+	/**
+	 * 将日期加多少月后转为字符串
+	 * @param date
+	 * @param month 月数
+	 * @return
+	 */
+	public static String dateAddMonthToString(Date date, int month) {
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		calendar.add(Calendar.MONTH, month);
+		return dateToString(calendar.getTime());
 	}
 }

@@ -182,10 +182,22 @@ public class ConsultService {
 		return true;
 	}
 	
+	/**
+	 * 条件查询
+	 * @param criteria
+	 * @return
+	 */
 	public List<Consult> findConsultsByDetachedCriteria(DetachedCriteria criteria){
 		return consultDAO.findByDetachedCriteria(criteria);
 	}
 	
+	/**
+	 * 条件查询
+	 * @param criteria 条件
+	 * @param firstResult 起始记录下标
+	 * @param maxResults 最多记录数
+	 * @return
+	 */
 	public List<Consult> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
 		return consultDAO.findByDetachedCriteria(criteria, firstResult, maxResults);
 	}
@@ -221,5 +233,14 @@ public class ConsultService {
 	 */
 	public List<Consult> findConsultByCriteria(DetachedCriteria criteria){
 		return consultDAO.findByDetachedCriteria(criteria);
+	}
+
+	/**
+	 * 查询企业正在进行的项目个数
+	 * @param id 企业用户id
+	 * @return
+	 */
+	public int findCompanyOnGoingConsultCount(String id) {
+		return consultDAO.findCompanyOnGoingConsultCount(id);
 	}
 }

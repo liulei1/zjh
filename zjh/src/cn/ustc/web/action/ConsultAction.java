@@ -27,6 +27,7 @@ import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
 import cn.ustc.web.dao.VocationDAO;
+import cn.ustc.web.service.CompanyService;
 import cn.ustc.web.service.ConsultService;
 import cn.ustc.web.service.SchemeService;
 
@@ -65,6 +66,8 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	private SchemeService schemeService;
 	@Autowired
 	private VocationDAO vocationDAO;
+	@Autowired
+	private CompanyService companyService;
 
 	/************************************* 发布上传下载 ****************************************/
 
@@ -102,6 +105,25 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	// 咨询发布
 	@InputConfig(resultName = "input")
 	public String publishConsult() {
+		Object o = ServletActionContext.getServletContext().getAttribute("user");
+		// 判断发布用户是否合法
+		if(!(o instanceof Company)){
+			ServletActionContext.getRequest().setAttribute("error", "Illegal User");
+			return ERROR;
+		}
+		Company c =(Company)o;
+		c = companyService.findCompanyById(c.getId());
+		
+		// 判断发布权限
+		int onGoingConsultCount = consultService.findCompanyOnGoingConsultCount(c.getId());
+		if(Company.AUTHORITY_COMMON.equals(c.getAuthority())&&onGoingConsultCount>Company.AUTHORITY_COMMON_COUNT){
+			ServletActionContext.getRequest().setAttribute("message", "Insufficient Privilege.You can just publish "+Company.AUTHORITY_COMMON_COUNT +" consults.");
+			return "message";
+		}else if(Company.AUTHORITY_VIP.equals(c.getAuthority())&&onGoingConsultCount>Company.AUTHORITY_VIP_COUNT){
+			ServletActionContext.getRequest().setAttribute("message", "Insufficient Privilege.You can just publish "+Company.AUTHORITY_VIP_COUNT +" consults.");
+			return "message";
+		}
+		
 		if (file != null) {
 			Properties properties = GetPropertiesUtil.getProperties();
 			String fileRootPath = properties.getProperty("consultFileRootPath");
@@ -161,22 +183,21 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		if(obj instanceof Company){
 			Company company=(Company)obj;
 		
-		// 记录的总条数
-		int count = consultService.getCount(company.getId());
-		model.setTotal(count);
-		model.setPageCount((count-1)/PAGESIZE+1);
-		
-		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
-		criteria.add(Restrictions.eq("com_id", company.getId()));
-		//criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
-		int pageIndex = model.getPageIndex();
-		if(pageIndex == 0){
-			model.setPageIndex(1);
-			consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
-		}else{
-			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
-			System.out.println("");
-		}
+			// 记录的总条数
+			int count = consultService.getCount(company.getId());
+			model.setTotal(count);
+			model.setPageCount((count-1)/PAGESIZE+1);
+			
+			DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
+			criteria.add(Restrictions.eq("com_id", company.getId()));
+			//criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
+			int pageIndex = model.getPageIndex();
+			if(pageIndex == 0){
+				model.setPageIndex(1);
+				consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+			}else{
+				consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
+			}
 		}else if(obj instanceof Professor){
 			String id=ServletActionContext.getRequest().getParameter("company_id");
 			
@@ -186,7 +207,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 			model.setPageCount((count-1)/PAGESIZE+1);//设置页数
 			
 			DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
-			//criteria.add(Restrictions.in("state", new String[]{Consult.ALLOW,Consult.UNCHECKED,Consult.REJECT}));
 			criteria.addOrder(Order.desc("release_date"));
 			int pageIndex=model.getPageIndex();
 			if(pageIndex==0){
@@ -194,7 +214,7 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 				consults = consultService.findByDetachedCriteria(criteria, 0, PAGESIZE);
 			}else{
 				consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
-		}
+			}
 		}
 		return "queryMyConsultSUCCESS";
 	}

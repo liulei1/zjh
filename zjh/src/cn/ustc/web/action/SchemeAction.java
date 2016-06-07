@@ -191,7 +191,7 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 			servletContext=ServletActionContext.getServletContext();
 			servletContext.setAttribute("prof_id", prof_id);
 			//条件2查询的条件是professor
-		
+			
 			if(prof_id==null){
 			prof_id=(String) servletContext.getAttribute("prof_id");
 			}
@@ -214,6 +214,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return "queryMySchemeSUCCESS";
 	} 
 	
+	/**
+	 * 查看专家对咨询发布的方案
+	 * @return
+	 */
 	public String findConsultSchemes(){
 		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
 		criteria.add(Restrictions.eq("cons_id", model.getCons_id()));

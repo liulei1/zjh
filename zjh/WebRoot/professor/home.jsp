@@ -60,8 +60,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	var r=confirm("Confirm Logout？");
 	    	if(r){
 	    		var url="${pageContext.request.contextPath}/user/user_logout.action";
-	    		$.post(url);
-	    		location.href = '<%=path%>';
+	    		$.post(url,function(){
+		    		location.href = '<%=path%>';
+	    		});
 	    	}
 	    }
     </script>
@@ -82,8 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <span>欢迎您!&nbsp;&nbsp;</span>
             <span class="user_login" onmouseover="userShow()"onmouseout="userHide()">${user.name}&gt;</span>
             <ul class="user_info" id="user_info" onmouseover="userShow()"onmouseout="userHide()">
-            	<li><a href="${pageContext.request.contextPath}/professor/professor_viewProfessorInfo" target="_blank">用户管理</a></li>
-                <li><a href="#" onclick="logout()">退出</a></li>
+            	<li><a href="${pageContext.request.contextPath}/professor/professor_viewProfessorInfo" target="_blank">Profile</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
             </ul>
             <div class="message">
                 <span class="m_title">消息:</span>

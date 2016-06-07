@@ -29,6 +29,14 @@
 				<param name="includeProperties">imgPath</param>
 			</result>
 		</action>
+		
+		<!-- 上传专家头像 -->
+		<action name="uploadProfessorImage" class="cn.ustc.web.action.ProfessorAction" method="uploadProfessorImage">
+			<result type="json">
+				<param name="root">action</param>
+				<param name="includeProperties">imgPath,imgErrorResult</param>
+			</result>
+		</action>
 
 		<action name="checkUserName" class="cn.ustc.web.action.UserAction"
 			method="checkUserName">
@@ -67,7 +75,6 @@
 				<param name="root">action</param>
 			</result>
 		</action>
-		
 
 	</package>
 </struts>

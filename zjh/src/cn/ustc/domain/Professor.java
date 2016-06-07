@@ -17,11 +17,39 @@ public class Professor extends User{
 	private String balance; // 余额
 	private String education; // 学历
 	private Integer points;	// 积点，完成项目获得
-
 	private Set<Scheme> schemes = new HashSet<Scheme>();
 	
 	private String newPassword;//新密码
 	
+	private int pageSize; // 每页的数据条数
+	private int total; // 数据总条数
+	private int pageIndex; // 当前页面号
+	private int pageCount; // 页面总数
+	
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getPageIndex() {
+		return pageIndex;
+	}
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+	public int getPageCount() {
+		return pageCount;
+	}
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
 	public String getNewPassword() {
 		return newPassword;
 	}

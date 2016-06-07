@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Professor;
 import cn.ustc.web.dao.ProfessorDAO;
 
@@ -123,5 +124,17 @@ public class ProfessorService {
 //		criteria.add(Restrictions.eq("state", "1"));
 		criteria.addOrder(Order.desc("points"));
 		return professorDAO.findProfessorByCriteria(criteria, maxSize);
+	}
+
+	/**
+	 * 获取专家总数
+	 * @return
+	 */
+	public int getProfessorCount(){
+		return professorDAO.getProfessorCount();
+	}
+
+	public List<Professor> findByDetachedCriteria(DetachedCriteria criteria,int firstResult, int maxResults) {
+		return professorDAO.findByDetachedCriteria(criteria, firstResult, maxResults);
 	}
 }

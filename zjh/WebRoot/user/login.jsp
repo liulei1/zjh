@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <title>登陆-专家汇</title>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登陆-专家汇</title>
     <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/load_new.css">
     <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -37,8 +38,8 @@
         <h3>ZJH</h3>
     </div>
     <ul class="nav_list" >
-        <li ><a href="${pageContext.request.contextPath}" target="_blank">首页</a></li>
-        <li ><a href="${pageContext.request.contextPath}/user/introduction.html">服务介绍</a></li>
+        <li ><a href="${pageContext.request.contextPath}">首页</a></li>
+        <li ><a href="${pageContext.request.contextPath}/user/introduction.html" target="_blank">服务介绍</a></li>
     </ul>
 </div>
 <br/>
@@ -50,10 +51,9 @@
         <div>
             <h3>User Login</h3>
             <hr class="hr1"/>
-            <s:actionerror/>
             <span>
 			<font color="red">
-				<b><%=request.getAttribute("result")==null?"":request.getAttribute("result")%></b>
+				<s:actionerror/>
 			</font>
 		</span>
         </div>
