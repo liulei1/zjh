@@ -69,7 +69,7 @@
 						</s:a>
 					</td>
 					<td align="center" style="HEIGHT: 22px">
-						<s:a action="user_delete" namespace="/user" cssClass="btn btn-danger btn-xs delLink">
+						<s:a action="company_delete" namespace="/company" cssClass="btn btn-danger btn-xs delLink">
 							<s:param name="id" value="id" />
 							delete
 						</s:a>

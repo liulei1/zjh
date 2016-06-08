@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td align="center" style="HEIGHT: 22px">
 						<s:a action="company_refuse" namespace="/company" >
 							<s:param name="id" value="id" />
-							<button type="button" class="btn btn-success btn-xs">refuse</button>
+							<button type="button" cssClass="btn btn-danger btn-xs delLink">refuse</button>
 						</s:a>
 					</td>
 				</tr>

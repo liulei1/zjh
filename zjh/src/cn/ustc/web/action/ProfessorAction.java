@@ -313,4 +313,13 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	public Professor getModel() {
 		return professor;
 	}
+	
+	/**
+	 * 删除企业用户
+	 */
+	public String delete(){
+		String id=professor.getId();
+		professorService.deleteProfessorById(id);
+		return "deleteProfessorSUCCESS";
+	}
 }

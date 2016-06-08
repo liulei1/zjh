@@ -161,6 +161,8 @@
 			
 			<result name="toVipPageSUCCESS">/company/companyToVip.jsp</result>
 			<result name="getAllCompanySUCCESS">/user/companyList.jsp</result>
+			
+			<result name="deleteCompanySUCCESS">/user/companyList.jsp</result>
 		</action>
 	</package>
 	
@@ -204,6 +206,8 @@
 			<result name="uneditProfessors">/manage/proAudit.jsp</result>
 			<result name="passSuccess">/manage/proAudit.jsp</result>
 			<result name="refused">/manage/proAudit.jsp</result>
+			
+			<result name="deleteProfessorSUCCESS">/user/professorList.jsp</result>
 		</action>
 	</package>
 	

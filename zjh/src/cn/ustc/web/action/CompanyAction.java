@@ -325,4 +325,13 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "viewCompanyInfoByIdSUCCESS";
 	}
 	
+	/**
+	 * 删除企业用户
+	 */
+	public String delete(){
+		String id=company.getId();
+		companyService.deleteCompanyById(id);
+		return "deleteCompanySUCCESS";
+	}
+	
 }

@@ -76,20 +76,8 @@ public class CompanyDAO extends HibernateDaoSupport{
 	 * @return
 	 */
 	public void deleteByCompanyID(String id){
-
-		Session session=HibernateUtils.openSession();
-		Transaction tx=session.beginTransaction();
-		Company comp=null;
-		try{
-			session.delete(comp);
-			tx.commit();
-		}catch(RuntimeException e){
-			e.printStackTrace();
-			throw e;
-		}finally{
-			session.close();
-		}
-	
+		Company company=this.getHibernateTemplate().get(Company.class, id);
+		this.getHibernateTemplate().delete(company);
 	}
 
 	public List<Company> findCompanyByVocation(String cat) {
