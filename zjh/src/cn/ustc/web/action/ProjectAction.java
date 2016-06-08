@@ -47,7 +47,7 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 			Company company = (Company) o;
 			count = projectService.getCountByCompanyID(company.getId());
 			criteria.add(Restrictions.eq("com_id", company.getId()));
-			projects = projectService.findByDetachedCriteria(criteria);
+			projects = projectService.findProjectsByDetachedCriteria(criteria);
 			project.setTotal(count);
 			project.setPageCount((count - 1) / PAGESIZE + 1);
 
@@ -67,7 +67,7 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 			count = projectService.getCountByPorfessorID(professor.getId());
 
 			criteria.add(Restrictions.eq("prof_id", professor.getId()));
-			projects = projectService.findByDetachedCriteria(criteria);
+			projects = projectService.findProjectsByDetachedCriteria(criteria);
 			project.setTotal(count);
 			project.setPageCount((count - 1) / PAGESIZE + 1);
 

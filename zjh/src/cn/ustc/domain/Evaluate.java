@@ -14,12 +14,12 @@ public class Evaluate {
 	private String com_id;
 	private String prof_id;
 	private String begin_date;
-	private int prof_grade;	// 专家得分
-	private String prof_text;
-	private int com_grade;	// 企业得分
-	private String com_text;
-	private String com_state; // 企业评价状态
-	private String prof_state; // 专家评价状态
+	private int prof_grade;		// 专家的给分
+	private String prof_text;	// 专家评价内容
+	private int com_grade;		// 企业的给分
+	private String com_text;	// 企业评价内容
+	private String com_state; 	// 企业评价状态
+	private String prof_state; 	// 专家评价状态
 	
 	private String title; // 项目标题
 	public String getTitle() {

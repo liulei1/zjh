@@ -148,7 +148,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	@InputConfig(resultName="registerINPUT")
 	public String register() {
 		user.setState("1");
-		System.out.println("");
+		user.setUsertype(User.USER);
 		boolean res = userService.insertUser(user);
 		System.out.println(res);
 		return "registerOK";
@@ -191,8 +191,32 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 * @return
 	 */
 	public String edit(){
-		userService.update(user);
-		return "editSUCCESS";
+		String usertype = user.getUsertype();
+		String id = user.getId();
+		if(User.COMPANY.equals(usertype)){
+			Company company = companyService.findCompanyById(id);
+			boolean res = this.copyNotNullToUser(user, company);
+			if(res){
+				companyService.update(company);
+			}
+			return "companyEditSUCCESS";
+		}else if(User.PROFESSOR.equals(usertype)){
+			Professor professor = professorService.findProfessorById(id);
+			boolean res = this.copyNotNullToUser(user, professor);
+			if(res){
+				professorService.update(professor);
+			}
+			return "professorEditSUCCESS";
+		}else if(User.USER.equals(usertype)){
+			User u = userService.findUserById(id);
+			boolean res = this.copyNotNullToUser(user, u);
+			if(res){
+				userService.update(u);
+			}
+			return "userEditSUCCESS";
+		}
+		
+		return "userEditSUCCESS";
 	}
 	
 	/**
@@ -472,4 +496,39 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 	}
 	
+	public String toUserInfoView(){
+		return "toUserInfoViewSUCCESS";
+	}
+	
+	/************************************************************/
+	/**
+	 * 拷贝覆盖非空的属性
+	 * copy的密码password或者name为null直接返回false
+	 * @param copy 被拷贝
+	 * @param user 被覆盖
+	 */
+	private boolean copyNotNullToUser(User copy, User user){
+		boolean flag = false;
+		if(copy.getName() == null || copy.getPassword() == null){
+			return false;
+		}
+		
+		if(copy.getEmail() != user.getEmail()){
+			user.setEmail(copy.getEmail());
+			flag = true;
+		}
+		if(copy.getPassword() != user.getPassword()){
+			user.setPassword(copy.getPassword());
+			flag = true;
+		}
+		if(copy.getSex() != user.getSex()){
+			user.setSex(copy.getSex());
+			flag = true;
+		}
+		if(copy.getName() != user.getName()){
+			user.setName(copy.getName());
+			flag = true;
+		}
+		return flag;
+	}
 }

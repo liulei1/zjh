@@ -31,7 +31,7 @@ public class Consult {
 	private String state; 		// 状态，初始为0，审核通过后为1，失败为2
 	private String title; 		// 标题
 	private String details; 	// 咨询描述
-	private BigDecimal budget;	// 酬金
+	private String budget;		// 酬金
 	private String release_date; 	// 发布日期
 	private String deadline;		// 咨询失效日期
 	private String checked_id; 	// 关联审核表
@@ -41,7 +41,7 @@ public class Consult {
 	private String remark;		// 备注
 	private String com_id;		//公司ID
 	
-	private String scm_id; // 作为model 在项目成立时接受页面传来的 方案 id
+	private String scm_id; 		// 作为model 在项目成立时接受页面传来的 方案 id
 	
 	// 分页
 	private int pageSize; // 每页的数据条数
@@ -134,12 +134,10 @@ public class Consult {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-
-	public BigDecimal getBudget() {
+	public String getBudget() {
 		return budget;
 	}
-
-	public void setBudget(BigDecimal budget) {
+	public void setBudget(String budget) {
 		this.budget = budget;
 	}
 	public String getRelease_date() {

@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<title>企业用户个人信息</title>
+<title>专家用户个人信息</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@ pageEncoding="UTF-8"%>
 						<div class="form-center">
 								<s:form cssClass="form-horizontal" action="professor_updateProfessorInfo" namespace="/professor" theme="simple" method="post" cssStyle="max-height: 400px;" >
 									<div class="form-group">
-										<h1 align="center">Professor Information</h1>
+										<h1 align="center">Company Information</h1>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-4 control-label">Username</label>
@@ -70,13 +70,13 @@ pageEncoding="UTF-8"%>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-4 control-label">Introduction</label>
+										<label class="col-sm-4 control-label">Annotation</label>
 										<div class="col-sm-4">
-											<textarea rows="2" class="form-control" name="introduction" cols="30">${model.introduction}</textarea>
+											<textarea rows="2" class="form-control" name="introduction" cols="30">${model.annotation}</textarea>
 										</div>
 									</div>
 							</s:form>
-							<a onclick="history.go(-1)"class="btn btn-info btn-sm">back</a>
+						<a onclick="history.go(-1)"class="btn btn-info btn-sm">back</a>
 						</div>
 					</div>
 				</div>

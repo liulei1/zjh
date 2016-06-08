@@ -77,7 +77,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 			return null;
 		}
 		File file = new File(model.getFilePath());
-		// FileInputStream fis = new FileInputStream(file);
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			return fis;
@@ -250,7 +249,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	
 	// 显示通过
-	
 	public String allowList(){
 		int count=consultService.allowCount();
 		//总条数
@@ -278,18 +276,23 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	
 	/****************************************审核*******************************************/
-	// 允许
+	// 咨询审核通过
 	public String allow(){
 		ConsultCheck consultCheck = new ConsultCheck();
-		// TODO 获取管理员信息
 		Administer admin = (Administer) ServletActionContext.getServletContext().getAttribute("user");
 		consultCheck.setAdmin_id(admin.getId());
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());
 		
-		boolean res = consultService.consultAllow(model.getId(),consultCheck);
+		// 获取咨询
+		Consult consult = consultService.findById(model.getId());
+		// 获取发布咨询的企业
+		Company company = companyService.findCompanyById(consult.getCom_id());
 		
-		if(res){
+		String res = consultService.consultAllow(consult, company, consultCheck);
+		if("success".equals(res)){
+			return "checkSUCCESS";
+		}else if("balanceNotEnough".equals(res)){
 			return "checkSUCCESS";
 		}else {
 			this.addActionError("审核失败！");
@@ -305,7 +308,6 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		consultCheck.setCheck_datetime(new Date());
 		consultCheck.setCons_id(model.getId());
 		// TODO 审批拒绝原因 
-		
 		boolean res = consultService.consultReject(model.getId(),consultCheck);
 		if(res){
 			return "checkSUCCESS";

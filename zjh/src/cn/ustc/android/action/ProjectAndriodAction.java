@@ -58,7 +58,6 @@ public class ProjectAndriodAction extends ActionSupport implements ModelDriven<P
 		return SUCCESS;
 	}
 
-	
 	/****************************成员变量set，get方法*********************************/
 	@Override
 	public Project getModel() {

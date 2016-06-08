@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
@@ -36,8 +37,11 @@ public class UserDAO extends HibernateDaoSupport {
 	}
 
 	public List<User> findAll() {
-		List<User> userList = this.getHibernateTemplate().find("FROM User");
-		return userList;
+//		List<User> userList = this.getHibernateTemplate().find("FROM User");
+		String sql = "Select * From user";
+		Session session = this.getSessionFactory().getCurrentSession();
+		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
+		return query.list();
 	}
 
 	/**
@@ -46,8 +50,7 @@ public class UserDAO extends HibernateDaoSupport {
 	 * @return 1(要么抛异常，要么返回1)
 	 */
 	public int update(User user) {
-		Session session = this.getSession();
-		session.update(user);
+		this.getHibernateTemplate().update(user);
 		return 1;
 	}
 

@@ -152,12 +152,15 @@
 			</result>
 			<result name="viewChangePasswordSUCCESS">/company/company_view.jsp</result>
 			<result name="changePasswordSUCCESS">/company/company_view.jsp</result>
+			<result name="editCompanViewSUCCESS">/user/edit.jsp</result>
+			<result name="viewCompanyInfoByIdSUCCESS">/company/companyInfo.jsp</result>
 			
 			<result name="uneditCompanys">/manage/compAudit.jsp</result>
 			<result name="passSuccess">/manage/compAudit.jsp</result>
 			<result name="refused">/manage/compAudit.jsp</result>
 			
 			<result name="toVipPageSUCCESS">/company/companyToVip.jsp</result>
+			<result name="getAllCompanySUCCESS">/user/companyList.jsp</result>
 		</action>
 	</package>
 	
@@ -195,6 +198,8 @@
 			<result name="viewProfessorInfoByIdSUCCESS">/professor/professorInfoFromSchemeDetail.jsp</result>
 			<result name="viewRegisterSUCCESS">/professor/professor_register.jsp</result>
 			<result name="getProfessorWithPageSUCCESS">/professor/professor_list.jsp</result>
+			<result name="getAllProfessorSUCCESS">/user/professorList.jsp</result>
+			<result name="editProfessorViewSUCCESS">/user/edit.jsp</result>
 			
 			<result name="uneditProfessors">/manage/proAudit.jsp</result>
 			<result name="passSuccess">/manage/proAudit.jsp</result>

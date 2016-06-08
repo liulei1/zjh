@@ -4,9 +4,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<link href="${pageContext.request.contextPath }/qing_style/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/css/navtop_new.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
+<title>普通用户申请为专家</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
+<script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/css/navtop_new.css">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <style>
 		html,body{
@@ -46,18 +52,6 @@
 	});
 	
 </script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Apply to be Professor</title>
-<link href="${pageContext.request.contextPath }/qing_style/bootstrap.min.css"
-rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/load.css">
-
-
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body class="changeColor">

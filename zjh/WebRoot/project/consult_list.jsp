@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>consult information</title>
+     <title>管理员审核需求页面</title>
+     
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
 	 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">

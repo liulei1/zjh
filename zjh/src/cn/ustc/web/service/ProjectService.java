@@ -1,9 +1,11 @@
 package cn.ustc.web.service;
 
+import java.awt.image.RescaleOp;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +23,11 @@ public class ProjectService {
 	@Autowired
 	private EvaluateDAO evaluateDAO;
 
-	public List<Project> findByDetachedCriteria(DetachedCriteria criteria){
-		return this.projectDAO.findByDetachedCriteria(criteria);
-	}
-	
+	/**
+	 * 通过id查询项目
+	 * @param id
+	 * @return
+	 */
 	public Project findById(String id){
 		return projectDAO.findById(id);
 	}
@@ -54,20 +57,42 @@ public class ProjectService {
 	}
 
 	public int getCountByPorfessorID(String pro_id) {
-		// TODO Auto-generated method stub
 		return projectDAO.getCountByPorfessorID(pro_id);
 	}
 	
 	public int getCountByCompanyID(String com_id) {
-		// TODO Auto-generated method stub
 		return projectDAO.getCountByCompanyID(com_id);
 	}
 	
-	public List<Project> findConsultsByDetachedCriteria(DetachedCriteria criteria){
+	/**
+	 * 条件查询项目
+	 * @param criteria
+	 * @return
+	 */
+	public List<Project> findProjectsByDetachedCriteria(DetachedCriteria criteria){
 		return projectDAO.findByDetachedCriteria(criteria);
 	}
 	
+	/**
+	 * 条件查询项目
+	 * @param criteria 条件
+	 * @param firstResult 首记录下标
+	 * @param maxResults 最大记录数
+	 * @return
+	 */
 	public List<Project> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
 		return projectDAO.findByDetachedCriteria(criteria, firstResult, maxResults);
+	}
+
+	/**
+	 * 查询专家在评价的项目
+	 * @param professorId 专家Id
+	 * @return
+	 */
+	public List<Project> findProfessorEvaluateProject(String professorId) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
+		criteria.add(Restrictions.eq("prof_id", professorId));
+		criteria.add(Restrictions.eq("current_state", Project.EVALUATE));
+		return projectDAO.findByDetachedCriteria(criteria);
 	}
 }

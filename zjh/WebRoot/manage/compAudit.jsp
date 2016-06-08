@@ -5,10 +5,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
   <head>
-    <title>My JSP 'proAudit.jsp' starting page</title>
+    <title>审核认证为企业</title>
+    
   	<!-- 引入 Bootstrap -->
 	<link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/jquery/jquery-1.9.1.min.js"></script>
@@ -17,29 +18,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-   <h1 align="center"><strong>Unaudit List</strong></h1>
-	<div align="center">
-		<table frame="border" rules="all">
+   		<h1 align="center">
+		 	<strong>Company Certificate Application</strong>
+		 </h1>
+		 <hr>
+		<table class="table table-hover table-striped table-bordered">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">name</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">real name</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">website</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">address</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">pass</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">refuse</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="5%"></td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="15%">Name</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="15%">Real Name</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="20%">Website</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="25%">Address</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">Pass</td>
+				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">Refuse</td>
 			</tr>
-			<s:iterator value="companys" var="company">
+			<s:iterator value="companys" var="company" status="index">
 				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+						<s:property value="#index.index"/>
+					</td>
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
 						${name}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
 						${real_name}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">
-						${website}
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
+						<a href="http://${website}">${website}</a>
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="8%">
+					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
 						${address}
 					</td>
 					
@@ -59,8 +66,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</s:iterator>
 		</table>
 		<br>
-		<a href="#" onclick="javascript:history.go(-1);" ><span class="glyphicon glyphicon-circle-arrow-left">return</span></a>
-	</div>
 </body>
   </body>
 </html>

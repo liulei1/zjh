@@ -1,6 +1,8 @@
 package cn.ustc.domain;
 
 public class User {
+	/*********************用户类型*******************************/
+	 
 	public static final String ADMIN = "0";
 	public static final String COMPANY = "1";
 	public static final String PROFESSOR = "2";

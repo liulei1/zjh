@@ -16,6 +16,31 @@
 		</action>
 	</package>
 	
+	<package name="androidEevaluate" namespace="/android/evaluate" extends="json-default">
+		<action name="getEvaluate" method="getEvaluate" class="cn.ustc.android.action.EvaluateAndriodAction">
+			<result type="json">
+				<param name="root">model</param>
+			</result>
+		</action>
+		
+		<action name="professorEvaluate" method="professorEvaluate" class="cn.ustc.android.action.EvaluateAndriodAction"></action>
+	</package>
+	
+	<package name="androidConsult" namespace="/android/consult" extends="json-default">
+		<action name="getConsultDetails" method="getConsultDetails" class="cn.ustc.android.action.ConsultAndriodAction">
+			<result type="json">
+				<param name="root">model</param>
+				<param name="excludeProperties">pageCount,pageSize,pageIndex,total</param>
+			</result>
+		</action>
+		
+		<action name="getRecommendConsult" method="getRecommendConsult" class="cn.ustc.android.action.ConsultAndriodAction">
+			<result type="json">
+				<param name="root">consults</param>
+			</result>
+		</action>
+	</package>
+	
 	<package name="androidProfessor" namespace="/android/professor" extends="json-default">
 		<action name="getProfessorDoingProject" method="getProfessorDoingProject" class="cn.ustc.android.action.ProfessorOperateAction">
 			<result type="json">
@@ -42,6 +67,12 @@
 			<result type="json">
 				<param name="root">model</param>
 				<param name="excludeProperties">schemes</param>
+			</result>
+		</action>
+		
+		<action name="getProfessorEvaluateProject" method="getProfessorEvaluateProject" class="cn.ustc.android.action.ProfessorOperateAction">
+			<result type="json">
+				<param name="root">projects</param>
 			</result>
 		</action>
 		

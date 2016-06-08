@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>管理员审核咨询的列表</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 引入 Bootstrap -->
 <link href="${pageContext.request.contextPath}/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
@@ -28,46 +30,53 @@
 </script>
 </head>
 <body>
-<h1 align="center"><strong>all consult list</strong></h1>
 	<div align="center">
+		<h1>
+			<strong>Check Consults</strong>
+		</h1>
+		<hr>
 		<s:actionerror/>
-		<table frame="border" rules="all">
+		<table class="table table-hover table-striped table-bordered">
 			<tr>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">title</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">money</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">category</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">state</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">review</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">reject</td>
-				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="10%">approve</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="5%"></td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="20%">title</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="20%">money</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="15%">category</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="10%">state</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="10%">review</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="10%">reject</td>
+				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="10%">approve</td>
 			</tr>
-			<s:iterator value="consults" var="consult">
-				<tr>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="18%">
+			<s:iterator value="consults" var="consult" status="index">
+				<tr> 
+					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
+						<s:property value="#index.index"/>
+					</td>
+					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
 						${title}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="17%">
+					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
 						${budget}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%">
+					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
 						${category}
 					</td>
-					<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="12%" class="state">
+					<td style="CURSOR: hand; HEIGHT: 15px" align="center" class="state">
 						${state}
 					</td>
-					<td align="center" style="HEIGHT: 22px">
+					<td align="center" style="HEIGHT: 15px">
 						<s:a action="consult_view" namespace="/consult">
 							<s:param name="id" value="id" />
 							<button type="button" class="btn btn-info btn-xs">review</button>
 						</s:a>
 					</td>
-					<td align="center" style="HEIGHT: 22px">
+					<td align="center" style="HEIGHT: 15px">
 						<s:a action="consult_reject" namespace="/consult">
 							<s:param name="id" value="id" />
 							<button type="button" class="btn btn-danger btn-xs">reject</button>
 						</s:a>
 					</td>
-					<td align="center" style="HEIGHT: 22px">
+					<td align="center" style="HEIGHT: 15px">
 						<s:a action="consult_allow" namespace="/consult">
 							<s:param name="id" value="id" />
 							<button type="button" class="btn btn-success btn-xs">approve</button>

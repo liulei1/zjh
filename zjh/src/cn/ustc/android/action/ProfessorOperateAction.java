@@ -26,7 +26,7 @@ import com.opensymphony.xwork2.ModelDriven;
  * @author liu
  *
  */
-public class ProfessorOperateAction extends ActionSupport implements ModelDriven<Professor>,ServletResponseAware{
+public class ProfessorOperateAction extends ActionSupport implements ModelDriven<Professor>, ServletResponseAware{
 	private Professor model = new Professor();
 	@Autowired
 	private ConsultService consultService;
@@ -50,7 +50,7 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
 		criteria.add(Restrictions.eq("prof_id", professorId));
 		criteria.add(Restrictions.eq("current_state", Project.ONGOING));
-		projects = projectService.findByDetachedCriteria(criteria);
+		projects = projectService.findProjectsByDetachedCriteria(criteria);
 		return SUCCESS;
 	}
 	
@@ -65,7 +65,7 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
 		criteria.add(Restrictions.eq("prof_id", professorId));
 		criteria.add(Restrictions.eq("current_state", Project.COMPELETED));
-		projects = projectService.findByDetachedCriteria(criteria);
+		projects = projectService.findProjectsByDetachedCriteria(criteria);
 		return SUCCESS;
 	}
 	
@@ -101,8 +101,8 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 		model = professorService.findProfessorById(id);
 		model.setPassword(password);
 		professorService.update(model);
-		response.setCharacterEncoding("utf-8");
 		
+		response.setCharacterEncoding("utf-8");
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
@@ -161,6 +161,17 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 			p.setWebsite(model.getWebsite());
 		}
 		return p;
+	}
+	
+	/**
+	 * 获取专家待评价的项目
+	 * 调用条件：传入专家id
+	 * @return
+	 */
+	public String getProfessorEvaluateProject(){
+		String id = model.getId();
+		projects = projectService.findProfessorEvaluateProject(id);
+		return SUCCESS;
 	}
 	
 	/****************************成员变量set，get方法*********************************/

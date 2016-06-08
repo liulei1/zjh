@@ -48,7 +48,7 @@ hr {
 	
 	$(function() {
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html='<select name="field" class="form-control"><option selected="selected">--请选择领域--</option>';
+			var html='<select name="field" class="form-control"><option selected="selected" value="0">--请选择领域--</option>';
 			$.each(data.vocationList,function(index,context){
 				html+='<option value="'+context.id+'">'+context.name+'</option>';
 			});
@@ -70,6 +70,11 @@ hr {
 	});
 	function check(){
 		var flag=$(".check").html();
+		var flag2=$("#field option:selected").attr("value");
+		if(flag2=="0"){
+			alert("选择的领域不能为空!");
+			return false;
+		}
 		if(flag=="用户名已经存在"){
 			return false;
 		}else if(flag==null){
@@ -78,6 +83,7 @@ hr {
 			return true;
 		}
 	}
+
 </script>
 <body class="changeColor">
 	<div class="navBar">

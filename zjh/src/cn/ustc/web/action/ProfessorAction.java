@@ -31,15 +31,7 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 public class ProfessorAction extends ActionSupport implements ModelDriven<Professor>{
 	private final int PAGESIZE = 10;
 	private List<Professor> professors;
-	public List<Professor> getProfessors() {
-		return professors;
-	}
-	
 	private Professor professor=new Professor();
-	@Override
-	public Professor getModel() {
-		return professor;
-	}
 	
 	@Autowired
 	private ProfessorService professorService;
@@ -78,6 +70,8 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		if(professor.getName()==null){
 			return "professorRegister";
 		}
+		//设置用户类型为专家
+		professor.setUsertype(Professor.PROFESSOR);
 		professorService.insertProfessor(professor);
 		ActionContext context = ActionContext.getContext();
 		context.put("result", "operate success!");
@@ -158,7 +152,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "viewRegisterSUCCESS";
 	}
 	
-	// 通过传来的专家的id 获取专家信息
+	/**
+	 * 通过传来的专家的id 获取专家信息
+	 * @return
+	 */
 	public String viewProfessorInfoById(){
 		String id = professor.getId();
 		professor = professorService.findProfessorById(id);
@@ -261,10 +258,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	}
 	
 	/**
-	 * 查询所有专家
+	 * 分页查询所有专家
 	 * @return
 	 */
-	public String getProfessorWithPageaasd(){
+	public String getProfessorWithPage(){
 		int count = professorService.getProfessorCount();
 		professor.setTotal(count);
 		professor.setPageCount((count-1)/PAGESIZE+1);
@@ -285,5 +282,35 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 			}
 		}
 		return "getProfessorWithPageSUCCESS";
+	}
+	
+	/**
+	 * 查询所有专家
+	 * @return
+	 */
+	public String getAllProfessor(){
+		DetachedCriteria criteria = DetachedCriteria.forClass(Professor.class);
+		professors = professorService.findByDetachedCriteria(criteria, 0, PAGESIZE);
+		return "getAllProfessorSUCCESS";
+	}
+	
+	/**
+	 * 跳转到专家信息修改页面 
+	 * 调用者：管理员用户
+	 * @return
+	 */
+	public String editProfessorView(){
+		String id = professor.getId();
+		professor = professorService.findProfessorById(id);
+		return "editProfessorViewSUCCESS";
+	}
+	
+	/********************************************************************/
+	public List<Professor> getProfessors() {
+		return professors;
+	}
+	@Override
+	public Professor getModel() {
+		return professor;
 	}
 }

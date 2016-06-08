@@ -4,7 +4,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<title>普通用户申请为企业</title>
 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="${pageContext.request.contextPath }/qing_style/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/css/navtop_new.css">
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-1.4.2.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -19,15 +27,6 @@
 
 	});
 </script>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Apply to be Company</title>
-<link href="${pageContext.request.contextPath }/qing_style/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/qing_style/css/navtop_new.css">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath }/bootstrap3/js/bootstrap.min.js"></script>
 <style>
 		html,body{
 			color:#505050;

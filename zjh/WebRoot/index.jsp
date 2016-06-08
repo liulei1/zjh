@@ -117,14 +117,14 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
             	<span class="user_login" onmouseover="userShow()"onmouseout="userHide()">Welcome !&nbsp;${user.name}&gt;</span>
 	            <ul class="user_info" id="user_info" onmouseover="userShow()" onmouseout="userHide()">
 	            	<li><a href="${pageContext.request.contextPath}/user/user_toUserCenter?usertype=${user.usertype}">User Center</a></li>
-	                <li ><a href="#" data-toggle="modal" data-target="#myModal">Logout</a></li>
+	                <li ><a onclick="logout()" data-toggle="modal" data-target="#myModal">Logout</a></li>
 	            </ul>
 	         <%} %>
         </div>
     </div>
     <div class="navBar">
         <div class="design_class fl">
-            <h3 onmouseover="show()"onmouseout="hide()">全部分类</h3>
+            <h3 onmouseover="show()"onmouseout="hide()">全部分类&gt;</h3>
             <ul class="item">
                 <li class="item_list">
                     <a href="#" target="_blank">logo</a>
@@ -192,10 +192,10 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
             </ul>
         </div>
         <ul class="nav">
-            <li  class="active" role="presentation"><a href="/">首页</a></li>
+            <%-- <li  class="active" role="presentation"><a href="${pageContext.request.contextPath}">首页</a></li> --%>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/professor/professor_getProfessorWithPage" target="_blank">人才大厅</a></li>
             <li  role="presentation"><a href="${pageContext.request.contextPath}/consult/consult_allowList" target="_blank">需求大厅</a></li>
-            <li  role="presentation"><a href="${pageContext.request.contextPath}/user/introduction.jsp">服务介绍</a></li>
+            <li  role="presentation"><a href="${pageContext.request.contextPath}/user/introduction.jsp" target="_blank">服务介绍</a></li>
         </ul>
        </div>
 </div>
@@ -211,7 +211,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 <div>
 <div class="title">
     <span style="float:left">推荐专家</span>
-    <a class="more" onclick="getRecommendProfessor()" style="float:right">更多&gt;&gt;</a>
+    <a class="more" onclick="getRecommendProfessor()" href="" style="float:right">更多&gt;&gt;</a>
 </div>
     <div class="content">
         <ul class="list" id="recommendProfessor"></ul>
@@ -220,7 +220,7 @@ String imgRootPath = request.getScheme()+"://"+request.getServerName()+":"+reque
 <div>
     <div class="title">
         <span style="float:left">推荐需求</span>
-        <a class="more" href="getRecommendConsult()"style="float:right">更多&gt;&gt;</a>
+        <a class="more" onclick="getRecommendConsult()" href="" style="float:right">更多&gt;&gt;</a>
     </div>
     <div class="content">
         <ul class="list" id="recommendConsult">

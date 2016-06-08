@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.ustc.domain.Company;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.ConsultCheck;
 import cn.ustc.domain.Message;
@@ -19,6 +20,7 @@ import cn.ustc.domain.Project;
 import cn.ustc.domain.Scheme;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
+import cn.ustc.web.dao.CompanyDAO;
 import cn.ustc.web.dao.ConsultCheckDAO;
 import cn.ustc.web.dao.ConsultDAO;
 import cn.ustc.web.dao.MessageDAO;
@@ -40,6 +42,8 @@ public class ConsultService {
 	private SchemeDAO schemeDAO;
 	@Autowired
 	private ProfessorDAO professorDAO;
+	@Autowired
+	private CompanyDAO companyDAO;
 	
 	/**
 	 * 发布咨询
@@ -91,15 +95,15 @@ public class ConsultService {
 	}
 
 	/**
-	 * 咨询 批准
-	 * @param id
-	 * @param consultCheck
+	 * 咨询 批准 -- 不发送消息
+	 * @param consultId 咨询的Id
+	 * @param consultCheck 审核记录
 	 * @return
 	 */
-	public boolean consultAllow(String id, ConsultCheck consultCheck) {
+	public boolean consultAllow(String consultId, ConsultCheck consultCheck) {
 		consultCheck.setState(Consult.ALLOW);	// 插入审核表中
 		consultCheckDAO.insert(consultCheck);
-		int res = consultDAO.check(id,Consult.ALLOW); // 更新需求信息的状态
+		int res = consultDAO.check(consultId,Consult.ALLOW); // 更新需求信息的状态
 		
 		// 使用算法，推送给专家
 		this.sendMessageToProfessor();
@@ -112,33 +116,55 @@ public class ConsultService {
 	}
 
 	/**
-	 * 推送信息给专家的方法
+	 * 咨询批准 -- 发送消息
+	 * @param consult 咨询
+	 * @param company 发布的企业
+	 * @param consultCheck 审核记录
+	 * @return
 	 */
-	private void sendMessageToProfessor() {
-		// TODO 使用算法来确定推送的人，推送的内容
-		List<Professor> professors = professorDAO.findAll();
-		int num = Integer.parseInt(GetPropertiesUtil.getProperties().getProperty("MessageSendNumber"));
-		if(num>professors.size()){
-			num = professors.size();
-		}
-		for (int i = 0; i < num; i++) {
-			Random random = new Random();
-			int index = random.nextInt(professors.size());
-			Message message = new Message();
-			// 发送给专家
-			message.setType(Message.TOPROFESSOR);
-			message.setSendTime(DateUtils.dateToString(new Date()));
-			message.setState(Message.UNREAD);
-			message.setTitle("有新的需求需要您来完成");
-			// TODO 添加推送消息的内容
-			message.setContent("咨询期待您来解决");
-			message.setRecipientId(professors.get(index).getId());
+	public String consultAllow(Consult consult, Company company, ConsultCheck consultCheck) {
+		double pay = Double.valueOf(consult.getBudget());
+		double balance = Double.valueOf(company.getBalance());
+		
+		if(balance > pay){
+			// 插入审核表中
+			consultCheck.setState(Consult.ALLOW);
+			consultCheckDAO.insert(consultCheck);
+			
+			// 更新企业的余额
+			company.setBalance(String.valueOf(balance-pay));
+			companyDAO.update(company);
+			
+			// 更新需求信息的状态
+			consultDAO.check(consult.getId(),Consult.ALLOW);
+			
 			// 发送消息
-			messageDAO.addMessage(message);
-			professors.remove(index);
+			String title = "审核结果";
+			String content = "您的咨询 "+ consult.getTitle() +" 审核通过";
+			String recipientId = company.getId();
+			int type = Message.TOCOMPANY;
+			this.sendMessage(title, content, recipientId, type);
+			return "success";
+		}else {
+			// 审核拒绝，原因余额不足
+			consultCheck.setState(Consult.REJECT);
+			consultCheck.setRejectReason("Balance Not Enough");
+			consultCheckDAO.insert(consultCheck);
+			
+			// 更新需求信息的状态
+			consultDAO.check(consult.getId(),Consult.REJECT);
+			
+			// 发送消息
+			String title = "审核结果";
+			String content = "您的咨询 "+ consult.getTitle() +" 审核失败。原因：余额不足.";
+			String recipientId = company.getId();
+			int type = Message.TOCOMPANY;
+			this.sendMessage(title, content, recipientId, type);
+			return "balanceNotEnough";
 		}
+		
 	}
-
+	
 	/**
 	 * 咨询 拒绝
 	 * @param id
@@ -177,7 +203,7 @@ public class ConsultService {
 		message.setState(Message.UNREAD);
 		message.setTitle("您的方案被接受");
 		// TODO 发布需求后发送的消息内容写什么
-		message.setContent("恭喜，您对需求-"+consult.getTitle()+" 提供的方案得到了对方的接受！");
+		message.setContent("恭喜，您对需求 - "+consult.getTitle()+" 提供的方案得到了对方的接受！");
 		messageDAO.addMessage(message);
 		return true;
 	}
@@ -250,5 +276,60 @@ public class ConsultService {
 	 */
 	public List<Consult> findProfessorApplyConslut(String professorId) {
 		return consultDAO.findProfessorApplyConslut(professorId);
+	}
+
+	/***********************************************私有方法*************************************************/
+	
+	/**
+	 * 发送消息
+	 * @param title 消息标题
+	 * @param content 消息内容
+	 * @param recipientId 消息的接受者
+	 * @param type 消息的类型.发送给专家Message.TOPROFESSOR.还是发送给企业Message.TOCOMPANY
+	 */
+	private void sendMessage(String title, String content, String recipientId, int type){
+		Message message = new Message();
+		message.setType(type);
+		message.setSendTime(DateUtils.dateToString(new Date()));
+		message.setState(Message.UNREAD);
+		message.setTitle(title);
+		message.setContent(content);
+		message.setRecipientId(recipientId);
+		// 发送消息
+		messageDAO.addMessage(message);
+	}
+	
+	/**
+	 * 推送信息给专家的方法
+	 */
+	private void sendMessageToProfessor() {
+		// TODO 使用算法来确定推送的人，推送的内容
+		List<Professor> professors = professorDAO.findAll();
+		int num = Integer.parseInt(GetPropertiesUtil.getProperties().getProperty("MessageSendNumber"));
+		if(num>professors.size()){
+			num = professors.size();
+		}
+		for (int i = 0; i < num; i++) {
+			Random random = new Random();
+			int index = random.nextInt(professors.size());
+//			Message message = new Message();
+//			// 发送给专家
+//			message.setType(Message.TOPROFESSOR);
+//			message.setSendTime(DateUtils.dateToString(new Date()));
+//			message.setState(Message.UNREAD);
+//			message.setTitle("有新的需求需要您来完成");
+//			message.setContent("咨询期待您来解决");
+//			message.setRecipientId(professors.get(index).getId());
+//			// 发送消息
+//			messageDAO.addMessage(message);
+			
+			// TODO 添加推送消息的内容
+			String title = "推送信息";
+			String content = "新的咨询期待您来解决";
+			String recipientId = professors.get(index).getId();
+			int type = Message.TOPROFESSOR;
+			this.sendMessage(title, content, recipientId, type);
+			professors.remove(index);
+		}
 	}
 }

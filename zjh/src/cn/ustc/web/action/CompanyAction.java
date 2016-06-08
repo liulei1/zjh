@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.ustc.domain.Company;
 import cn.ustc.domain.Message;
 import cn.ustc.domain.User;
+import cn.ustc.domain.Vocation;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.utils.GetPropertiesUtil;
 import cn.ustc.utils.UploadAndDownloadUtils;
+import cn.ustc.web.dao.VocationDAO;
 import cn.ustc.web.service.CompanyService;
 import cn.ustc.web.service.MessageService;
 import cn.ustc.web.service.UserService;
@@ -43,6 +45,8 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	private UserService userService;
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private VocationDAO vocationDAO;
 	
 	@InputConfig(resultName = "companyRegister")
 	public String register() {
@@ -55,7 +59,8 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		if(company.getName()==null){
 			return "companyRegister";
 		}
-		company.setUsertype("1");
+		//设置用户类型
+		company.setUsertype(Company.COMPANY);
 		//新注册的用户的积分权限设置为普通的
 		company.setAuthority(Company.AUTHORITY_COMMON);
 		companyService.insertCompany(company);
@@ -287,4 +292,37 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 			return SUCCESS;
 		}
 	}
+	
+	/**
+	 * 查询所有企业
+	 * @return
+	 */
+	public String getAllCompany(){
+		companys = companyService.findAllCompany();
+		return "getAllCompanySUCCESS";
+	}
+	
+	/**
+	 * 跳转到企业信息修改页面 
+	 * 调用者：管理员用户
+	 * @return
+	 */
+	public String editCompanView(){
+		String id = company.getId();
+		company = companyService.findCompanyById(id);
+		return "editCompanViewSUCCESS";
+	}
+	
+	/**
+	 * 通过传来的企业的id 获取企业信息
+	 * @return
+	 */
+	public String viewCompanyInfoById(){
+		String id = company.getId();
+		company = companyService.findCompanyById(id);
+		Vocation vocation = vocationDAO.findVocationById(company.getField());
+		company.setField(vocation.getName());
+		return "viewCompanyInfoByIdSUCCESS";
+	}
+	
 }
