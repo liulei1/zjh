@@ -30,7 +30,7 @@
 		<a href="${pageContext.request.contextPath}/professor/professor_getAllProfessor" class="btn btn-success btn-sm">专家用户</a>
 		<a href="${pageContext.request.contextPath}/company/company_getAllCompany" class="btn btn-warning btn-sm">企业用户</a>
 		<hr>
-		<table class="table table-hover table-striped">
+		<table class="table table-hover table-striped table-condensed">
 			<tr>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="5%"></td>
 				<td style="CURSOR: hand; HEIGHT: 22px" align="center" width="15%">Username</td>
@@ -43,7 +43,7 @@
 			<s:iterator value="professors" var="user" status="index">
 				<tr>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
-						<s:property value="#index.index"/>
+						<s:property value="#index.count"/>
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 22px" align="center">
 						${name}

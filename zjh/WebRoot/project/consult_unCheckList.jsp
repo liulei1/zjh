@@ -36,7 +36,7 @@
 		</h1>
 		<hr>
 		<s:actionerror/>
-		<table class="table table-hover table-striped table-bordered">
+		<table class="table table-hover table-striped table-bordered table-condensed">
 			<tr>
 				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="5%"></td>
 				<td style="CURSOR: hand; HEIGHT: 15px" align="center" width="20%">title</td>
@@ -50,7 +50,7 @@
 			<s:iterator value="consults" var="consult" status="index">
 				<tr> 
 					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
-						<s:property value="#index.index"/>
+						<s:property value="#index.count"/>
 					</td>
 					<td style="CURSOR: hand; HEIGHT: 15px" align="center">
 						${title}

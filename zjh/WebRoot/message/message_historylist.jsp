@@ -71,15 +71,24 @@
 				&nbsp;&nbsp;&nbsp;
 				<a href="${pageContext.request.contextPath}/message/message_queryMyReaded" class="btn btn-success btn-sm">历史消息</a>
 				<hr>
-				<table class="table table-bordered table-hover">
+				<table class="table table-hover table-striped">
 					<s:if test="messages.size() == 0">
 						<div style="color:blue">no history message</div>
 					</s:if>
-					<s:iterator value="messages" var="message">
+					<s:else>
+						<tr>
+							<td>NO</td>
+							<td align="center">Message Title</td>
+						</tr>
+					</s:else>
+					<s:iterator value="messages" var="message" status="index">
 						<tr onclick="viewMessage(this)" data-toggle="modal" data-target="#myModal">
 							<s:hidden name="id" value="%{id}"></s:hidden>
 							<s:hidden name="content" value="%{content}"></s:hidden>
 							<s:hidden name="title" value="%{title}"></s:hidden>
+							<td>
+								<s:property value="#index.count"/>
+							</td>
 							<td>
 								${title}
 							</td>
