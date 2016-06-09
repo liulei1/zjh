@@ -57,8 +57,37 @@ public class MessageService {
 		}
 	}
 	
+	/**
+	 * 发型消息
+	 * @param message
+	 */
 	public void sendMessage(Message message){
-		//message.setSendTime(DateUtils.dateToString(new Date()));
 		messageDAO.addMessage(message);
+	}
+	
+	/**
+	 * 根据id删除消息
+	 * @param id
+	 */
+	public void deleteMessageById(String id){
+		Message message = messageDAO.findById(id);
+		messageDAO.deleteMessage(message);
+	}
+
+	/**
+	 * 根据id查找
+	 * @param id
+	 * @return
+	 */
+	public Message findMessageById(String id) {
+		return messageDAO.findById(id);
+	}
+
+	/**
+	 * 更新消息
+	 * @param messageModel
+	 */
+	public void update(Message message) {
+		messageDAO.update(message);
 	}
 }

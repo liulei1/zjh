@@ -106,7 +106,7 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 		PrintWriter pw = null;
 		try {
 			pw = response.getWriter();
-			pw.write("operate success");
+			pw.write("success");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

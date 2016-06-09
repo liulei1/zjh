@@ -8,12 +8,17 @@
 	<constant name="struts.custom.i18n.resources" value="messages"/>
     
 	<package name="basicstruts" namespace="/user" extends="struts-default">
-
+		<!-- 全局结果集 -->
 		<global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
+			<result name="success">/success.jsp</result>
 		</global-results>
+		<!-- 全局异常结果映射 -->
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
 
 		<action name="user_*" method="{1}" class="cn.ustc.web.action.UserAction">
 		
@@ -45,7 +50,6 @@
 				<param name="actionName">professor_getAllProfessor</param>
 			</result>
 			<result name="userEditSUCCESS" type="redirectAction">user_list</result>
-			
 			<result name="deleteSUCCESS" type="redirectAction">user_list</result>
 			
 			<!-- 用户中心跳转 -->

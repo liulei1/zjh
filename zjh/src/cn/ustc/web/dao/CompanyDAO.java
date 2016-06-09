@@ -80,6 +80,11 @@ public class CompanyDAO extends HibernateDaoSupport{
 		this.getHibernateTemplate().delete(company);
 	}
 
+	/**
+	 * 通过领域查找企业
+	 * @param cat
+	 * @return
+	 */
 	public List<Company> findCompanyByVocation(String cat) {
 		String hql = "from Company where field=?";
 		List<Company> companyList = this.getHibernateTemplate().find(hql, cat);
@@ -103,8 +108,13 @@ public class CompanyDAO extends HibernateDaoSupport{
 		this.getHibernateTemplate().delete(company);
 	}
 
+	/**
+	 * 通过用户名和密码查找企业
+	 * @param name 用户名
+	 * @param password 密码
+	 * @return
+	 */
 	public Company findByCompInfo(String name, String password) {
-		
 		String hql="from Company where name=:name and password=:password";
 		List<Company> complist=this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"},new Object[]{name,password});
 		return complist.size()==0?null:complist.get(0);

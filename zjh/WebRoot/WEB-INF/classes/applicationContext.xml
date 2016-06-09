@@ -32,6 +32,7 @@
 	<bean id="projectAndriodAction" class="cn.ustc.android.action.ProjectAndriodAction"/>
 	<bean id="schemeAndriodAction" class="cn.ustc.android.action.SchemeAndriodAction"/>
 	<bean id="evaluateAndriodAction" class="cn.ustc.android.action.EvaluateAndriodAction"/>
+	<bean id="companyOperateAction" class="cn.ustc.android.action.CompanyOperateAction"/>
 	
 	<!-- 配置Service  -->
 	<bean id="consultService" class="cn.ustc.web.service.ConsultService"/>

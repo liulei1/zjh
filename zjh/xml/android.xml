@@ -7,8 +7,18 @@
 		<action name="user_*" method="{1}" class="cn.ustc.android.action.UserLogin"></action>
 	</package>
 	
+	<!-- 企业 -->
+	<package name="androidComapny" namespace="/android/comapny" extends="json-default">
+		<action name="companyDetails" method="companyDetails" class="cn.ustc.android.action.CompanyOperateAction">
+			<result type="json">
+				<param name="root">model</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 项目 -->
 	<package name="androidProject" namespace="/android/project" extends="json-default">
-		<action name="getProjectDetails" method="getProjectDetails" class="cn.ustc.android.action.ProjectAndriodAction">
+		<action name="getProjectDetails" method="projectDetails" class="cn.ustc.android.action.ProjectAndriodAction">
 			<result type="json">
 				<param name="root">model</param>
 				<param name="excludeProperties">pageCount,pageSize,pageIndex,total</param>
@@ -16,6 +26,7 @@
 		</action>
 	</package>
 	
+	<!-- 评价 -->
 	<package name="androidEevaluate" namespace="/android/evaluate" extends="json-default">
 		<action name="getEvaluate" method="getEvaluate" class="cn.ustc.android.action.EvaluateAndriodAction">
 			<result type="json">
@@ -26,21 +37,29 @@
 		<action name="professorEvaluate" method="professorEvaluate" class="cn.ustc.android.action.EvaluateAndriodAction"></action>
 	</package>
 	
+	<!-- 咨询 -->
 	<package name="androidConsult" namespace="/android/consult" extends="json-default">
-		<action name="getConsultDetails" method="getConsultDetails" class="cn.ustc.android.action.ConsultAndriodAction">
+		<action name="consultDetails" method="consultDetails" class="cn.ustc.android.action.ConsultAndriodAction">
 			<result type="json">
 				<param name="root">model</param>
 				<param name="excludeProperties">pageCount,pageSize,pageIndex,total</param>
 			</result>
 		</action>
 		
-		<action name="getRecommendConsult" method="getRecommendConsult" class="cn.ustc.android.action.ConsultAndriodAction">
+		<action name="getRecommendConsult" method="recommendConsult" class="cn.ustc.android.action.ConsultAndriodAction">
+			<result type="json">
+				<param name="root">consults</param>
+			</result>
+		</action>
+		
+		<action name="findConsultByCriteria" method="findConsultByCriteria" class="cn.ustc.android.action.ConsultAndriodAction">
 			<result type="json">
 				<param name="root">consults</param>
 			</result>
 		</action>
 	</package>
 	
+	<!-- 专家 -->
 	<package name="androidProfessor" namespace="/android/professor" extends="json-default">
 		<action name="getProfessorDoingProject" method="getProfessorDoingProject" class="cn.ustc.android.action.ProfessorOperateAction">
 			<result type="json">

@@ -44,7 +44,7 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 	 * 调用条件：项目的Id：proj_id
 	 * @return
 	 */
-	public String getEvaluate(){
+	public String findEvaluateById(){
 		Project project = projectService.findById(model.getProj_id());
 		model = evaluateService.findByProjId(project.getId());
 		model.setTitle(project.getConsult().getTitle());
@@ -52,7 +52,7 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 	}
 	
 	/**
-	 * 专家评价
+	 * 专家发布评价
 	 * 调用条件：项目的id：proj_id，专家的id：prof_id
 	 * @return
 	 */
@@ -64,6 +64,7 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 		Evaluate eva=evaluateService.findEvaluateByIdAndProfessorId(model.getId(), professor.getId());
 		
 		if(eva == null||Evaluate.COMPLETED.equals(eva.getProf_state())){
+			// 评价记录不存在，或者评价已将完成
 			try {
 				pw = response.getWriter();
 				pw.write("fail");
@@ -93,6 +94,7 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 		pw.close();
 	}
 	
+	/************************************************************************/
 	/**
 	 * 都完成了评价，增加积点
 	 * @param eva
@@ -118,8 +120,6 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 		company.setPoints(company.getPoints()+Math.min(com_grade, 5));
 		companyService.update(company);
 	}
-	
-	/************************************************************************/
 	@Override
 	public Evaluate getModel() {
 		return model;

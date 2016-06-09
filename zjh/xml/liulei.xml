@@ -16,25 +16,28 @@
 		</interceptors>
 		<default-interceptor-ref name="myStack"/>
 		
+		<!-- 全局结果集 -->
 		<global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
+			<result name="success">/success.jsp</result>
 		</global-results>
+		<!-- 全局异常结果映射 -->
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
 		
+	</package>
+
+	<!-- 咨询 -->
+	<package name="consult" namespace="/consult" extends="myDefault">
 		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
-			<result name="input">/input.jsp</result>
-		</global-results> -->
-	</package>
-
-	<package name="consult" namespace="/consult" extends="myDefault">
-		<global-results>
-			<result name="login">/user/login.jsp</result>
-			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
-		</global-results>
+			<result name="success">/success.jsp</result>
+		</global-results> -->
 	
 		<action name="consult_*" method="{1}" class="cn.ustc.web.action.ConsultAction">
 			<result name="publishConsultSUCCESS">/success.jsp</result>
@@ -56,12 +59,14 @@
 		</action>
 	</package>
 	
+	<!-- 方案 -->
 	<package name="scheme" namespace="/scheme" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
-		</global-results>
+			<result name="success">/success.jsp</result>
+		</global-results> -->
 	
 		<action name="scheme_*" method="{1}" class="cn.ustc.web.action.SchemeAction">
 			<result name="submitViewSUCCESS">/scheme/scheme_publish.jsp</result>
@@ -83,12 +88,14 @@
 		</action>
 	</package>
 	
+	<!-- 项目 -->
 	<package name="project" namespace="/project" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
-		</global-results>
+			<result name="success">/success.jsp</result>
+		</global-results> -->
 	
 		<action name="project_*" method="{1}" class="cn.ustc.web.action.ProjectAction">
 			<result name="queryCompanyProjectSUCCESS">/company/company_project.jsp</result>
@@ -103,17 +110,17 @@
 		</action>
 	</package>
 	
+	<!-- 评价 -->
 	<package name="evaluate" namespace="/evaluate" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
 			<result name="success">/success.jsp</result>
-		</global-results>
+		</global-results> -->
 	
 		<action name="evaluate_*" method="{1}" class="cn.ustc.web.action.EvaluateAction">
 			<result name="publishView">/project/evaluate_publish.jsp</result>
-						
 			<result name="downSUCCESS" type="stream">
 				<!-- 下载流 getInputStream -->
 				<param name="contentType">${contentType}</param>
@@ -131,13 +138,14 @@
 		</action>
 	</package>
 	
+	<!-- 企业 -->
 	<package name="company" namespace="/company" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
 			<result name="success">/success.jsp</result>
-		</global-results>
+		</global-results> -->
 	
 		<action name="company_*" method="{1}" class="cn.ustc.web.action.CompanyAction">
 			<result name="skipBalancePageSUCCESS">/company/company_balance.jsp</result>
@@ -162,32 +170,49 @@
 			<result name="toVipPageSUCCESS">/company/companyToVip.jsp</result>
 			<result name="getAllCompanySUCCESS">/user/companyList.jsp</result>
 			
-			<result name="deleteCompanySUCCESS">/user/companyList.jsp</result>
+			<result name="deleteCompanySUCCESS" type="redirectAction">
+				<param name="namespace">/company</param>
+				<param name="actionName">company_getAllCompany</param>
+			</result>
 		</action>
 	</package>
 	
+	<!-- 消息 -->
 	<package name="message" namespace="/message" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
-		</global-results>
+			<result name="success">/success.jsp</result>
+		</global-results> -->
 	
 		<action name="message_*" method="{1}" class="cn.ustc.web.action.MessageAction">
 			<result name="queryMyUnreadSUCCESS">/message/message_list.jsp</result>
+			<result name="queryMyReadedSUCCESS">/message/message_historylist.jsp</result>
+			
 			<result name="haveReadedSUCCESS" type="redirectAction">
+				<param name="actionName">message_queryMyUnread</param>
+				<param name="namespace">/message</param>
+			</result>
+			<result name="deleteMessageByIdSUCCESS" type="redirectAction">
+				<param name="actionName">message_queryMyUnread</param>
+				<param name="namespace">/message</param>
+			</result>
+			<result name="toUnreadMessageByIdSUCCESS" type="redirectAction">
 				<param name="actionName">message_queryMyUnread</param>
 				<param name="namespace">/message</param>
 			</result>
 		</action>
 	</package>
 	
+	<!-- 专家 -->
 	<package name="professor" namespace="/professor" extends="myDefault">
-		<global-results>
+		<!-- <global-results>
 			<result name="login">/user/login.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="message">/message.jsp</result>
-		</global-results>
+			<result name="success">/success.jsp</result>
+		</global-results> -->
 	
 		<action name="professor_*" method="{1}" class="cn.ustc.web.action.ProfessorAction">
 			<result name="viewProfessorInfoSUCCESS">/professor/professor_view.jsp</result>
@@ -207,7 +232,10 @@
 			<result name="passSuccess">/manage/proAudit.jsp</result>
 			<result name="refused">/manage/proAudit.jsp</result>
 			
-			<result name="deleteProfessorSUCCESS">/user/professorList.jsp</result>
+			<result name="deleteProfessorSUCCESS" type="redirectAction">
+				<param name="namespace">/professor</param>
+				<param name="actionName">professor_getAllProfessor</param>
+			</result>
 		</action>
 	</package>
 	

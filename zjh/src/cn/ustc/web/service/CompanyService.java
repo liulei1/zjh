@@ -2,6 +2,7 @@ package cn.ustc.web.service;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,9 @@ public class CompanyService {
 	}
 
 	public Company findCompanyById(String id) {
-		Company Company = companyDAO.findByCompanyID(id);
-		return Company;
+		Company company = companyDAO.findByCompanyID(id);
+		Hibernate.initialize(company.getConsults());
+		return company;
 	}
 
 	/**
@@ -54,6 +56,10 @@ public class CompanyService {
 		companyDAO.update(company);
 	}
 
+	/**
+	 * 通过id删除企业
+	 * @param id
+	 */
 	public void deleteCompanyById(String id) {
 		companyDAO.deleteByCompanyID(id);
 	}

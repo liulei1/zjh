@@ -47,4 +47,12 @@ public class MessageDAO extends HibernateDaoSupport {
 	public void addMessage(Message message){
 		this.getHibernateTemplate().save(message);
 	}
+
+	/**
+	 * 删除消息
+	 * @param message
+	 */
+	public void deleteMessage(Message message) {
+		this.getHibernateTemplate().delete(message);
+	}
 }

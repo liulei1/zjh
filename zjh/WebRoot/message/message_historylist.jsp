@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-     <title>未读消息列表</title>
+     <title>历史消息列表</title>
      
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- 引入 Bootstrap -->
@@ -38,9 +38,19 @@
 				return false;
 			}
 		}
-
+		
+		function toUnread(){
+			var id = $("#readMessageId").val();
+			$.post("${pageContext.request.contextPath}/message/message_toUnreadMessageById",{id:id},function(data){
+				parent.getMessageCountNow();
+				document.open("text/html","replace");
+				document.writeln(data);
+				document.close();
+			});
+		}
+		
 		// 将消息内容显示到模态框	
-		function viewMessage(target) {
+		function viewMessage(target){
 			var id = $(target).children("input[name='id']").val();
 			var content = $(target).children("input[name='content']").val();
 			var title = $(target).children("input[name='title']").val();
@@ -48,14 +58,14 @@
 			$("#modalContent").html(content);
 			$("#readMessageId").val(id);
 		}
-		</script>
+	 </script>
 </head>
    <body>
     <div id="LG" class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12">
 				<h3 class="text-center">
-					New Messages
+					History Messages
 				</h3>
 				<a href="${pageContext.request.contextPath}/message/message_queryMyUnread" class="btn btn-primary btn-sm">未读消息</a>
 				&nbsp;&nbsp;&nbsp;
@@ -63,7 +73,7 @@
 				<hr>
 				<table class="table table-bordered table-hover">
 					<s:if test="messages.size() == 0">
-						<div style="color:blue">no message now</div>
+						<div style="color:blue">no history message</div>
 					</s:if>
 					<s:iterator value="messages" var="message">
 						<tr onclick="viewMessage(this)" data-toggle="modal" data-target="#myModal">
@@ -97,7 +107,7 @@
 	         </div>
 	         <s:hidden name="id" id="readMessageId" value=""></s:hidden>
 	         <div class="modal-footer">
-	         	<button type="button" class="btn btn-primary" data-dismiss="modal">
+	         	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="toUnread()">
 	              	 标记未读
 	            </button>
 	            <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="delMessage()">

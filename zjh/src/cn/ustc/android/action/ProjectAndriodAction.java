@@ -35,8 +35,8 @@ public class ProjectAndriodAction extends ActionSupport implements ModelDriven<P
 	 * 调用条件：传入项目的id
 	 * @return
 	 */
-	public String getProjectDetails(){
-		String id = "5";
+	public String projectDetails(){
+		String id = model.getId();
 		model = projectService.findById(id);
 		
 		Company company = companyService.findCompanyById(model.getCom_id());
