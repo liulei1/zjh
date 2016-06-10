@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<title>Regist</title>
+<title>企业用户注册</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -116,12 +116,11 @@ hr {
 			onsubmit="return check();">
 			<div class="form-group">
 				<h1>
-					Regist
+					Regist Company User
 					<small>Welcome to ZJH, Enterprise users registered in this interface.</small>
 				</h1>
 				<hr>
 			</div>
-			
 			
 			<div class="form-group">
 				<label class="col-sm-4 control-label">Username</label>
@@ -238,7 +237,7 @@ hr {
 		</div>
 	</div>
 <div class="footer">
-	<p><strong>ZJH</strong> &copy; 2016 All Rights Reserved <a class="links" href="#">进入后台</a></p>
+	<p><strong>ZJH</strong> &copy; 2016 All Rights Reserved By<a class="links" href="#">USTCs</a></p>
 </div>
 </body>
 </html>

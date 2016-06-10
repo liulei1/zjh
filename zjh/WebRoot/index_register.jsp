@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<title>首页注册</title>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>首页注册</title>
 <link href="${pageContext.request.contextPath}/qing_style/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/qing_style/css/navtop_new.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
@@ -143,7 +143,7 @@ hr {
     <s:form cssClass="form-horizontal" action="user_register"  namespace="/token" theme="simple" method="post">
     	<div class="form-group">
 				<h1>
-					Regist
+					Regist Common User
 					<small>Welcome to ZJH, Common users registered in this interface.</small>
 				</h1>
 				<hr>
@@ -176,7 +176,7 @@ hr {
 			<div class="form-group">
 				<label class="col-sm-4 control-label">Sex</label>
 				<div class="col-sm-4">
-					<s:radio list="{'male','female'}" name="sex" align="right" value="%{model.sex}"/>
+					<s:radio list="{'male','female'}" name="sex" align="right"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -251,7 +251,7 @@ hr {
 			<div class="form-group">
 				<h1>
 					Regist Company User
-					<small>Welcome to ZJH, Enterprise users registered in this interface.</small>
+					<small>Welcome to ZJH, Company users registered in this interface.</small>
 				</h1>
 				<hr>
 			</div>
@@ -298,13 +298,13 @@ hr {
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">address</label>
+				<label class="col-sm-4 control-label">Address</label>
 				<div class="col-sm-4">
 					<s:textfield name="address" cssClass="form-control"  placeholder="地址"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">website</label>
+				<label class="col-sm-4 control-label">Website</label>
 				<div class="col-sm-4">
 					<s:textfield name="website" cssClass="form-control" placeholder="网址"/>
 				</div>
@@ -334,110 +334,117 @@ hr {
 	</div>
 	</div>
 
-	<!-- 专家用户注册 -->	
-	<div class="tab-pane fade" id="professor">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="register-wrapper">
-				<div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
-		<s:form cssClass="form-horizontal" action="professorRegister" namespace="/token" theme="simple" method="post">
-			<div class="form-group">
-				<h1>
-					Regist
-					<small>Welcome to ZJH, Expert users registered in this interface.</small>
-				</h1>
-				<hr>
-				<span id="professorname_result"></span>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Username</label>
-				<div class="col-sm-4">
-					<s:textfield name="name" id="professorname"
-						   cssClass="form-control" placeholder="用户名" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Email</label>
-				<div class="col-sm-4">
-					<s:textfield name="email" cssClass="form-control"
-						   placeholder="邮箱"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Password</label>
-				<div class="col-sm-4">
-					<s:textfield type="password" name="password"
-						   cssClass="form-control" placeholder="输入密码"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">RepeatPassword</label>
-				<div class="col-sm-4">
-					<s:textfield type="password" name="repassword"
-						   cssClass="form-control" placeholder="重复密码"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Realname</label>
-				<div class="col-sm-4">
-					<s:textfield name="real_name"  cssClass="form-control" placeholder="真实姓名"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Telephone</label>
-				<div class="col-sm-4">
-					<s:textfield name="telephone" cssClass="form-control" placeholder="联系方式"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">address</label>
-				<div class="col-sm-4">
-					<s:textfield name="address" cssClass="form-control"  placeholder="地址"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">website</label>
-				<div class="col-sm-4">
-					<s:textfield name="website" cssClass="form-control" placeholder="网址"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">identityNumber</label>
-				<div class="col-sm-4">
-					<s:textfield name="identity" cssClass="form-control" placeholder="身份证号"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">introduction</label>
-				<div class="col-sm-4">
+	<!-- 专家用户注册 -->
+		<div class="tab-pane fade" id="professor">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="register-wrapper">
+						<div class="col-md-offset-2 col-xs-12 col-sm-10 col-md-8">
+							<s:form cssClass="form-horizontal" action="professorRegister"
+								namespace="/token" theme="simple" method="post">
+								<div class="form-group">
+									<h1>
+										Regist Professor <small>Welcome to ZJH, Professor
+											users registered in this interface.</small>
+									</h1>
+									<hr>
+									<span id="professorname_result"></span>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Username</label>
+									<div class="col-sm-4">
+										<s:textfield name="name" id="professorname"
+											cssClass="form-control" placeholder="用户名" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Email</label>
+									<div class="col-sm-4">
+										<s:textfield name="email" cssClass="form-control"
+											placeholder="邮箱" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Password</label>
+									<div class="col-sm-4">
+										<s:textfield type="password" name="password"
+											cssClass="form-control" placeholder="输入密码" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">RepeatPassword</label>
+									<div class="col-sm-4">
+										<s:textfield type="password" name="repassword"
+											cssClass="form-control" placeholder="重复密码" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Realname</label>
+									<div class="col-sm-4">
+										<s:textfield name="real_name" cssClass="form-control"
+											placeholder="真实姓名" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Telephone</label>
+									<div class="col-sm-4">
+										<s:textfield name="telephone" cssClass="form-control"
+											placeholder="联系方式" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Address</label>
+									<div class="col-sm-4">
+										<s:textfield name="address" cssClass="form-control"
+											placeholder="地址" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Website</label>
+									<div class="col-sm-4">
+										<s:textfield name="website" cssClass="form-control"
+											placeholder="网址" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">identityNumber</label>
+									<div class="col-sm-4">
+										<s:textfield name="identity" cssClass="form-control"
+											placeholder="身份证号" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Introduction</label>
+									<div class="col-sm-4">
 
-					<s:textarea rows="2" cssClass="form-control" name="annotation" cols="30" placeholder="个人简介"/>
+										<s:textarea rows="2" cssClass="form-control" name="annotation"
+											cols="30" placeholder="个人简介" />
 
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Sex</label>
+									<div class="col-sm-4">
+										<s:radio list="{'male','female'}" name="sex" align="right" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-4 control-label">Field</label>
+									<div class="col-sm-4" id="field_professor"></div>
+								</div>
+								<div class="form-group">
+									<div class="col-md-offset-4 col-md-7 form-btn-group">
+										<input type="submit"
+											class="btn btn-success btn-large pull-left" value="regist">
+										<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
+									</div>
+								</div>
+							</s:form>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Sex</label>
-				<div class="col-sm-4">
-					<s:radio list="{'male','female'}" name="sex" align="right" value="%{model.sex}"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-4 control-label">Field</label>
-				<div class="col-sm-4" id="field_professor">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-offset-4 col-md-7 form-btn-group">
-					<input type="submit" class="btn btn-success btn-large pull-left" value="regist">
-					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
-				</div>
-			</div>
-		</s:form>
+		</div>
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-</div>
 </body>
 </html>
