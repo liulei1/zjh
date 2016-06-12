@@ -30,7 +30,7 @@ public class SchemeAndriodAction extends ActionSupport implements ModelDriven<Sc
 	 * 调用条件：传入方案Id
 	 * @return
 	 */
-	public String getSchemeDetails(){
+	public String findSchemeDetailsById(){
 		model = schemeService.findById(model.getId());
 		return SUCCESS;
 	}

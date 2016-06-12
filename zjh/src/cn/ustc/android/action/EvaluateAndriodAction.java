@@ -40,11 +40,11 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 
 	/********************************* 项目操作 ************************************/
 	/**
-	 * 获取评价的信息
+	 * 获取项目的评价的记录
 	 * 调用条件：项目的Id：proj_id
 	 * @return
 	 */
-	public String findEvaluateById(){
+	public String findEvaluateByProjectId(){
 		Project project = projectService.findById(model.getProj_id());
 		model = evaluateService.findByProjId(project.getId());
 		model.setTitle(project.getConsult().getTitle());

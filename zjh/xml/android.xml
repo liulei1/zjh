@@ -7,6 +7,17 @@
 		<action name="user_*" method="{1}" class="cn.ustc.android.action.UserLogin"></action>
 	</package>
 	
+	<!-- 方案 -->
+	<package name="androidScheme" namespace="/android/scheme" extends="json-default">
+		<action name="findSchemeDetailsById" method="findSchemeDetailsById" class="cn.ustc.android.action.SchemeAndriodAction">
+			<result type="json">
+				<param name="root">model</param>
+			</result>
+		</action>
+		
+		<action name="publishScheme" method="publishScheme" class="cn.ustc.android.action.SchemeAndriodAction"></action>
+	</package>
+	
 	<!-- 企业 -->
 	<package name="androidComapny" namespace="/android/comapny" extends="json-default">
 		<action name="companyDetails" method="companyDetails" class="cn.ustc.android.action.CompanyOperateAction">
@@ -28,7 +39,7 @@
 	
 	<!-- 评价 -->
 	<package name="androidEevaluate" namespace="/android/evaluate" extends="json-default">
-		<action name="getEvaluate" method="getEvaluate" class="cn.ustc.android.action.EvaluateAndriodAction">
+		<action name="findEvaluateByProjectId" method="findEvaluateByProjectId" class="cn.ustc.android.action.EvaluateAndriodAction">
 			<result type="json">
 				<param name="root">model</param>
 			</result>
@@ -48,13 +59,15 @@
 		
 		<action name="getRecommendConsult" method="recommendConsult" class="cn.ustc.android.action.ConsultAndriodAction">
 			<result type="json">
-				<param name="root">consults</param>
+				<param name="root">action</param>
+				<param name="includeProperties">consults.*</param>
 			</result>
 		</action>
 		
 		<action name="findConsultByCriteria" method="findConsultByCriteria" class="cn.ustc.android.action.ConsultAndriodAction">
 			<result type="json">
-				<param name="root">consults</param>
+				<param name="root">action</param>
+				<param name="includeProperties">consults.*</param>
 			</result>
 		</action>
 	</package>
@@ -91,7 +104,8 @@
 		
 		<action name="getProfessorEvaluateProject" method="getProfessorEvaluateProject" class="cn.ustc.android.action.ProfessorOperateAction">
 			<result type="json">
-				<param name="root">projects</param>
+				<param name="root">action</param>
+				<param name="includeProperties">projects.*</param>
 			</result>
 		</action>
 		

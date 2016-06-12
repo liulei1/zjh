@@ -136,6 +136,19 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 	}
 	
 	/**
+	 * 获取当前登录专家待评价的项目
+	 * 调用条件：传入专家id
+	 * @return
+	 */
+	public String getProfessorEvaluateProject(){
+		String id = model.getId();
+		projects = projectService.findProfessorEvaluateProject(id);
+		return SUCCESS;
+	}
+	
+	/**********************************************************************/
+	
+	/**
 	 * 拷贝model 中非空的属性到p中
 	 * @param model 待拷贝的对象
 	 * @param p 待覆盖的对象
@@ -163,18 +176,6 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 		return p;
 	}
 	
-	/**
-	 * 获取专家待评价的项目
-	 * 调用条件：传入专家id
-	 * @return
-	 */
-	public String getProfessorEvaluateProject(){
-		String id = model.getId();
-		projects = projectService.findProfessorEvaluateProject(id);
-		return SUCCESS;
-	}
-	
-	/****************************成员变量set，get方法*********************************/
 	public List<Consult> getConsults() {
 		return consults;
 	}
