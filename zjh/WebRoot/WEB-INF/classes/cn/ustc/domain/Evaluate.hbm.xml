@@ -10,6 +10,7 @@
 		
 		<property name="proj_id" type="string"/>
 		<property name="prof_id" type="string"/>
+		<property name="com_id" type="string"/>
 		<property name="begin_date" type="string"/>
 		<property name="prof_grade" type="int"/>
 		<property name="prof_text" type="string"/>

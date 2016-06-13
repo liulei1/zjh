@@ -49,4 +49,12 @@ public class EvaluateService {
 		List<Evaluate> list = evaluateDAO.findByDetachedCriteria(criteria);
 		return list.size()>0?list.get(0):null;
 	}
+
+	public Evaluate findEvaluateByProjectId(String proj_id) {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Evaluate.class);
+		criteria.add(Restrictions.eq("proj_id", proj_id));
+		criteria.add(Restrictions.eq("prof_state", Evaluate.UNCOMPLETED));
+		List<Evaluate> list = evaluateDAO.findByDetachedCriteria(criteria);
+		return list.size()>0?list.get(0):null;
+	}
 }

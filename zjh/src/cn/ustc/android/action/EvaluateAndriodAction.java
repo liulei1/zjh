@@ -61,8 +61,8 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 		PrintWriter pw = null;
 		
 		Professor professor = professorService.findProfessorById(model.getProf_id());
-		Evaluate eva=evaluateService.findEvaluateByIdAndProfessorId(model.getId(), professor.getId());
-		
+//		Evaluate eva=evaluateService.findEvaluateByIdAndProfessorId(model.getId(), professor.getId());
+		Evaluate eva=evaluateService.findEvaluateByProjectId(model.getProj_id());
 		if(eva == null||Evaluate.COMPLETED.equals(eva.getProf_state())){
 			// 评价记录不存在，或者评价已将完成
 			try {
@@ -71,7 +71,6 @@ public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<
 			} catch (IOException e1) {
 				
 			}
-			
 		}else {
 			eva.setProf_id(professor.getId());
 			eva.setProf_grade(model.getProf_grade());
