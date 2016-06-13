@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$.post("${pageContext.request.contextPath}/json/listVocation.action",function(data){
-			var html = '<select name="category"><option selected="selected" value="">-- select --</option>';
+			var html = '<select name="category"class="form-control" ><option selected="selected" value="">-- select --</option>';
 			$.each(data.vocationList, function(index, context){
   				html += '<option value="' + context.id +'">' + context.name +'</option>';
              });
@@ -64,7 +64,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">Vocation</label>
-				<div class="col-sm-1" id="field"></div>
+				<div class="col-sm-2" id="field"></div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label col-sm-offset-3">Remarks</label>

@@ -61,10 +61,10 @@ public class ConsultAndriodAction extends ActionSupport implements ModelDriven<C
 	 */
 	public String findConsultByCriteria(){
 		DetachedCriteria criteria = DetachedCriteria.forClass(Consult.class);
-		if(model.getCategory() != null && "".equals(model.getCategory())){
+		if(model.getCategory() != null && !"".equals(model.getCategory())){
 			criteria.add(Restrictions.eq("category", model.getCategory()));
 		}
-		if(model.getTitle()!=null && "".equals(model.getTitle())){
+		if(model.getTitle()!=null && !"".equals(model.getTitle())){
 			criteria.add(Restrictions.eq("title", model.getTitle()));
 		}
 		criteria.add(Restrictions.eq("state", Consult.ALLOW));
