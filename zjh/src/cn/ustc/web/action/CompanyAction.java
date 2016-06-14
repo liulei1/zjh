@@ -61,6 +61,7 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		}
 		//设置用户类型
 		company.setUsertype(Company.COMPANY);
+		company.setPoints(0);// 积点初始为0
 		//新注册的用户的积分权限设置为普通的
 		company.setAuthority(Company.AUTHORITY_COMMON);
 		companyService.insertCompany(company);

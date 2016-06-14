@@ -72,6 +72,7 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		}
 		//设置用户类型为专家
 		professor.setUsertype(Professor.PROFESSOR);
+		professor.setPoints(0);// 积点初始为 0
 		professorService.insertProfessor(professor);
 		ActionContext context = ActionContext.getContext();
 		context.put("result", "operate success!");
