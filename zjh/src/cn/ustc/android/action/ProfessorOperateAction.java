@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import cn.ustc.domain.Consult;
 import cn.ustc.domain.Professor;
 import cn.ustc.domain.Project;
+import cn.ustc.domain.User;
 import cn.ustc.web.service.ConsultService;
 import cn.ustc.web.service.ProfessorService;
 import cn.ustc.web.service.ProjectService;
@@ -38,6 +39,47 @@ public class ProfessorOperateAction extends ActionSupport implements ModelDriven
 	private List<Project> projects;
 	private List<Consult> consults;
 	private HttpServletResponse response;
+	
+	/**
+	 * 专家用户注册
+	 * @return
+	 */
+	public void registProfessor() {
+		response.setCharacterEncoding("utf-8");
+		PrintWriter pw = null;
+		if(model.getName() != null && "".equals(model.getName())){
+			try {
+				pw = response.getWriter();
+				pw.write("fail");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		if(model.getPassword() != null && "".equals(model.getPassword())){
+			try {
+				pw = response.getWriter();
+				pw.write("fail");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+		model.setPoints(0); // 积点为0
+		model.setState("1"); // 状态1表示可用
+		model.setUsertype(User.PROFESSOR); // 类型为专家
+		boolean res = professorService.insertProfessor(model);
+		
+		try {
+			pw = response.getWriter();
+			if(res == true){
+				pw.write("success");
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		pw.flush();
+		pw.close();
+	}
 	
 	/**
 	 * 获取专家正在进行的项目

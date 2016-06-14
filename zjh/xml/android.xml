@@ -111,5 +111,6 @@
 		
 		<action name="changePassword" method="changePassword" class="cn.ustc.android.action.ProfessorOperateAction"></action>
 		<action name="updateProfessor" method="updateProfessor" class="cn.ustc.android.action.ProfessorOperateAction"></action>
+		<action name="registProfessor" method="registProfessor" class="cn.ustc.android.action.ProfessorOperateAction"></action>
 	</package>
 </struts>
