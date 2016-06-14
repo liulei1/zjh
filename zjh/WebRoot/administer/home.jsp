@@ -8,9 +8,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <title>Administrator Center</title>
+    
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Administrator Center</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${pageContext.request.contextPath}/qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/expert.css">
@@ -147,9 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</ul>
 	</div>
 	<div>
-		<iframe name="myframe" id="iframepage"
-			src="${pageContext.request.contextPath}/welcome.jsp" width="100%"
-			height="500px" frameborder="0"></iframe>
+		<iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/welcome.jsp" width="100%" height="500px"></iframe>
 	</div>
 </body>
 </html>

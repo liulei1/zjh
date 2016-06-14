@@ -7,9 +7,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <html lang="zh-CN">
 <head>
+    <title>专家用户中心</title>
+    
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>专家用户中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="${pageContext.request.contextPath}/qing_style/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/qing_style/css/expert.css">
@@ -95,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="navBar">
         <div class="design_class fl">
             <h3 onmouseover="show()"onmouseout="hide()">全部分类&gt</h3>
-            <ul class="item" id="hi" onmouseover="show()"onmouseout="hide()">
+            <!-- <ul class="item" id="hi" onmouseover="show()"onmouseout="hide()">
                 <li class="item_list" >
                     <a href="#" target="_blank">logo</a>
                     <a href="#" target="_blank">包装</a>
@@ -159,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="#" target="_blank">软件开发</a>
                 </li>
 
-            </ul>
+            </ul> -->
         </div>
         <ul class="nav">
             <li  role="presentation"><a href="${pageContext.request.contextPath}/scheme/scheme_queryMyScheme" target="myframe">My Schemes</a></li>
@@ -170,7 +171,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 </div>
 <div>
-    <iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/consult/consult_allowList" width="100%" height="500px" frameborder="0"></iframe>
+    <iframe name="myframe" id="iframepage" src="${pageContext.request.contextPath}/welcome.jsp" width="100%" height="500px"></iframe>
 </div>
 </body>
 </html>
