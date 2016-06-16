@@ -27,17 +27,14 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+/**
+ * 企业用户操作action
+ * @author liu
+ *
+ */
 public class CompanyAction extends ActionSupport implements ModelDriven<Company>{
 	private Company company=new Company();
-	@Override
-	public Company getModel() {
-		return company;
-	}
-	
 	private List<Company> companys;
-	public List<Company> getCompanys() {
-		return companys;
-	}
 	
 	@Autowired
 	private CompanyService companyService;
@@ -48,6 +45,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	@Autowired
 	private VocationDAO vocationDAO;
 	
+	/**
+	 * 注册
+	 * @return
+	 */
 	@InputConfig(resultName = "companyRegister")
 	public String register() {
 		User user=(User) ServletActionContext.getServletContext().getAttribute("user");
@@ -67,7 +68,11 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		companyService.insertCompany(company);
 		return "companyRegisterSuccess";
 	}
-		
+	
+	/**
+	 * 检查企业用户名是否存在
+	 * @return
+	 */
 	public String checkCompanyName(){
 		List<Company> companys=null;
 		if(!("".equals(company.getName()))){
@@ -81,12 +86,20 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return SUCCESS;
 	}
 	
+	/**
+	 * 领域查找企业
+	 * @return
+	 */
 	public String companySearch(){
 		String cat=ServletActionContext.getRequest().getParameter("category");
 		companys=companyService.findCompanyByVocation(cat);
 		return "findSuccess";
 	}
 	
+	/**
+	 * 通过姓名查找企业
+	 * @return
+	 */
 	public String companySearchByName(){
 		String name=ServletActionContext.getRequest().getParameter("findByName");
 		System.out.println(name);
@@ -94,7 +107,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "findSuccess";
 	}
 
-	// 跳转到充值界面
+	/**
+	 * 跳转到充值界面
+	 * @return
+	 */
 	public String skipBalancePage(){
 		User user = (User)ServletActionContext.getServletContext().getAttribute("user");
 		String id = user.getId();
@@ -102,7 +118,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "skipBalancePageSUCCESS";
 	}
 	
-	// 企业用户充值
+	/**
+	 * 企业用户充值
+	 * @return
+	 */
 	public String addBalance(){
 		String id = company.getId();
 		double balance = Double.parseDouble(company.getBalance());
@@ -113,14 +132,20 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "addBalanceSUCCESS";
 	}
 	
-	// 查看企业用户信息
+	/**
+	 * 查看企业用户信息
+	 * @return
+	 */
 	public String viewCompanyInfo(){
 		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		company = companyService.findCompanyById(user.getId());
 		return "viewCompanyInfoSUCCESS";
 	}
 	
-	// 更新信息
+	/**
+	 * 更新信息
+	 * @return
+	 */
 	public String updateProfessorInfo(){
 		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		company.setId(user.getId());
@@ -130,12 +155,18 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "updateProfessorInfoSUCCESS";
 	}
 	
-	// 修改密码视图
+	/**
+	 * 修改密码视图
+	 * @return
+	 */
 	public String viewChangePassword(){
 		return "viewChangePasswordSUCCESS";
 	}
 	
-	// 更新密码
+	/**
+	 * 更新密码
+	 * @return
+	 */
 	public String changePassword(){
 		Company user = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		Company c = companyService.findCompanyById(user.getId());
@@ -151,22 +182,21 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 	}
 	
 	private File file;
-
-	public void setFile(File file) {
-		this.file = file;
-	}
 	private String imgPath;
-	public String getImgPath() {
-		return imgPath;
-	}
 
-		//查询所有状态为0的company,放在companys中
+	/**
+	 * 查询所有状态为0的company,放在companys中
+	 * @return
+	 */
 	public String unauditlist(){
 		companys=companyService.findAllUnaudit();
 		return "uneditCompanys";
 	}
 	
-	//通过一个company申请
+	/**
+	 * 通过一个company申请
+	 * @return
+	 */
 	public String pass(){
 		//传进来的company只有id一个属性
 		companyService.pass(company.getId());
@@ -188,7 +218,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "passSuccess";
 	}
 	
-	//拒绝一个company申请
+	/**
+	 * 拒绝一个company申请
+	 * @return
+	 */
 	public String refuse(){
 		company=companyService.findCompanyById(company.getId());
 		String name=company.getName();
@@ -210,7 +243,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		
 	}
 	
-	//头像上传
+	/**
+	 * 头像上传
+	 * @return
+	 */
 	public String uploadCompanyImage(){
 		
 		// 判断文件不为空，且是图片
@@ -239,6 +275,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return SUCCESS;
 	}
 	
+	/**
+	 * 跳转到充值vip页面
+	 * @return
+	 */
 	public String toVipPage(){
 		Object o = ServletActionContext.getServletContext().getAttribute("user");
 		// 判断发布用户是否合法
@@ -261,6 +301,10 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "toVipPageSUCCESS";
 	}
 	
+	/**
+	 * 充值vip
+	 * @return
+	 */
 	public String toVip(){
 		Object o = ServletActionContext.getServletContext().getAttribute("user");
 		// 判断发布用户是否合法
@@ -335,4 +379,18 @@ public class CompanyAction extends ActionSupport implements ModelDriven<Company>
 		return "deleteCompanySUCCESS";
 	}
 	
+	/**************************************************************/
+	public List<Company> getCompanys() {
+		return companys;
+	}
+	@Override
+	public Company getModel() {
+		return company;
+	}
+	public void setFile(File file) {
+		this.file = file;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
 }

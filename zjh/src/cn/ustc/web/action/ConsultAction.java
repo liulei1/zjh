@@ -35,29 +35,21 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+/**
+ * 咨询操作action
+ * @author liu
+ *
+ */
 @SuppressWarnings("serial")
 public class ConsultAction extends ActionSupport implements ModelDriven<Consult> {
 	private static final int PAGESIZE = 4;
 	private Consult model = new Consult();
-	@Override
-	public Consult getModel() {
-		return model;
-	}
+	private List<Consult> consults;
 	
 	/****************************文件上传****************************/
 	private File file;
 	private String fileFileName;
 	private String fileContentType;
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-	public void setFileFileName(String fileFileName) {
-		this.fileFileName = fileFileName;
-	}
-	public void setFileContentType(String fileContentType) {
-		this.fileContentType = fileContentType;
-	}
 
 	/****************************** 注入 **********************************/
 	@Autowired
@@ -71,7 +63,11 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 
 	/************************************* 发布上传下载 ****************************************/
 
-	// 获取下载输出流
+	/**
+	 * 获取下载输出流
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public InputStream getInputStream() throws FileNotFoundException {
 		if (model == null || model.getFilePath() == null) {
 			return null;
@@ -86,7 +82,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 
-	// 下载文档
+	/**
+	 * 下载文档
+	 * @return
+	 */
 	public String download() {
 		model = consultService.findById(model.getId());
 		return "downSUCCESS";
@@ -94,14 +93,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	
 	/************************************* 需求操作 *****************************************/
 		
-	private List<Consult> consults;
-	public List<Consult> getConsults() {
-		return consults;
-	}
-	public void setConsults(List<Consult> consults) {
-		this.consults = consults;
-	}
-	// 咨询发布
+	/**
+	 * 咨询发布
+	 * @return
+	 */
 	@InputConfig(resultName = "input")
 	public String publishConsult() {
 		Object o = ServletActionContext.getServletContext().getAttribute("user");
@@ -142,9 +137,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return NONE;
 	}
 
-	// 获取下载文件 类型
-	// <param name="contentType">${contentType}</param>
+	// 
+	/**
+	 * 获取下载文件 类型
+	 * @return
+	 */
 	public String getContentType() {
+		// <param name="contentType">${contentType}</param>
 		if (model == null || model.getFilePath() == null) {
 			return null;
 		} else {
@@ -154,10 +153,13 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 
-	// 获取下载文件名
-	// <param
-	// name="contentDisposition">attachment;filename=${downloadFileName}</param>
+	/**
+	 * 获取下载文件名
+	 * @return
+	 * @throws IOException
+	 */
 	public String getDownloadFileName() throws IOException {
+		// <param name="contentDisposition">attachment;filename=${downloadFileName}</param>
 		if (model == null || model.getFilePath() == null) {
 			return null;
 		} else {
@@ -167,7 +169,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 
-	// 显示全部
+	/**
+	 * 显示全部需求
+	 * @return
+	 */
 	public String list(){
 		List<Consult> list = consultService.consultList();
 		consults = list;
@@ -175,7 +180,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return "listSUCCESS";
 	}
 	
-	// 查询登录企业所发布所有未完成的需求
+	/**
+	 * 查询登录企业所发布所有未完成的需求
+	 * @return
+	 */
 	public String queryMyConsult(){
 		//Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		Object obj=ServletActionContext.getServletContext().getAttribute("user");
@@ -218,7 +226,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return "queryMyConsultSUCCESS";
 	}
 	
-	// 查询登录企业所发布所有未完成的需求
+	/**
+	 * 查询登录企业所发布所有未完成的需求
+	 * @return
+	 */
 	public String queryMyConsultReturnJson(){
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		
@@ -240,7 +251,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return SUCCESS;
 	}
 	
-	// 显示未审核
+	/**
+	 * 显示未审核
+	 * @return
+	 */
 	public String unCheckList(){
 		List<Consult> list = consultService.unCheckConsultList();
 		consults = list;
@@ -248,7 +262,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return "unCheckListSUCCESS";
 	}
 	
-	// 显示通过
+	/**
+	 * 显示通过
+	 * @return
+	 */
 	public String allowList(){
 		int count=consultService.allowCount();
 		//总条数
@@ -268,7 +285,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return "allowListSUCCESS";
 	}
 	
-	// 根据查看咨询内容
+	/**
+	 * 根据查看咨询内容
+	 * @return
+	 */
 	public String view(){
 		Consult consult = consultService.findById(model.getId());
 		model = consult;
@@ -276,7 +296,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	}
 	
 	/****************************************审核*******************************************/
-	// 咨询审核通过
+	/**
+	 * 咨询审核通过
+	 * @return
+	 */
 	public String allow(){
 		ConsultCheck consultCheck = new ConsultCheck();
 		Administer admin = (Administer) ServletActionContext.getServletContext().getAttribute("user");
@@ -300,7 +323,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 	
-	// 拒绝
+	/**
+	 * 审核拒绝
+	 * @return
+	 */
 	public String reject(){
 		Administer admin = (Administer) ServletActionContext.getServletContext().getAttribute("user");
 		ConsultCheck consultCheck = new ConsultCheck();
@@ -317,7 +343,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}
 	}
 	
-	// 咨询接受
+	/**
+	 * 咨询接受
+	 * @return
+	 */
 	public String recieve(){
 		Consult consult = consultService.findById(model.getId());
 		Project project = new Project();
@@ -335,7 +364,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		return NONE;
 	}
 	
-	// 首页获取推荐的咨询
+	/**
+	 * 首页获取推荐的咨询
+	 * @return
+	 */
 	public String recommendConsult(){
 		consults = consultService.getRecommendConsult(5);
 		for (Consult c : consults) {
@@ -343,5 +375,26 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 			c.setCategory(vocation.getName());
 		}
 		return SUCCESS;
+	}
+	
+	/******************************************************************************/
+	public void setFile(File file) {
+		this.file = file;
+	}
+	public void setFileFileName(String fileFileName) {
+		this.fileFileName = fileFileName;
+	}
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+	@Override
+	public Consult getModel() {
+		return model;
+	}
+	public List<Consult> getConsults() {
+		return consults;
+	}
+	public void setConsults(List<Consult> consults) {
+		this.consults = consults;
 	}
 }

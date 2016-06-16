@@ -6,6 +6,11 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Project;
+/**
+ * 项目DAO
+ * @author liu
+ *
+ */
 @SuppressWarnings("unchecked")
 public class ProjectDAO extends HibernateDaoSupport{
 
@@ -26,7 +31,13 @@ public class ProjectDAO extends HibernateDaoSupport{
 		return this.getHibernateTemplate().findByCriteria(criteria);
 	}
 	
-	//查询指定条数的项目list
+	/**
+	 * 分页查询
+	 * @param criteria
+	 * @param firstResult 首记录下标
+	 * @param maxResults 最大记录数
+	 * @return
+	 */
 	public List<Project> findByDetachedCriteria(DetachedCriteria criteria, int firstResult, int maxResults){
 		return this.getHibernateTemplate().findByCriteria(criteria,firstResult,maxResults);
 	}
@@ -48,12 +59,22 @@ public class ProjectDAO extends HibernateDaoSupport{
 		return this.getHibernateTemplate().get(Project.class, id);
 	}
 
+	/**
+	 * 根据专家id获取项目数
+	 * @param pro_id
+	 * @return
+	 */
 	public int getCountByPorfessorID(String pro_id) {
 		String hql = "select count(*) from Project as project where project.prof_id =?";
 		Long count = (Long) this.getHibernateTemplate().find(hql, pro_id).listIterator().next();
 		return count.intValue();
 	}
 	
+	/**
+	 * 根据企业id获取项目数
+	 * @param com_id
+	 * @return
+	 */
 	public int getCountByCompanyID(String com_id) {
 		String hql = "select count(*) from Project as project where project.com_id =?";
 		Long count = (Long) this.getHibernateTemplate().find(hql, com_id).listIterator().next();

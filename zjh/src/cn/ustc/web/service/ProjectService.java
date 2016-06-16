@@ -1,6 +1,5 @@
 package cn.ustc.web.service;
 
-import java.awt.image.RescaleOp;
 import java.util.Date;
 import java.util.List;
 
@@ -9,13 +8,17 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.ustc.domain.Consult;
 import cn.ustc.domain.Evaluate;
 import cn.ustc.domain.Project;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.web.dao.EvaluateDAO;
 import cn.ustc.web.dao.ProjectDAO;
 
+/**
+ * 项目service
+ * @author liu
+ *
+ */
 @Transactional
 public class ProjectService {
 	@Autowired
@@ -52,14 +55,28 @@ public class ProjectService {
 		evaluateDAO.insert(evaluate);
 	}
 	
+	/**
+	 * 更新项目信息
+	 * @param project
+	 */
 	public void update(Project project){
 		this.projectDAO.update(project);
 	}
 
+	/**
+	 * 根据专家id查询专家参与的项目数
+	 * @param pro_id
+	 * @return
+	 */
 	public int getCountByPorfessorID(String pro_id) {
 		return projectDAO.getCountByPorfessorID(pro_id);
 	}
 	
+	/**
+	 * 根据企业id查询企业参与的项目数
+	 * @param com_id
+	 * @return
+	 */
 	public int getCountByCompanyID(String com_id) {
 		return projectDAO.getCountByCompanyID(com_id);
 	}

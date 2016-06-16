@@ -1,5 +1,10 @@
 package cn.ustc.domain;
 
+/**
+ * 用户bean
+ * @author liu
+ *
+ */
 public class User {
 	/*********************用户类型*******************************/
 	 

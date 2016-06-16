@@ -2,9 +2,8 @@ package cn.ustc.web.action;
 
 import java.util.Date;
 
+
 import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
@@ -21,12 +20,13 @@ import cn.ustc.web.service.ProjectService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+/**
+ * 评价操作action
+ * @author liu
+ *
+ */
 public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluate> {
 	private Evaluate evaluate = new Evaluate();
-	@Override
-	public Evaluate getModel() {
-		return evaluate;
-	}
 	
 	/******************************* 注入 ********************************/
 	@Autowired
@@ -39,7 +39,10 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 	private ProfessorService professorService;
 
 	/********************************* 项目操作 ************************************/
-	
+	/**
+	 * 跳转到发布评价页面
+	 * @return
+	 */
 	public String publishView(){
 		Project project = projectService.findById(evaluate.getProj_id());
 		evaluate = evaluateService.findByProjId(project.getId());
@@ -47,7 +50,10 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		return "publishView";
 	}
 	
-	// 企业评价
+	/**
+	 * 企业评价
+	 * @return
+	 */
 	public String compEvaluate() {
 		Company company = (Company) ServletActionContext.getServletContext().getAttribute("user");
 		Evaluate eva = evaluateService.findById(evaluate.getId());
@@ -74,7 +80,10 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		}
 	}
 
-	// 专家评价
+	/**
+	 * 专家评价
+	 * @return
+	 */
 	public String profEvaluate() {
 		
 		Professor professor = (Professor) ServletActionContext.getServletContext().getAttribute("user");
@@ -125,5 +134,11 @@ public class EvaluateAction extends ActionSupport implements ModelDriven<Evaluat
 		// 积分不能超过5，超过表示是 恶意操作
 		company.setPoints(company.getPoints()+Math.min(com_grade, 5));
 		companyService.update(company);
+	}
+	
+	/**********************************************************/
+	@Override
+	public Evaluate getModel() {
+		return evaluate;
 	}
 }

@@ -1,24 +1,12 @@
 package cn.ustc.android.action;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.ustc.domain.Company;
-import cn.ustc.domain.Consult;
-import cn.ustc.domain.Professor;
-import cn.ustc.domain.Project;
 import cn.ustc.web.service.CompanyService;
-import cn.ustc.web.service.ConsultService;
-import cn.ustc.web.service.ProfessorService;
-import cn.ustc.web.service.ProjectService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;

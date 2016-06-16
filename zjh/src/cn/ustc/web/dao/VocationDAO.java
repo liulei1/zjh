@@ -5,8 +5,17 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.ustc.domain.Vocation;
 
+/**
+ * 领域DAO
+ * @author liu
+ *
+ */
 public class VocationDAO extends HibernateDaoSupport {
 
+	/**
+	 * 查询所有领域
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Vocation> listVocation() {
 		String hql = "from Vocation";

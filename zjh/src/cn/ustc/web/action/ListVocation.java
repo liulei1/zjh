@@ -16,15 +16,21 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class ListVocation extends ActionSupport{
 	private List<Vocation> vocationList;
-	public List<Vocation> getVocationList() {
-		return vocationList;
-	}
-	
 	@Autowired
 	private VocationDAO vocationDAO;
-
+	
+	/**
+	 * 列出所有领域
+	 * @return
+	 */
 	public String list(){
 		vocationList = vocationDAO.listVocation();
 		return SUCCESS;
 	}
+	
+	/****************************************************/
+	public List<Vocation> getVocationList() {
+		return vocationList;
+	}
+	
 }

@@ -128,6 +128,10 @@ public class ConsultDAO extends HibernateDaoSupport{
 		return count.intValue();
 	}
 	
+	/**
+	 * 查询所有审核通过的咨询
+	 * @return
+	 */
 	public int getAllowCount(){
 		String hql="select count(*) from Consult as consult where consult.state=?";
 		Long count=(Long)this.getHibernateTemplate().find(hql,Consult.ALLOW).listIterator().next();
@@ -155,6 +159,11 @@ public class ConsultDAO extends HibernateDaoSupport{
 		return count.intValue();
 	}
 
+	/**
+	 * 根据专家id查找专家参与的咨询
+	 * @param professorId
+	 * @return
+	 */
 	public List<Consult> findProfessorApplyConslut(String professorId) {
 		String sql = "select c.* from consult c inner join (select * from project_scheme where prof_id=:profId) sub on c.id=sub.cons_id where c.state=:state";
 		Session session = this.getSessionFactory().getCurrentSession();

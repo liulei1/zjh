@@ -1,9 +1,7 @@
 package cn.ustc.web.dao;
 
-import java.awt.image.RescaleOp;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -28,7 +26,6 @@ public class SchemeDAO extends HibernateDaoSupport {
 		 * was already associated with the session
 		 */
 		scheme = (Scheme) this.getSession().merge(scheme);
-		
 		this.getHibernateTemplate().save(scheme);
 	}
 	
@@ -65,14 +62,26 @@ public class SchemeDAO extends HibernateDaoSupport {
 		return this.getHibernateTemplate().get(Scheme.class, id);
 	}
 
+	/**
+	 * 分页条件查询
+	 * @param criteria
+	 * @param page 首记录下标
+	 * @param pageSize 最大记录数
+	 * @return
+	 */
 	public List<Scheme> findByDetachedCriteriaPage(DetachedCriteria criteria,
 			int page, int pageSize) {
 		return this.getHibernateTemplate().findByCriteria(criteria,page,pageSize);
 	
 	}
-
+	
+	/**
+	 * 通过主键id获取发布的方案数
+	 * @param id
+	 * @return
+	 */
 	public int getCountByPorfessorID(String id) {
-		String hql = "select count(*) from Scheme as scheme";
+//		String hql = "select count(*) from Scheme as scheme";
 		DetachedCriteria criteria = DetachedCriteria.forClass(Scheme.class);
 		criteria.add(Restrictions.eq("professor.id", id));
 		List findByCriteria = this.getHibernateTemplate().findByCriteria(criteria);

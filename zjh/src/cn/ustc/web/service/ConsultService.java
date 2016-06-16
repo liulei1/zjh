@@ -1,6 +1,5 @@
 package cn.ustc.web.service;
 
-import java.awt.image.RescaleOp;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -27,7 +26,11 @@ import cn.ustc.web.dao.MessageDAO;
 import cn.ustc.web.dao.ProfessorDAO;
 import cn.ustc.web.dao.ProjectDAO;
 import cn.ustc.web.dao.SchemeDAO;
-
+/**
+ * 咨询service
+ * @author liu
+ *
+ */
 @Transactional(rollbackFor=Exception.class)
 public class ConsultService {
 	@Autowired
@@ -236,6 +239,10 @@ public class ConsultService {
 		return consultDAO.getCount(companyId);
 	}
 
+	/**
+	 * 查看待接收的咨询
+	 * @return
+	 */
 	public int allowCount(){
 		return consultDAO.getAllowCount();
 	}

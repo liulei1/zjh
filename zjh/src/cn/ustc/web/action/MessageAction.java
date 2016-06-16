@@ -12,6 +12,11 @@ import cn.ustc.web.service.MessageService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+/**
+ * 消息操作action
+ * @author liu
+ *
+ */
 public class MessageAction extends ActionSupport implements ModelDriven<Message>{
 	@Autowired
 	private MessageService messageService;

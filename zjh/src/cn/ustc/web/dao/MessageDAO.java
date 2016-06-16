@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.ustc.domain.Message;
 
 /**
- * 消息操作
+ * 消息操作DAO
  * @author liu
  *
  */

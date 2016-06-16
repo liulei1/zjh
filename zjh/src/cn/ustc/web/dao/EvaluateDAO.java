@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cn.ustc.domain.Evaluate;
 
 /**
- * 评价操作
+ * 评价操作DAO
  * @author liu
  *
  */
@@ -31,10 +31,19 @@ public class EvaluateDAO extends HibernateDaoSupport{
 		return this.getHibernateTemplate().findByCriteria(criteria);
 	}
 
+	/**
+	 * 根据id查找评价
+	 * @param id
+	 * @return
+	 */
 	public Evaluate findById(String id) {
 		return this.getHibernateTemplate().get(Evaluate.class, id);
 	}
 
+	/**
+	 * 更新评价信息
+	 * @param evaluate
+	 */
 	public void update(Evaluate evaluate) {
 		this.getHibernateTemplate().update(evaluate);
 	}

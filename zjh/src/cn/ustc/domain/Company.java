@@ -3,6 +3,11 @@ package cn.ustc.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 企业用户bean
+ * @author liu
+ *
+ */
 public class Company extends User{
 	/****************权限****************/
 	public static final String AUTHORITY_COMMON = "0"; // 普通权限

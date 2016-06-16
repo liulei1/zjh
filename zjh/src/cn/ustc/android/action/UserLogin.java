@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**
- * 用户登录注册处理类
+ * 安卓端用户登录注册处理类
  * @author liu
  *
  */

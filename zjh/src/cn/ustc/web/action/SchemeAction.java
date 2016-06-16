@@ -36,6 +36,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+/**
+ * 方案操作action 
+ * @author liu
+ *
+ */
 public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	private final int PAGESIZE=4;
 	@Autowired
@@ -71,9 +76,11 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	private ConsultService consultService;
 
 	/************************************* 发布上传下载 ****************************************/
-	// 获取下载文件名
-	// <param
-	// name="contentDisposition">attachment;filename=${downloadFileName}</param>
+	/**
+	 * 获取下载文件名
+	 * @return
+	 * @throws IOException
+	 */
 	public String getDownloadFileName() throws IOException {
 		if (model == null || model.getFilePath() == null) {
 			return null;
@@ -84,7 +91,11 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		}
 	}
 
-	// 获取下载输出流
+	/**
+	 * 获取下载输出流
+	 * @return
+	 * @throws FileNotFoundException
+	 */
 	public InputStream getInputStream() throws FileNotFoundException {
 		if (model == null || model.getFilePath() == null) {
 			return null;
@@ -100,8 +111,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		}
 	}
 
-	// 获取下载文件 类型
-	// <param name="contentType">${contentType}</param>
+	/**
+	 * 获取下载文件 类型
+	 * @return
+	 */
 	public String getContentType() {
 		if (model == null || model.getFilePath() == null) {
 			return null;
@@ -112,7 +125,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		}
 	}
 	
-	// 下载文档
+	/**
+	 * 下载文档
+	 * @return
+	 */
 	public String download() {
 		// model 需要最获取 下载输出流时使用
 		model = schemeService.findById(model.getId());
@@ -125,7 +141,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return schemes;
 	}
 	
-	// 跳转到方案发布页面
+	/**
+	 * 跳转到方案发布页面
+	 * @return
+	 */
 	public String submitView() {
 		String cons_id = model.getCons_id();
 		Consult consult = consultService.findById(cons_id);
@@ -133,7 +152,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return "submitViewSUCCESS";
 	}
 
-	// 方案发布
+	/**
+	 * 方案发布
+	 * @return
+	 */
 	@InputConfig(resultName = "input")
 	public String publish() {
 		if (file != null) {
@@ -174,7 +196,10 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 	}
 	
 
-	// 查找登录专家发布的所有方案
+	/**
+	 * 查找登录专家发布的所有方案
+	 * @return
+	 */
 	public String queryMyScheme(){
 		Object obj=ServletActionContext.getServletContext().getAttribute("user");
 		int count=0;
@@ -225,12 +250,19 @@ public class SchemeAction extends ActionSupport implements ModelDriven<Scheme> {
 		return "findConsultSchemesSUCCESS";
 	}
 	
+	/**
+	 * 根据方案查找发布的专家
+	 * @return
+	 */
 	public String findProjectScheme(){
 		model = schemeService.findById(model.getId());
 		return "findProjectSchemeSUCCESS";
 	}
 	
-	// 显示全部
+	/**
+	 * 显示全部方案
+	 * @return
+	 */
 	public String list() {
 		schemes = schemeService.findAll();
 		return "listSUCCESS";

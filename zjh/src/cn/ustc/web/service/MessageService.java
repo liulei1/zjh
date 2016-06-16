@@ -13,7 +13,11 @@ import cn.ustc.domain.Message;
 import cn.ustc.domain.User;
 import cn.ustc.utils.DateUtils;
 import cn.ustc.web.dao.MessageDAO;
-
+/**
+ * 消息service
+ * @author liu
+ *
+ */
 @Transactional
 public class MessageService {
 	@Autowired
@@ -22,11 +26,21 @@ public class MessageService {
 		this.messageDAO = messageDAO;
 	}
 	
+	/**
+	 * 获取用户未读的信息条数
+	 * @param user
+	 * @return
+	 */
 	public int getUserUnreadMessageCount(User user) {
 		List<Message> list = this.getUserUnreadMessages(user);
 		return list.size();
 	}
 	
+	/**
+	 * 获取用户未读的信息
+	 * @param user
+	 * @return
+	 */
 	public List<Message> getUserUnreadMessages(User user){
 		DetachedCriteria criteria = DetachedCriteria.forClass(Message.class);
 		if(user.getId().equals("")){
@@ -39,12 +53,21 @@ public class MessageService {
 		}
 	}
 	
+	/**
+	 * 标记信息为已读
+	 * @param id 消息的id
+	 */
 	public void readMessageById(String id) {
 		Message message = messageDAO.findById(id);
 		message.setState(Message.READED);
 		messageDAO.update(message);
 	}
 
+	/**
+	 * 获取已读信息
+	 * @param user
+	 * @return
+	 */
 	public List<Message> getUserReadedMessages(User user) {
 		DetachedCriteria criteria = DetachedCriteria.forClass(Message.class);
 		if(user.getId().equals("")){
@@ -58,7 +81,7 @@ public class MessageService {
 	}
 	
 	/**
-	 * 发型消息
+	 * 发消息
 	 * @param message
 	 */
 	public void sendMessage(Message message){

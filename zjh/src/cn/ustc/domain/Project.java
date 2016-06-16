@@ -3,7 +3,7 @@ package cn.ustc.domain;
 import java.util.Date;
 
 /**
- * 需求被专家接受的项目
+ * 咨询接受方案形成的项目bean
  * @author liu
  *
  */

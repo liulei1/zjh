@@ -9,6 +9,11 @@ import org.apache.commons.io.FileUtils;
 
 import sun.misc.BASE64Encoder;
 
+/**
+ * 文件上传工具类
+ * @author liu
+ *
+ */
 public class UploadAndDownloadUtils {
 	/**
 	 * 下载文件时，针对不同浏览器，进行附件名的编码

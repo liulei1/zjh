@@ -19,6 +19,11 @@ import cn.ustc.web.service.ProjectService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+/**
+ * 项目操作action
+ * @author liu
+ *
+ */
 public class ProjectAction extends ActionSupport implements ModelDriven<Project> {
 	private Project project = new Project();
 	private static final int PAGESIZE=4;
@@ -39,6 +44,10 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 	@Autowired
 	private ProfessorService professorService;
 	/********************************* 项目操作 ************************************/
+	/**
+	 * 查找用户的项目
+	 * @return
+	 */
 	public String queryMyProject(){
 		int count=0;
 		DetachedCriteria criteria = DetachedCriteria.forClass(Project.class);
@@ -88,7 +97,10 @@ public class ProjectAction extends ActionSupport implements ModelDriven<Project>
 			return ERROR;
 		}
 	}
-	
+	/**
+	 * 项目完成
+	 * @return
+	 */
 	public String complete(){
 		projectService.projectComplete(project);
 		return "completeSUCCESS";

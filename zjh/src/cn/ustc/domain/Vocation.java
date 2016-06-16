@@ -1,7 +1,7 @@
 package cn.ustc.domain;
 
 /**
- * 行业
+ * 行业、领域bean
  * @author liu
  *
  */

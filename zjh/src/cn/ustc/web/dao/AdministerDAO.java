@@ -14,7 +14,7 @@ import cn.ustc.domain.Administer;
 import cn.ustc.utils.HibernateUtils;
 
 /**
- * 管理员用户
+ * 管理员用户DAO
  * @author liu
  *
  */
@@ -66,6 +66,10 @@ public class AdministerDAO  extends HibernateDaoSupport {
 		return Administer;
 	}
 
+	/**
+	 * 查询所有管理员
+	 * @return
+	 */
 	public List<Administer> findAll() {
 
 		Session session = HibernateUtils.openSession();
@@ -145,13 +149,22 @@ public class AdministerDAO  extends HibernateDaoSupport {
 		return AdministerList;
 	}
 
+	/**
+	 * 条件查询
+	 * @param criteria
+	 * @return
+	 */
 	public Administer findByCriteria(DetachedCriteria criteria) {
 		List<Administer> list = this.getHibernateTemplate().findByCriteria(criteria);
 		return list.isEmpty() ? null : list.get(0);
 	}
 
-	
-	
+	/**
+	 * 根据账户名和密码查询管理员
+	 * @param name
+	 * @param password
+	 * @return
+	 */
 	public Administer findByAdminInfo(String name, String password) {
 		String hql="from Administer where name=:name and password=:password";
 		List<Administer> adminList=this.getHibernateTemplate().findByNamedParam(hql, new String[]{"name","password"}, new Object[]{name,password});

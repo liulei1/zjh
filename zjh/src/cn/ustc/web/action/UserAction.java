@@ -38,13 +38,14 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+/**
+ * 用户操作action
+ * @author liu
+ *
+ */
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
-	
-	@Override
-	public User getModel() {
-		return user;
-	}
+	private List<User> users;
 
 	/******************************* 注入 ********************************/
 	@Autowired
@@ -154,11 +155,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return "registerOK";
 	}
 	
-	// 放入struts 值栈，用于所有普通用户显示
-	private List<User> users;
-	public List<User> getUsers() {
-		return users;
-	}
 	/**
 	 * 普通用户信息列表
 	 * @return
@@ -245,6 +241,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	}
 	
 	/************************ 登录验证码 ****************************/
+	/**
+	 * 验证码
+	 * @return
+	 */
 	public boolean verify(){
 		String captcha = ServletActionContext.getRequest().getParameter("captcha");
 		String sRand = (String) ServletActionContext.getRequest().getSession().getAttribute("captcha");
@@ -456,30 +456,47 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 	}
 	/**********************************************************************/
-	
+	/**
+	 * 跳转企业注册页面
+	 * @return
+	 */
 	public String companyRegister(){
 		return "compRegister";
 	}
+	
+	/**
+	 * 跳转专家注册页面
+	 * @return
+	 */
 	public String professorRegister(){
 		return "professorRegister";
 	}
 	
 	
-	//获得用户信息，在专家申请页面显示
+	/**
+	 * 获得用户信息，在专家申请页面显示
+	 * @return
+	 */
 	public String userInitInformation(){
 		user=(User) ServletActionContext.getServletContext().getAttribute("user");
 		user= userService.findUserById(user.getId());
 		return "userInitInformation";
 	}
 
-	//获得用户信息，在企业申请页面显示
+	/**
+	 * 获得用户信息，在企业申请页面显示
+	 * @return
+	 */
 	public String companyInit(){
 		user=(User) ServletActionContext.getServletContext().getAttribute("user");
 		user=userService.findUserById(user.getId());
 		return "companyInit";
 	}
 	
-	// 跳转到用户中心
+	/**
+	 * 跳转到用户中心
+	 * @return
+	 */
 	public String toUserCenter(){
 		String usertype = user.getUsertype();
 		if(User.ADMIN.equals(usertype)){
@@ -496,6 +513,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 	}
 	
+	/**
+	 * 跳转用户信息视图
+	 * @return
+	 */
 	public String toUserInfoView(){
 		return "toUserInfoViewSUCCESS";
 	}
@@ -530,5 +551,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	@Override
+	public User getModel() {
+		return user;
 	}
 }

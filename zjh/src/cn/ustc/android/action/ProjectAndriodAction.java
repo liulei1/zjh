@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**
- * 项目处理类
+ * 安卓端项目处理类
  * @author liu
  *
  */

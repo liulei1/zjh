@@ -24,6 +24,11 @@ import cn.ustc.web.service.ProjectService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+/**
+ * 安卓端对评价的处理
+ * @author liu
+ *
+ */
 public class EvaluateAndriodAction extends ActionSupport implements ModelDriven<Evaluate>, ServletResponseAware {
 	private Evaluate model = new Evaluate();
 	private HttpServletResponse response;

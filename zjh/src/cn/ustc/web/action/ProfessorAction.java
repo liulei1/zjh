@@ -28,6 +28,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
+/**
+ * 专家用户操作action
+ * @author liu
+ *
+ */
 public class ProfessorAction extends ActionSupport implements ModelDriven<Professor>{
 	private final int PAGESIZE = 10;
 	private List<Professor> professors;
@@ -43,21 +48,13 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	private MessageService messageService;
 	
 	private File file;
-
-	public void setFile(File file) {
-		this.file = file;
-	}
 	private String imgPath;	// 上传头像的本地存储路径，相对tomcat静态资源路径
 	private String imgErrorResult;	// 上传错误结果
 	
-	public String getImgErrorResult() {
-		return imgErrorResult;
-	}
-	public String getImgPath() {
-		return imgPath;
-	}
-	
-	// 用户注册
+	/**
+	 * 专家用户注册
+	 * @return
+	 */
 	@InputConfig(resultName = "professorRegister")
 	public String register() {
 		User user=(User) ServletActionContext.getServletContext().getAttribute("user");
@@ -84,7 +81,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "professorlist";
 	}
 	
-	// 检查用户名是否存在
+	/**
+	 * 检查用户名是否存在
+	 * @return
+	 */
 	public String checkProfessorName(){
 		List<Professor> professors=null;
 		if(!("".equals(professor.getName()))){
@@ -98,28 +98,40 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return SUCCESS;
 	}
 	
-	// 查找专家
+	/**
+	 * 查找专家
+	 * @return
+	 */
 	public String professorSearch(){
 		String cat=(String) ServletActionContext.getRequest().getParameter("category");
 		professors=professorService.findProfessorByVocation(cat);
 		return "findSuccess";
 	}
 	
-	// 通过名字查找专家
+	/**
+	 *  通过名字查找专家
+	 * @return
+	 */
 	public String professorSearchByName(){
 		String name=(String) ServletActionContext.getRequest().getParameter("findByName");
 		professors=professorService.findProfessorByName(name);
 		return "findSuccess";
 	}
 
-	// 查看当前登录的专家用户信息
+	/**
+	 * 查看当前登录的专家用户信息
+	 * @return
+	 */
 	public String viewProfessorInfo(){
 		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		professor = professorService.findProfessorById(user.getId());
 		return "viewProfessorInfoSUCCESS";
 	}
 	
-	// 更新信息
+	/**
+	 * 更新信息
+	 * @return
+	 */
 	public String updateProfessorInfo(){
 		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		professor.setId(user.getId());
@@ -129,12 +141,18 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "updateProfessorInfoSUCCESS";
 	}
 	
-	// 修改密码视图
+	/**
+	 * 跳转修改密码视图
+	 * @return
+	 */
 	public String viewChangePassword(){
 		return "viewChangePasswordSUCCESS";
 	}
 	
-	// 更新密码
+	/**
+	 * 更新密码
+	 * @return
+	 */
 	public String changePassword(){
 		Professor user = (Professor) ServletActionContext.getServletContext().getAttribute("user");
 		Professor p = professorService.findProfessorById(user.getId());
@@ -149,6 +167,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "changePasswordSUCCESS";
 	}
 	
+	/**
+	 * 跳转到注册页面
+	 * @return
+	 */
 	public String viewRegister(){
 		return "viewRegisterSUCCESS";
 	}
@@ -165,13 +187,19 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "viewProfessorInfoByIdSUCCESS";
 	}
 	
-	// 返回状态为0的professor列表
+	/**
+	 * 返回状态为0的professor列表
+	 * @return
+	 */
 	public String unauditlist(){
 		professors=professorService.findAllUnaudit();
 		return "uneditProfessors";
 	}
 	
-	//通过一个porfessor申请
+	/**
+	 * 通过一个porfessor申请
+	 * @return
+	 */
 	public String pass(){
 		professorService.pass(professor.getId());
 		//为user放一条消息,先查找到professor的名字，再拿着名字查找user,给这个id的user放一条信息
@@ -192,7 +220,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "passSuccess";
 	}
 	
-	//拒绝一个professor申请
+	/**
+	 * 拒绝一个professor申请
+	 * @return
+	 */
 	public String refuse(){
 		professor=professorService.findProfessorById(professor.getId());
 		String name=professor.getName();
@@ -214,7 +245,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		
 	}
 	
-	// 首页推荐的专家
+	/**
+	 * 首页推荐的专家
+	 * @return
+	 */
 	public String recommendProfessor(){
 		professors = professorService.getRecommendProfessor(5);
 		for (Professor p : professors) {
@@ -227,7 +261,10 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return SUCCESS;
 	}
 	
-	// 专家头像上传
+	/**
+	 * 专家头像上传
+	 * @return
+	 */
 	public String uploadProfessorImage(){
 		
 		// 判断文件不为空，且是图片
@@ -306,6 +343,15 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 		return "editProfessorViewSUCCESS";
 	}
 	
+	/**
+	 * 删除企业用户
+	 */
+	public String delete(){
+		String id=professor.getId();
+		professorService.deleteProfessorById(id);
+		return "deleteProfessorSUCCESS";
+	}
+	
 	/********************************************************************/
 	public List<Professor> getProfessors() {
 		return professors;
@@ -314,13 +360,13 @@ public class ProfessorAction extends ActionSupport implements ModelDriven<Profes
 	public Professor getModel() {
 		return professor;
 	}
-	
-	/**
-	 * 删除企业用户
-	 */
-	public String delete(){
-		String id=professor.getId();
-		professorService.deleteProfessorById(id);
-		return "deleteProfessorSUCCESS";
+	public void setFile(File file) {
+		this.file = file;
+	}
+	public String getImgErrorResult() {
+		return imgErrorResult;
+	}
+	public String getImgPath() {
+		return imgPath;
 	}
 }

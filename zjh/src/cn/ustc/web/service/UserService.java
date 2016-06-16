@@ -10,11 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.ustc.domain.User;
 import cn.ustc.web.dao.UserDAO;
 
+/**
+ * 用户service
+ * @author liu
+ *
+ */
 @Transactional
 public class UserService {
 	@Autowired
 	private UserDAO userDAO;
 
+	/**
+	 * 插入普通用户
+	 * @param user
+	 * @return
+	 */
 	public boolean insertUser(User user){
 		int res = 0;
 		res = userDAO.insertUser(user);
@@ -24,6 +34,11 @@ public class UserService {
 		return false;
 	}
 
+	/**
+	 * 普通用户登录
+	 * @param user
+	 * @return
+	 */
 	public User login(User user) {
 		/*DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
 		criteria.add(Restrictions.eq("name", user.getName()));
@@ -33,24 +48,47 @@ public class UserService {
 		return loginUser;
 	}
 
+	/**
+	 * 查找所有普通用户
+	 * @return
+	 */
 	public List<User> findAllUser() {
 		List<User> users = userDAO.findAll();
 		return users;
 	}
 
+	/**
+	 * 根据id查找普通用户
+	 * @param id
+	 * @return
+	 */
 	public User findUserById(String id) {
 		User user = userDAO.findByUserID(id);
 		return user;
 	}
 
+	/**
+	 * 更新用户信息
+	 * @param user
+	 * @return
+	 */
 	public int update(User user) {
 		return userDAO.update(user);
 	}
 
+	/**
+	 * 根据id删除普通用户
+	 * @param id
+	 */
 	public void deleteUserById(String id) {
 		userDAO.deleteById(id);
 	}
 
+	/**
+	 * 根据用户名查找用户
+	 * @param name
+	 * @return
+	 */
 	public List<User> findUserByName(String name) {
 		return userDAO.findUserByName(name);
 	}

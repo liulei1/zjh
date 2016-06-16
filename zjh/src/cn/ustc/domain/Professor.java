@@ -3,6 +3,11 @@ package cn.ustc.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 专家用户bean
+ * @author liu
+ *
+ */
 public class Professor extends User{
 	private String real_name;//真实姓名
 	private String image;//头像

@@ -14,23 +14,23 @@ import cn.ustc.domain.User;
 import cn.ustc.utils.HibernateUtils;
 
 /**
- * 企业用户
+ * 企业用户操作DAO
  * @author liu
  *
  */
 @SuppressWarnings("all")
 public class CompanyDAO extends HibernateDaoSupport{
 	
-	/**
-	 * 插入一个企业
-	 * @param company
-	 * @return
-	 */
 	private LocalSessionFactoryBean sessionFactory;
 	public void setSessionFactory(LocalSessionFactoryBean sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	/**
+	 * 插入一个企业
+	 * @param company
+	 * @return
+	 */
 	public int insertCompany(Company company){
 		this.getHibernateTemplate().save(company);
 		return 1;
@@ -45,6 +45,11 @@ public class CompanyDAO extends HibernateDaoSupport{
 		return comp;
 	}
 	
+	/**
+	 * 根据用户名查找企业
+	 * @param name
+	 * @return
+	 */
 	public List<Company> findByCompanyName(String name){
 
 		String hql="from Company where name=:name";
@@ -52,26 +57,38 @@ public class CompanyDAO extends HibernateDaoSupport{
 		return companys;
 	}
 	
+	/**
+	 * 查找所有企业
+	 * @return
+	 */
 	public List<Company> findAll(){
 		List<Company> comps= this.getHibernateTemplate().find("FROM Company");
 		return comps;
 	
 	
 	}
+	
+	/**
+	 * 条件查询
+	 * @param criteria
+	 * @return
+	 */
 	public Company findByCriteria(DetachedCriteria criteria){
 		List<Company> companys= this.getHibernateTemplate().findByCriteria(criteria);
 		return companys.isEmpty()?null:companys.get(0);
 	}
+	
 	/**
-	 * 修改
+	 * 修改企业信息
 	 * @param company
 	 * @return
 	 */
 	public void update(Company company){
 		this.getHibernateTemplate().update(company);
 	}
+	
 	/**
-	 * 删除
+	 * 删除企业
 	 * @param id
 	 * @return
 	 */
@@ -91,18 +108,30 @@ public class CompanyDAO extends HibernateDaoSupport{
 		return companyList;
 	}
 
+	/**
+	 * 查询所有待认证企业的信息
+	 * @return
+	 */
 	public List<Company> findAllUnaudit() {
 		String hql="from Company where state=?";
 		List<Company> companys=this.getHibernateTemplate().find(hql,"0");
 		return companys;
 	}
 
+	/**
+	 * 通过认证
+	 * @param id
+	 */
 	public void pass(String id) {
 		Company company=findByCompanyID(id);
 		company.setState("1");
 		this.getHibernateTemplate().update(company);
 	}
 
+	/**
+	 * 拒绝认证
+	 * @param id
+	 */
 	public void refuse(String id) {
 		Company company=findByCompanyID(id);
 		this.getHibernateTemplate().delete(company);
@@ -119,5 +148,4 @@ public class CompanyDAO extends HibernateDaoSupport{
 		List<Company> complist=this.getHibernateTemplate().findByNamedParam(hql, new String []{"name","password"},new Object[]{name,password});
 		return complist.size()==0?null:complist.get(0);
 	}
-	
 }

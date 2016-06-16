@@ -18,7 +18,7 @@ import cn.ustc.web.dao.MessageDAO;
 import cn.ustc.web.dao.SchemeDAO;
 
 /**
- * 方案
+ * 方案service
  * @author liu存储
  *
  */
@@ -95,11 +95,22 @@ public class SchemeService {
 		criteria.add(Restrictions.eq("professor", professor));
 		return schemeDAO.findByDetachedCriteria(criteria);
 	}
-	//查询指定条数的方案，做分页
+	/**
+	 * 分页查询指定条数的方案
+	 * @param criteria 条件
+	 * @param page 首记录下标
+	 * @param pageSize 查询记录数
+	 * @return
+	 */
 	public List<Scheme> findByDetachedCriteria(DetachedCriteria criteria,int page,int pageSize){
 		return schemeDAO.findByDetachedCriteriaPage(criteria,page,pageSize);
 	}
 
+	/**
+	 * 根据专家id查找该专家发布的方案数
+	 * @param id
+	 * @return
+	 */
 	public int getCountByPorfessorID(String id) {
 		// TODO Auto-generated method stub
 		return schemeDAO.getCountByPorfessorID(id);
