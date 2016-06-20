@@ -49,7 +49,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-offset-4 col-md-7 form-btn-group">
-					<input type="submit" class="btn btn-success btn-large pull-left" value="submit">
+					<input type="submit" class="btn btn-success btn-large" value="submit">
 					<button class="btn btn-info btn-large pull-left" type="reset">reset</button>
 				</div>
 			</div>

@@ -281,7 +281,10 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 		}else{
 			consults = consultService.findByDetachedCriteria(criteria, (pageIndex-1)*PAGESIZE, PAGESIZE);
 		}
-		
+		for (Consult c : consults) {
+			Vocation vocation = vocationDAO.findVocationById(c.getCategory());
+			c.setCategory(vocation.getName());
+		}
 		return "allowListSUCCESS";
 	}
 	
@@ -291,7 +294,9 @@ public class ConsultAction extends ActionSupport implements ModelDriven<Consult>
 	 */
 	public String view(){
 		Consult consult = consultService.findById(model.getId());
+		Vocation vocation = vocationDAO.findVocationById(consult.getCategory());
 		model = consult;
+		model.setCategory(vocation.getName());
 		return "viewSUCCESS";
 	}
 	
